@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BMCFileMangement.Services.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,13 +12,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.Services.Maps;
 
 namespace BMCFileMangement.forms
 {
     public partial class frmLoginForm : Form
     {
-        public frmLoginForm()
+        private readonly ILoggerFactory _loggerFactory;
+        private readonly ILogger<frmLoginForm> _logger;
+        private readonly IMessageService _msgService;
+        private readonly IConfigurationRoot _config;
+        private readonly IApplicationLogService _applog;
+
+        public frmLoginForm(
+             IConfigurationRoot config,
+            ILoggerFactory loggerFactory,
+            IMessageService msgService,
+            IApplicationLogService applog
+            )
         {
+            _config = config;
+            _loggerFactory = loggerFactory;
+            _logger = _loggerFactory.CreateLogger<frmLoginForm>();
+            _applog = applog;
+            _msgService = msgService;
             InitializeComponent();
         }
 
@@ -41,11 +62,18 @@ namespace BMCFileMangement.forms
                         username = txtUserName.Text,
                         password = txtPassword.Text
                     },
-                    cancellationToken);
-
-                MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-                Close();
+                    cancellationToken);;
+                if (res.Result != null)
+                {
+                    _applog.SetLog("Login Successful: User: "+txtUserName.Text );
+                    MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = DialogResult.OK;
+                    // Check login result
+                    this.Dispose();
+                }
+                else {
+                    MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

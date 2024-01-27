@@ -152,10 +152,6 @@ namespace BMCFileMangement
         }
 
 
-
-
-
-
         private void MainWindows_Load(object sender, EventArgs e)
         {
             _logger.LogInformation("Form loaded at: {time}", DateTimeOffset.Now);
