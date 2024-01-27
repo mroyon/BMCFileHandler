@@ -156,5 +156,15 @@ namespace BMCFileMangement
         {
             _logger.LogInformation("Form loaded at: {time}", DateTimeOffset.Now);
         }
+
+        private void statusDateTime_Tick(object sender, EventArgs e)
+        {
+            currentDateTimeStip.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+        }
+
+        private void mnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
