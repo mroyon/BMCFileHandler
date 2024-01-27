@@ -1,0 +1,99 @@
+﻿@using CLL
+@model BDO.Core.DataAccessObjects.Models.trantinyurlaccessinfoEntity
+@inject CLL.Localization.LocalizeService SharedLocalizer
+
+@using Microsoft.Extensions.Options
+@{
+    ViewData["Title"] = @SharedLocalizer.GetLocalizedHtmlString("DELETE_TRANTINYURLACCESSINFO");
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-footer">
+                <h5 class="card-title">@SharedLocalizer.GetLocalizedHtmlString("DELETE_TRANTINYURLACCESSINFO")</h5>
+            </div>
+            <form method="POST" id="frmDeleteTranTinyURLAccessInfo" class="my-login-validation" novalidate="" autocomplete="off">
+                <div class="card-body">
+                    <div class="row">
+                        <input asp-for="tinyurlacceessid" type="hidden" />
+                    </div>
+                    
+					 <div class="row ">
+							 <input asp-for="tinyurlacceessid" type="hidden" />
+						 <div class="col-md-6">
+							 <div class="form-group">
+							<label class="labelNormal required " asp-for="tinyurlid"></label> 
+							@await Component.InvokeAsync("S2None", new { selectid = "tinyurlid", preloaded = ViewBag.preloadedDatanone , isReadOnly = true, multiple = false, isRequired = true, pkey = -99 })
+							<span asp-validation-for="tinyurlid" class="tinyurliderror text-danger " id="tinyurliderror"></span>
+							</div>
+						</div>
+					</div>
+					 <div class="row ">
+						 <div class="col-md-6">
+							 <div class="form-group">
+							 <label class="form-check-label" asp-for="otisused"></label> 
+							 <select class="form-control" asp-for="otisused" disabled="true"> 
+								 <option value="">@SharedLocalizer.GetLocalizedHtmlString("PLEASE_SELECT_DROPDOWN")</option> 
+								 <option value="true">@SharedLocalizer.GetLocalizedHtmlString("YES")</option> 
+								 <option value="false">@SharedLocalizer.GetLocalizedHtmlString("NO")</option> 
+							 </select>
+							 <span asp-validation-for="otisused" class="text-danger"></span>
+							</div>
+						</div>
+						 <div class="col-md-6">
+							 <div class="form-group">
+							 <label class="labelNormal  " asp-for="otusedtime"></label> 
+							 <input asp-for="otusedtime" class="form-control"  type="date" asp-format="{0:dd/MM/yyyy}"  autocomplete="off" readonly="readonly" />
+							 <span asp-validation-for="otusedtime" class="text-danger"></span> 
+							</div>
+						</div>
+					</div>
+					 <div class="row ">
+						 <div class="col-md-6">
+							 <div class="form-group">
+								 <label class="labelNormal  " asp-for="otusedfromip"></label>
+								 <input asp-for="otusedfromip" class="form-control" autocomplete="off" readonly="readonly"/> 
+								 <span asp-validation-for="otusedfromip" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+                    
+                    
+                     <div class="row btn-toolbar">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <button type="submit" id="btnDeleteTranTinyURLAccessInfo" data="@Url.Action("LandingTRANTINYURLACCESSINFO", "TRANTINYURLACCESSINFO")" class="btn btn-danger btn-md btnAddUser"><i class="fa fa-trash-alt"></i> @SharedLocalizer.GetLocalizedHtmlString("DELETE_REQUEST")</button>
+                                <button id="btnGoBackTranTinyURLAccessInfo" data="@Url.Action("LandingTRANTINYURLACCESSINFO", "TRANTINYURLACCESSINFO")" class="btn btn-secondary btn-md "><i class="fas fa-arrow-circle-left"></i> @SharedLocalizer.GetLocalizedHtmlString("GO_BACK")</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+            <!-- ./card-body -->
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+@section Scripts {
+    <script src="~/lib/customjs/TranTinyURLAccessInfo/TranTinyURLAccessInfo.js"></script>
+}
+
+
+
+
+

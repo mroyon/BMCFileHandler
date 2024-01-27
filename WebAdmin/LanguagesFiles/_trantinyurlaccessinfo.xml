@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="tinyurlid" value="AR:  Tiny U R L Id"></resource>
+       <resource culture="ar-kw" name="tinyurlidRequired" value="AR: Please provide  Tiny U R L Id"></resource>
+       <resource culture="ar-kw" name="otisused" value="AR:  O T Is Used"></resource>
+       <resource culture="ar-kw" name="otusedtime" value="AR:  O T Used Time"></resource>
+       <resource culture="ar-kw" name="otusedfromip" value="AR:  O T Used From I P"></resource>
+		<resource culture="ar-kw" name="trantinyurlaccessinfoList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="trantinyurlaccessinfoCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="trantinyurlaccessinfoUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="trantinyurlaccessinfoDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="tinyurlid" value=" Tiny U R L Id"></resource>
+       <resource culture="en-us" name="tinyurlidRequired" value="Please provide  Tiny U R L Id"></resource>
+       <resource culture="en-us" name="otisused" value=" O T Is Used"></resource>
+       <resource culture="en-us" name="otusedtime" value=" O T Used Time"></resource>
+       <resource culture="en-us" name="otusedfromip" value=" O T Used From I P"></resource>
+        <resource culture="en-us" name="trantinyurlaccessinfoList" value="View All"></resource>
+		<resource culture="en-us" name="trantinyurlaccessinfoCreate" value="Create"></resource>
+		<resource culture="en-us" name="trantinyurlaccessinfoUpdate" value="Update"></resource>
+		<resource culture="en-us" name="trantinyurlaccessinfoDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

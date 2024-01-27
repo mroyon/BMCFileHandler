@@ -1,0 +1,122 @@
+﻿@using CLL
+@model BDO.Core.DataAccessObjects.Models.trantinyurldataEntity
+@inject CLL.Localization.LocalizeService SharedLocalizer
+
+@using Microsoft.Extensions.Options
+@{
+    ViewData["Title"] = "Edit View Tran Tiny U R L Data";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-footer">
+                <h5 class="card-title">@SharedLocalizer.GetLocalizedHtmlString("EDIT_TRANTINYURLDATA")</h5>
+            </div>
+            <!-- /.card-header -->
+            <form method="POST" id="frmEditTranTinyURLData" class="my-login-validation" novalidate="" autocomplete="off">
+                <div class="card-body">
+                    <div class="row ">
+                        <input asp-for="tinyurlid" type="hidden" />
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="labelNormal required " asp-for="serviceid"></label>
+                                @await Component.InvokeAsync("S2ServiceInfo", new { selectid = "serviceid", preloaded = ViewBag.preloadedDataService , isReadOnly = false, multiple = false, isRequired = true, pkey = -99 })
+                                <span asp-validation-for="serviceid" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="labelNormal  " asp-for="actualurl"></label>
+                                <input asp-for="actualurl" class="form-control" />
+                                <span asp-validation-for="actualurl" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="labelNormal required " asp-for="tinyurlcode"></label>
+                                <input asp-for="tinyurlcode" class="form-control" readonly="readonly" />
+                                <span asp-validation-for="tinyurlcode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="labelNormal required " asp-for="tinyurl"></label>
+                                <input asp-for="tinyurl" class="form-control" readonly="readonly"/>
+                                <span asp-validation-for="tinyurl" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-check-label" asp-for="isactive"></label>
+                                <select class="form-control" asp-for="isactive">
+                                    <option value="">@SharedLocalizer.GetLocalizedHtmlString("PLEASE_SELECT_DROPDOWN")</option>
+                                    <option value="true">@SharedLocalizer.GetLocalizedHtmlString("YES")</option>
+                                    <option value="false">@SharedLocalizer.GetLocalizedHtmlString("NO")</option>
+                                </select>
+                                <span asp-validation-for="isactive" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-check-label" asp-for="otisonetime"></label>
+                                <select class="form-control" asp-for="otisonetime">
+                                    <option value="">@SharedLocalizer.GetLocalizedHtmlString("PLEASE_SELECT_DROPDOWN")</option>
+                                    <option value="true">@SharedLocalizer.GetLocalizedHtmlString("YES")</option>
+                                    <option value="false">@SharedLocalizer.GetLocalizedHtmlString("NO")</option>
+                                </select>
+                                <span asp-validation-for="otisonetime" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="row btn-toolbar">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <button type="submit" id="btnEditTranTinyURLData" class="btn btn-primary btn-md"><i class="fa fa-save"></i> @SharedLocalizer.GetLocalizedHtmlString("SUBMIT_REQUEST")</button>
+                                <button id="btnGoBackTranTinyURLData" class="btn btn-secondary btn-md "><i class="fas fa-arrow-circle-left"></i> @SharedLocalizer.GetLocalizedHtmlString("GO_BACK")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- ./card-body -->
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.col -->
+
+
+@section Scripts {
+	<script src="~/lib/customjs/TranTinyURLData/TranTinyURLData.js" asp-append-version="true"></script>
+    <script>
+        $(function () {
+            // $("#tinyurl").prop("readonly", true)
+            // $("#tinyurlcode").prop("readonly", true)
+        }
+    </script>
+}
+
+
+
+
+

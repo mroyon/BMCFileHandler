@@ -1,0 +1,103 @@
+﻿@using CLL
+@model BDO.Core.DataAccessObjects.Models.gen_serviceinfoEntity
+@inject CLL.Localization.LocalizeService SharedLocalizer
+
+@using Microsoft.Extensions.Options
+@{
+    ViewData["Title"] = "Edit View Gen  Service Info";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-footer">
+                <h5 class="card-title">@SharedLocalizer.GetLocalizedHtmlString("EDIT_GEN_SERVICEINFO")</h5>
+            </div>
+            <!-- /.card-header -->
+            <form method="POST" id="frmEditGen_ServiceInfo" class="my-login-validation" novalidate="" autocomplete="off">
+                <div class="card-body">
+					 <div class="row ">
+							 <input asp-for="serviceid" type="hidden" />
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="labelNormal required " asp-for="serviceen"></label>
+								<input asp-for="serviceen" class="form-control" />
+								<span asp-validation-for="serviceen" class="text-danger"></span>
+							</div>
+						</div>
+						 <div class="col-md-6">
+							 <div class="form-group">
+								 <label class="labelNormal required " asp-for="servicear"></label>
+								 <input asp-for="servicear" class="form-control" /> 
+								 <span asp-validation-for="servicear" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					 <div class="row ">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="labelNormal  " asp-for="descriptionen"></label>
+								<input asp-for="descriptionen" class="form-control" />
+								<span asp-validation-for="descriptionen" class="text-danger"></span>
+							</div>
+						</div>
+						 <div class="col-md-6">
+							 <div class="form-group">
+								 <label class="labelNormal  " asp-for="descriptionar"></label>
+								 <input asp-for="descriptionar" class="form-control" /> 
+								 <span asp-validation-for="descriptionar" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					 <div class="row ">
+						 <div class="col-md-6">
+							 <div class="form-group">
+							 <label class="form-check-label" asp-for="isactive"></label> 
+							 <select class="form-control" asp-for="isactive" > 
+								 <option value="">@SharedLocalizer.GetLocalizedHtmlString("PLEASE_SELECT_DROPDOWN")</option> 
+								 <option value="true">@SharedLocalizer.GetLocalizedHtmlString("YES")</option> 
+								 <option value="false">@SharedLocalizer.GetLocalizedHtmlString("NO")</option> 
+							 </select>
+							 <span asp-validation-for="isactive" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+                   
+                    <div class="row btn-toolbar">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <button type="submit" id="btnEditGen_ServiceInfo" class="btn btn-primary btn-md"><i class="fa fa-save"></i> @SharedLocalizer.GetLocalizedHtmlString("SUBMIT_REQUEST")</button>
+                                <button id="btnGoBackGen_ServiceInfo" class="btn btn-secondary btn-md "><i class="fas fa-arrow-circle-left"></i> @SharedLocalizer.GetLocalizedHtmlString("GO_BACK")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- ./card-body -->
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- /.col -->
+
+
+@section Scripts {
+    <script src="~/lib/customjs/Gen_ServiceInfo/Gen_ServiceInfo.js"></script>
+}
+
+
+
+
+
