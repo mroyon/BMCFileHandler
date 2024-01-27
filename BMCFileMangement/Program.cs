@@ -74,6 +74,7 @@ namespace BMCFileMangement
             {
                 services.AddSingleton<IConfigurationRoot>(_config);
                 services.AddTransient<IMessageService, MessageService>();
+                services.AddTransient<IQueueManagerService, QueueManagerService>();
                 services.AddTransient<MainWindows>();
                 //services.AddHostedService<WorkerNotification>();
             });

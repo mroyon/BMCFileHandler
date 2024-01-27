@@ -82,7 +82,7 @@ namespace BMCFileMangement
                 //MessageBox.Show("Asdf");
                 await watchFolderContents();
                 // Simulate an asynchronous task with Task.Delay
-                //await Task.Delay(4000); // Adjust as needed
+                await Task.Delay(2000); // Adjust as needed
 
                 // Report progress (if needed)
                 //backgroundWorker.ReportProgress(0);
@@ -113,9 +113,8 @@ namespace BMCFileMangement
                     toast.ExpirationTime = DateTime.Now.AddSeconds(15);
                 });
 
+            
             await Task.Delay(20000);
-
-
         }
 
         /// <summary>
