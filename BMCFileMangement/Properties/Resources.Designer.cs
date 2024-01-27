@@ -63,6 +63,16 @@ namespace BMCFileMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FileMS {
+            get {
+                object obj = ResourceManager.GetObject("FileMS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap password {
             get {
                 object obj = ResourceManager.GetObject("password", resourceCulture);
@@ -85,7 +95,6 @@ namespace BMCFileMangement.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap user {
             get {
-                object obj = ResourceManager.GetObject("FileMS", resourceCulture);
                 object obj = ResourceManager.GetObject("user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
