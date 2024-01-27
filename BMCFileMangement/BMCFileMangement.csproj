@@ -38,7 +38,6 @@
     <None Remove="LanguagesFiles\_Responses.xml" />
     <None Remove="LanguagesFiles\_Status.xml" />
     <None Remove="LanguagesFiles\_tran_login.xml" />
-    <None Remove="logs\log-.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,7 +45,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Money-Heist.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LanguagesFiles\_Common.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -160,6 +159,25 @@
     <ProjectReference Include="..\CLL\CLL.csproj" />
     <ProjectReference Include="..\IBFO\IBFO.csproj" />
     <ProjectReference Include="..\IDAC\IDAC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="logs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

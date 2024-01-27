@@ -34,8 +34,8 @@ namespace BMCFileMangement
         /// </summary>
         /// <param name="msgService"></param>
         public MainWindows(
-            IConfigurationRoot config, 
-            ILoggerFactory loggerFactory,            
+            IConfigurationRoot config,
+            ILoggerFactory loggerFactory,
             IMessageService msgService)
         {
 
@@ -113,7 +113,7 @@ namespace BMCFileMangement
                     toast.ExpirationTime = DateTime.Now.AddSeconds(15);
                 });
 
-            
+
             await Task.Delay(20000);
         }
 

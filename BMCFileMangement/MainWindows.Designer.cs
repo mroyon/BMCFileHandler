@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // MainWindows
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.IsMdiContainer = true;
-            this.Name = "MainWindows";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BMC File Management System";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.MainWindows_Load);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(640, 360);
+            IsMdiContainer = true;
+            Margin = new Padding(2);
+            Name = "MainWindows";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "BMC File Management System";
+            WindowState = FormWindowState.Maximized;
+            Load += MainWindows_Load;
+            ResumeLayout(false);
         }
 
         #endregion
