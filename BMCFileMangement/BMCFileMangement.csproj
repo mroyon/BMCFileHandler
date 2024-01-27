@@ -11,6 +11,33 @@
   <ItemGroup>
     <None Remove="appsettings.json" />
     <None Remove="Images\Money-Heist.jpg" />
+    <None Remove="LanguagesFiles\_Common.xml" />
+    <None Remove="LanguagesFiles\_CommonHtml_resource.xml" />
+    <None Remove="LanguagesFiles\_filestructure.xml" />
+    <None Remove="LanguagesFiles\_filestructurehist.xml" />
+    <None Remove="LanguagesFiles\_fileuserrelation.xml" />
+    <None Remove="LanguagesFiles\_folderstructure.xml" />
+    <None Remove="LanguagesFiles\_folderstructurehist.xml" />
+    <None Remove="LanguagesFiles\_folderuserrelation.xml" />
+    <None Remove="LanguagesFiles\_gen_serviceinfo.xml" />
+    <None Remove="LanguagesFiles\_owin_formaction.xml" />
+    <None Remove="LanguagesFiles\_owin_forminfo.xml" />
+    <None Remove="LanguagesFiles\_owin_lastworkingpage.xml" />
+    <None Remove="LanguagesFiles\_owin_role.xml" />
+    <None Remove="LanguagesFiles\_owin_rolepermission.xml" />
+    <None Remove="LanguagesFiles\_owin_user.xml" />
+    <None Remove="LanguagesFiles\_owin_userclaims.xml" />
+    <None Remove="LanguagesFiles\_owin_userlogintrail.xml" />
+    <None Remove="LanguagesFiles\_owin_userpasswordresetinfo.xml" />
+    <None Remove="LanguagesFiles\_owin_userprefferencessettings.xml" />
+    <None Remove="LanguagesFiles\_owin_userrole.xml" />
+    <None Remove="LanguagesFiles\_owin_userroles.xml" />
+    <None Remove="LanguagesFiles\_owin_userstatuschangehistory.xml" />
+    <None Remove="LanguagesFiles\_pacidatastorage.xml" />
+    <None Remove="LanguagesFiles\_rabitestcase.xml" />
+    <None Remove="LanguagesFiles\_Responses.xml" />
+    <None Remove="LanguagesFiles\_Status.xml" />
+    <None Remove="LanguagesFiles\_tran_login.xml" />
     <None Remove="logs\log-.txt" />
   </ItemGroup>
 
@@ -20,6 +47,87 @@
     </Content>
     <Content Include="Images\Money-Heist.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_Common.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_CommonHtml_resource.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_filestructure.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_filestructurehist.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_fileuserrelation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_folderstructure.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_folderstructurehist.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_folderuserrelation.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_gen_serviceinfo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_formaction.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_forminfo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_lastworkingpage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_role.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_rolepermission.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_user.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_userclaims.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_userlogintrail.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_userpasswordresetinfo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_userprefferencessettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_userrole.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_userroles.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_owin_userstatuschangehistory.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_pacidatastorage.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_rabitestcase.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_Responses.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_Status.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_tran_login.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="logs\log-.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

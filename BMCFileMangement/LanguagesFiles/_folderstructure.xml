@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="foldername" value="AR:  Folder Name"></resource>
+       <resource culture="ar-kw" name="physicalpath" value="AR:  Physical Path"></resource>
+       <resource culture="ar-kw" name="parentfolderid" value="AR:  Parent Folder I D"></resource>
+       <resource culture="ar-kw" name="isdeleted" value="AR:  Is Deleted"></resource>
+       <resource culture="ar-kw" name="deletedbyuser" value="AR:  Deleted By User"></resource>
+       <resource culture="ar-kw" name="deleteddate" value="AR:  Deleted Date"></resource>
+		<resource culture="ar-kw" name="folderstructureList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="folderstructureCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="folderstructureUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="folderstructureDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="foldername" value=" Folder Name"></resource>
+       <resource culture="en-us" name="physicalpath" value=" Physical Path"></resource>
+       <resource culture="en-us" name="parentfolderid" value=" Parent Folder I D"></resource>
+       <resource culture="en-us" name="isdeleted" value=" Is Deleted"></resource>
+       <resource culture="en-us" name="deletedbyuser" value=" Deleted By User"></resource>
+       <resource culture="en-us" name="deleteddate" value=" Deleted Date"></resource>
+        <resource culture="en-us" name="folderstructureList" value="View All"></resource>
+		<resource culture="en-us" name="folderstructureCreate" value="Create"></resource>
+		<resource culture="en-us" name="folderstructureUpdate" value="Update"></resource>
+		<resource culture="en-us" name="folderstructureDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

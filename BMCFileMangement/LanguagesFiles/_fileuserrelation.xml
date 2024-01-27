@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="fileid" value="AR:  File I D"></resource>
+       <resource culture="ar-kw" name="userid" value="AR:  User I D"></resource>
+		<resource culture="ar-kw" name="fileuserrelationList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="fileuserrelationCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="fileuserrelationUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="fileuserrelationDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="fileid" value=" File I D"></resource>
+       <resource culture="en-us" name="userid" value=" User I D"></resource>
+        <resource culture="en-us" name="fileuserrelationList" value="View All"></resource>
+		<resource culture="en-us" name="fileuserrelationCreate" value="Create"></resource>
+		<resource culture="en-us" name="fileuserrelationUpdate" value="Update"></resource>
+		<resource culture="en-us" name="fileuserrelationDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

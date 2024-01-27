@@ -10,15 +10,6 @@ namespace Web.Core.Frame.Interfaces.Services
 {
     public partial interface IHttpClientHR
     {
-        Task<knsCertificatesResponseEntity> GetKNSProfileCertificateByCivilID(GetStatusByCivilIDEntity objEntity);
-
-        Task<knsCertificatesResponseEntity> GetKNSProfessionalCertificateByCivilID(GetStatusByCivilIDEntity objEntity);
-
-        Task<knsCertificatesResponseEntity> GetKNSEmploymentCertificateByCivilID(GetStatusByCivilIDEntity objEntity);
-
-        Task<salaryCertificatesResponseEntity> GetSalaryCertificateByCivilIDAndMilitaryID(GetStatusByCivilIDEntity objEntity);
-
-        Task<string> GetApiTokenFromSahelWebApi();
     }
 
 }

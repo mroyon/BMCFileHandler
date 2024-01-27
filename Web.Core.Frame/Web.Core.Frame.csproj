@@ -67,5 +67,10 @@
 		<ProjectReference Include="..\IDAC\IDAC.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Dto\UseCaseRequests\Authentication\" />
+	  <Folder Include="UseCases\Authentication\" />
+	</ItemGroup>
+
 
 </Project>

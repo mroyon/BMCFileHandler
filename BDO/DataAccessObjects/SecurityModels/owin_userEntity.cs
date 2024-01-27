@@ -8,7 +8,6 @@ using BDO.Core.DataAccessObjects.ExtendedEntities;
 using System.Collections.Generic;
 using System.Linq;
 using BDO.Core.Base;
-using BDO.Core.DataAccessObjects.HRDomainModel;
 
 namespace BDO.Core.DataAccessObjects.SecurityModels
 {
@@ -801,9 +800,7 @@ namespace BDO.Core.DataAccessObjects.SecurityModels
         [DataMember]
         public double acc { get; set; }
 
-        [DataMember]
-        public GetMilShortInfoByBasicMilEntity? _GetMilShortInfoByBasicMilEntity { get; set; }
-        #endregion
+         #endregion
 
 
 

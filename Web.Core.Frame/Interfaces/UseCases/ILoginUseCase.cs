@@ -7,8 +7,6 @@ namespace Web.Core.Frame.Interfaces.UseCases
 {
     public interface ILoginUseCase : IUseCaseRequestHandler<LoginRequest, LoginResponse>
     {
-        Task<bool> HandleForSahel(LoginRequest message, ISahelLoginHandler<SahelLoginResponse> outputPort);
-
         Task<bool> ChangePassword(PasswordChangeRequest message, ISahelLoginHandler<SahelLoginResponse> outputPort);
     }
 }

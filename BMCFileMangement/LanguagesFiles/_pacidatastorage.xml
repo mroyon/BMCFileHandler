@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="civilid" value="AR:  Civil I D"></resource>
+       <resource culture="ar-kw" name="civilidRequired" value="AR: Please provide  Civil I D"></resource>
+       <resource culture="ar-kw" name="pacijson" value="AR:  Paci J S O N"></resource>
+       <resource culture="ar-kw" name="version" value="AR:  Version"></resource>
+		<resource culture="ar-kw" name="pacidatastorageList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="pacidatastorageCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="pacidatastorageUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="pacidatastorageDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="civilid" value=" Civil I D"></resource>
+       <resource culture="en-us" name="civilidRequired" value="Please provide  Civil I D"></resource>
+       <resource culture="en-us" name="pacijson" value=" Paci J S O N"></resource>
+       <resource culture="en-us" name="version" value=" Version"></resource>
+        <resource culture="en-us" name="pacidatastorageList" value="View All"></resource>
+		<resource culture="en-us" name="pacidatastorageCreate" value="Create"></resource>
+		<resource culture="en-us" name="pacidatastorageUpdate" value="Update"></resource>
+		<resource culture="en-us" name="pacidatastorageDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

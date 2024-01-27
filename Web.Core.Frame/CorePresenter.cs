@@ -32,9 +32,12 @@ namespace Web.Core.Frame
 
 
 
+            builder.RegisterType<FileStructurePresenter>().InstancePerLifetimeScope();
+            builder.RegisterType<FIleUserRelationPresenter>().InstancePerLifetimeScope();
+            builder.RegisterType<FolderStructurePresenter>().InstancePerLifetimeScope();
+            builder.RegisterType<FolderUserRelationPresenter>().InstancePerLifetimeScope();
+
             builder.RegisterType<Gen_ServiceInfoPresenter>().InstancePerLifetimeScope();
-            builder.RegisterType<TranTinyURLDataPresenter>().InstancePerLifetimeScope();
-            builder.RegisterType<TranTinyURLAccessInfoPresenter>().InstancePerLifetimeScope();
         }
     }
 }

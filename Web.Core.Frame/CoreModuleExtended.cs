@@ -24,12 +24,17 @@ namespace Web.Core.Frame
             builder.RegisterType<Owin_UserRolesUseCase>().As<IOwin_UserRolesUseCase>().InstancePerLifetimeScope();
             builder.RegisterType<Owin_UserStatusChangeHistoryUseCase>().As<IOwin_UserStatusChangeHistoryUseCase>().InstancePerLifetimeScope();
 
-            builder.RegisterType<Auth_UseCase>().As<IAuth_UseCase>().InstancePerLifetimeScope();
+            //builder.RegisterType<Auth_UseCase>().As<IAuth_UseCase>().InstancePerLifetimeScope();
 
             //General : Start
+
+
+            builder.RegisterType<FileStructureUseCase>().As<IFileStructureUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<FIleUserRelationUseCase>().As<IFIleUserRelationUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<FolderStructureUseCase>().As<IFolderStructureUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<FolderUserRelationUseCase>().As<IFolderUserRelationUseCase>().InstancePerLifetimeScope();
+
             builder.RegisterType<Gen_ServiceInfoUseCase>().As<IGen_ServiceInfoUseCase>().InstancePerLifetimeScope();
-            builder.RegisterType<TranTinyURLDataUseCase>().As<ITranTinyURLDataUseCase>().InstancePerLifetimeScope();
-            builder.RegisterType<TranTinyURLAccessInfoUseCase>().As<ITranTinyURLAccessInfoUseCase>().InstancePerLifetimeScope();
         
         
         }

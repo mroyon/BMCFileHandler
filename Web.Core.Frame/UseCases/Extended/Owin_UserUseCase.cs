@@ -64,54 +64,58 @@ namespace Web.Core.Frame.UseCases
                 return true;
             }
         }
-        public async Task<bool> PasswordResetOwin_User(Auth_Request message, IOutputPort_Auth<Auth_Response> outputPort)
-        {
-            bool state = false;
-            CancellationToken cancellationToken = new CancellationToken();
-            try
-            {
-                var returnUrl = message.Obj_owin_user.ReturnUrl;
-                var user = await _userManager.FindByNameAsync(message.Obj_owin_user.username);
-                if (user == null)
-                {
-                    outputPort.Login(new Auth_Response(new AjaxResponse("403", _sharedLocalizer["INVALID_REQUEST"].Value, CLL.LLClasses._Status._statusFailed, CLL.LLClasses._Status._titleInformation, ""
-                        ), false, _sharedLocalizer["INVALID_REQUEST"].Value));
-                    return false;
-                }
-                else
-                {
-                    message.Obj_owin_user.emailaddress = message.Obj_owin_user.username;
-                    message.Obj_owin_user.password = message.Obj_owin_user.newpassword;
 
-                    long? i = await BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial.FCCKAFUserSecurity.
-                        GetFacadeCreate(_contextAccessor).PasswordResetOwin_User(message.Obj_owin_user, cancellationToken);
-                    if (i != null)
-                    {
-                        //outputPort.Login(new Auth_Response(new AjaxResponse("200", _sharedLocalizer["RESET_PASSWORD_CONFIRMATION"].Value, CLL.LLClasses._Status._statusSuccess, CLL.LLClasses._Status._titleInformation, "/"
-                        //    ), true, null));
+        //public async Task<bool> PasswordResetOwin_User(Auth_Request message, IOutputPort_Auth<Auth_Response> outputPort)
+        //{
+        //    bool state = false;
+        //    CancellationToken cancellationToken = new CancellationToken();
+        //    try
+        //    {
+        //        var returnUrl = message.Obj_owin_user.ReturnUrl;
+        //        var user = await _userManager.FindByNameAsync(message.Obj_owin_user.username);
+        //        if (user == null)
+        //        {
+        //            outputPort.Login(new Auth_Response(new AjaxResponse("403", _sharedLocalizer["INVALID_REQUEST"].Value, CLL.LLClasses._Status._statusFailed, CLL.LLClasses._Status._titleInformation, ""
+        //                ), false, _sharedLocalizer["INVALID_REQUEST"].Value));
+        //            return false;
+        //        }
+        //        else
+        //        {
+        //            message.Obj_owin_user.emailaddress = message.Obj_owin_user.username;
+        //            message.Obj_owin_user.password = message.Obj_owin_user.newpassword;
 
-                        outputPort.Login(new Auth_Response(new AjaxResponse("200", _sharedLocalizer["RESET_PASSWORD_CONFIRMATION"].Value, CLL.LLClasses._Status._statusSuccess, CLL.LLClasses._Status._titleInformation, "/"
-                       ), true, null));
-                        return true;
-                    }
-                    else
-                    {
-                        outputPort.Error(new Auth_Response(new AjaxResponse("403", _sharedLocalizer["INVALID_REQUEST"].Value, CLL.LLClasses._Status._statusFailed, CLL.LLClasses._Status._titleInformation, ""
-                    ), false, _sharedLocalizer["INVALID_REQUEST"].Value));
-                        return false;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Auth_Response objResponse = new Auth_Response(false, _sharedLocalizer["DATA_DELETE_ERROR"], new Error(
-                         "500",
-                         ex.Message));
-                _logger.LogInformation(JsonConvert.SerializeObject(objResponse));
-                outputPort.ForgetPassword(objResponse);
-                return true;
-            }
-        }
+        //            long? i = await BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial.FCCKAFUserSecurity.
+        //                GetFacadeCreate(_contextAccessor).PasswordResetOwin_User(message.Obj_owin_user, cancellationToken);
+        //            if (i != null)
+        //            {
+        //                //outputPort.Login(new Auth_Response(new AjaxResponse("200", _sharedLocalizer["RESET_PASSWORD_CONFIRMATION"].Value, CLL.LLClasses._Status._statusSuccess, CLL.LLClasses._Status._titleInformation, "/"
+        //                //    ), true, null));
+
+        //                outputPort.Login(new Auth_Response(new AjaxResponse("200", _sharedLocalizer["RESET_PASSWORD_CONFIRMATION"].Value, CLL.LLClasses._Status._statusSuccess, CLL.LLClasses._Status._titleInformation, "/"
+        //               ), true, null));
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                outputPort.Error(new Auth_Response(new AjaxResponse("403", _sharedLocalizer["INVALID_REQUEST"].Value, CLL.LLClasses._Status._statusFailed, CLL.LLClasses._Status._titleInformation, ""
+        //            ), false, _sharedLocalizer["INVALID_REQUEST"].Value));
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Auth_Response objResponse = new Auth_Response(false, _sharedLocalizer["DATA_DELETE_ERROR"], new Error(
+        //                 "500",
+        //                 ex.Message));
+        //        _logger.LogInformation(JsonConvert.SerializeObject(objResponse));
+        //        outputPort.ForgetPassword(objResponse);
+        //        return true;
+        //    }
+        //}
+        
+        
+        
         public async Task<bool> EmailResetOwin_User(Owin_UserRequest message, ICRUDRequestHandler<Owin_UserResponse> outputPort)
         {
             CancellationToken cancellationToken = new CancellationToken();

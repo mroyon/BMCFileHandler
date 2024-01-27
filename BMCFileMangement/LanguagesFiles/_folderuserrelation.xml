@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="folderid" value="AR:  Folder I D"></resource>
+       <resource culture="ar-kw" name="userid" value="AR:  User I D"></resource>
+		<resource culture="ar-kw" name="folderuserrelationList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="folderuserrelationCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="folderuserrelationUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="folderuserrelationDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="folderid" value=" Folder I D"></resource>
+       <resource culture="en-us" name="userid" value=" User I D"></resource>
+        <resource culture="en-us" name="folderuserrelationList" value="View All"></resource>
+		<resource culture="en-us" name="folderuserrelationCreate" value="Create"></resource>
+		<resource culture="en-us" name="folderuserrelationUpdate" value="Update"></resource>
+		<resource culture="en-us" name="folderuserrelationDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

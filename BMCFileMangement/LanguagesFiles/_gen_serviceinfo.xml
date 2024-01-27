@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="servicear" value="AR:  Service A R"></resource>
+       <resource culture="ar-kw" name="servicearRequired" value="AR: Please provide  Service A R"></resource>
+       <resource culture="ar-kw" name="serviceen" value="AR:  Service E N"></resource>
+       <resource culture="ar-kw" name="serviceenRequired" value="AR: Please provide  Service E N"></resource>
+       <resource culture="ar-kw" name="descriptionar" value="AR:  Description A R"></resource>
+       <resource culture="ar-kw" name="descriptionen" value="AR:  Description E N"></resource>
+       <resource culture="ar-kw" name="isactive" value="AR:  Is Active"></resource>
+		<resource culture="ar-kw" name="serviceinfoList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="serviceinfoCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="serviceinfoUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="serviceinfoDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="servicear" value=" Service A R"></resource>
+       <resource culture="en-us" name="servicearRequired" value="Please provide  Service A R"></resource>
+       <resource culture="en-us" name="serviceen" value=" Service E N"></resource>
+       <resource culture="en-us" name="serviceenRequired" value="Please provide  Service E N"></resource>
+       <resource culture="en-us" name="descriptionar" value=" Description A R"></resource>
+       <resource culture="en-us" name="descriptionen" value=" Description E N"></resource>
+       <resource culture="en-us" name="isactive" value=" Is Active"></resource>
+        <resource culture="en-us" name="serviceinfoList" value="View All"></resource>
+		<resource culture="en-us" name="serviceinfoCreate" value="Create"></resource>
+		<resource culture="en-us" name="serviceinfoUpdate" value="Update"></resource>
+		<resource culture="en-us" name="serviceinfoDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

@@ -103,53 +103,6 @@ namespace Web.Core.Frame.UseCases
             return false;
         }
 
-        public async Task<bool> HandleForSahel(LoginRequest message, ISahelLoginHandler<SahelLoginResponse> outputPort)
-        {
-
-            if (!string.IsNullOrEmpty(message.UserName) && !string.IsNullOrEmpty(message.Password))
-            {
-                string hrTokenJsonString = string.Empty;
-                string hrprofileJsonString = string.Empty;
-                bool ADLogin = false;
-
-
-                var ss = _sharedLocalizer["INVALID_VERFICATION_CODE"].Value;
-                // ensure we have a user with the given user name
-                var user = await _userManager.FindByNameAsync(message.UserName);
-                if (user != null)
-                {
-                    // validate password
-                    if (await _userManager.CheckPasswordAsync(user, message.Password))
-                    {
-                        var userrole = await _userManager.GetRolesAsync(user);
-
-                        // generate refresh token
-                        var refreshToken = _tokenFactory.GenerateToken();
-                        user.AddRefreshToken(refreshToken, user.userid.GetValueOrDefault(), message.RemoteIpAddress);
-                        await _userManager.UpdateAsync(user);
-
-                        // generate access token
-                        //outputPort.Handle(new LoginResponse(true, await _jwtFactory.GenerateEncodedToken(user, userrole.ToList(), hrTokenJsonString, hrprofileJsonString), refreshToken, true));
-
-                        var str = await _jwtFactory.GenerateEncodedToken(user, userrole.ToList(), hrTokenJsonString, hrprofileJsonString);
-
-                        outputPort.SahelLogin(new SahelLoginResponse(true, str.Token, str.ExpiresIn, refreshToken, true));
-                        return true;
-                    }
-                }
-                else
-                {
-                    //create profile and login - ad - db cross matches. required
-                    //WORK. RON.
-                }
-            }
-
-            //outputPort.Handle(new LoginResponse(new[] { new Error("login_failure", "Invalid username or password.") }));
-
-            outputPort.SahelLogin(new SahelLoginResponse(new Error("login_failure", "Invalid username or password.")));
-            return false;
-        }
-
 
         public async Task<bool> ChangePassword(PasswordChangeRequest message, ISahelLoginHandler<SahelLoginResponse> outputPort)
         {

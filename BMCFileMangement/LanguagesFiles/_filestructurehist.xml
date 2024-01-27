@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="fileid" value="AR:  File I D"></resource>
+       <resource culture="ar-kw" name="fileidRequired" value="AR: Please provide  File I D"></resource>
+       <resource culture="ar-kw" name="folderid" value="AR:  Folder I D"></resource>
+       <resource culture="ar-kw" name="filename" value="AR:  File Name"></resource>
+       <resource culture="ar-kw" name="userfilename" value="AR:  User File Name"></resource>
+       <resource culture="ar-kw" name="filepath" value="AR:  File Path"></resource>
+       <resource culture="ar-kw" name="isdeleted" value="AR:  Is Deleted"></resource>
+       <resource culture="ar-kw" name="deletedbyuser" value="AR:  Deleted By User"></resource>
+       <resource culture="ar-kw" name="deleteddate" value="AR:  Deleted Date"></resource>
+		<resource culture="ar-kw" name="filestructurehistList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="filestructurehistCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="filestructurehistUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="filestructurehistDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="fileid" value=" File I D"></resource>
+       <resource culture="en-us" name="fileidRequired" value="Please provide  File I D"></resource>
+       <resource culture="en-us" name="folderid" value=" Folder I D"></resource>
+       <resource culture="en-us" name="filename" value=" File Name"></resource>
+       <resource culture="en-us" name="userfilename" value=" User File Name"></resource>
+       <resource culture="en-us" name="filepath" value=" File Path"></resource>
+       <resource culture="en-us" name="isdeleted" value=" Is Deleted"></resource>
+       <resource culture="en-us" name="deletedbyuser" value=" Deleted By User"></resource>
+       <resource culture="en-us" name="deleteddate" value=" Deleted Date"></resource>
+        <resource culture="en-us" name="filestructurehistList" value="View All"></resource>
+		<resource culture="en-us" name="filestructurehistCreate" value="Create"></resource>
+		<resource culture="en-us" name="filestructurehistUpdate" value="Update"></resource>
+		<resource culture="en-us" name="filestructurehistDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

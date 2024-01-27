@@ -46,7 +46,88 @@ namespace DAC.Core.CoreFactory
 
         #region Factory Methods 
 
-        
+        #region filestructure
+        [DebuggerStepThrough()]
+        public override IfilestructureDataAccessObjects CreatefilestructureDataAccess()
+        {
+            string type = typeof(filestructureDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new filestructureDataAccessObjects(CurrentContext);
+            }
+            return (IfilestructureDataAccessObjects)CurrentContext[type];
+        }
+        #endregion filestructure
+
+
+        #region filestructurehist
+        [DebuggerStepThrough()]
+        public override IfilestructurehistDataAccessObjects CreatefilestructurehistDataAccess()
+        {
+            string type = typeof(filestructurehistDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new filestructurehistDataAccessObjects(CurrentContext);
+            }
+            return (IfilestructurehistDataAccessObjects)CurrentContext[type];
+        }
+        #endregion filestructurehist
+
+
+        #region fileuserrelation
+        [DebuggerStepThrough()]
+        public override IfileuserrelationDataAccessObjects CreatefileuserrelationDataAccess()
+        {
+            string type = typeof(fileuserrelationDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new fileuserrelationDataAccessObjects(CurrentContext);
+            }
+            return (IfileuserrelationDataAccessObjects)CurrentContext[type];
+        }
+        #endregion fileuserrelation
+
+
+        #region folderstructure
+        [DebuggerStepThrough()]
+        public override IfolderstructureDataAccessObjects CreatefolderstructureDataAccess()
+        {
+            string type = typeof(folderstructureDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new folderstructureDataAccessObjects(CurrentContext);
+            }
+            return (IfolderstructureDataAccessObjects)CurrentContext[type];
+        }
+        #endregion folderstructure
+
+
+        #region folderstructurehist
+        [DebuggerStepThrough()]
+        public override IfolderstructurehistDataAccessObjects CreatefolderstructurehistDataAccess()
+        {
+            string type = typeof(folderstructurehistDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new folderstructurehistDataAccessObjects(CurrentContext);
+            }
+            return (IfolderstructurehistDataAccessObjects)CurrentContext[type];
+        }
+        #endregion folderstructurehist
+
+
+        #region folderuserrelation
+        [DebuggerStepThrough()]
+        public override IfolderuserrelationDataAccessObjects CreatefolderuserrelationDataAccess()
+        {
+            string type = typeof(folderuserrelationDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new folderuserrelationDataAccessObjects(CurrentContext);
+            }
+            return (IfolderuserrelationDataAccessObjects)CurrentContext[type];
+        }
+        #endregion folderuserrelation
 
 
         #region gen_serviceinfo
@@ -246,32 +327,7 @@ namespace DAC.Core.CoreFactory
         }
         #endregion tran_login
 
-        #region trantinyurlaccessinfo
-        [DebuggerStepThrough()]
-        public override ItrantinyurlaccessinfoDataAccessObjects CreatetrantinyurlaccessinfoDataAccess()
-        {
-            string type = typeof(trantinyurlaccessinfoDataAccessObjects).ToString();
-            if (!CurrentContext.Contains(type))
-            {
-                CurrentContext[type] = new trantinyurlaccessinfoDataAccessObjects(CurrentContext);
-            }
-            return (ItrantinyurlaccessinfoDataAccessObjects)CurrentContext[type];
-        }
-        #endregion trantinyurlaccessinfo
-
-
-        #region trantinyurldata
-        [DebuggerStepThrough()]
-        public override ItrantinyurldataDataAccessObjects CreatetrantinyurldataDataAccess()
-        {
-            string type = typeof(trantinyurldataDataAccessObjects).ToString();
-            if (!CurrentContext.Contains(type))
-            {
-                CurrentContext[type] = new trantinyurldataDataAccessObjects(CurrentContext);
-            }
-            return (ItrantinyurldataDataAccessObjects)CurrentContext[type];
-        }
-        #endregion trantinyurldata
+       
 
 
         #endregion Factory Methods 
