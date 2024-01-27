@@ -152,4 +152,14 @@
     <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppConfig\AppConfig.csproj" />
+    <ProjectReference Include="..\BDO\BDO.csproj" />
+    <ProjectReference Include="..\BFC\BFC.csproj" />
+    <ProjectReference Include="..\BFO\BFO.csproj" />
+    <ProjectReference Include="..\CLL\CLL.csproj" />
+    <ProjectReference Include="..\IBFO\IBFO.csproj" />
+    <ProjectReference Include="..\IDAC\IDAC.csproj" />
+  </ItemGroup>
+
 </Project>

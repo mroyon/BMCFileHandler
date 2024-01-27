@@ -14,7 +14,8 @@ namespace BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial
         }
         public static IKAFUserSecurity GetFacadeCreate(IHttpContextAccessor httpContextAccessor)
         {
-            var context = httpContextAccessor.HttpContext;
+
+            var context = httpContextAccessor?.HttpContext; 
             IKAFUserSecurity facade = null;
             if (context != null)
             {

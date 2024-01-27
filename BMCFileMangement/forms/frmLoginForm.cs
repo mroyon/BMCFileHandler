@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,6 +32,17 @@ namespace BMCFileMangement.forms
             // Replace this with your actual login logic
             if (IsValidLogin(enteredUsername, enteredPassword))
             {
+                CancellationToken cancellationToken = new CancellationToken();
+                IHttpContextAccessor httpContextAccessor = null;
+                var res = BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial.
+                    FCCKAFUserSecurity.GetFacadeCreate(httpContextAccessor).UserSignInAsync(
+                    new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
+                    {
+                        username = txtUserName.Text,
+                        password = txtPassword.Text
+                    },
+                    cancellationToken);
+
                 MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
