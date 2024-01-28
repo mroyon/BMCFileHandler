@@ -42,7 +42,8 @@ namespace BMCFileMangement.forms
             _msgService,
             _applog,
             _userprofile,
-            _fileNotificationList);
+            _fileNotificationList,
+            this);
 
             lblUserName = new Label();
             lblUser = new Label();
