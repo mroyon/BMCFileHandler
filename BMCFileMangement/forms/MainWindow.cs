@@ -31,7 +31,8 @@ namespace BMCFileMangement.forms
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
 
-        private BackgroundWorker backgroundWorker;
+        
+
 
         /// <summary>
         /// MainWindow
@@ -56,84 +57,18 @@ namespace BMCFileMangement.forms
             _applog = applog;
 
             InitializeComponent();
+            
 
             _userprofile = userprofile;
 
             CurrentUserNameStip.Text = _userprofile.CurrentUser.username;
             lblUserName.Text = _userprofile.CurrentUser.username;
-            InitializeBackgroundWorker();
+           
         }
 
-        /// <summary>
-        /// InitializeBackgroundWorker
-        /// </summary>
-        private void InitializeBackgroundWorker()
-        {
-            backgroundWorker = new BackgroundWorker
-            {
-                WorkerReportsProgress = true,
-                WorkerSupportsCancellation = true
-            };
+        
 
-            backgroundWorker.DoWork += async (sender, e) => await BackgroundWorker_DoWork();
-            backgroundWorker.ProgressChanged += async (sender, e) => await BackgroundWorker_ProgressChanged(sender, e);
-            backgroundWorker.RunWorkerCompleted += async (sender, e) => await BackgroundWorker_RunWorkerCompleted(sender, e);
-
-            // Start the background worker when the main form loads
-            if (!backgroundWorker.IsBusy)
-            {
-                backgroundWorker.RunWorkerAsync();
-            }
-        }
-
-        /// <summary>
-        /// BackgroundWorker_DoWork
-        /// </summary>
-        /// <returns></returns>
-        private async Task BackgroundWorker_DoWork()
-        {
-            // Infinite loop to keep the background worker running
-            while (!backgroundWorker.CancellationPending)
-            {
-                // Your asynchronous background work goes here
-                // For example, perform an asynchronous task
-
-                //MessageBox.Show("Asdf");
-                await watchFolderContents();
-                // Simulate an asynchronous task with Task.Delay
-                await Task.Delay(2000); // Adjust as needed
-
-                // Report progress (if needed)
-                //backgroundWorker.ReportProgress(0);
-            }
-        }
-
-        /// <summary>
-        /// watchFolderContents
-        /// </summary>
-        /// <returns></returns>
-        private async Task watchFolderContents()
-        {
-            string folderPath = @"C:\TestFolderBMC";
-
-            var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Money-Heist.jpg");
-            new ToastContentBuilder()
-                .AddArgument("action", "viewConversation")
-                .AddArgument("conversationId", 100)
-                .AddText("Folder Changed")
-                .AddInlineImage(new Uri(heroImage))
-                .AddButton(new ToastButton()
-                            .SetContent("Open Folder")
-                            .AddArgument("url", folderPath))
-                //.AddAttributionText("Cool code")
-                .SetToastScenario(ToastScenario.Default)
-                .Show(toast =>
-                {
-                    toast.ExpirationTime = DateTime.Now.AddSeconds(15);
-                });
-
-            await Task.Delay(20000);
-        }
+        
 
         /// <summary>
         /// MainWindow_Load
@@ -145,26 +80,6 @@ namespace BMCFileMangement.forms
             lblUserName.Text = _userprofile.CurrentUser.username;
         }
 
-        // <summary>
-        /// BackgroundWorker_ProgressChanged
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async Task BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            // This method is called on the main thread when progress is reported
-            // Update UI or perform any necessary actions based on the background work
-        }
-
-        /// <summary>
-        /// BackgroundWorker_RunWorkerCompleted
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async Task BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            // Cleanup or handle completion if needed
-        }
         
 
         // Override the form's OnFormClosing event to safely cancel the background worker
@@ -173,9 +88,9 @@ namespace BMCFileMangement.forms
             base.OnFormClosing(e);
 
             // Ensure the background worker is stopped when the form is closing
-            if (backgroundWorker != null && backgroundWorker.IsBusy)
+            if (notificationAndDataQuerybgWorker1.backgroundWorker != null && notificationAndDataQuerybgWorker1.backgroundWorker.IsBusy)
             {
-                backgroundWorker.CancelAsync();
+                notificationAndDataQuerybgWorker1.backgroundWorker.CancelAsync();
             }
         }
 

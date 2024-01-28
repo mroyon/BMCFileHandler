@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>DAC.Core</AssemblyName>
     <RootNamespace>DAC.Core</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
