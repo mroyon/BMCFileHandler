@@ -49,6 +49,7 @@ namespace BMCFileMangement.forms.UserControls
             _logger = _loggerFactory.CreateLogger<MainWindow>();
             _msgService = msgService;
             _applog = applog;
+            _userprofile = userprofile;
 
             InitializeComponent();
             InitializeBackgroundWorker();
@@ -100,7 +101,21 @@ namespace BMCFileMangement.forms.UserControls
         /// <returns></returns>
         private async Task watchFolderContents()
         {
+            CancellationToken cancellationToken = new CancellationToken();
 
+            var obj = await BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null)
+                .GetAllMyNotificaiton(new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
+                {
+                    touserid = _userprofile.CurrentUser.userid
+                }, cancellationToken);
+
+            if (obj != null && obj.Count > 0)
+            {
+                _fileNotificationList.CurrentListofNotificaitons.AddRange(obj.ToList());
+            }
+
+
+            _fileNotificationList.
 
             string folderPath = @"C:\TestFolderBMC";
 
