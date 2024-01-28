@@ -13,6 +13,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -84,6 +85,7 @@ namespace BMCFileMangement.forms
         private void MainWindow_Load(object sender, EventArgs e)
         {
             lblUserName.Text = _userprofile.CurrentUser.username;
+            LoadDirectoryByUser();
             _LoadUser();
         }
 
@@ -103,15 +105,15 @@ namespace BMCFileMangement.forms
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.SelectedPath = txtDirectoryPath.Text;
-            DialogResult drResult = folderBrowserDialog1.ShowDialog();
-            if (drResult == System.Windows.Forms.DialogResult.OK)
-            {
-                txtDirectoryPath.Text = folderBrowserDialog1.SelectedPath;
+            //folderBrowserDialog1.SelectedPath = txtDirectoryPath.Text;
+            //DialogResult drResult = folderBrowserDialog1.ShowDialog();
+            //if (drResult == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    txtDirectoryPath.Text = folderBrowserDialog1.SelectedPath;
 
-                if (txtDirectoryPath.Text != "" && Directory.Exists(txtDirectoryPath.Text))
-                    LoadDirectory(txtDirectoryPath.Text);
-            }
+            //    if (txtDirectoryPath.Text != "" && Directory.Exists(txtDirectoryPath.Text))
+            //        LoadDirectory(txtDirectoryPath.Text);
+            //}
         }
 
         //private void btnLoadDirectory_Click(object sender, EventArgs e)
@@ -120,16 +122,33 @@ namespace BMCFileMangement.forms
         //        LoadDirectory(txtDirectoryPath.Text);
         //}
 
-        public void LoadDirectory(string Dir)
+        public void LoadDirectoryByUser()
         {
-            DirectoryInfo di = new DirectoryInfo(Dir);
-            //Setting ProgressBar Maximum Value
-            //progressBar1.Maximum = Directory.GetFiles(Dir, "*.*", SearchOption.AllDirectories).Length + Directory.GetDirectories(Dir, "**", SearchOption.AllDirectories).Length;
-            TreeNode tds = treeFolder.Nodes.Add(di.Name);
-            tds.Tag = di.FullName;
-            tds.StateImageIndex = 0;
-            //LoadFiles(Dir, tds);
-            LoadSubDirectories(Dir, tds);
+            string Dir = @"E:\Shared Folder";
+
+
+            if (Directory.Exists(Dir))
+            {
+                var userid = _userprofile.CurrentUser.userid;
+
+                string _userDirectory = Path.Combine(Dir, userid.ToString());
+                if (!Directory.Exists(_userDirectory)) { Directory.CreateDirectory(_userDirectory); }
+
+                DirectoryInfo di = new DirectoryInfo(_userDirectory);
+                TreeNode tds = treeFolder.Nodes.Add(di.Name);
+                tds.Tag = di.FullName;
+                tds.StateImageIndex = 0;
+                //LoadFiles(Dir, tds);
+                LoadSubDirectories(_userDirectory, tds);
+            }
+            else
+            {
+                MessageBox.Show("directory not found");
+            }
+
+
+
+           
         }
         private void LoadSubDirectories(string dir, TreeNode td)
         {
@@ -290,6 +309,28 @@ namespace BMCFileMangement.forms
                 File.Copy(sourcepath, desPath, true);
             }
             catch { }
+
+            CancellationToken cancellationToken = new CancellationToken();
+            IHttpContextAccessor httpContextAccessor = null;
+            var i = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
+                    new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
+                    {
+                        folderid = null,
+                        fileid = null,
+                        fromusername = _userprofile.CurrentUser.username,
+                        fromuserid = _userprofile.CurrentUser.userid,
+                        tousername = cboUser.SelectedValue.ToString(),
+                        touserid = null,
+                        sentdate = DateTime.Now,
+                        filename = Path.GetFileName(desPath),
+                        fileversion = null,
+                        fullpath = desPath,
+                        priority = 1,
+                        filejsondata = "",
+                        status = 1,
+                        expecteddate = DateTime.Now
+                    },
+                    cancellationToken);
         }
 
         private void _LoadUser()
