@@ -19,10 +19,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BMCFileMangement.forms
 {
+    /// <summary>
+    /// MainWindow
+    /// </summary>
     public partial class MainWindow : Form
     {
-        private readonly FileSystemWatcher fileWatcher;
-        private readonly string folderPath;
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<MainWindow> _logger;
         private readonly IMessageService _msgService;
@@ -30,10 +31,16 @@ namespace BMCFileMangement.forms
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
 
-
-        private Thread fileMonitorThread;
-
         private BackgroundWorker backgroundWorker;
+
+        /// <summary>
+        /// MainWindow
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="loggerFactory"></param>
+        /// <param name="msgService"></param>
+        /// <param name="applog"></param>
+        /// <param name="userprofile"></param>
         public MainWindow(
             IConfigurationRoot config,
             ILoggerFactory loggerFactory,
@@ -49,22 +56,17 @@ namespace BMCFileMangement.forms
             _applog = applog;
 
             InitializeComponent();
-            fileWatcher = new FileSystemWatcher();
-            folderPath = @"D:\MyFolder";
-            InitializeBackgroundWorker();
-            _FileOnActivated();
+
             _userprofile = userprofile;
 
             CurrentUserNameStip.Text = _userprofile.CurrentUser.username;
             lblUserName.Text = _userprofile.CurrentUser.username;
+            InitializeBackgroundWorker();
         }
 
-
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-            lblUserName.Text = _userprofile.CurrentUser.username;
-            fileMonitorThread.Start();
-        }
+        /// <summary>
+        /// InitializeBackgroundWorker
+        /// </summary>
         private void InitializeBackgroundWorker()
         {
             backgroundWorker = new BackgroundWorker
@@ -72,34 +74,22 @@ namespace BMCFileMangement.forms
                 WorkerReportsProgress = true,
                 WorkerSupportsCancellation = true
             };
-            backgroundWorker.DoWork += async (sender, e) => await BackgroundWorker_DoWork();
 
-            backgroundWorker.ProgressChanged += async (sender, e) => await BackgroundWorker_ProgressChangedAsync(sender, e);
-            backgroundWorker.RunWorkerCompleted += async (sender, e) => await BackgroundWorker_RunWorkerCompletedAsync(sender, e);
+            backgroundWorker.DoWork += async (sender, e) => await BackgroundWorker_DoWork();
+            backgroundWorker.ProgressChanged += async (sender, e) => await BackgroundWorker_ProgressChanged(sender, e);
+            backgroundWorker.RunWorkerCompleted += async (sender, e) => await BackgroundWorker_RunWorkerCompleted(sender, e);
 
             // Start the background worker when the main form loads
             if (!backgroundWorker.IsBusy)
             {
                 backgroundWorker.RunWorkerAsync();
             }
-            fileMonitorThread = new Thread(new ThreadStart(ConfigureFileSystemWatcher));
         }
 
-        private void _FileOnActivated()
-        {
-            ToastNotificationManagerCompat.OnActivated += toastArgs =>
-            {
-                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
-
-                if (args.Contains("conversationId"))
-                {
-                    if (args["conversationId"] == "100")
-                    {
-                        Process.Start(new ProcessStartInfo(folderPath) { UseShellExecute = true });
-                    }
-                }
-            };
-        }
+        /// <summary>
+        /// BackgroundWorker_DoWork
+        /// </summary>
+        /// <returns></returns>
         private async Task BackgroundWorker_DoWork()
         {
             // Infinite loop to keep the background worker running
@@ -109,67 +99,22 @@ namespace BMCFileMangement.forms
                 // For example, perform an asynchronous task
 
                 //MessageBox.Show("Asdf");
-                //ConfigureFileSystemWatcher();
+                await watchFolderContents();
                 // Simulate an asynchronous task with Task.Delay
-                await Task.Delay(1000); // Adjust as needed
+                await Task.Delay(2000); // Adjust as needed
 
                 // Report progress (if needed)
                 //backgroundWorker.ReportProgress(0);
             }
         }
-        private void ConfigureFileSystemWatcher()
-        {
-            if (Directory.Exists(folderPath))
-            {
-                fileWatcher.Path = folderPath;
-                //fileWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName;
-                fileWatcher.NotifyFilter = NotifyFilters.Attributes
-                                 | NotifyFilters.CreationTime
-                                 | NotifyFilters.DirectoryName
-                                 | NotifyFilters.FileName
-                                 | NotifyFilters.LastAccess
-                                 | NotifyFilters.LastWrite
-                                 | NotifyFilters.Security
-                                 | NotifyFilters.Size;
-                //fileWatcher.Created += async (sender, e) => await OnFileChangedAsync(sender, e);
-                //fileWatcher.Deleted += async (sender, e) => await OnFileChangedAsync(sender, e);
-                //fileWatcher.Changed += async (sender, e) => await OnFileChangedAsync(sender, e);
-                //fileWatcher.Renamed += async (sender, e) => await OnFileRenamedAsync(sender, e);
 
-                fileWatcher.Created += OnFileChanged;
-                fileWatcher.Deleted += OnFileChanged;
-                fileWatcher.Changed += OnFileChanged;
-                fileWatcher.Renamed += OnFileRenamed;
-                fileWatcher.Error += OnFileError;
-
-                fileWatcher.EnableRaisingEvents = true;
-            }
-            else
-            {
-                // Log or handle the case where the specified folder doesn't exist
-                EventLog.WriteEntry("FileWatcherService", "Folder does not exist.", EventLogEntryType.Error);
-            }
-        }
-        private void OnFileChanged(object sender, FileSystemEventArgs e)
+        /// <summary>
+        /// watchFolderContents
+        /// </summary>
+        /// <returns></returns>
+        private async Task watchFolderContents()
         {
-            // Display notification or perform other actions when a file is added or deleted
-            string action = e.ChangeType == WatcherChangeTypes.Created ? "added" : "deleted";
-            string message = $"File '{e.Name}' has been {action}.";
-            ShowNotification(message);
-        }
-        private void OnFileRenamed(object sender, RenamedEventArgs e)
-        {
-            string action = e.ChangeType == WatcherChangeTypes.Created ? "added" : "deleted";
-            string message = $"File '{e.Name}' has been {action}.";
-            ShowNotification(message);
-        }
-        private void OnFileError(object sender, ErrorEventArgs e)
-        {
-            _logger.LogInformation($"File error event {e.GetException().Message}");
-        }
-        private void ShowNotification(string msg)
-        {
-            string folderPath = @"D:\MyFolder";
+            string folderPath = @"C:\TestFolderBMC";
 
             var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Money-Heist.jpg");
             new ToastContentBuilder()
@@ -180,23 +125,32 @@ namespace BMCFileMangement.forms
                 .AddButton(new ToastButton()
                             .SetContent("Open Folder")
                             .AddArgument("url", folderPath))
-                .AddAttributionText(msg)
+                //.AddAttributionText("Cool code")
                 .SetToastScenario(ToastScenario.Default)
                 .Show(toast =>
                 {
                     toast.ExpirationTime = DateTime.Now.AddSeconds(15);
                 });
 
-
-            //await Task.Delay(20000);
+            await Task.Delay(20000);
         }
 
         /// <summary>
+        /// MainWindow_Load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            lblUserName.Text = _userprofile.CurrentUser.username;
+        }
+
+        // <summary>
         /// BackgroundWorker_ProgressChanged
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async Task BackgroundWorker_ProgressChangedAsync(object sender, ProgressChangedEventArgs e)
+        private async Task BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             // This method is called on the main thread when progress is reported
             // Update UI or perform any necessary actions based on the background work
@@ -207,10 +161,11 @@ namespace BMCFileMangement.forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async Task BackgroundWorker_RunWorkerCompletedAsync(object sender, RunWorkerCompletedEventArgs e)
+        private async Task BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // Cleanup or handle completion if needed
         }
+        
 
         // Override the form's OnFormClosing event to safely cancel the background worker
         protected override void OnFormClosing(FormClosingEventArgs e)

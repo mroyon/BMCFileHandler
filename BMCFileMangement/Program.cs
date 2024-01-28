@@ -123,8 +123,8 @@ namespace BMCFileMangement
             fSplash.Show();
             System.Threading.Thread.Sleep(2000);
             fSplash.Close();
-
         }
+
 
     }
 }
