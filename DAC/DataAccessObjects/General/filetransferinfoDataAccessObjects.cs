@@ -56,6 +56,10 @@ namespace DAC.Core.DataAccessObjects.General
 				Database.AddInParameter(cmd, "@ToUserID", DbType.Guid, filetransferinfo.touserid);
 			if ((filetransferinfo.sentdate.HasValue))
 				Database.AddInParameter(cmd, "@SentDate", DbType.DateTime, filetransferinfo.sentdate);
+			if ((filetransferinfo.showedpopup != null))
+				Database.AddInParameter(cmd, "@ShowedPopUP", DbType.Boolean, filetransferinfo.showedpopup);
+			if ((filetransferinfo.showeddate.HasValue))
+				Database.AddInParameter(cmd, "@ShowedDate", DbType.DateTime, filetransferinfo.showeddate);
 			if ((filetransferinfo.isreceived != null))
 				Database.AddInParameter(cmd, "@IsReceived", DbType.Boolean, filetransferinfo.isreceived);
 			if ((filetransferinfo.receiveddate.HasValue))
@@ -72,9 +76,9 @@ namespace DAC.Core.DataAccessObjects.General
 				Database.AddInParameter(cmd, "@FullPath", DbType.String, filetransferinfo.fullpath);
 			if (filetransferinfo.priority.HasValue)
 				Database.AddInParameter(cmd, "@Priority", DbType.Int32, filetransferinfo.priority);
-            if (!(string.IsNullOrEmpty(filetransferinfo.filejsondata)))
-                Database.AddInParameter(cmd, "@FileJsonData", DbType.String, filetransferinfo.filejsondata);
-            if (filetransferinfo.status.HasValue)
+			if (!(string.IsNullOrEmpty(filetransferinfo.filejsondata)))
+				Database.AddInParameter(cmd, "@FileJsonData", DbType.String, filetransferinfo.filejsondata);
+			if (filetransferinfo.status.HasValue)
 				Database.AddInParameter(cmd, "@Status", DbType.Int32, filetransferinfo.status);
 			if ((filetransferinfo.expecteddate.HasValue))
 				Database.AddInParameter(cmd, "@ExpectedDate", DbType.DateTime, filetransferinfo.expecteddate);

@@ -17,8 +17,8 @@ namespace BFC.Core.FacadeCreatorObjects.General
 		public static IfolderuserrelationFacadeObjects GetFacadeCreate(IHttpContextAccessor httpContextAccessor)
         {
             IfolderuserrelationFacadeObjects facade = null;
-            var context = httpContextAccessor.HttpContext;			
-            
+            var context = httpContextAccessor?.HttpContext;
+
             if (context != null)
             {
                 facade = context.Items["IfolderuserrelationFacadeObjects"] as IfolderuserrelationFacadeObjects;

@@ -104,6 +104,20 @@ namespace CLL.LLClasses.Models
                 return resourceProvider_filetransferinfo.GetResource("sentdate", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
+         public static string showedpopup
+        {
+            get
+            {
+                return resourceProvider_filetransferinfo.GetResource("showedpopup", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+         public static string showeddate
+        {
+            get
+            {
+                return resourceProvider_filetransferinfo.GetResource("showeddate", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
          public static string isreceived
         {
             get
@@ -158,6 +172,13 @@ namespace CLL.LLClasses.Models
             get
             {
                 return resourceProvider_filetransferinfo.GetResource("priority", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
+         public static string filejsondata
+        {
+            get
+            {
+                return resourceProvider_filetransferinfo.GetResource("filejsondata", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
          public static string status

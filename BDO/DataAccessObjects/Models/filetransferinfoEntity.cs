@@ -21,6 +21,8 @@ namespace BDO.Core.DataAccessObjects.Models
         protected string _tousername;
         protected Guid ? _touserid;
         protected DateTime ? _sentdate;
+        protected bool ? _showedpopup;
+        protected DateTime ? _showeddate;
         protected bool ? _isreceived;
         protected DateTime ? _receiveddate;
         protected bool ? _isopen;
@@ -28,17 +30,8 @@ namespace BDO.Core.DataAccessObjects.Models
         protected string _filename;
         protected int ? _fileversion;
         protected string _fullpath;
-
-
-        protected string _filejsondata;
-        [DataMember]
-        public string filejsondata
-        {
-            get { return _filejsondata; }
-            set { _filejsondata = value; this.OnChnaged(); }
-        }
-
         protected int ? _priority;
+        protected string _filejsondata;
         protected int ? _status;
         protected DateTime ? _expecteddate;
                 
@@ -111,6 +104,22 @@ namespace BDO.Core.DataAccessObjects.Models
         }
         
         [DataMember]
+        [Display(Name = "showedpopup", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
+        public bool ? showedpopup
+        {
+            get { return _showedpopup; }
+            set { _showedpopup = value; this.OnChnaged(); }
+        }
+        
+        [DataMember]
+        [Display(Name = "showeddate", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
+        public DateTime ? showeddate
+        {
+            get { return _showeddate; }
+            set { _showeddate = value; this.OnChnaged(); }
+        }
+        
+        [DataMember]
         [Display(Name = "isreceived", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
         public bool ? isreceived
         {
@@ -177,6 +186,15 @@ namespace BDO.Core.DataAccessObjects.Models
         }
         
         [DataMember]
+        [MaxLength(-1)]
+        [Display(Name = "filejsondata", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
+        public string filejsondata
+        {
+            get { return _filejsondata; }
+            set { _filejsondata = value; this.OnChnaged(); }
+        }
+        
+        [DataMember]
         [Display(Name = "status", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
         public int ? status
         {
@@ -226,6 +244,8 @@ namespace BDO.Core.DataAccessObjects.Models
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUsername"))) _tousername = reader.GetString(reader.GetOrdinal("ToUsername"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUserID"))) _touserid = reader.GetGuid(reader.GetOrdinal("ToUserID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("SentDate"))) _sentdate = reader.GetDateTime(reader.GetOrdinal("SentDate"));
+                if (!reader.IsDBNull(reader.GetOrdinal("ShowedPopUP"))) _showedpopup = reader.GetBoolean(reader.GetOrdinal("ShowedPopUP"));
+                if (!reader.IsDBNull(reader.GetOrdinal("ShowedDate"))) _showeddate = reader.GetDateTime(reader.GetOrdinal("ShowedDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("IsReceived"))) _isreceived = reader.GetBoolean(reader.GetOrdinal("IsReceived"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ReceivedDate"))) _receiveddate = reader.GetDateTime(reader.GetOrdinal("ReceivedDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("IsOpen"))) _isopen = reader.GetBoolean(reader.GetOrdinal("IsOpen"));
@@ -262,6 +282,8 @@ namespace BDO.Core.DataAccessObjects.Models
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUsername"))) _tousername = reader.GetString(reader.GetOrdinal("ToUsername"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUserID"))) _touserid = reader.GetGuid(reader.GetOrdinal("ToUserID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("SentDate"))) _sentdate = reader.GetDateTime(reader.GetOrdinal("SentDate"));
+                if (!reader.IsDBNull(reader.GetOrdinal("ShowedPopUP"))) _showedpopup = reader.GetBoolean(reader.GetOrdinal("ShowedPopUP"));
+                if (!reader.IsDBNull(reader.GetOrdinal("ShowedDate"))) _showeddate = reader.GetDateTime(reader.GetOrdinal("ShowedDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("IsReceived"))) _isreceived = reader.GetBoolean(reader.GetOrdinal("IsReceived"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ReceivedDate"))) _receiveddate = reader.GetDateTime(reader.GetOrdinal("ReceivedDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("IsOpen"))) _isopen = reader.GetBoolean(reader.GetOrdinal("IsOpen"));
@@ -270,6 +292,7 @@ namespace BDO.Core.DataAccessObjects.Models
                 if (!reader.IsDBNull(reader.GetOrdinal("FileVersion"))) _fileversion = reader.GetInt32(reader.GetOrdinal("FileVersion"));
                 if (!reader.IsDBNull(reader.GetOrdinal("FullPath"))) _fullpath = reader.GetString(reader.GetOrdinal("FullPath"));
                 if (!reader.IsDBNull(reader.GetOrdinal("Priority"))) _priority = reader.GetInt32(reader.GetOrdinal("Priority"));
+                if (!reader.IsDBNull(reader.GetOrdinal("FileJsonData"))) _filejsondata = reader.GetString(reader.GetOrdinal("FileJsonData"));
                 if (!reader.IsDBNull(reader.GetOrdinal("Status"))) _status = reader.GetInt32(reader.GetOrdinal("Status"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ExpectedDate"))) _expecteddate = reader.GetDateTime(reader.GetOrdinal("ExpectedDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("TransID"))) this.BaseSecurityParam.transid = reader.GetString(reader.GetOrdinal("TransID"));

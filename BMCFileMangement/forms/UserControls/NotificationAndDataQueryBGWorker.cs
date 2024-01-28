@@ -17,36 +17,30 @@ namespace BMCFileMangement.forms.UserControls
     public partial class NotificationAndDataQueryBGWorker : UserControl
     {
         private readonly ILoggerFactory _loggerFactory;
-        private readonly ILogger<MainWindow> _logger;
+        private readonly ILogger<NotificationAndDataQueryBGWorker> _logger;
         private readonly IMessageService _msgService;
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
+        private readonly MainWindow _MainWindow;
 
         public BackgroundWorker backgroundWorker;
 
 
-        /// <summary>
-        /// NotificationAndDataQueryBGWorker
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="loggerFactory"></param>
-        /// <param name="msgService"></param>
-        /// <param name="applog"></param>
-        /// <param name="userprofile"></param>
-        /// <param name="fileNotificationList"></param>
         public NotificationAndDataQueryBGWorker(
-            IConfigurationRoot config,
-            ILoggerFactory loggerFactory,
-            IMessageService msgService,
-            IApplicationLogService applog,
-            IUserProfileService userprofile,
-            IFileNotificationService fileNotificationList)
+           IConfigurationRoot config,
+           ILoggerFactory loggerFactory,
+           IMessageService msgService,
+           IApplicationLogService applog,
+           IUserProfileService userprofile,
+           IFileNotificationService fileNotificationList,
+
+           MainWindow MainWindow)
         {
             _config = config;
             _loggerFactory = loggerFactory;
-            _logger = _loggerFactory.CreateLogger<MainWindow>();
+            _logger = _loggerFactory.CreateLogger<NotificationAndDataQueryBGWorker>();
             _msgService = msgService;
             _applog = applog;
             _userprofile = userprofile;
@@ -54,8 +48,8 @@ namespace BMCFileMangement.forms.UserControls
             InitializeComponent();
             InitializeBackgroundWorker();
             _fileNotificationList = fileNotificationList;
+            _MainWindow = MainWindow;
         }
-
 
         /// <summary>
         /// InitializeBackgroundWorker
@@ -102,42 +96,30 @@ namespace BMCFileMangement.forms.UserControls
         private async Task watchFolderContents()
         {
             CancellationToken cancellationToken = new CancellationToken();
+            long maxVal = 0;
+            if (_fileNotificationList.CurrentListofNotificaitons != null && _fileNotificationList.CurrentListofNotificaitons.Count > 0)
+                maxVal = _fileNotificationList.CurrentListofNotificaitons.Max(obj => obj.filetransid).GetValueOrDefault(0);
 
             var obj = await BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null)
                 .GetAllMyNotificaiton(new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
                 {
-                    touserid = _userprofile.CurrentUser.userid
+                    touserid = _userprofile.CurrentUser.userid,
+                    filetransid = maxVal == 0 ? null : maxVal
                 }, cancellationToken);
 
             if (obj != null && obj.Count > 0)
             {
-                _fileNotificationList.CurrentListofNotificaitons.AddRange(obj.ToList());
-            }
-
-
-            _fileNotificationList.
-
-            string folderPath = @"C:\TestFolderBMC";
-
-            var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Money-Heist.jpg");
-            new ToastContentBuilder()
-                .AddArgument("action", "viewConversation")
-                .AddArgument("conversationId", 100)
-                .AddText("Folder Changed")
-                .AddInlineImage(new Uri(heroImage))
-                .AddButton(new ToastButton()
-                            .SetContent("Open Folder")
-                            .AddArgument("url", folderPath))
-                //.AddAttributionText("Cool code")
-                .SetToastScenario(ToastScenario.Default)
-                .Show(toast =>
+                _fileNotificationList.SetCurrentNotificaitonItems(obj.ToList());
+                _MainWindow.LostNotificaitonListFromExtTrigger();
+                if (ParentForm is MainWindow mainForm)
                 {
-                    toast.ExpirationTime = DateTime.Now.AddSeconds(15);
-                });
+                    // Call the method in UserControl2
 
-            await Task.Delay(20000);
+                }
+            }
+            await Task.Delay(30000);
         }
-        
+
         // <summary>
         /// BackgroundWorker_ProgressChanged
         /// </summary>
@@ -158,6 +140,8 @@ namespace BMCFileMangement.forms.UserControls
         {
             // Cleanup or handle completion if needed
         }
+
+
 
 
         private void NotificationAndDataQueryBGWorker_Load(object sender, EventArgs e)

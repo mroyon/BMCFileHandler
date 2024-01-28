@@ -60,17 +60,19 @@ namespace BMCFileMangement.forms
             _applog = applog;
             _fileNotificationList = fileNotificationList;
 
-            InitializeComponent();
-
+          
 
             _userprofile = userprofile;
-
+            InitializeComponent();
             CurrentUserNameStip.Text = _userprofile.CurrentUser.username;
             lblUserName.Text = _userprofile.CurrentUser.username;
-
+         
         }
 
-
+        public void LostNotificaitonListFromExtTrigger()
+        {
+            this.notificationDataListViewControl1.loadDataForNotification();
+        }
 
 
 

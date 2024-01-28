@@ -14,14 +14,15 @@ namespace BMCFileMangement.Services.Implementation
 {
     public class FileNotificationService : IFileNotificationService
     {
-        public static List<filetransferinfoEntity> NotificaitonItems { get; set; }
+        public static List<filetransferinfoEntity> _NotificaitonItems { get; set; }
 
-        public List<filetransferinfoEntity> CurrentListofNotificaitons => NotificaitonItems;
+        public List<filetransferinfoEntity> CurrentListofNotificaitons => _NotificaitonItems;
 
-        public void SetCurrentNotificaitonItems(filetransferinfoEntity item)
+        public void SetCurrentNotificaitonItems(List<filetransferinfoEntity> item)
         {
-            NotificaitonItems.Add(new filetransferinfoEntity()
-            { });
+            if(_NotificaitonItems == null)
+                _NotificaitonItems = new List<filetransferinfoEntity>();
+            _NotificaitonItems.AddRange(item);
         }
 
     

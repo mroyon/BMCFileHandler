@@ -17,8 +17,8 @@ namespace BFC.Core.FacadeCreatorObjects.General
 		public static Itran_loginFacadeObjects GetFacadeCreate(IHttpContextAccessor httpContextAccessor)
         {
             Itran_loginFacadeObjects facade = null;
-            var context = httpContextAccessor.HttpContext;			
-            
+            var context = httpContextAccessor?.HttpContext;
+
             if (context != null)
             {
                 facade = context.Items["Itran_loginFacadeObjects"] as Itran_loginFacadeObjects;

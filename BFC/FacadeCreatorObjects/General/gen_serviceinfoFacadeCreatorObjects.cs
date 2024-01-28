@@ -17,7 +17,7 @@ namespace BFC.Core.FacadeCreatorObjects.General
 		public static Igen_serviceinfoFacadeObjects GetFacadeCreate(IHttpContextAccessor httpContextAccessor)
         {
             Igen_serviceinfoFacadeObjects facade = null;
-            var context = httpContextAccessor.HttpContext;			
+            var context = httpContextAccessor?.HttpContext;			
             
             if (context != null)
             {

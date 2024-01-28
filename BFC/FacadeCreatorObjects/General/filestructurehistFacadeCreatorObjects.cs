@@ -17,8 +17,8 @@ namespace BFC.Core.FacadeCreatorObjects.General
 		public static IfilestructurehistFacadeObjects GetFacadeCreate(IHttpContextAccessor httpContextAccessor)
         {
             IfilestructurehistFacadeObjects facade = null;
-            var context = httpContextAccessor.HttpContext;			
-            
+            var context = httpContextAccessor?.HttpContext;
+
             if (context != null)
             {
                 facade = context.Items["IfilestructurehistFacadeObjects"] as IfilestructurehistFacadeObjects;

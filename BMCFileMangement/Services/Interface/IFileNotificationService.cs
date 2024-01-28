@@ -11,7 +11,7 @@ namespace BMCFileMangement.Services.Interface
 {
     public interface IFileNotificationService
     {
-        void SetCurrentNotificaitonItems(filetransferinfoEntity item);
+        void SetCurrentNotificaitonItems(List<filetransferinfoEntity> item);
         List<filetransferinfoEntity> CurrentListofNotificaitons { get; }
     }
 }

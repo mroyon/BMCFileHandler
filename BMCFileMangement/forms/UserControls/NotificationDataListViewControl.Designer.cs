@@ -28,85 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlRadio = new Panel();
-            panel2 = new Panel();
-            listView1 = new ListView();
-            rdoShownew = new RadioButton();
-            rdoShowNotificaiton = new RadioButton();
-            pnlRadio.SuspendLayout();
-            panel2.SuspendLayout();
-            SuspendLayout();
+            this.pnlRadio = new System.Windows.Forms.Panel();
+            this.rdoShowNotificaiton = new System.Windows.Forms.RadioButton();
+            this.rdoShownew = new System.Windows.Forms.RadioButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dtGrdNotification = new System.Windows.Forms.DataGridView();
+            this.pnlRadio.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGrdNotification)).BeginInit();
+            this.SuspendLayout();
             // 
             // pnlRadio
             // 
-            pnlRadio.Controls.Add(rdoShowNotificaiton);
-            pnlRadio.Controls.Add(rdoShownew);
-            pnlRadio.Dock = DockStyle.Top;
-            pnlRadio.Location = new Point(0, 0);
-            pnlRadio.Name = "pnlRadio";
-            pnlRadio.Size = new Size(963, 71);
-            pnlRadio.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(listView1);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 71);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(963, 315);
-            panel2.TabIndex = 1;
-            // 
-            // listView1
-            // 
-            listView1.Dock = DockStyle.Fill;
-            listView1.Location = new Point(0, 0);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(963, 315);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // rdoShownew
-            // 
-            rdoShownew.AutoSize = true;
-            rdoShownew.Location = new Point(493, 20);
-            rdoShownew.Name = "rdoShownew";
-            rdoShownew.Size = new Size(118, 29);
-            rdoShownew.TabIndex = 0;
-            rdoShownew.TabStop = true;
-            rdoShownew.Text = "Show new";
-            rdoShownew.UseVisualStyleBackColor = true;
+            this.pnlRadio.Controls.Add(this.rdoShowNotificaiton);
+            this.pnlRadio.Controls.Add(this.rdoShownew);
+            this.pnlRadio.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlRadio.Location = new System.Drawing.Point(0, 0);
+            this.pnlRadio.Name = "pnlRadio";
+            this.pnlRadio.Size = new System.Drawing.Size(963, 71);
+            this.pnlRadio.TabIndex = 0;
             // 
             // rdoShowNotificaiton
             // 
-            rdoShowNotificaiton.AutoSize = true;
-            rdoShowNotificaiton.Location = new Point(330, 20);
-            rdoShowNotificaiton.Name = "rdoShowNotificaiton";
-            rdoShowNotificaiton.Size = new Size(103, 29);
-            rdoShowNotificaiton.TabIndex = 1;
-            rdoShowNotificaiton.TabStop = true;
-            rdoShowNotificaiton.Text = "Show all";
-            rdoShowNotificaiton.UseVisualStyleBackColor = true;
+            this.rdoShowNotificaiton.AutoSize = true;
+            this.rdoShowNotificaiton.Location = new System.Drawing.Point(330, 20);
+            this.rdoShowNotificaiton.Name = "rdoShowNotificaiton";
+            this.rdoShowNotificaiton.Size = new System.Drawing.Size(103, 29);
+            this.rdoShowNotificaiton.TabIndex = 1;
+            this.rdoShowNotificaiton.TabStop = true;
+            this.rdoShowNotificaiton.Text = "Show all";
+            this.rdoShowNotificaiton.UseVisualStyleBackColor = true;
+            // 
+            // rdoShownew
+            // 
+            this.rdoShownew.AutoSize = true;
+            this.rdoShownew.Location = new System.Drawing.Point(493, 20);
+            this.rdoShownew.Name = "rdoShownew";
+            this.rdoShownew.Size = new System.Drawing.Size(118, 29);
+            this.rdoShownew.TabIndex = 0;
+            this.rdoShownew.TabStop = true;
+            this.rdoShownew.Text = "Show new";
+            this.rdoShownew.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dtGrdNotification);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(963, 315);
+            this.panel2.TabIndex = 1;
+            // 
+            // dtGrdNotification
+            // 
+            this.dtGrdNotification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGrdNotification.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtGrdNotification.Location = new System.Drawing.Point(0, 0);
+            this.dtGrdNotification.Name = "dtGrdNotification";
+            this.dtGrdNotification.RowHeadersWidth = 62;
+            this.dtGrdNotification.RowTemplate.Height = 33;
+            this.dtGrdNotification.Size = new System.Drawing.Size(963, 315);
+            this.dtGrdNotification.TabIndex = 0;
             // 
             // NotificationDataListViewControl
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(panel2);
-            Controls.Add(pnlRadio);
-            Name = "NotificationDataListViewControl";
-            Size = new Size(963, 386);
-            pnlRadio.ResumeLayout(false);
-            pnlRadio.PerformLayout();
-            panel2.ResumeLayout(false);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlRadio);
+            this.Name = "NotificationDataListViewControl";
+            this.Size = new System.Drawing.Size(963, 386);
+            this.pnlRadio.ResumeLayout(false);
+            this.pnlRadio.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtGrdNotification)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
 
         private Panel pnlRadio;
         private Panel panel2;
-        private ListView listView1;
         private RadioButton rdoShowNotificaiton;
         private RadioButton rdoShownew;
+        private DataGridView dtGrdNotification;
     }
 }
