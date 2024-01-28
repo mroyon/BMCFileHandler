@@ -35,6 +35,7 @@ namespace BMCFileMangement.forms
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+
             notificationAndDataQuerybgWorker1 = new UserControls.NotificationAndDataQueryBGWorker(_config,
             _loggerFactory,
             _msgService,
@@ -57,7 +58,6 @@ namespace BMCFileMangement.forms
             groupBox3 = new GroupBox();
             btnSave = new Button();
             label4 = new Label();
-            textBox2 = new TextBox();
             btnBrowseFile = new Button();
             label3 = new Label();
             txtFilePath = new TextBox();
@@ -67,6 +67,9 @@ namespace BMCFileMangement.forms
             folderBrowserDialog1 = new FolderBrowserDialog();
             tmDateTime = new System.Windows.Forms.Timer(components);
             openFileDialog1 = new OpenFileDialog();
+
+            cboUser = new ComboBox();
+
             notificationDataListViewControl1 = new UserControls.NotificationDataListViewControl(_config,
             _loggerFactory,
             _msgService,
@@ -86,7 +89,6 @@ namespace BMCFileMangement.forms
             // 
             // panel1
             // 
-            panel1.Controls.Add(notificationAndDataQuerybgWorker1);
             panel1.Controls.Add(lblUserName);
             panel1.Controls.Add(lblUser);
             panel1.Dock = DockStyle.Top;
@@ -94,13 +96,6 @@ namespace BMCFileMangement.forms
             panel1.Name = "panel1";
             panel1.Size = new Size(1282, 76);
             panel1.TabIndex = 1;
-            // 
-            // notificationAndDataQuerybgWorker1
-            // 
-            notificationAndDataQuerybgWorker1.Location = new Point(917, 20);
-            notificationAndDataQuerybgWorker1.Name = "notificationAndDataQuerybgWorker1";
-            notificationAndDataQuerybgWorker1.Size = new Size(353, 37);
-            notificationAndDataQuerybgWorker1.TabIndex = 2;
             // 
             // lblUserName
             // 
@@ -142,16 +137,15 @@ namespace BMCFileMangement.forms
             // 
             treeFolder.BackColor = Color.Gainsboro;
             treeFolder.Dock = DockStyle.Fill;
-            treeFolder.Location = new Point(3, 27);
+            treeFolder.Location = new Point(3, 23);
             treeFolder.Name = "treeFolder";
-            treeFolder.Size = new Size(268, 549);
+            treeFolder.Size = new Size(268, 553);
             treeFolder.TabIndex = 0;
             treeFolder.AfterSelect += treeFolder_AfterSelect;
             treeFolder.Validating += treeFolder_Validating;
             // 
             // panel3
             // 
-            panel3.Controls.Add(notificationDataListViewControl1);
             panel3.Controls.Add(statusStrip1);
             panel3.Controls.Add(groupBox4);
             panel3.Controls.Add(groupBox3);
@@ -166,22 +160,22 @@ namespace BMCFileMangement.forms
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
             statusStrip1.Items.AddRange(new ToolStripItem[] { currentDateTimeStip, CurrentUserNameStip });
-            statusStrip1.Location = new Point(0, 926);
+            statusStrip1.Location = new Point(0, 932);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(983, 32);
+            statusStrip1.Size = new Size(983, 26);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "statusStrip1";
             // 
             // currentDateTimeStip
             // 
             currentDateTimeStip.Name = "currentDateTimeStip";
-            currentDateTimeStip.Size = new Size(89, 25);
+            currentDateTimeStip.Size = new Size(75, 20);
             currentDateTimeStip.Text = "_datetime";
             // 
             // CurrentUserNameStip
             // 
             CurrentUserNameStip.Name = "CurrentUserNameStip";
-            CurrentUserNameStip.Size = new Size(89, 25);
+            CurrentUserNameStip.Size = new Size(73, 20);
             CurrentUserNameStip.Text = "username";
             // 
             // groupBox4
@@ -226,9 +220,9 @@ namespace BMCFileMangement.forms
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(cboUser);
             groupBox3.Controls.Add(btnSave);
             groupBox3.Controls.Add(label4);
-            groupBox3.Controls.Add(textBox2);
             groupBox3.Controls.Add(btnBrowseFile);
             groupBox3.Controls.Add(label3);
             groupBox3.Controls.Add(txtFilePath);
@@ -261,15 +255,6 @@ namespace BMCFileMangement.forms
             label4.Size = new Size(136, 35);
             label4.TabIndex = 8;
             label4.Text = "Select User";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(140, 79);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(572, 28);
-            textBox2.TabIndex = 9;
             // 
             // btnBrowseFile
             // 
@@ -313,10 +298,10 @@ namespace BMCFileMangement.forms
             // 
             dgvFiles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFiles.Dock = DockStyle.Fill;
-            dgvFiles.Location = new Point(3, 27);
+            dgvFiles.Location = new Point(3, 23);
             dgvFiles.Name = "dgvFiles";
             dgvFiles.RowHeadersWidth = 51;
-            dgvFiles.Size = new Size(949, 261);
+            dgvFiles.Size = new Size(949, 265);
             dgvFiles.TabIndex = 0;
             // 
             // tmDateTime
@@ -329,12 +314,13 @@ namespace BMCFileMangement.forms
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
-            // notificationDataListViewControl1
+            // cboUser
             // 
-            notificationDataListViewControl1.Location = new Point(16, 584);
-            notificationDataListViewControl1.Name = "notificationDataListViewControl1";
-            notificationDataListViewControl1.Size = new Size(949, 339);
-            notificationDataListViewControl1.TabIndex = 4;
+            cboUser.FormattingEnabled = true;
+            cboUser.Location = new Point(140, 81);
+            cboUser.Name = "cboUser";
+            cboUser.Size = new Size(572, 28);
+            cboUser.TabIndex = 11;
             // 
             // MainWindow
             // 
@@ -348,6 +334,7 @@ namespace BMCFileMangement.forms
             Name = "MainWindow";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BMC File Management";
+            Load += MainWindow_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
@@ -391,10 +378,10 @@ namespace BMCFileMangement.forms
         private Label label3;
         private TextBox txtFilePath;
         private Label label4;
-        private TextBox textBox2;
         private OpenFileDialog openFileDialog1;
         private Button btnSave;
         private UserControls.NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
         private UserControls.NotificationDataListViewControl notificationDataListViewControl1;
+        private ComboBox cboUser;
     }
 }
