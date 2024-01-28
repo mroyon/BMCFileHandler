@@ -8,11 +8,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BMCFileMangement.forms
@@ -268,8 +270,33 @@ namespace BMCFileMangement.forms
                 //UpdateProgress();
             }
         }
+
+        public TreeNode previousSelectedNode = null;
+        private void treeFolder_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if (treeFolder.SelectedNode != null)
+            //{
+            //    //treeFolder.SelectedNode.BackColor = Color.Gainsboro;
+            //    //treeFolder.SelectedNode.ForeColor = SystemColors.WindowText;
+            //    previousSelectedNode = treeFolder.SelectedNode;
+            //}
+        }
         private void treeFolder_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (e.Node == null) return;
+            
+            if (treeFolder.SelectedNode != null)
+            {
+                treeFolder.SelectedNode.BackColor = Color.Green;
+                treeFolder.SelectedNode.ForeColor = Color.White;
+
+                if (previousSelectedNode != null)
+                {
+                    previousSelectedNode.BackColor = Color.Gainsboro;
+                    previousSelectedNode.ForeColor = SystemColors.WindowText;
+                }
+            }
+            previousSelectedNode = treeFolder.SelectedNode;
             string di = treeFolder.SelectedNode.Tag as string;
             //dgvFiles.DataSource = new System.IO.DirectoryInfo(di).GetFiles();
             dgvFiles.DataSource = loadFileNames(di);
@@ -333,6 +360,59 @@ namespace BMCFileMangement.forms
         private void timer1_Tick(object sender, EventArgs e)
         {
             currentDateTimeStip.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+        }
+
+        private void btnBrowseFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog fdlg = new OpenFileDialog();
+                fdlg.Title = "Select file";
+                fdlg.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+                fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "", "All Files", "*.*");
+                // Code for image filter  
+                ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+                foreach (ImageCodecInfo c in codecs)
+                {
+                    string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
+                    fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "|", codecName, c.FilenameExtension);
+                }
+                // Code for files filter  
+                fdlg.Filter = fdlg.Filter + "|CSV Files (*.csv)|*.csv";
+                fdlg.Filter = fdlg.Filter + "|Excel Files (.xls ,.xlsx)|  *.xls ;*.xlsx";
+                fdlg.Filter = fdlg.Filter + "|PDF Files (.pdf)|*.pdf";
+                fdlg.Filter = fdlg.Filter + "|Text Files (*.txt)|*.txt";
+                fdlg.Filter = fdlg.Filter + "|Word Files (.docx ,.doc)|*.docx;*.doc";
+                fdlg.Filter = fdlg.Filter + "|XML Files (*.xml)|*.xml";
+
+                fdlg.FilterIndex = 1;
+                fdlg.RestoreDirectory = true;
+                fdlg.Multiselect = true;
+                if (fdlg.ShowDialog() == DialogResult.OK)
+                {
+                    txtFilePath.Text = fdlg.FileName;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // Let Shared Folder is C:\MyFolderss
+            string desPath = @"C:\MyFolder";
+            if (!Directory.Exists(desPath)) Directory.CreateDirectory(desPath);
+
+            string sourcepath = txtFilePath.Text.Trim();
+            string fileName = Path.GetFileName(sourcepath);
+            desPath = Path.Combine(desPath, fileName);
+            
+            if (File.Exists(desPath)) File.Delete(desPath);
+
+            try
+            {
+                File.Copy(sourcepath, desPath, true);
+            }
+            catch { }
         }
     }
 }
