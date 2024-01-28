@@ -39,7 +39,8 @@ namespace BMCFileMangement.forms
             _loggerFactory,
             _msgService,
             _applog,
-            _userprofile);
+            _userprofile,
+            _fileNotificationList);
             lblUserName = new Label();
             lblUser = new Label();
             panel2 = new Panel();
@@ -70,7 +71,8 @@ namespace BMCFileMangement.forms
             _loggerFactory,
             _msgService,
             _applog,
-            _userprofile);
+            _userprofile,
+            _fileNotificationList);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();

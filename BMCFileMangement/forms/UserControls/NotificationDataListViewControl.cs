@@ -21,6 +21,7 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
+        private readonly IFileNotificationService _fileNotificationList;
 
         /// <summary>
         /// NotificationDataListViewControl
@@ -35,13 +36,15 @@ namespace BMCFileMangement.forms.UserControls
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
-            IUserProfileService userprofile)
+            IUserProfileService userprofile,
+           IFileNotificationService fileNotificationList)
         {
             _config = config;
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<MainWindow>();
             _msgService = msgService;
             _applog = applog;
+            _fileNotificationList = fileNotificationList;
 
 
             InitializeComponent();

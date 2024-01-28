@@ -22,6 +22,7 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
+        private readonly IFileNotificationService _fileNotificationList;
 
         public BackgroundWorker backgroundWorker;
 
@@ -34,12 +35,14 @@ namespace BMCFileMangement.forms.UserControls
         /// <param name="msgService"></param>
         /// <param name="applog"></param>
         /// <param name="userprofile"></param>
+        /// <param name="fileNotificationList"></param>
         public NotificationAndDataQueryBGWorker(
             IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
-            IUserProfileService userprofile)
+            IUserProfileService userprofile,
+            IFileNotificationService fileNotificationList)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -49,6 +52,7 @@ namespace BMCFileMangement.forms.UserControls
 
             InitializeComponent();
             InitializeBackgroundWorker();
+            _fileNotificationList = fileNotificationList;
         }
 
 
@@ -96,6 +100,8 @@ namespace BMCFileMangement.forms.UserControls
         /// <returns></returns>
         private async Task watchFolderContents()
         {
+
+
             string folderPath = @"C:\TestFolderBMC";
 
             var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Money-Heist.jpg");

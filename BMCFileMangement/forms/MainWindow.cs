@@ -30,8 +30,9 @@ namespace BMCFileMangement.forms
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
+        private readonly IFileNotificationService _fileNotificationList;
 
-        
+
 
 
         /// <summary>
@@ -47,7 +48,8 @@ namespace BMCFileMangement.forms
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
-            IUserProfileService userprofile)
+            IUserProfileService userprofile,
+            IFileNotificationService fileNotificationList)
         {
 
             _config = config;
@@ -55,6 +57,7 @@ namespace BMCFileMangement.forms
             _logger = _loggerFactory.CreateLogger<MainWindow>();
             _msgService = msgService;
             _applog = applog;
+            _fileNotificationList = fileNotificationList;
 
             InitializeComponent();
             
