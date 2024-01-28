@@ -94,6 +94,30 @@ namespace BMCFileMangement
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
-        
+        /// 
+
+        private static void CreateSplashForm()
+        {
+
+            var fSplash = new frmSplashScreen();
+            //fSplash.BackgroundImage = System.Drawing.Image.FromFile(@"Images\Money-Heist.jpg");
+
+            //fSplash.BackgroundImageLayout = ImageLayout.Center;
+            //fSplash.FormBorderStyle = FormBorderStyle.None;
+            //fSplash.StartPosition = FormStartPosition.CenterScreen;
+            //fSplash.TopMost = true;
+
+            //fSplash.TransparencyKey = System.Drawing.Color.White;// it sets transparency for the background of image
+
+            // Set the splash form size and we are shure the image fit to the form
+            //fSplash.Width = (int)fSplash.BackgroundImage.PhysicalDimension.Width;
+            //fSplash.Height = (int)fSplash.BackgroundImage.PhysicalDimension.Height;
+
+            fSplash.Show();
+            System.Threading.Thread.Sleep(2000);
+            fSplash.Close();
+
+        }
+
     }
 }

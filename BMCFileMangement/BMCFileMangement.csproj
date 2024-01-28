@@ -39,7 +39,6 @@
     <None Remove="LanguagesFiles\_Responses.xml" />
     <None Remove="LanguagesFiles\_Status.xml" />
     <None Remove="LanguagesFiles\_tran_login.xml" />
-    <None Remove="logs\log-.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,7 +49,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Money-Heist.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LanguagesFiles\_Common.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -164,6 +163,10 @@
     <ProjectReference Include="..\CLL\CLL.csproj" />
     <ProjectReference Include="..\IBFO\IBFO.csproj" />
     <ProjectReference Include="..\IDAC\IDAC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="logs\" />
   </ItemGroup>
 
   <ItemGroup>
