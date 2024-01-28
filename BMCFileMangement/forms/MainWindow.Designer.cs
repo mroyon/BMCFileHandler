@@ -1,4 +1,9 @@
-﻿namespace BMCFileMangement.forms
+﻿using BMCFileMangement.Services.Interface;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Windows.Services.Maps;
+
+namespace BMCFileMangement.forms
 {
     partial class MainWindow
     {
@@ -30,7 +35,11 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
-            notificationAndDataQuerybgWorker1 = new UserControls.NotificationAndDataQueryBGWorker();
+            notificationAndDataQuerybgWorker1 = new UserControls.NotificationAndDataQueryBGWorker(_config,
+            _loggerFactory,
+            _msgService,
+            _applog,
+            _userprofile);
             lblUserName = new Label();
             lblUser = new Label();
             panel2 = new Panel();
@@ -57,7 +66,11 @@
             folderBrowserDialog1 = new FolderBrowserDialog();
             tmDateTime = new System.Windows.Forms.Timer(components);
             openFileDialog1 = new OpenFileDialog();
-            notificationDataListViewControl1 = new UserControls.NotificationDataListViewControl();
+            notificationDataListViewControl1 = new UserControls.NotificationDataListViewControl(_config,
+            _loggerFactory,
+            _msgService,
+            _applog,
+            _userprofile);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
