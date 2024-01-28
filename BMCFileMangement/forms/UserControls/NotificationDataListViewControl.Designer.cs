@@ -28,85 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            groupBox1 = new GroupBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
+            pnlRadio = new Panel();
+            panel2 = new Panel();
             listView1 = new ListView();
-            panel1.SuspendLayout();
-            groupBox1.SuspendLayout();
+            rdoShownew = new RadioButton();
+            rdoShowNotificaiton = new RadioButton();
+            pnlRadio.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // pnlRadio
             // 
-            panel1.Controls.Add(groupBox1);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(963, 386);
-            panel1.TabIndex = 0;
+            pnlRadio.Controls.Add(rdoShowNotificaiton);
+            pnlRadio.Controls.Add(rdoShownew);
+            pnlRadio.Dock = DockStyle.Top;
+            pnlRadio.Location = new Point(0, 0);
+            pnlRadio.Name = "pnlRadio";
+            pnlRadio.Size = new Size(963, 71);
+            pnlRadio.TabIndex = 0;
             // 
-            // groupBox1
+            // panel2
             // 
-            groupBox1.Controls.Add(listView1);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Location = new Point(3, 6);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(957, 377);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Notification List";
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(6, 30);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(103, 29);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Show all";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(115, 30);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(118, 29);
-            radioButton2.TabIndex = 0;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Show new";
-            radioButton2.UseVisualStyleBackColor = true;
+            panel2.Controls.Add(listView1);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 71);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(963, 315);
+            panel2.TabIndex = 1;
             // 
             // listView1
             // 
-            listView1.Location = new Point(0, 76);
+            listView1.Dock = DockStyle.Fill;
+            listView1.Location = new Point(0, 0);
             listView1.Name = "listView1";
-            listView1.Size = new Size(957, 301);
-            listView1.TabIndex = 1;
+            listView1.Size = new Size(963, 315);
+            listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // rdoShownew
+            // 
+            rdoShownew.AutoSize = true;
+            rdoShownew.Location = new Point(493, 20);
+            rdoShownew.Name = "rdoShownew";
+            rdoShownew.Size = new Size(118, 29);
+            rdoShownew.TabIndex = 0;
+            rdoShownew.TabStop = true;
+            rdoShownew.Text = "Show new";
+            rdoShownew.UseVisualStyleBackColor = true;
+            // 
+            // rdoShowNotificaiton
+            // 
+            rdoShowNotificaiton.AutoSize = true;
+            rdoShowNotificaiton.Location = new Point(330, 20);
+            rdoShowNotificaiton.Name = "rdoShowNotificaiton";
+            rdoShowNotificaiton.Size = new Size(103, 29);
+            rdoShowNotificaiton.TabIndex = 1;
+            rdoShowNotificaiton.TabStop = true;
+            rdoShowNotificaiton.Text = "Show all";
+            rdoShowNotificaiton.UseVisualStyleBackColor = true;
             // 
             // NotificationDataListViewControl
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(panel1);
+            Controls.Add(panel2);
+            Controls.Add(pnlRadio);
             Name = "NotificationDataListViewControl";
             Size = new Size(963, 386);
-            panel1.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            pnlRadio.ResumeLayout(false);
+            pnlRadio.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private GroupBox groupBox1;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
+        private Panel pnlRadio;
+        private Panel panel2;
         private ListView listView1;
+        private RadioButton rdoShowNotificaiton;
+        private RadioButton rdoShownew;
     }
 }
