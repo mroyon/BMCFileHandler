@@ -36,12 +36,14 @@ namespace BMCFileMangement.forms
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
 
+
             notificationAndDataQuerybgWorker1 = new UserControls.NotificationAndDataQueryBGWorker(_config,
             _loggerFactory,
             _msgService,
             _applog,
             _userprofile,
             _fileNotificationList);
+
             lblUserName = new Label();
             lblUser = new Label();
             panel2 = new Panel();
@@ -56,6 +58,7 @@ namespace BMCFileMangement.forms
             txtDirectoryPath = new TextBox();
             label2 = new Label();
             groupBox3 = new GroupBox();
+            cboUser = new ComboBox();
             btnSave = new Button();
             label4 = new Label();
             btnBrowseFile = new Button();
@@ -68,6 +71,7 @@ namespace BMCFileMangement.forms
             tmDateTime = new System.Windows.Forms.Timer(components);
             openFileDialog1 = new OpenFileDialog();
 
+
             cboUser = new ComboBox();
 
             notificationDataListViewControl1 = new UserControls.NotificationDataListViewControl(_config,
@@ -76,6 +80,7 @@ namespace BMCFileMangement.forms
             _applog,
             _userprofile,
             _fileNotificationList);
+
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -233,15 +238,23 @@ namespace BMCFileMangement.forms
             groupBox3.TabStop = false;
             groupBox3.Text = "Upload File";
             // 
+            // cboUser
+            // 
+            cboUser.FormattingEnabled = true;
+            cboUser.Location = new Point(140, 81);
+            cboUser.Name = "cboUser";
+            cboUser.Size = new Size(572, 28);
+            cboUser.TabIndex = 11;
+            // 
             // btnSave
             // 
             btnSave.BackColor = Color.FromArgb(41, 128, 185);
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(809, 148);
+            btnSave.Location = new Point(692, 148);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(134, 36);
+            btnSave.Size = new Size(251, 36);
             btnSave.TabIndex = 10;
             btnSave.Text = "Send Notification";
             btnSave.UseVisualStyleBackColor = false;
@@ -313,14 +326,6 @@ namespace BMCFileMangement.forms
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // cboUser
-            // 
-            cboUser.FormattingEnabled = true;
-            cboUser.Location = new Point(140, 81);
-            cboUser.Name = "cboUser";
-            cboUser.Size = new Size(572, 28);
-            cboUser.TabIndex = 11;
             // 
             // MainWindow
             // 
