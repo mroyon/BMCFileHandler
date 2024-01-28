@@ -29,8 +29,6 @@ namespace BMCFileMangement.forms
         private readonly IUserProfileService _userprofile;
 
 
-
-
         private Thread fileMonitorThread;
 
         private BackgroundWorker backgroundWorker;
@@ -56,12 +54,13 @@ namespace BMCFileMangement.forms
             _userprofile = userprofile;
 
             CurrentUserNameStip.Text = _userprofile.CurrentUser.username;
+            lblUserName.Text = _userprofile.CurrentUser.username;
         }
-
 
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            lblUserName.Text = _userprofile.CurrentUser.username;
             fileMonitorThread.Start();
         }
         private void InitializeBackgroundWorker()
