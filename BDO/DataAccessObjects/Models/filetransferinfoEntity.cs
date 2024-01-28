@@ -28,6 +28,16 @@ namespace BDO.Core.DataAccessObjects.Models
         protected string _filename;
         protected int ? _fileversion;
         protected string _fullpath;
+
+
+        protected string _filejsondata;
+        [DataMember]
+        public string filejsondata
+        {
+            get { return _filejsondata; }
+            set { _filejsondata = value; this.OnChnaged(); }
+        }
+
         protected int ? _priority;
         protected int ? _status;
         protected DateTime ? _expecteddate;
@@ -224,6 +234,7 @@ namespace BDO.Core.DataAccessObjects.Models
                 if (!reader.IsDBNull(reader.GetOrdinal("FileVersion"))) _fileversion = reader.GetInt32(reader.GetOrdinal("FileVersion"));
                 if (!reader.IsDBNull(reader.GetOrdinal("FullPath"))) _fullpath = reader.GetString(reader.GetOrdinal("FullPath"));
                 if (!reader.IsDBNull(reader.GetOrdinal("Priority"))) _priority = reader.GetInt32(reader.GetOrdinal("Priority"));
+                if (!reader.IsDBNull(reader.GetOrdinal("FileJsonData"))) _filejsondata = reader.GetString(reader.GetOrdinal("FileJsonData"));
                 if (!reader.IsDBNull(reader.GetOrdinal("Status"))) _status = reader.GetInt32(reader.GetOrdinal("Status"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ExpectedDate"))) _expecteddate = reader.GetDateTime(reader.GetOrdinal("ExpectedDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("TransID"))) this.BaseSecurityParam.transid = reader.GetString(reader.GetOrdinal("TransID"));

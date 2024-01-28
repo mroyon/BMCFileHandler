@@ -72,7 +72,9 @@ namespace DAC.Core.DataAccessObjects.General
 				Database.AddInParameter(cmd, "@FullPath", DbType.String, filetransferinfo.fullpath);
 			if (filetransferinfo.priority.HasValue)
 				Database.AddInParameter(cmd, "@Priority", DbType.Int32, filetransferinfo.priority);
-			if (filetransferinfo.status.HasValue)
+            if (!(string.IsNullOrEmpty(filetransferinfo.filejsondata)))
+                Database.AddInParameter(cmd, "@FileJsonData", DbType.String, filetransferinfo.filejsondata);
+            if (filetransferinfo.status.HasValue)
 				Database.AddInParameter(cmd, "@Status", DbType.Int32, filetransferinfo.status);
 			if ((filetransferinfo.expecteddate.HasValue))
 				Database.AddInParameter(cmd, "@ExpectedDate", DbType.DateTime, filetransferinfo.expecteddate);
