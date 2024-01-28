@@ -34,7 +34,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 8);
+            this.label1.Location = new System.Drawing.Point(3, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(281, 25);
             this.label1.TabIndex = 0;
@@ -46,7 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
             this.Name = "NotificationAndDataQueryBGWorker";
-            this.Size = new System.Drawing.Size(377, 41);
+            this.Size = new System.Drawing.Size(281, 41);
             this.Load += new System.EventHandler(this.NotificationAndDataQueryBGWorker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

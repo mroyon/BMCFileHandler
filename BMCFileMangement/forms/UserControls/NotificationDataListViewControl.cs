@@ -57,7 +57,7 @@ namespace BMCFileMangement.forms.UserControls
             {
                 dtGrdNotification.DataSource = _fileNotificationList.CurrentListofNotificaitons.ToList();
             });
-            
+
         }
     }
 }

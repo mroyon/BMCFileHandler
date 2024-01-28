@@ -16,6 +16,7 @@ namespace BMCFileMangement.forms.UserControls
 { 
     public partial class NotificationAndDataQueryBGWorker : UserControl
     {
+
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<NotificationAndDataQueryBGWorker> _logger;
         private readonly IMessageService _msgService;
@@ -140,9 +141,6 @@ namespace BMCFileMangement.forms.UserControls
         {
             // Cleanup or handle completion if needed
         }
-
-
-
 
         private void NotificationAndDataQueryBGWorker_Load(object sender, EventArgs e)
         {
