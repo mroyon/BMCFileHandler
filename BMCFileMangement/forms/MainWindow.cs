@@ -1,4 +1,5 @@
 ﻿using BMCFileMangement.Services.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Uwp.Notifications;
@@ -31,7 +32,7 @@ namespace BMCFileMangement.forms
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
 
-        
+
 
 
         /// <summary>
@@ -57,18 +58,18 @@ namespace BMCFileMangement.forms
             _applog = applog;
 
             InitializeComponent();
-            
+
 
             _userprofile = userprofile;
 
             CurrentUserNameStip.Text = _userprofile.CurrentUser.username;
             lblUserName.Text = _userprofile.CurrentUser.username;
-           
+
         }
 
-        
 
-        
+
+
 
         /// <summary>
         /// MainWindow_Load
@@ -78,9 +79,10 @@ namespace BMCFileMangement.forms
         private void MainWindow_Load(object sender, EventArgs e)
         {
             lblUserName.Text = _userprofile.CurrentUser.username;
+            _LoadUser();
         }
 
-        
+
 
         // Override the form's OnFormClosing event to safely cancel the background worker
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -154,7 +156,7 @@ namespace BMCFileMangement.forms
         private void treeFolder_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node == null) return;
-            
+
             if (treeFolder.SelectedNode != null)
             {
                 treeFolder.SelectedNode.BackColor = Color.Green;
@@ -275,7 +277,7 @@ namespace BMCFileMangement.forms
             string sourcepath = txtFilePath.Text.Trim();
             string fileName = Path.GetFileName(sourcepath);
             desPath = Path.Combine(desPath, fileName);
-            
+
             if (File.Exists(desPath)) File.Delete(desPath);
 
             try
@@ -283,6 +285,32 @@ namespace BMCFileMangement.forms
                 File.Copy(sourcepath, desPath, true);
             }
             catch { }
+        }
+
+        private void _LoadUser()
+        {
+            try
+            {
+                CancellationToken cancellationToken = new CancellationToken();
+                IHttpContextAccessor httpContextAccessor = null;
+                var _users = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(httpContextAccessor).GetDataForDropDown(
+
+                    new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
+                    {
+                        PageSize = 10000,
+                        CurrentPage = 1
+                    },
+                    cancellationToken).Result;
+
+                if (_users != null && _users.Count > 0)
+                {
+                    cboUser.DataSource = _users;
+                    cboUser.ValueMember = "Id";
+                    cboUser.DisplayMember = "Text";
+                }
+            }
+            catch (Exception ex)
+            { throw ex; }
         }
     }
 }

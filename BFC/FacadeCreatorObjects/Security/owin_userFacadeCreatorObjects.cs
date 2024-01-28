@@ -17,7 +17,7 @@ namespace BFC.Core.FacadeCreatorObjects.Security
 		public static Iowin_userFacadeObjects GetFacadeCreate(IHttpContextAccessor httpContextAccessor)
         {
 			Iowin_userFacadeObjects facade = null;
-            var context = httpContextAccessor.HttpContext;
+            var context = httpContextAccessor?.HttpContext;
             if (context != null)
             {
                 facade = context.Items["Iowin_userFacadeObjects"] as Iowin_userFacadeObjects;
