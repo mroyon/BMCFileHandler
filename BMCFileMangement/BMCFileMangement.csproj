@@ -16,6 +16,7 @@
     <None Remove="LanguagesFiles\_CommonHtml_resource.xml" />
     <None Remove="LanguagesFiles\_filestructure.xml" />
     <None Remove="LanguagesFiles\_filestructurehist.xml" />
+    <None Remove="LanguagesFiles\_filetransferinfo.xml" />
     <None Remove="LanguagesFiles\_fileuserrelation.xml" />
     <None Remove="LanguagesFiles\_folderstructure.xml" />
     <None Remove="LanguagesFiles\_folderstructurehist.xml" />
@@ -61,6 +62,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LanguagesFiles\_filestructurehist.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LanguagesFiles\_filetransferinfo.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LanguagesFiles\_fileuserrelation.xml">

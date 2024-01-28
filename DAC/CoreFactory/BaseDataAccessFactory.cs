@@ -83,6 +83,10 @@ namespace DAC.Core.CoreFactory
         public abstract IfileuserrelationDataAccessObjects CreatefileuserrelationDataAccess();
         #endregion fileuserrelation
 
+        #region filetransferinfo
+        public abstract IfiletransferinfoDataAccessObjects CreatefiletransferinfoDataAccess();
+        #endregion filetransferinfo
+
 
         #region folderstructure
         public abstract IfolderstructureDataAccessObjects CreatefolderstructureDataAccess();

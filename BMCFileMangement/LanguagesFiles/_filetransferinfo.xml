@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    
+        <!--  ar-kwabic (ar-kw) -->
+        
+       <resource culture="ar-kw" name="folderid" value="AR:  Folder I D"></resource>
+       <resource culture="ar-kw" name="folderidRequired" value="AR: Please provide  Folder I D"></resource>
+       <resource culture="ar-kw" name="fileid" value="AR:  File I D"></resource>
+       <resource culture="ar-kw" name="fileidRequired" value="AR: Please provide  File I D"></resource>
+       <resource culture="ar-kw" name="fromusername" value="AR:  From Username"></resource>
+       <resource culture="ar-kw" name="fromuserid" value="AR:  From User I D"></resource>
+       <resource culture="ar-kw" name="tousername" value="AR:  To Username"></resource>
+       <resource culture="ar-kw" name="touserid" value="AR:  To User I D"></resource>
+       <resource culture="ar-kw" name="sentdate" value="AR:  Sent Date"></resource>
+       <resource culture="ar-kw" name="isreceived" value="AR:  Is Received"></resource>
+       <resource culture="ar-kw" name="receiveddate" value="AR:  Received Date"></resource>
+       <resource culture="ar-kw" name="isopen" value="AR:  Is Open"></resource>
+       <resource culture="ar-kw" name="opendate" value="AR:  Open Date"></resource>
+       <resource culture="ar-kw" name="filename" value="AR:  File Name"></resource>
+       <resource culture="ar-kw" name="fileversion" value="AR:  File Version"></resource>
+       <resource culture="ar-kw" name="fullpath" value="AR:  Full Path"></resource>
+       <resource culture="ar-kw" name="priority" value="AR:  Priority"></resource>
+       <resource culture="ar-kw" name="status" value="AR:  Status"></resource>
+       <resource culture="ar-kw" name="expecteddate" value="AR:  Expected Date"></resource>
+		<resource culture="ar-kw" name="filetransferinfoList" value="AR: View All"></resource>
+		<resource culture="ar-kw" name="filetransferinfoCreate" value="AR: Create"></resource>
+		<resource culture="ar-kw" name="filetransferinfoUpdate" value="AR: Update"></resource>
+		<resource culture="ar-kw" name="filetransferinfoDetails" value="AR: Detail"></resource>
+
+         <!--  ar-kwabic (ar-kw) -->
+         
+          <!--  English (en-US) -->
+       <resource culture="en-us" name="folderid" value=" Folder I D"></resource>
+       <resource culture="en-us" name="folderidRequired" value="Please provide  Folder I D"></resource>
+       <resource culture="en-us" name="fileid" value=" File I D"></resource>
+       <resource culture="en-us" name="fileidRequired" value="Please provide  File I D"></resource>
+       <resource culture="en-us" name="fromusername" value=" From Username"></resource>
+       <resource culture="en-us" name="fromuserid" value=" From User I D"></resource>
+       <resource culture="en-us" name="tousername" value=" To Username"></resource>
+       <resource culture="en-us" name="touserid" value=" To User I D"></resource>
+       <resource culture="en-us" name="sentdate" value=" Sent Date"></resource>
+       <resource culture="en-us" name="isreceived" value=" Is Received"></resource>
+       <resource culture="en-us" name="receiveddate" value=" Received Date"></resource>
+       <resource culture="en-us" name="isopen" value=" Is Open"></resource>
+       <resource culture="en-us" name="opendate" value=" Open Date"></resource>
+       <resource culture="en-us" name="filename" value=" File Name"></resource>
+       <resource culture="en-us" name="fileversion" value=" File Version"></resource>
+       <resource culture="en-us" name="fullpath" value=" Full Path"></resource>
+       <resource culture="en-us" name="priority" value=" Priority"></resource>
+       <resource culture="en-us" name="status" value=" Status"></resource>
+       <resource culture="en-us" name="expecteddate" value=" Expected Date"></resource>
+        <resource culture="en-us" name="filetransferinfoList" value="View All"></resource>
+		<resource culture="en-us" name="filetransferinfoCreate" value="Create"></resource>
+		<resource culture="en-us" name="filetransferinfoUpdate" value="Update"></resource>
+		<resource culture="en-us" name="filetransferinfoDetails" value="Detail"></resource>
+          <!--  English (en-US) -->
+        
+         
+
+</resources>        

@@ -74,6 +74,20 @@ namespace DAC.Core.CoreFactory
         #endregion filestructurehist
 
 
+        #region filetransferinfo
+        [DebuggerStepThrough()]
+        public override IfiletransferinfoDataAccessObjects CreatefiletransferinfoDataAccess()
+        {
+            string type = typeof(filetransferinfoDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new filetransferinfoDataAccessObjects(CurrentContext);
+            }
+            return (IfiletransferinfoDataAccessObjects)CurrentContext[type];
+        }
+        #endregion filetransferinfo
+
+
         #region fileuserrelation
         [DebuggerStepThrough()]
         public override IfileuserrelationDataAccessObjects CreatefileuserrelationDataAccess()
