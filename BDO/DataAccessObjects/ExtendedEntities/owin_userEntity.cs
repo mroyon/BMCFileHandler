@@ -10,6 +10,14 @@ namespace BDO.Core.DataAccessObjects.SecurityModels
 
     public partial class owin_userEntity
     {
+        protected long? _folderid;
+        [DataMember]
+        public long? folderid
+        {
+            get { return _folderid; }
+            set { _folderid = value; }
+        }
+
         protected DateTime? _fromdate;
         protected DateTime? _todate;
         [DataMember]

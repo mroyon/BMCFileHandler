@@ -26,8 +26,10 @@ namespace BMCFileMangement.Services.Implementation
             StaticCurrentUser.logindate = DateTime.Now;
             StaticCurrentUser.lastlogindate = user.lastlogindate;
             StaticCurrentUser.isonline = 1;
+            StaticCurrentUser.folderid = user.folderid;
         }
 
+        
     
     }
 }

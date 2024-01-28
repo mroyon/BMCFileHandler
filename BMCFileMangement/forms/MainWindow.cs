@@ -303,34 +303,50 @@ namespace BMCFileMangement.forms
             desPath = Path.Combine(desPath, fileName);
 
             if (File.Exists(desPath)) File.Delete(desPath);
-
+            bool isCopy = false;
             try
             {
                 File.Copy(sourcepath, desPath, true);
+                isCopy = true;
             }
             catch { }
 
-            CancellationToken cancellationToken = new CancellationToken();
-            IHttpContextAccessor httpContextAccessor = null;
-            var i = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
-                    new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
+            if (isCopy)
+            {
+                CancellationToken cancellationToken = new CancellationToken();
+                IHttpContextAccessor httpContextAccessor = null;
+                // Save File
+                var _file = BFC.Core.FacadeCreatorObjects.General.filestructureFCC.GetFacadeCreate(httpContextAccessor).Add(
+                    new BDO.Core.DataAccessObjects.Models.filestructureEntity
                     {
-                        folderid = null,
-                        fileid = null,
-                        fromusername = _userprofile.CurrentUser.username,
-                        fromuserid = _userprofile.CurrentUser.userid,
-                        tousername = cboUser.SelectedValue.ToString(),
-                        touserid = null,
-                        sentdate = DateTime.Now,
-                        filename = Path.GetFileName(desPath),
-                        fileversion = null,
-                        fullpath = desPath,
-                        priority = 1,
-                        filejsondata = "",
-                        status = 1,
-                        expecteddate = DateTime.Now
-                    },
-                    cancellationToken);
+                        folderid = _userprofile.CurrentUser.folderid,
+                        filename = fileName,
+                        userfilename = fileName,
+                        filepath = desPath,
+                        isdeleted = false
+
+                    }, cancellationToken);
+               
+                var i = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
+                        new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
+                        {
+                            folderid = _userprofile.CurrentUser.folderid,
+                            fileid = _file != null && _file.Result > 0 ? _file.Result : null,
+                            fromusername = _userprofile.CurrentUser.username,
+                            fromuserid = _userprofile.CurrentUser.userid,
+                            tousername = cboUser.SelectedText,
+                            touserid = new Guid(cboUser.SelectedValue.ToString()),
+                            sentdate = DateTime.Now,
+                            filename = Path.GetFileName(desPath),
+                            fileversion = null,
+                            fullpath = desPath,
+                            priority = 1,
+                            filejsondata = "",
+                            status = 1,
+                            expecteddate = DateTime.Now
+                        },
+                        cancellationToken);
+            }
         }
 
         private void _LoadUser()
@@ -351,7 +367,7 @@ namespace BMCFileMangement.forms
                 if (_users != null && _users.Count > 0)
                 {
                     cboUser.DataSource = _users;
-                    cboUser.ValueMember = "Id";
+                    cboUser.ValueMember = "strValue1";
                     cboUser.DisplayMember = "Text";
                 }
             }

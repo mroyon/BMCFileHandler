@@ -23,7 +23,7 @@ namespace BMCFileMangement.Models
         protected DateTime? _logindate;
         protected DateTime? _lastlogindate;
         protected int? _isonline;
-
+        protected long? _folderid;
 
         [DataMember]
         public Guid? userid
@@ -67,6 +67,13 @@ namespace BMCFileMangement.Models
         {
             get { return _isonline; }
             set { _isonline = value; }
+        }
+     
+        [DataMember]
+        public long? folderid
+        {
+            get { return _folderid; }
+            set { _folderid = value; }
         }
      
 

@@ -234,7 +234,9 @@ namespace DAC.Core.DataAccessObjects.Security.ExtendedPartial
                     {
                         while (reader.Read())
                         {
-                            itemList.Add(new owin_userEntity(reader));
+                            owin_userEntity objUser = new owin_userEntity(reader);
+                            if (!reader.IsDBNull(reader.GetOrdinal("FolderId"))) objUser.folderid = reader.GetInt64(reader.GetOrdinal("FolderId"));
+                            itemList.Add(objUser);
                         }
                         reader.Close();
                     }
