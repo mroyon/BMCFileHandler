@@ -26,6 +26,10 @@ namespace BMCFileMangement.forms
         private readonly IMessageService _msgService;
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
+        private readonly IUserProfileService _userprofile;
+
+
+
 
         private Thread fileMonitorThread;
 
@@ -34,7 +38,8 @@ namespace BMCFileMangement.forms
             IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
-            IApplicationLogService applog)
+            IApplicationLogService applog,
+            IUserProfileService userprofile)
         {
 
             _config = config;
@@ -48,6 +53,9 @@ namespace BMCFileMangement.forms
             folderPath = @"D:\MyFolder";
             InitializeBackgroundWorker();
             _FileOnActivated();
+            _userprofile = userprofile;
+
+            CurrentUserNameStip.Text = _userprofile.CurrentUser.username;
         }
 
 
@@ -323,5 +331,9 @@ namespace BMCFileMangement.forms
             }
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            currentDateTimeStip.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+        }
     }
 }

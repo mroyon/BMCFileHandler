@@ -136,9 +136,6 @@
     <Content Include="LanguagesFiles\_tran_login.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="logs\log-.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -167,10 +164,6 @@
     <ProjectReference Include="..\CLL\CLL.csproj" />
     <ProjectReference Include="..\IBFO\IBFO.csproj" />
     <ProjectReference Include="..\IDAC\IDAC.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="logs\" />
   </ItemGroup>
 
   <ItemGroup>

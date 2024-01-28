@@ -1,64 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!--
-    Microsoft ResX Schema 
-
-    Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
-    associated with the data types.
-
-    Example:
-
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-
-    There are any number of "resheader" rows that contain simple
-    name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
-    mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
-    extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
-    read any of the formats listed below.
-
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
+﻿<root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -133,21 +73,21 @@
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAM0SURBVFhH7ZNtSBNxHMet6I3vEnrTm6CXFgSC2s223bYw
-        d9O77dypm1mjlg+lFQaGJhFSYaH4Qk0rHyaakvmmEno2JR/LKAIxX0hEOZ/1brubNfV+3akjyamrc+AL
-        f/Bh/7v/73/fz7jfBWzVVm26CgkLkx9EIq76gxCZTLUUs3odUKjtu84XQFB6PuxOywNxvTs1D4Iybi6s
-        pbBfrh4TIrYtJq1Swah2KKDwGcgIA6PSoK7A3GoIVSOuA3qcFu97CMypgL3xaT4RdO7Wwplgtc4uRPgm
-        sC8123mIMtE78h+BGL7nTC67XGD7zScQeLnSJ3Zeb/JdIBRB2MN4HO0PQpEITohYW4AgSPs3+xj4A5KM
-        HRYi1hYQmoamnDMgUmmrY1NSTk9J4W5FFet5HkXFrf8KlgsYSYyhe0kY6dAD3WtYYKxLD1PvFq8nevQw
-        3r24nn5vgNHOP32eMxSpZSYdrv8TMMfr6M/N0fNEFMJdu6jkvjzDeTMpc2Za5c7BVzikJskdVpPcMfia
-        gKxUORtPIM7+pwSfn4VyWCTi+vgYmztmwmhJAl2NOl6NytyGaIT92oKDUnHIrUHDf4r/UKkI/6WUh7uH
-        2/Vw9Ej4jEqJuAee4xCHI061SuZurdfOSxZgP5LwqkbLdz7Q8XN9sfDShvFvajGe7zdCi/ArXovrtw06
-        /nm1lp/tM0JPU7RwX8s7PpAgScBqPckkxmPTq9FaH/OruxGfTUzwvi9isRynPc/7Z4G1GBqbXBhSSkD8
-        xLz1/M2GCojcq7JxJbfLHd72vCFZoKOnF163tXvd+zE6AQWFRY7i0jLG276IJAFxkKJUKg5DUZcxlnQk
-        JsRNJyZQ0xRpYLIuZXOxBj1zvzhnVhsVyXmG7m8kC5gxjLYqlUz/i3JoKrsCl84mwYXTJsg4lTBXeiOT
-        oygj09bRPe/tvMiGCGSq0MmBl3fA3lkDn5pLoLYox20k9UylrcY1wXArzi1HsgChVrO4QuGyWCxTycnJ
-        E+kZGZPiIH4fGV/R7w3JQ1jX8NAlBq72jtfDJ4HoGHy4u/cT+AOcIEaEiLUFVBqNWWi0+QMU1ZxYitmq
-        rdosFRDwG3e/kRx0KeR+AAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMySURBVFhH7ZNNTNNgGMdR44WbJFy8GK9oYkLko4Ot3VBn
+        N9at3WCwQCAyECKoIRFRiTFEDRjQgxokfCpIJHBRiaIIqAEExYAHJByIMcpAYNBu65ABfWyBRQIDpmUJ
+        B57kl77t+779/5r3qd9O7dS2q+DQUOkRJOKaLwiWSOTLMevXYZnCsu9cEQRkFkBgRj4I48D0fAjIKlwc
+        iyFIqhjnI3YtJa1TQSg+4lfcDBItycijMKd/XhUcVSDOQ1oNLTx343+5HA4YM7wi4OytxT1BCrWFj/BO
+        4ODpXHt4TDy9p+ApCOH7M/IcKwV2Fz4H/ysVXrH3RqP3AiEI4ojQxNK+IASJYPmIjQUIgrJ8t4yDLyBJ
+        apSP2FiAovQjU/YZECivqnWkpZmnxFBaVuFwvy8mJnbzI1gpoCdVDN1LwVinDuhecpHxDzqY+rh0P9mj
+        g4nupfH0JxJ+df1d595jIHHGanP+n4DJqKa/NKkXtEqEvZ6NsoMvCc5EIvbslEj78BsC0hOkNnOc1Dbc
+        qoWc9EiHkQi3f32h5QouoCx+AnH2PcPnE+JVtCiBrno1p8AkLjIacXxrIwCVhbsUaOhv4QtRWdgsKg1z
+        jXboQHksdEaOIq6hVwTEasLtCrnE1V53ckG0gKOPgpZqnOt8oubmB/TwukrFtT1ScdygAVr5q3AvjN/X
+        qbnmSpybGzBAd0M0/xznbJ8pECVgNp9iTEZ8ej3aH0fPdtcTc57m3CQlJdLu9/2zwEaMjFsXm9TAI/xi
+        ntasZksFBMoqq9m790tsnuY8IVqgs6cXWt91eJz7+WsSiorv2HghxtO8gCgBoZGUGMbiGOY06CmbyRjL
+        n3HMtIEkmQs5uSxF6pjau5fmTiqPs+6mW41oAZNKRZtRlBl8/QAaS67CxTOJcD41HrJS4ubv3cxmDQY9
+        87bjw4Kn/QJbIpCNodahllKwdD2E/qZ7UHP7skvPf315VbVzkmHX7FuJaAGtXO7QyGTO5OTkqdTU1Mkz
+        mZlWoRF/jE2sWe8J0U1YU9fgFALXO+PN8EogWkOMdvf2gy8gtNoxPmJjAXlUlIlfWO0LMCwqaTlmp3Zq
+        u5Sf3x9kWpAZajSqwgAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

@@ -47,12 +47,14 @@ namespace BMCFileMangement
                 var _ILoggerFactory = ServiceProvider.GetRequiredService<ILoggerFactory>();
                 var _IMessageService = ServiceProvider.GetRequiredService<IMessageService>();
                 var _IApplicationLogService = ServiceProvider.GetRequiredService<IApplicationLogService>();
+                var _UserProfileService = ServiceProvider.GetRequiredService<IUserProfileService>();
 
                 var loginForm = new frmLogin(
                     _IConfigurationRoot,
                     _ILoggerFactory,
                     _IMessageService,
-                    _IApplicationLogService);
+                    _IApplicationLogService,
+                    _UserProfileService);
                 var loginResult = loginForm.ShowDialog();
 
                 //// Close splash screen after login
@@ -61,6 +63,7 @@ namespace BMCFileMangement
                 //// Check login result
                 if (loginResult == DialogResult.OK)
                 {
+
                     Application.Run(ServiceProvider.GetRequiredService<BMCFileMangement.forms.MainWindow>()); // Replace with your main form
                 }
 
@@ -87,10 +90,12 @@ namespace BMCFileMangement
                 services.AddTransient<IMessageService, MessageService>();
                 services.AddTransient<IQueueManagerService, QueueManagerService>();
                 services.AddTransient<IApplicationLogService, ApplicationLogService>();
+                services.AddTransient<IUserProfileService, UserProfileService>();
                 services.AddTransient<MainWindows>();
                 services.AddTransient<BMCFileMangement.forms.MainWindow>();
                 //services.AddHostedService<WorkerNotification>();
             });
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

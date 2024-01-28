@@ -16,11 +16,13 @@ namespace BMCFileMangement.forms
 
         private readonly IMessageService _msgService;
         private readonly IConfigurationRoot _config;
+        private readonly IUserProfileService _userprofile;
 
         public frmLogin(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
-            IApplicationLogService applog)
+            IApplicationLogService applog,
+            IUserProfileService userprofile)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -28,6 +30,7 @@ namespace BMCFileMangement.forms
             _msgService = msgService;
             InitializeComponent();
             _applog = applog;
+            _userprofile = userprofile;
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -63,7 +66,8 @@ namespace BMCFileMangement.forms
                     cancellationToken);
                 if (res.Result != null)
                 {
-                    _applog.SetLog("Login Successful: User: " + txtUsername.Text);
+                    _userprofile.SetCurrentUser(res.Result);
+                        _applog.SetLog("Login Successful: User: " + txtUsername.Text);
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DialogResult = DialogResult.OK;
                     // Check login result

@@ -49,16 +49,16 @@
             this.statStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.currentDateTimeStip});
-            this.statStrip.Location = new System.Drawing.Point(0, 422);
+            this.statStrip.Location = new System.Drawing.Point(0, 428);
             this.statStrip.Name = "statStrip";
-            this.statStrip.Size = new System.Drawing.Size(800, 28);
+            this.statStrip.Size = new System.Drawing.Size(800, 22);
             this.statStrip.TabIndex = 1;
             this.statStrip.Text = "statusStrip1";
             // 
             // currentDateTimeStip
             // 
             this.currentDateTimeStip.Name = "currentDateTimeStip";
-            this.currentDateTimeStip.Size = new System.Drawing.Size(0, 21);
+            this.currentDateTimeStip.Size = new System.Drawing.Size(0, 15);
             // 
             // statusDateTime
             // 
