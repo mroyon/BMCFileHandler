@@ -25,6 +25,7 @@ namespace BMCFileMangement.forms
         private readonly ILogger<MainWindow> _logger;
         private readonly IMessageService _msgService;
         private readonly IConfigurationRoot _config;
+        private readonly IApplicationLogService _applog;
 
         private Thread fileMonitorThread;
 
@@ -32,20 +33,25 @@ namespace BMCFileMangement.forms
         public MainWindow(
             IConfigurationRoot config,
             ILoggerFactory loggerFactory,
-            IMessageService msgService)
+            IMessageService msgService,
+            IApplicationLogService applog)
         {
 
             _config = config;
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<MainWindow>();
             _msgService = msgService;
-            InitializeComponent();
+            _applog = applog;
 
+            InitializeComponent();
             fileWatcher = new FileSystemWatcher();
             folderPath = @"D:\MyFolder";
             InitializeBackgroundWorker();
             _FileOnActivated();
         }
+
+
+
         private void MainWindow_Load(object sender, EventArgs e)
         {
             fileMonitorThread.Start();

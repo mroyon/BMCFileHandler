@@ -31,273 +31,281 @@ namespace BMCFileMangement.forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            txtUsername = new TextBox();
-            btnLogin = new Button();
-            panel1 = new Panel();
-            label5 = new Label();
-            label4 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
-            panel2 = new Panel();
-            btnRegister = new Button();
-            pictureBox4 = new PictureBox();
-            panel4 = new Panel();
-            pictureBox3 = new PictureBox();
-            txtPassword = new TextBox();
-            panel3 = new Panel();
-            pictureBox2 = new PictureBox();
-            btnCloseApp = new Button();
-            label3 = new Label();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            SuspendLayout();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnCloseApp = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.SuspendLayout();
             // 
             // txtUsername
             // 
-            txtUsername.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUsername.Location = new Point(42, 9);
-            txtUsername.Margin = new Padding(3, 4, 3, 4);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(462, 32);
-            txtUsername.TabIndex = 2;
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtUsername.Location = new System.Drawing.Point(52, 11);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(576, 35);
+            this.txtUsername.TabIndex = 2;
+            this.txtUsername.Text = "mroyon@gmail.com";
             // 
             // btnLogin
             // 
-            btnLogin.BackColor = Color.FromArgb(41, 128, 185);
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(42, 458);
-            btnLogin.Margin = new Padding(3, 4, 3, 4);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(153, 48);
-            btnLogin.TabIndex = 4;
-            btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(52, 572);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(191, 60);
+            this.btnLogin.TabIndex = 4;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(41, 128, 185);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(343, 706);
-            panel1.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(429, 882);
+            this.panel1.TabIndex = 0;
             // 
             // label5
             // 
-            label5.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(0, 678);
-            label5.Name = "label5";
-            label5.Size = new Size(106, 28);
-            label5.TabIndex = 11;
-            label5.Text = "version: 1.0";
-            label5.TextAlign = ContentAlignment.MiddleLeft;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(0, 848);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(132, 35);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "version: 1.0";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
-            label4.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(113, 678);
-            label4.Name = "label4";
-            label4.RightToLeft = RightToLeft.Yes;
-            label4.Size = new Size(231, 28);
-            label4.TabIndex = 10;
-            label4.Text = "OKP-Dev Team";
-            label4.TextAlign = ContentAlignment.MiddleLeft;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(141, 848);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label4.Size = new System.Drawing.Size(289, 35);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "OKP-Dev Team";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
-            label2.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(0, 649);
-            label2.Name = "label2";
-            label2.Size = new Size(343, 28);
-            label2.TabIndex = 9;
-            label2.Text = "Developed By:";
-            label2.TextAlign = ContentAlignment.MiddleRight;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(0, 811);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(429, 35);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Developed By:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
             // 
-            label1.Font = new Font("Century Gothic", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(0, 246);
-            label1.Name = "label1";
-            label1.Size = new Size(343, 52);
-            label1.TabIndex = 8;
-            label1.Text = "Welcome";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 308);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(429, 65);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Welcome";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(77, 17);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(212, 208);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(96, 21);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(265, 260);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
-            panel2.Controls.Add(btnRegister);
-            panel2.Controls.Add(pictureBox4);
-            panel2.Controls.Add(panel4);
-            panel2.Controls.Add(btnLogin);
-            panel2.Controls.Add(panel3);
-            panel2.Controls.Add(btnCloseApp);
-            panel2.Controls.Add(label3);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(343, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(514, 706);
-            panel2.TabIndex = 1;
+            this.panel2.Controls.Add(this.btnRegister);
+            this.panel2.Controls.Add(this.pictureBox4);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.btnLogin);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.btnCloseApp);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(429, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(642, 882);
+            this.panel2.TabIndex = 1;
             // 
             // btnRegister
             // 
-            btnRegister.BackColor = Color.FromArgb(41, 128, 185);
-            btnRegister.FlatStyle = FlatStyle.Flat;
-            btnRegister.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnRegister.ForeColor = Color.White;
-            btnRegister.Location = new Point(201, 458);
-            btnRegister.Margin = new Padding(3, 4, 3, 4);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(153, 48);
-            btnRegister.TabIndex = 13;
-            btnRegister.Text = "Register";
-            btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnRegister.ForeColor = System.Drawing.Color.White;
+            this.btnRegister.Location = new System.Drawing.Point(251, 572);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(191, 60);
+            this.btnRegister.TabIndex = 13;
+            this.btnRegister.Text = "Register";
+            this.btnRegister.UseVisualStyleBackColor = false;
             // 
             // pictureBox4
             // 
-            pictureBox4.Image = Properties.Resources.programer01;
-            pictureBox4.Location = new Point(172, 41);
-            pictureBox4.Margin = new Padding(3, 4, 3, 4);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(209, 158);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 12;
-            pictureBox4.TabStop = false;
+            this.pictureBox4.Image = global::BMCFileMangement.Properties.Resources.programer01;
+            this.pictureBox4.Location = new System.Drawing.Point(215, 51);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(261, 198);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
             // 
             // panel4
             // 
-            panel4.Controls.Add(pictureBox3);
-            panel4.Controls.Add(txtPassword);
-            panel4.Location = new Point(0, 371);
-            panel4.Margin = new Padding(3, 4, 3, 4);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(514, 52);
-            panel4.TabIndex = 7;
+            this.panel4.Controls.Add(this.pictureBox3);
+            this.panel4.Controls.Add(this.txtPassword);
+            this.panel4.Location = new System.Drawing.Point(0, 464);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(642, 65);
+            this.panel4.TabIndex = 7;
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = Properties.Resources.password;
-            pictureBox3.Location = new Point(6, 8);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(29, 34);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 6;
-            pictureBox3.TabStop = false;
+            this.pictureBox3.Image = global::BMCFileMangement.Properties.Resources.password;
+            this.pictureBox3.Location = new System.Drawing.Point(8, 10);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(36, 42);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 6;
+            this.pictureBox3.TabStop = false;
             // 
             // txtPassword
             // 
-            txtPassword.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPassword.Location = new Point(42, 8);
-            txtPassword.Margin = new Padding(3, 4, 3, 4);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(462, 32);
-            txtPassword.TabIndex = 2;
-            txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPassword.Location = new System.Drawing.Point(52, 10);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(576, 35);
+            this.txtPassword.TabIndex = 2;
+            this.txtPassword.Text = "121212";
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // panel3
             // 
-            panel3.Controls.Add(pictureBox2);
-            panel3.Controls.Add(txtUsername);
-            panel3.Location = new Point(0, 317);
-            panel3.Margin = new Padding(3, 4, 3, 4);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(514, 52);
-            panel3.TabIndex = 6;
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Controls.Add(this.txtUsername);
+            this.panel3.Location = new System.Drawing.Point(0, 396);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(642, 65);
+            this.panel3.TabIndex = 6;
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.user;
-            pictureBox2.Location = new Point(7, 9);
-            pictureBox2.Margin = new Padding(3, 4, 3, 4);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(29, 34);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
+            this.pictureBox2.Image = global::BMCFileMangement.Properties.Resources.user;
+            this.pictureBox2.Location = new System.Drawing.Point(9, 11);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 42);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
             // 
             // btnCloseApp
             // 
-            btnCloseApp.BackColor = SystemColors.Control;
-            btnCloseApp.FlatAppearance.BorderSize = 0;
-            btnCloseApp.FlatStyle = FlatStyle.Flat;
-            btnCloseApp.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCloseApp.Location = new Point(451, 4);
-            btnCloseApp.Margin = new Padding(3, 4, 3, 4);
-            btnCloseApp.Name = "btnCloseApp";
-            btnCloseApp.Size = new Size(59, 45);
-            btnCloseApp.TabIndex = 7;
-            btnCloseApp.Text = "X";
-            btnCloseApp.UseVisualStyleBackColor = false;
-            btnCloseApp.Click += btnCloseApp_Click;
+            this.btnCloseApp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCloseApp.FlatAppearance.BorderSize = 0;
+            this.btnCloseApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseApp.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCloseApp.Location = new System.Drawing.Point(564, 5);
+            this.btnCloseApp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCloseApp.Name = "btnCloseApp";
+            this.btnCloseApp.Size = new System.Drawing.Size(74, 56);
+            this.btnCloseApp.TabIndex = 7;
+            this.btnCloseApp.Text = "X";
+            this.btnCloseApp.UseVisualStyleBackColor = false;
+            this.btnCloseApp.Click += new System.EventHandler(this.btnCloseApp_Click);
             // 
             // label3
             // 
-            label3.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.FromArgb(41, 128, 185);
-            label3.Location = new Point(42, 246);
-            label3.Name = "label3";
-            label3.Size = new Size(458, 44);
-            label3.TabIndex = 6;
-            label3.Text = "BMC File Management";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            this.label3.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.label3.Location = new System.Drawing.Point(52, 308);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(572, 55);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "BMC File Management";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(857, 706);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.None;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(1);
-            Name = "frmLogin";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmLogin";
-            Load += frmLogin_Load;
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1071, 882);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(1);
+            this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frmLogin";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

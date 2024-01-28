@@ -1,4 +1,5 @@
-﻿using BMCFileMangement.Services.Implementation;
+﻿using BMCFileMangement.Models;
+using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.Services.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -29,6 +30,8 @@ namespace BMCFileMangement
         private BackgroundWorker backgroundWorker;
 
 
+        public LoggedInUserProfile _userprofile;
+
         /// <summary>
         /// 
         /// </summary>
@@ -38,7 +41,6 @@ namespace BMCFileMangement
             ILoggerFactory loggerFactory,
             IMessageService msgService)
         {
-
             _config = config;
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<MainWindows>();

@@ -40,7 +40,7 @@ namespace BMCFileMangement
                 // Show splash screen
                 var splashScreen = new frmSplashScreen(); // Replace with your splash screen form
                 splashScreen.Show();
-                System.Threading.Thread.Sleep(4000);
+                System.Threading.Thread.Sleep(1000);
 
                 // Simulate login (replace with actual login logic)
                 var _IConfigurationRoot = ServiceProvider.GetRequiredService<IConfigurationRoot>();
@@ -48,7 +48,7 @@ namespace BMCFileMangement
                 var _IMessageService = ServiceProvider.GetRequiredService<IMessageService>();
                 var _IApplicationLogService = ServiceProvider.GetRequiredService<IApplicationLogService>();
 
-                var loginForm = new frmLoginForm(
+                var loginForm = new frmLogin(
                     _IConfigurationRoot,
                     _ILoggerFactory,
                     _IMessageService,
@@ -61,8 +61,7 @@ namespace BMCFileMangement
                 //// Check login result
                 if (loginResult == DialogResult.OK)
                 {
-                    Application.Run(ServiceProvider.GetRequiredService<MainWindows>()); // Replace with your main form
-                    //Application.Run(new MainWindows());
+                    Application.Run(ServiceProvider.GetRequiredService<BMCFileMangement.forms.MainWindow>()); // Replace with your main form
                 }
 
             }
@@ -89,6 +88,7 @@ namespace BMCFileMangement
                 services.AddTransient<IQueueManagerService, QueueManagerService>();
                 services.AddTransient<IApplicationLogService, ApplicationLogService>();
                 services.AddTransient<MainWindows>();
+                services.AddTransient<BMCFileMangement.forms.MainWindow>();
                 //services.AddHostedService<WorkerNotification>();
             });
         /// <summary>

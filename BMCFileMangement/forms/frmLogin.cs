@@ -12,19 +12,22 @@ namespace BMCFileMangement.forms
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<frmLogin> _logger;
+        private readonly IApplicationLogService _applog;
 
         private readonly IMessageService _msgService;
         private readonly IConfigurationRoot _config;
 
         public frmLogin(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
-            IMessageService msgService)
+            IMessageService msgService,
+            IApplicationLogService applog)
         {
             _config = config;
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<frmLogin>();
             _msgService = msgService;
             InitializeComponent();
+            _applog = applog;
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -60,29 +63,25 @@ namespace BMCFileMangement.forms
                     cancellationToken);
                 if (res.Result != null)
                 {
+                    _applog.SetLog("Login Successful: User: " + txtUsername.Text);
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DialogResult = DialogResult.OK;
-                    if (DialogResult == DialogResult.OK)
-                    {
-                        //new MainWindows(_config, _loggerFactory, _msgService).Show();                                                           //Application.Run(new MainWindows());
-                        MainWindow mform = new MainWindow(_config, _loggerFactory, _msgService);
-                        mform.Show();//Application.Run(new MainWindows());
-                    }
-                    this.Hide();
+                    // Check login result
+                    this.Dispose();
+                    ////new MainWindows(_config, _loggerFactory, _msgService).Show();                                                           //Application.Run(new MainWindows());
+                    //MainWindow mform = new MainWindow(_config, _loggerFactory, _msgService);
+                    //mform.Show();//Application.Run(new MainWindows());
+                    //this.Hide();
                     //this.Close();
+
                 }
                 else
                 {
-                    MessageBox.Show("Login failed!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //DialogResult = DialogResult.OK;
-                    //Close();
+                    MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
+
         private bool IsValidLogin(string username, string password)
         {
             // Replace this with your actual authentication logic
