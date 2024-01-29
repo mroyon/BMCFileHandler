@@ -103,10 +103,10 @@ namespace BMCFileMangement.forms
                 currentBtn = (IconButton)senderBtn;
                 currentBtn.BackColor = Color.FromArgb(37, 36, 81);
                 currentBtn.ForeColor = color;
-                currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
                 currentBtn.IconColor = color;
-                currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
-                currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+                currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
                 //Left border button
                 leftBorderBtn.BackColor = color;
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
@@ -161,12 +161,22 @@ namespace BMCFileMangement.forms
 
         private void ibtnDashboard_Click(object sender, EventArgs e)
         {
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+                Reset();
+            }
             ActivateButton(sender, RGBColors.color1);
             //OpenChildForm(new Test1());
         }
 
         private void ibtnUser_Click(object sender, EventArgs e)
         {
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+                Reset();
+            }
             ActivateButton(sender, RGBColors.color2);
             OpenChildForm(new Users());
         }
@@ -190,8 +200,11 @@ namespace BMCFileMangement.forms
 
         private void btnHomeLogo_Click(object sender, EventArgs e)
         {
-            currentChildForm.Close();
-            Reset();
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+                Reset();
+            };
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
