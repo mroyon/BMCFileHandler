@@ -47,10 +47,9 @@ namespace BMCFileMangement.forms
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panelShadowDesktop = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panleTitleBar.SuspendLayout();
@@ -82,7 +81,7 @@ namespace BMCFileMangement.forms
             this.ibtnNotification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ibtnNotification.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ibtnNotification.ForeColor = System.Drawing.Color.Gainsboro;
-            this.ibtnNotification.IconChar = FontAwesome.Sharp.IconChar.Message;
+            this.ibtnNotification.IconChar = FontAwesome.Sharp.IconChar.ShareFromSquare;
             this.ibtnNotification.IconColor = System.Drawing.Color.White;
             this.ibtnNotification.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnNotification.IconSize = 32;
@@ -92,7 +91,7 @@ namespace BMCFileMangement.forms
             this.ibtnNotification.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.ibtnNotification.Size = new System.Drawing.Size(220, 60);
             this.ibtnNotification.TabIndex = 3;
-            this.ibtnNotification.Text = "Notification";
+            this.ibtnNotification.Text = "File Send";
             this.ibtnNotification.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnNotification.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnNotification.UseVisualStyleBackColor = true;
@@ -267,7 +266,6 @@ namespace BMCFileMangement.forms
             // 
             // panelBody
             // 
-            this.panelBody.Controls.Add(this.panelShadowDesktop);
             this.panelBody.Controls.Add(this.panelDesktop);
             this.panelBody.Controls.Add(this.panel3);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -275,6 +273,13 @@ namespace BMCFileMangement.forms
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(1062, 617);
             this.panelBody.TabIndex = 3;
+            // 
+            // panelDesktop
+            // 
+            this.panelDesktop.Location = new System.Drawing.Point(0, 172);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(1062, 445);
+            this.panelDesktop.TabIndex = 1;
             // 
             // panel3
             // 
@@ -285,32 +290,16 @@ namespace BMCFileMangement.forms
             this.panel3.Size = new System.Drawing.Size(1062, 166);
             this.panel3.TabIndex = 0;
             // 
-            // panelDesktop
-            // 
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(0, 166);
-            this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1062, 451);
-            this.panelDesktop.TabIndex = 1;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1062, 166);
+            this.groupBox1.Size = new System.Drawing.Size(1062, 157);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Data View";
-            // 
-            // panelShadowDesktop
-            // 
-            this.panelShadowDesktop.BackColor = System.Drawing.Color.Silver;
-            this.panelShadowDesktop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelShadowDesktop.Location = new System.Drawing.Point(0, 166);
-            this.panelShadowDesktop.Name = "panelShadowDesktop";
-            this.panelShadowDesktop.Size = new System.Drawing.Size(1062, 5);
-            this.panelShadowDesktop.TabIndex = 2;
             // 
             // frmMainWindow
             // 
@@ -362,6 +351,5 @@ namespace BMCFileMangement.forms
         private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
         private Panel panelDesktop;
         private GroupBox groupBox1;
-        private Panel panelShadowDesktop;
     }
 }
