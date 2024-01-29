@@ -24,20 +24,26 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
-        private readonly MainWindow _MainWindow;
+        private readonly frmMainWindow _MainWindow;
 
         public BackgroundWorker backgroundWorker;
 
+        public NotificationAndDataQueryBGWorker()
+        {
+            InitializeComponent();
+        }
+
+
 
         public NotificationAndDataQueryBGWorker(
-           IConfigurationRoot config,
-           ILoggerFactory loggerFactory,
-           IMessageService msgService,
-           IApplicationLogService applog,
-           IUserProfileService userprofile,
-           IFileNotificationService fileNotificationList,
+          IConfigurationRoot config,
+          ILoggerFactory loggerFactory,
+          IMessageService msgService,
+          IApplicationLogService applog,
+          IUserProfileService userprofile,
+          IFileNotificationService fileNotificationList,
 
-           MainWindow MainWindow)
+          frmMainWindow MainWindow)
         {
             _config = config;
             _loggerFactory = loggerFactory;

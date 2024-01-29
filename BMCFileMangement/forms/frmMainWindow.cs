@@ -1,4 +1,7 @@
-﻿using FontAwesome.Sharp;
+﻿using BMCFileMangement.Services.Interface;
+using FontAwesome.Sharp;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +20,33 @@ namespace BMCFileMangement.forms
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
-        public frmMainWindow()
+
+
+        private readonly ILoggerFactory _loggerFactory;
+        private readonly ILogger<frmMainWindow> _logger;
+        private readonly IMessageService _msgService;
+        private readonly IConfigurationRoot _config;
+        private readonly IApplicationLogService _applog;
+        private readonly IUserProfileService _userprofile;
+        private readonly IFileNotificationService _fileNotificationList;
+
+
+        public frmMainWindow(IConfigurationRoot config,
+            ILoggerFactory loggerFactory,
+            IMessageService msgService,
+            IApplicationLogService applog,
+            IUserProfileService userprofile,
+            IFileNotificationService fileNotificationList)
         {
+            _config = config;
+            _loggerFactory = loggerFactory;
+            _logger = _loggerFactory.CreateLogger<frmMainWindow>();
+            _msgService = msgService;
+            _applog = applog;
+            _fileNotificationList = fileNotificationList;
+
+            _userprofile = userprofile;
+
             InitializeComponent();
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60);
@@ -29,6 +57,13 @@ namespace BMCFileMangement.forms
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
+
+
+        public void LostNotificaitonListFromExtTrigger()
+        {
+            this.notificationDataListViewControl1.loadDataForNotification();
+        }
+
         private struct RGBColors
         {
             public static Color color1 = Color.FromArgb(172, 126, 241);
@@ -162,6 +197,27 @@ namespace BMCFileMangement.forms
                 WindowState = FormWindowState.Maximized;
             else
                 WindowState = FormWindowState.Normal;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+           
+        }
+
+        private void frmMainWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmMainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            // Ensure the background worker is stopped when the form is closing
+            if (notificationAndDataQuerybgWorker1.backgroundWorker != null && notificationAndDataQuerybgWorker1.backgroundWorker.IsBusy)
+            {
+                notificationAndDataQuerybgWorker1.backgroundWorker.CancelAsync();
+            }
         }
     }
 }

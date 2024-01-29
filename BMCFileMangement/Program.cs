@@ -59,13 +59,13 @@ namespace BMCFileMangement
                 var loginResult = loginForm.ShowDialog();
 
                 //// Close splash screen after login
-                //splashScreen.Close();
+                splashScreen.Close();
 
                 //// Check login result
                 if (loginResult == DialogResult.OK)
                 {
 
-                    Application.Run(ServiceProvider.GetRequiredService<BMCFileMangement.forms.MainWindow>()); // Replace with your main form
+                    Application.Run(ServiceProvider.GetRequiredService<BMCFileMangement.forms.frmMainWindow>()); // Replace with your main form
                 }
 
             }
@@ -94,7 +94,7 @@ namespace BMCFileMangement
                 services.AddTransient<IUserProfileService, UserProfileService>();
                 services.AddTransient<IFileNotificationService, FileNotificationService>();
                 services.AddTransient<MainWindows>();
-                services.AddTransient<BMCFileMangement.forms.MainWindow>();
+                services.AddTransient<BMCFileMangement.forms.frmMainWindow>();
                 //services.AddHostedService<WorkerNotification>();
             });
 

@@ -62,22 +62,9 @@ namespace BMCFileMangement.forms
             this.tmDateTime = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             
-            this.notificationAndDataQuerybgWorker1 = new BMCFileMangement.forms.UserControls.NotificationAndDataQueryBGWorker(
-                _config,
-           _loggerFactory,
-           _msgService,
-           _applog,
-           _userprofile,
-           _fileNotificationList,
-           this);
+          
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.notificationDataListViewControl1 = new BMCFileMangement.forms.UserControls.NotificationDataListViewControl(
-                _config,
-           _loggerFactory,
-           _msgService,
-           _applog,
-           _userprofile,
-           _fileNotificationList);
+            
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();

@@ -24,6 +24,12 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
 
+        public NotificationDataListViewControl()
+        {
+            InitializeComponent();
+        }
+
+
         /// <summary>
         /// NotificationDataListViewControl
         /// </summary>
@@ -53,11 +59,7 @@ namespace BMCFileMangement.forms.UserControls
 
         public void loadDataForNotification()
         {
-            dtGrdNotification.Invoke((Action)delegate
-            {
-                dtGrdNotification.DataSource = _fileNotificationList.CurrentListofNotificaitons.ToList();
-            });
-
+            dtGrdNotification.DataSource = _fileNotificationList.CurrentListofNotificaitons.ToList();
         }
     }
 }
