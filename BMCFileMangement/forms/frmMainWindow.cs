@@ -48,6 +48,8 @@ namespace BMCFileMangement.forms
             _userprofile = userprofile;
 
             InitializeComponent();
+
+            #region  Form Building : Tamatama
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60);
             panelMenu.Controls.Add(leftBorderBtn);
@@ -56,14 +58,33 @@ namespace BMCFileMangement.forms
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            #endregion
         }
-
 
         public void LostNotificaitonListFromExtTrigger()
         {
             this.notificationDataListViewControl1.loadDataForNotification();
         }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+           
+        }
+        private void frmMainWindow_Load(object sender, EventArgs e)
+        {
 
+        }
+        private void frmMainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            // Ensure the background worker is stopped when the form is closing
+            if (notificationAndDataQuerybgWorker1.backgroundWorker != null && notificationAndDataQuerybgWorker1.backgroundWorker.IsBusy)
+            {
+                notificationAndDataQuerybgWorker1.backgroundWorker.CancelAsync();
+            }
+        }
+
+        #region Form Building : : Tamatama
         private struct RGBColors
         {
             public static Color color1 = Color.FromArgb(172, 126, 241);
@@ -122,8 +143,8 @@ namespace BMCFileMangement.forms
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            panelDesktop.Controls.Add(childForm);
-            panelDesktop.Tag = childForm;
+            panelBody.Controls.Add(childForm);
+            panelBody.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
             lblChildFormTitle.Text = childForm.Text;
@@ -141,7 +162,7 @@ namespace BMCFileMangement.forms
         private void ibtnDashboard_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Test1());
+            //OpenChildForm(new Test1());
         }
 
         private void ibtnUser_Click(object sender, EventArgs e)
@@ -178,7 +199,7 @@ namespace BMCFileMangement.forms
             //if (WindowState == FormWindowState.Normal)
             //    WindowState = FormWindowState.Maximized;
             //else
-                WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
         //private void btnMaximize_Click(object sender, EventArgs e)
@@ -198,26 +219,6 @@ namespace BMCFileMangement.forms
             else
                 WindowState = FormWindowState.Normal;
         }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-           
-        }
-
-        private void frmMainWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmMainWindow_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-
-            // Ensure the background worker is stopped when the form is closing
-            if (notificationAndDataQuerybgWorker1.backgroundWorker != null && notificationAndDataQuerybgWorker1.backgroundWorker.IsBusy)
-            {
-                notificationAndDataQuerybgWorker1.backgroundWorker.CancelAsync();
-            }
-        }
+        #endregion
     }
 }

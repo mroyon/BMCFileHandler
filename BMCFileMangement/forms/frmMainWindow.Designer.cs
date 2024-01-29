@@ -32,7 +32,6 @@ namespace BMCFileMangement.forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainWindow));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.ibtnNotification = new FontAwesome.Sharp.IconButton();
             this.ibtnUser = new FontAwesome.Sharp.IconButton();
@@ -40,7 +39,6 @@ namespace BMCFileMangement.forms
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnHomeLogo = new System.Windows.Forms.PictureBox();
             this.panleTitleBar = new System.Windows.Forms.Panel();
             this.btnMaximizes = new FontAwesome.Sharp.IconPictureBox();
             this.btnMinimize = new FontAwesome.Sharp.IconPictureBox();
@@ -48,17 +46,20 @@ namespace BMCFileMangement.forms
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panelDesktop = new System.Windows.Forms.Panel();
+            this.panelBody = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panelDesktop = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panelShadowDesktop = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnHomeLogo)).BeginInit();
             this.panleTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
-            this.panelDesktop.SuspendLayout();
+            this.panelBody.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -84,6 +85,7 @@ namespace BMCFileMangement.forms
             this.ibtnNotification.IconChar = FontAwesome.Sharp.IconChar.Message;
             this.ibtnNotification.IconColor = System.Drawing.Color.White;
             this.ibtnNotification.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnNotification.IconSize = 32;
             this.ibtnNotification.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnNotification.Location = new System.Drawing.Point(0, 260);
             this.ibtnNotification.Name = "ibtnNotification";
@@ -94,6 +96,7 @@ namespace BMCFileMangement.forms
             this.ibtnNotification.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnNotification.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnNotification.UseVisualStyleBackColor = true;
+            this.ibtnNotification.Click += new System.EventHandler(this.ibtnNotification_Click);
             // 
             // ibtnUser
             // 
@@ -105,6 +108,7 @@ namespace BMCFileMangement.forms
             this.ibtnUser.IconChar = FontAwesome.Sharp.IconChar.User;
             this.ibtnUser.IconColor = System.Drawing.Color.White;
             this.ibtnUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnUser.IconSize = 32;
             this.ibtnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnUser.Location = new System.Drawing.Point(0, 200);
             this.ibtnUser.Name = "ibtnUser";
@@ -115,6 +119,7 @@ namespace BMCFileMangement.forms
             this.ibtnUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnUser.UseVisualStyleBackColor = true;
+            this.ibtnUser.Click += new System.EventHandler(this.ibtnUser_Click);
             // 
             // ibtnDashboard
             // 
@@ -126,6 +131,7 @@ namespace BMCFileMangement.forms
             this.ibtnDashboard.IconChar = FontAwesome.Sharp.IconChar.Dashboard;
             this.ibtnDashboard.IconColor = System.Drawing.Color.White;
             this.ibtnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnDashboard.IconSize = 32;
             this.ibtnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnDashboard.Location = new System.Drawing.Point(0, 140);
             this.ibtnDashboard.Name = "ibtnDashboard";
@@ -136,12 +142,12 @@ namespace BMCFileMangement.forms
             this.ibtnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnDashboard.UseVisualStyleBackColor = true;
+            this.ibtnDashboard.Click += new System.EventHandler(this.ibtnDashboard_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnHomeLogo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -161,22 +167,12 @@ namespace BMCFileMangement.forms
             // label1
             // 
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 66);
+            this.label1.Location = new System.Drawing.Point(0, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(217, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "BMC File Management";
+            this.label1.Text = "File Management";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnHomeLogo
-            // 
-            this.btnHomeLogo.Image = ((System.Drawing.Image)(resources.GetObject("btnHomeLogo.Image")));
-            this.btnHomeLogo.Location = new System.Drawing.Point(69, 12);
-            this.btnHomeLogo.Name = "btnHomeLogo";
-            this.btnHomeLogo.Size = new System.Drawing.Size(65, 51);
-            this.btnHomeLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnHomeLogo.TabIndex = 0;
-            this.btnHomeLogo.TabStop = false;
             // 
             // panleTitleBar
             // 
@@ -191,6 +187,7 @@ namespace BMCFileMangement.forms
             this.panleTitleBar.Name = "panleTitleBar";
             this.panleTitleBar.Size = new System.Drawing.Size(1062, 47);
             this.panleTitleBar.TabIndex = 1;
+            this.panleTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panleTitleBar_MouseDown);
             // 
             // btnMaximizes
             // 
@@ -205,6 +202,7 @@ namespace BMCFileMangement.forms
             this.btnMaximizes.Size = new System.Drawing.Size(30, 30);
             this.btnMaximizes.TabIndex = 8;
             this.btnMaximizes.TabStop = false;
+            this.btnMaximizes.Click += new System.EventHandler(this.btnMaximizes_Click);
             // 
             // btnMinimize
             // 
@@ -219,6 +217,7 @@ namespace BMCFileMangement.forms
             this.btnMinimize.Size = new System.Drawing.Size(30, 30);
             this.btnMinimize.TabIndex = 7;
             this.btnMinimize.TabStop = false;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // lblChildFormTitle
             // 
@@ -255,6 +254,7 @@ namespace BMCFileMangement.forms
             this.btnClose.Size = new System.Drawing.Size(30, 30);
             this.btnClose.TabIndex = 7;
             this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel2
             // 
@@ -265,27 +265,57 @@ namespace BMCFileMangement.forms
             this.panel2.Size = new System.Drawing.Size(1062, 9);
             this.panel2.TabIndex = 2;
             // 
-            // panelDesktop
+            // panelBody
             // 
-            this.panelDesktop.Controls.Add(this.panel3);
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(220, 56);
-            this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1062, 617);
-            this.panelDesktop.TabIndex = 3;
+            this.panelBody.Controls.Add(this.panelShadowDesktop);
+            this.panelBody.Controls.Add(this.panelDesktop);
+            this.panelBody.Controls.Add(this.panel3);
+            this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBody.Location = new System.Drawing.Point(220, 56);
+            this.panelBody.Name = "panelBody";
+            this.panelBody.Size = new System.Drawing.Size(1062, 617);
+            this.panelBody.TabIndex = 3;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1062, 166);
             this.panel3.TabIndex = 0;
             // 
+            // panelDesktop
+            // 
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.Location = new System.Drawing.Point(0, 166);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(1062, 451);
+            this.panelDesktop.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1062, 166);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Notification Data View";
+            // 
+            // panelShadowDesktop
+            // 
+            this.panelShadowDesktop.BackColor = System.Drawing.Color.Silver;
+            this.panelShadowDesktop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelShadowDesktop.Location = new System.Drawing.Point(0, 166);
+            this.panelShadowDesktop.Name = "panelShadowDesktop";
+            this.panelShadowDesktop.Size = new System.Drawing.Size(1062, 5);
+            this.panelShadowDesktop.TabIndex = 2;
+            // 
             // frmMainWindow
             // 
             this.ClientSize = new System.Drawing.Size(1282, 673);
-            this.Controls.Add(this.panelDesktop);
+            this.Controls.Add(this.panelBody);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panleTitleBar);
             this.Controls.Add(this.panelMenu);
@@ -296,13 +326,13 @@ namespace BMCFileMangement.forms
             this.Load += new System.EventHandler(this.frmMainWindow_Load);
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnHomeLogo)).EndInit();
             this.panleTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
-            this.panelDesktop.ResumeLayout(false);
+            this.panelBody.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -316,12 +346,11 @@ namespace BMCFileMangement.forms
         private FontAwesome.Sharp.IconButton ibtnUser;
         private Label label2;
         private Label label1;
-        private PictureBox btnHomeLogo;
         private Panel panleTitleBar;
         private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
         private Label lblChildFormTitle;
         private Panel panel2;
-        private Panel panelDesktop;
+        private Panel panelBody;
         private Button button1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox btnClose;
@@ -331,5 +360,8 @@ namespace BMCFileMangement.forms
         private Panel panel3;
         private NotificationDataListViewControl notificationDataListViewControl1;
         private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
+        private Panel panelDesktop;
+        private GroupBox groupBox1;
+        private Panel panelShadowDesktop;
     }
 }
