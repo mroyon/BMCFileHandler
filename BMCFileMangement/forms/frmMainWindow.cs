@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.Services.Maps;
 
 namespace BMCFileMangement.forms
 {
@@ -49,6 +50,7 @@ namespace BMCFileMangement.forms
             _userprofile = userprofile;
 
             InitializeComponent();
+            InitializeComponent2();
 
             #region  Form Building : Tamatama
             leftBorderBtn = new Panel();
@@ -60,6 +62,46 @@ namespace BMCFileMangement.forms
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             #endregion
+        }
+
+        private void InitializeComponent2()
+        {
+            this.notificationAndDataQuerybgWorker1 = new BMCFileMangement.forms.UserControls.NotificationAndDataQueryBGWorker(
+              _config,
+          _loggerFactory,
+          _msgService,
+          _applog,
+          _userprofile,
+          _fileNotificationList,
+          this);
+
+            this.notificationDataListViewControl1 = new BMCFileMangement.forms.UserControls.NotificationDataListViewControl(
+                _config,
+          _loggerFactory,
+          _msgService,
+          _applog,
+          _userprofile,
+          _fileNotificationList);
+
+            this.panleTitleBar.Controls.Add(this.notificationAndDataQuerybgWorker1);
+            this.groupBox1.Controls.Add(this.notificationDataListViewControl1);
+            // 
+            // notificationAndDataQuerybgWorker1
+            // 
+            this.notificationAndDataQuerybgWorker1.Location = new System.Drawing.Point(232, 14);
+            this.notificationAndDataQuerybgWorker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.notificationAndDataQuerybgWorker1.Name = "notificationAndDataQuerybgWorker1";
+            this.notificationAndDataQuerybgWorker1.Size = new System.Drawing.Size(197, 25);
+            this.notificationAndDataQuerybgWorker1.TabIndex = 9;
+
+            // 
+            // notificationDataListViewControl1
+            // 
+            this.notificationDataListViewControl1.Location = new System.Drawing.Point(5, 21);
+            this.notificationDataListViewControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.notificationDataListViewControl1.Name = "notificationDataListViewControl1";
+            this.notificationDataListViewControl1.Size = new System.Drawing.Size(1051, 131);
+            this.notificationDataListViewControl1.TabIndex = 0;
         }
 
         public void LostNotificaitonListFromExtTrigger()

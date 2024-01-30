@@ -117,12 +117,6 @@ namespace BMCFileMangement.forms.UserControls
             if (obj != null && obj.Count > 0)
             {
                 _fileNotificationList.SetCurrentNotificaitonItems(obj.ToList());
-                _MainWindow.LostNotificaitonListFromExtTrigger();
-                if (ParentForm is MainWindow mainForm)
-                {
-                    // Call the method in UserControl2
-
-                }
             }
             await Task.Delay(30000);
         }
@@ -146,6 +140,7 @@ namespace BMCFileMangement.forms.UserControls
         private async Task BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // Cleanup or handle completion if needed
+            _MainWindow.LostNotificaitonListFromExtTrigger();
         }
 
         private void NotificationAndDataQueryBGWorker_Load(object sender, EventArgs e)

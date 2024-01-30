@@ -11,11 +11,13 @@ using BDO.Core.DataAccessObjects.Models;
 namespace IBFO.Core.IBusinessFacadeObjects.General
 {
     public partial interface IfiletransferinfoFacadeObjects 
-    { 
-		
-		
-		
-		[OperationContract]
+    {
+
+
+        [OperationContract]
+        Task<long> UpdatePopUpData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
+        [OperationContract]
         Task<IList<filetransferinfoEntity>> GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
         
         

@@ -25,6 +25,14 @@ namespace BMCFileMangement.Services.Implementation
             _NotificaitonItems.AddRange(item);
         }
 
-    
+        public void DeleteCurrentNotificaitonItems(filetransferinfoEntity item)
+        {
+            if (_NotificaitonItems != null && _NotificaitonItems.Count > 0)
+            {
+                _NotificaitonItems.Remove(item);
+            }
+            
+        }
+
     }
 }

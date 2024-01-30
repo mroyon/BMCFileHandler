@@ -9,8 +9,8 @@ namespace IDAC.Core.IDataAccessObjects.General
 {
 	public partial interface IfiletransferinfoDataAccessObjects
     {
-		 
-		Task<IList<filetransferinfoEntity>> GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+        Task<long> UpdatePopUpData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+        Task<IList<filetransferinfoEntity>> GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
 		
 		
     }

@@ -16,8 +16,19 @@ namespace BFO.Core.BusinessFacadeObjects.General
 {
     public sealed partial class filetransferinfoFacadeObjects 
     {
-	
-		async Task<IList<filetransferinfoEntity>> IfiletransferinfoFacadeObjects.GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
+        async Task<long> IfiletransferinfoFacadeObjects.UpdatePopUpData(BDO.Core.DataAccessObjects.Models.filetransferinfoEntity filetransferinfo, System.Threading.CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await DataAccessFactory.CreatefiletransferinfoDataAccess().UpdatePopUpData(filetransferinfo, cancellationToken);
+            }
+
+            catch (Exception ex)
+            {
+                throw GetFacadeException(ex, SourceOfException("IfiletransferinfoFacade.UpdatePopUpData"));
+            }
+        }
+        async Task<IList<filetransferinfoEntity>> IfiletransferinfoFacadeObjects.GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
 		{
 			try
 			{

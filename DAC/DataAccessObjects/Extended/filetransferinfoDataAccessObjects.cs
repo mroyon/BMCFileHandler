@@ -21,8 +21,37 @@ namespace DAC.Core.DataAccessObjects.General
 	
 	internal sealed partial class filetransferinfoDataAccessObjects 
 	{
-		
-		
+
+
+        async Task<long> IfiletransferinfoDataAccessObjects.UpdatePopUpData(BDO.Core.DataAccessObjects.Models.filetransferinfoEntity filetransferinfo, System.Threading.CancellationToken cancellationToken)
+        {
+            long returnCode = -99;
+            const string SP = "filetransferinfo_Upd_PopUp";
+
+            using (DbCommand cmd = Database.GetStoredProcCommand(SP))
+            {
+                FillParameters(filetransferinfo, cmd, Database);
+                FillSequrityParameters(filetransferinfo.BaseSecurityParam, cmd, Database);
+                AddOutputParameter(cmd);
+                try
+                {
+                    IAsyncResult result = Database.BeginExecuteNonQuery(cmd, null, null);
+                    while (!result.IsCompleted)
+                    {
+                    }
+                    returnCode = Database.EndExecuteNonQuery(result);
+                    returnCode = (Int64)(cmd.Parameters["@RETURN_KEY"].Value);
+                }
+                catch (Exception ex)
+                {
+                    throw GetDataAccessException(ex, SourceOfException("IfiletransferinfoDataAccess.UpdatePopUpData"));
+                }
+                cmd.Dispose();
+            }
+            return returnCode;
+        }
+
+
         async Task<IList<filetransferinfoEntity>> IfiletransferinfoDataAccessObjects.GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
         {
            try
