@@ -67,7 +67,7 @@ namespace BMCFileMangement.forms
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-           
+
         }
         private void frmMainWindow_Load(object sender, EventArgs e)
         {
@@ -184,7 +184,7 @@ namespace BMCFileMangement.forms
         private void ibtnNotification_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new frmFileSend()); 
+            OpenChildForm(new frmFileSend());
         }
 
         //Drag Form
