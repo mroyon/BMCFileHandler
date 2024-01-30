@@ -118,13 +118,40 @@ namespace BMCFileMangement.forms.UserControls
             {
                 _fileNotificationList.SetCurrentNotificaitonItems(obj.ToList());
                 _MainWindow.LostNotificaitonListFromExtTrigger();
-                if (ParentForm is MainWindow mainForm)
+                await Task.Delay(8000);
+                if (_fileNotificationList.CurrentListofNotificaitons != null && _fileNotificationList.CurrentListofNotificaitons.Count > 0)
                 {
-                    // Call the method in UserControl2
+                    foreach (var single in _fileNotificationList.CurrentListofNotificaitons)
+                    {
+                        if (!single.showedpopup.GetValueOrDefault(false))
+                        {
+                            string folderPath = @"C:\TestFolderBMC";
 
+                            var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Money-Heist.jpg");
+                            new ToastContentBuilder()
+                                .AddArgument("action", "viewConversation")
+                                .AddArgument("conversationId", 100)
+                                .AddText(single.filename)
+                                .AddInlineImage(new Uri(heroImage))
+                                .AddButton(new ToastButton()
+                                            .SetContent("Open Folder")
+                                            .AddArgument("url", folderPath))
+                                .AddAttributionText(single.fullpath)
+                                .SetToastScenario(ToastScenario.Default)
+                                .Show(toast =>
+                                {
+                                    toast.ExpirationTime = DateTime.Now.AddSeconds(15);
+                                });
+
+                            await Task.Delay(15000);
+                            single.showedpopup = true;
+                            single.showeddate = DateTime.Now;
+                        }
+                    }
                 }
+                await Task.Delay(40000);
             }
-            await Task.Delay(30000);
+           
         }
 
         // <summary>

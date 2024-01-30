@@ -1,4 +1,6 @@
 ﻿using BMCFileMangement.forms.UserControls;
+using BMCFileMangement.Services.Interface;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Windows.Services.Maps;
 
@@ -47,10 +49,28 @@ namespace BMCFileMangement.forms
             btnClose = new FontAwesome.Sharp.IconPictureBox();
             panel2 = new Panel();
             panelBody = new Panel();
+            panel4 = new Panel();
             panelDesktop = new Panel();
             panel3 = new Panel();
+
             groupBox1 = new GroupBox();
-            panel4 = new Panel();
+
+            notificationDataListViewControl1 = new NotificationDataListViewControl(
+            _config,
+            _loggerFactory,
+            _msgService,
+            _applog,
+            _userprofile,
+           _fileNotificationList);
+            notificationAndDataQuerybgWorker1 = new NotificationAndDataQueryBGWorker(
+                _config,
+            _loggerFactory,
+            _msgService,
+            _applog,
+            _userprofile,
+           _fileNotificationList,
+           this);
+
             panelMenu.SuspendLayout();
             panel1.SuspendLayout();
             panleTitleBar.SuspendLayout();
@@ -60,6 +80,7 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             panelBody.SuspendLayout();
             panel3.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -177,6 +198,7 @@ namespace BMCFileMangement.forms
             // panleTitleBar
             // 
             panleTitleBar.BackColor = Color.FromArgb(31, 30, 68);
+            panleTitleBar.Controls.Add(notificationAndDataQuerybgWorker1);
             panleTitleBar.Controls.Add(btnMaximizes);
             panleTitleBar.Controls.Add(btnMinimize);
             panleTitleBar.Controls.Add(lblChildFormTitle);
@@ -276,6 +298,16 @@ namespace BMCFileMangement.forms
             panelBody.Size = new Size(1062, 617);
             panelBody.TabIndex = 3;
             // 
+            // panel4
+            // 
+            panel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            panel4.BackColor = Color.PowderBlue;
+            panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Location = new Point(0, 167);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1062, 8);
+            panel4.TabIndex = 0;
+            // 
             // panelDesktop
             // 
             panelDesktop.Location = new Point(0, 175);
@@ -295,6 +327,7 @@ namespace BMCFileMangement.forms
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(notificationDataListViewControl1);
             groupBox1.Location = new Point(0, 6);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(1062, 157);
@@ -302,15 +335,22 @@ namespace BMCFileMangement.forms
             groupBox1.TabStop = false;
             groupBox1.Text = "Notification Data View";
             // 
-            // panel4
+            // notificationDataListViewControl1
             // 
-            panel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            panel4.BackColor = Color.PowderBlue;
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Location = new Point(0, 167);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(1062, 8);
-            panel4.TabIndex = 0;
+            notificationDataListViewControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            notificationDataListViewControl1.Location = new Point(2, 25);
+            notificationDataListViewControl1.Margin = new Padding(2, 2, 2, 2);
+            notificationDataListViewControl1.Name = "notificationDataListViewControl1";
+            notificationDataListViewControl1.Size = new Size(1056, 127);
+            notificationDataListViewControl1.TabIndex = 0;
+            // 
+            // notificationAndDataQuerybgWorker1
+            // 
+            notificationAndDataQuerybgWorker1.Location = new Point(615, 7);
+            notificationAndDataQuerybgWorker1.Margin = new Padding(2, 2, 2, 2);
+            notificationAndDataQuerybgWorker1.Name = "notificationAndDataQuerybgWorker1";
+            notificationAndDataQuerybgWorker1.Size = new Size(281, 41);
+            notificationAndDataQuerybgWorker1.TabIndex = 9;
             // 
             // frmMainWindow
             // 
@@ -333,6 +373,7 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)btnClose).EndInit();
             panelBody.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -357,10 +398,11 @@ namespace BMCFileMangement.forms
         private FontAwesome.Sharp.IconPictureBox btnMinimize;
         private FontAwesome.Sharp.IconPictureBox btnMaximizes;
         private Panel panel3;
-        private NotificationDataListViewControl notificationDataListViewControl1;
-        private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
+
         private Panel panelDesktop;
         private GroupBox groupBox1;
         private Panel panel4;
+        private NotificationDataListViewControl notificationDataListViewControl1;
+        private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
     }
 }
