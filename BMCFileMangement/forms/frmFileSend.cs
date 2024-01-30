@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -24,7 +25,8 @@ namespace BMCFileMangement.forms
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
-
+        private readonly string rootdirectorypath;
+        private readonly string myfolderid;
         public frmFileSend(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
@@ -40,6 +42,8 @@ namespace BMCFileMangement.forms
             _fileNotificationList = fileNotificationList;
 
             _userprofile = userprofile;
+            rootdirectorypath = _config.GetSection("UserDirectorySetting").GetSection("root").Value;
+            myfolderid = _config.GetSection("UserDirectorySetting").GetSection("myfolderid").Value;
             InitializeComponent();
             LoadDirectoryByUser();
             _LoadUser();
@@ -48,7 +52,11 @@ namespace BMCFileMangement.forms
         private void btnSendFile_Click(object sender, EventArgs e)
         {
             // Let Shared Folder is C:\MyFolderss
-            string desPath = @"C:\MyFolder";
+            // string desPath = @"C:\MyFolder";
+
+            var desPath = rootdirectorypath;
+
+
             if (!Directory.Exists(desPath)) Directory.CreateDirectory(desPath);
 
             string sourcepath = txtFilePath.Text.Trim();
@@ -72,22 +80,22 @@ namespace BMCFileMangement.forms
                 var _file = BFC.Core.FacadeCreatorObjects.General.filestructureFCC.GetFacadeCreate(httpContextAccessor).Add(
                     new BDO.Core.DataAccessObjects.Models.filestructureEntity
                     {
-                        folderid = _userprofile.CurrentUser.folderid,
+                        folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
                         filename = fileName,
                         userfilename = fileName,
                         filepath = desPath,
                         isdeleted = false
 
-                    }, cancellationToken);
-
-                var i = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
+                    }, cancellationToken); ;
+                string ddd = cboUser.GetItemText(cboUser.SelectedItem);
+                var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
                         new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
                         {
-                            folderid = _userprofile.CurrentUser.folderid,
+                            folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
                             fileid = _file != null && _file.Result > 0 ? _file.Result : null,
                             fromusername = _userprofile.CurrentUser.username,
                             fromuserid = _userprofile.CurrentUser.userid,
-                            tousername = cboUser.SelectedText,
+                            tousername = cboUser.GetItemText(cboUser.SelectedItem),
                             touserid = new Guid(cboUser.SelectedValue.ToString()),
                             sentdate = DateTime.Now,
                             filename = Path.GetFileName(desPath),
@@ -99,6 +107,14 @@ namespace BMCFileMangement.forms
                             expecteddate = DateTime.Now
                         },
                         cancellationToken);
+
+                if (_filetrans.Result > 0)
+                {
+                    MessageBox.Show("Data sent successfully");
+                }
+                else {
+                    MessageBox.Show("Data sent failed");
+                }
             }
         }
 
@@ -203,7 +219,7 @@ namespace BMCFileMangement.forms
         }
         public void LoadDirectoryByUser()
         {
-            string Dir = @"C:\Users\rabiul.islam\Downloads\_GenFiles";
+            string Dir = rootdirectorypath;
 
 
             if (Directory.Exists(Dir))
