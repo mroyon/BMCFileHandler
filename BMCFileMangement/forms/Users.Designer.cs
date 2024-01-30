@@ -232,7 +232,7 @@
             // 
             // iconButton1
             // 
-            iconButton1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            iconButton1.Anchor = AnchorStyles.None;
             iconButton1.BackColor = Color.FromArgb(41, 128, 185);
             iconButton1.FlatAppearance.BorderSize = 0;
             iconButton1.FlatStyle = FlatStyle.Flat;
@@ -242,7 +242,7 @@
             iconButton1.IconColor = Color.DarkBlue;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton1.IconSize = 30;
-            iconButton1.Location = new Point(839, 187);
+            iconButton1.Location = new Point(424, 196);
             iconButton1.Name = "iconButton1";
             iconButton1.Size = new Size(140, 47);
             iconButton1.TabIndex = 2;
