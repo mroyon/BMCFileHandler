@@ -106,9 +106,9 @@ namespace BMCFileMangement.forms
 
         public void LostNotificaitonListFromExtTrigger()
         {
-            this.notificationDataListViewControl1.loadDataForNotification();
+             this.notificationDataListViewControl1.loadDataForNotification();
         }
-        
+
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -223,7 +223,7 @@ namespace BMCFileMangement.forms
                 Reset();
             }
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new Users(_config,_loggerFactory,_msgService, _applog,_userprofile));
+            OpenChildForm(new Users(_config, _loggerFactory, _msgService, _applog, _userprofile));
         }
 
         private void ibtnNotification_Click(object sender, EventArgs e)
