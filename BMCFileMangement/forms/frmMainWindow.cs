@@ -1,5 +1,6 @@
 ﻿using BMCFileMangement.Services.Interface;
 using FontAwesome.Sharp;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -65,6 +66,8 @@ namespace BMCFileMangement.forms
         {
             this.notificationDataListViewControl1.loadDataForNotification();
         }
+        
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
 
@@ -184,7 +187,7 @@ namespace BMCFileMangement.forms
         private void ibtnNotification_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new frmFileSend());
+            OpenChildForm(new frmFileSend(_config, _loggerFactory, _msgService, _applog, _userprofile, _fileNotificationList));
         }
 
         //Drag Form

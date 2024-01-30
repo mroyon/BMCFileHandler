@@ -146,8 +146,8 @@ namespace BMCFileMangement.forms
 
         private void txtConfirmPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!txtPassword.Text.Equals(txtConfirmPassword.Text)) errorProvider3.SetError(this.label2, "Password mismatch");
-            else errorProvider3.Clear();
+            //if (!txtPassword.Text.Equals(txtConfirmPassword.Text)) errorProvider3.SetError(this.label2, "Password mismatch");
+            //else errorProvider3.Clear();
         }
     }
 }
