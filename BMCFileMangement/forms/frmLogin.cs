@@ -67,7 +67,7 @@ namespace BMCFileMangement.forms
                 if (res.Result != null)
                 {
                     _userprofile.SetCurrentUser(res.Result);
-                        _applog.SetLog("Login Successful: User: " + txtUsername.Text);
+                    _applog.SetLog("Login Successful: User: " + txtUsername.Text);
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DialogResult = DialogResult.OK;
                     // Check login result
@@ -105,6 +105,16 @@ namespace BMCFileMangement.forms
                 this.Activate();
             }
 
+        }
+
+        private void btnCloseApp_MouseHover(object sender, EventArgs e)
+        {
+            btnCloseApp.BackColor = Color.Red;
+        }
+
+        private void btnCloseApp_MouseLeave(object sender, EventArgs e)
+        {
+            btnCloseApp.BackColor = SystemColors.Control;
         }
     }
 }
