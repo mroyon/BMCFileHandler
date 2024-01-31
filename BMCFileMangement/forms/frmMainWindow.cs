@@ -31,6 +31,7 @@ namespace BMCFileMangement.forms
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
+        private readonly IFTPTransferService _fTPTransferService;
 
 
         public frmMainWindow(IConfigurationRoot config,
@@ -38,7 +39,8 @@ namespace BMCFileMangement.forms
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-            IFileNotificationService fileNotificationList)
+            IFileNotificationService fileNotificationList, 
+            IFTPTransferService fTPTransferService)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -46,8 +48,9 @@ namespace BMCFileMangement.forms
             _msgService = msgService;
             _applog = applog;
             _fileNotificationList = fileNotificationList;
-
             _userprofile = userprofile;
+            _fTPTransferService = fTPTransferService;
+
 
             InitializeComponent();
             InitializeComponent2();
@@ -73,6 +76,7 @@ namespace BMCFileMangement.forms
           _applog,
           _userprofile,
           _fileNotificationList,
+          _fTPTransferService,
           this);
 
             this.notificationDataListViewControl1 = new BMCFileMangement.forms.UserControls.NotificationDataListViewControl(
@@ -81,7 +85,8 @@ namespace BMCFileMangement.forms
           _msgService,
           _applog,
           _userprofile,
-          _fileNotificationList);
+          _fileNotificationList,
+          _fTPTransferService);
 
             this.panleTitleBar.Controls.Add(this.notificationAndDataQuerybgWorker1);
             this.groupBox1.Controls.Add(this.notificationDataListViewControl1);
@@ -102,7 +107,11 @@ namespace BMCFileMangement.forms
             this.notificationDataListViewControl1.Name = "notificationDataListViewControl1";
             this.notificationDataListViewControl1.Size = new System.Drawing.Size(1051, 131);
             this.notificationDataListViewControl1.TabIndex = 0;
+
+
+            ibtnNotification.Click += ibtnNotification_Click;
         }
+
 
         public void LostNotificaitonListFromExtTrigger()
         {
@@ -229,7 +238,14 @@ namespace BMCFileMangement.forms
         private void ibtnNotification_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new frmFileSend(_config, _loggerFactory, _msgService, _applog, _userprofile, _fileNotificationList));
+            OpenChildForm(new frmFileSend(
+                _config, 
+                _loggerFactory, 
+                _msgService, 
+                _applog, 
+                _userprofile, 
+                _fileNotificationList,
+                _fTPTransferService));
         }
 
         //Drag Form

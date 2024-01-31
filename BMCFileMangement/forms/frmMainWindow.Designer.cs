@@ -52,7 +52,6 @@ namespace BMCFileMangement.forms
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panleTitleBar.SuspendLayout();
@@ -62,7 +61,6 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             this.panelBody.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -99,6 +97,7 @@ namespace BMCFileMangement.forms
             this.ibtnNotification.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnNotification.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnNotification.UseVisualStyleBackColor = true;
+            this.ibtnNotification.Click += new System.EventHandler(this.ibtnNotification_Click);
             // 
             // ibtnUser
             // 
@@ -303,15 +302,12 @@ namespace BMCFileMangement.forms
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-           
             this.groupBox1.Location = new System.Drawing.Point(0, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1056, 157);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Data View";
-           
-            
             // 
             // frmMainWindow
             // 
@@ -332,7 +328,6 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             this.panelBody.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

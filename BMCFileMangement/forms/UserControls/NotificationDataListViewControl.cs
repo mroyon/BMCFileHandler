@@ -29,6 +29,7 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
+        private readonly IFTPTransferService _fTPTransferService;
 
 
         public BackgroundWorker backgroundWorkerPopUp;
@@ -58,7 +59,8 @@ namespace BMCFileMangement.forms.UserControls
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-           IFileNotificationService fileNotificationList)
+           IFileNotificationService fileNotificationList,
+           IFTPTransferService fTPTransferService)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -67,6 +69,7 @@ namespace BMCFileMangement.forms.UserControls
             _applog = applog;
             _fileNotificationList = fileNotificationList;
             _userprofile = userprofile;
+            _fTPTransferService = fTPTransferService;
 
             InitializeComponent();
             InitializeBackgroundWorkerPopUp();
