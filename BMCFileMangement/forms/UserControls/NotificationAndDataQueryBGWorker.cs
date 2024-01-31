@@ -1,4 +1,6 @@
-﻿using BMCFileMangement.Services.Interface;
+﻿using BDO.Core.DataAccessObjects.Models;
+using BMCFileMangement.Services.DisServices;
+using BMCFileMangement.Services.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Uwp.Notifications;
@@ -107,18 +109,14 @@ namespace BMCFileMangement.forms.UserControls
             if (_fileNotificationList.CurrentListofNotificaitons != null && _fileNotificationList.CurrentListofNotificaitons.Count > 0)
                 maxVal = _fileNotificationList.CurrentListofNotificaitons.Max(obj => obj.filetransid).GetValueOrDefault(0);
 
-            var obj = await BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null)
-                .GetAllMyNotificaiton(new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
-                {
-                    touserid = _userprofile.CurrentUser.userid,
-                    filetransid = maxVal == 0 ? null : maxVal
-                }, cancellationToken);
-
+            clsUpdatedDBHandler objHandler = new clsUpdatedDBHandler(_loggerFactory);
+            List<filetransferinfoEntity> obj = await objHandler.FetchFileTransferInfo(_userprofile.CurrentUser.userid, maxVal);
+            objHandler.Dispose();
             if (obj != null && obj.Count > 0)
             {
                 _fileNotificationList.SetCurrentNotificaitonItems(obj.ToList());
             }
-            await Task.Delay(30000);
+             await Task.Delay(30000);
         }
 
         // <summary>

@@ -1,4 +1,5 @@
 ﻿using BDO.Core.DataAccessObjects.Models;
+using BMCFileMangement.Services.DisServices;
 using BMCFileMangement.Services.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -181,14 +182,15 @@ namespace BMCFileMangement.forms.UserControls
                     _fileNotificationList.DeleteCurrentNotificaitonItems(objSingle);
                     loadDataForNotification();
                 }
+                itemsToRemove = new List<filetransferinfoEntity>();
             }
         }
+
         private async Task UpdatePopData(filetransferinfoEntity obj)
         {
-            CancellationToken cancellationToken = new CancellationToken();
-            obj.showeddate = DateTime.Now;
-            obj.showedpopup = true;
-            BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null).UpdatePopUpData(obj, cancellationToken);
+            clsUpdatedDBHandler objHandler = new clsUpdatedDBHandler(_loggerFactory);
+            await objHandler.UpdateFileTransferInfo(obj);
+            objHandler.Dispose();
         }
 
 
