@@ -62,6 +62,16 @@ namespace BMCFileMangement.forms
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             #endregion
+
+            #region form Event Handle
+            ibtnNotification.Click +=  ibtnNotification_Click;
+            ibtnUser.Click += ibtnUser_Click;
+            ibtnDashboard.Click += ibtnDashboard_Click;
+            panleTitleBar.MouseDown += panleTitleBar_MouseDown;
+            btnMaximizes.Click += btnMaximizes_Click;
+            btnMinimize.Click += btnMinimize_Click;
+            btnClose.Click += btnClose_Click;
+            #endregion
         }
 
         private void InitializeComponent2()
@@ -106,7 +116,7 @@ namespace BMCFileMangement.forms
 
         public void LostNotificaitonListFromExtTrigger()
         {
-             this.notificationDataListViewControl1.loadDataForNotification();
+            this.notificationDataListViewControl1.loadDataForNotification();
         }
 
 
