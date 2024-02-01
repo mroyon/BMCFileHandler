@@ -259,10 +259,10 @@
             this.btnAddUser.IconColor = System.Drawing.Color.DarkBlue;
             this.btnAddUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAddUser.IconSize = 30;
-            this.btnAddUser.Location = new System.Drawing.Point(646, 126);
+            this.btnAddUser.Location = new System.Drawing.Point(700, 126);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(188, 35);
+            this.btnAddUser.Size = new System.Drawing.Size(134, 35);
             this.btnAddUser.TabIndex = 2;
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
