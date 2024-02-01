@@ -1,10 +1,13 @@
 ﻿using AppConfig.EncryptionHandler;
+using AppConfig.HelperClasses;
+using BDO.Core.DataAccessObjects.CommonEntities;
 using BDO.Core.DataAccessObjects.SecurityModels;
 using BMCFileMangement.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,6 +19,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace BMCFileMangement.forms
 {
@@ -28,11 +32,17 @@ namespace BMCFileMangement.forms
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
+        private readonly FtpSettingsOptions _ftpOptions;
+        private readonly string ftpuser;
+        private readonly string ftppassword;
+        private readonly string ftpaddress;
+
         public Users(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
-            IUserProfileService userprofile)
+            IUserProfileService userprofile,
+            IOptions<FtpSettingsOptions> ftpOptions)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -40,15 +50,20 @@ namespace BMCFileMangement.forms
             _msgService = msgService;
             _applog = applog;
             _userprofile = userprofile;
+            _ftpOptions = ftpOptions.Value;
             //_contextAccessor = contextAccessor;
 
             InitializeComponent();
             _loadUserDataGrid();
+
+            ftpuser = _config.GetSection("FtpSettings").GetSection("UserName").Value;
+            ftppassword = _config.GetSection("FtpSettings").GetSection("Password").Value;
+            ftpaddress = _config.GetSection("FtpSettings").GetSection("FtpAddress").Value;
         }
 
         private void Users_Load(object sender, EventArgs e)
         {
-           // _loadUser();
+            // _loadUser();
         }
 
         private void _loadUserDataGrid()
@@ -72,20 +87,23 @@ namespace BMCFileMangement.forms
                                   orderby t.masteruserid
                                   select new
                                   {
-                                      Sl_no = ++Srno,
-                                      User_Name = t.username,
-                                      Name = t.loweredusername,
-                                      Email_Address = t.emailaddress,
-                                      Mobile_Number = t.mobilenumber,
-                                      Folder_Path = ""
+                                      SLNo = ++Srno,
+                                      UserName = t.username,
+                                      FullName = t.loweredusername,
+                                      Email = t.emailaddress,
+                                      Mobile = t.mobilenumber,
+                                      //Folder_Path = ""
                                   };
-                    dgvUsers.DataSource = columns.ToList();
-
-                    for (int i = 0; i < dgvUsers.Columns.Count - 1; i++)
+                    //dgvUsers.DataSource = columns.ToList();
+                    foreach (var user in _users)
                     {
-                        dgvUsers.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        dgvUsers.Rows.Add(++Srno, user.username, user.loweredusername, user.pkeyex, user.mobilenumber, user.emailaddress);
                     }
-                    dgvUsers.Columns[dgvUsers.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    //for (int i = 0; i < dgvUsers.Columns.Count - 1; i++)
+                    //{
+                    //    dgvUsers.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    //}
+                    //dgvUsers.Columns[dgvUsers.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 }
             }
@@ -103,9 +121,12 @@ namespace BMCFileMangement.forms
 
                 (string publicKey, string privateKey) rsaKey = Encipher.GenerateRSAKeyPair();
 
+
+                //Save User: Start
+                Guid _userid = Guid.NewGuid();
                 owin_userEntity _user = new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
                 {
-                    userid = new Guid(),
+                    userid = _userid,
                     username = txtUsername.Text,
                     loweredusername = txtName.Text,
                     mobilenumber = txtMobile.Text,
@@ -115,12 +136,39 @@ namespace BMCFileMangement.forms
                     masprivatekey = rsaKey.privateKey,
                     maspublickey = rsaKey.publicKey,
                     roleid = 12, //User Role,
-                    pkeyex = null, //Mil ID
+                    pkeyex = long.Parse(txtMobile.Text), //Mil ID
                 };
 
                 _logger.LogInformation(JsonConvert.SerializeObject(_user));
                 var i = BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial.FCCKAFUserSecurity.GetFacadeCreate(_contextAccessor)
                     .createuser(_user, cancellationToken);
+
+                //Save End
+
+                //Create Folder this user 
+                if (i.Result != null && i.Result > 0)
+                {
+                    ftpHandler _ftp = new ftpHandler();
+                    FtpSettingsOptions ftpSettingsOptions = new FtpSettingsOptions();
+                    ftpSettingsOptions.ftpAddress = ftpaddress;
+
+                    string userfolderpath = "", IN_folder = "", OUT_folder = "";
+                    userfolderpath = _userid.ToString();
+                    IN_folder = _userid.ToString() + "/IN";
+                    OUT_folder = _userid.ToString() + "/OUT";
+
+                    ftpSettingsOptions.user = ftpuser;
+                    ftpSettingsOptions.pass = ftppassword;
+                    _ftp.FolderCheckFTP(_userid.ToString(), ftpSettingsOptions);
+                    _ftp.FolderCheckFTP(IN_folder, ftpSettingsOptions);
+                    _ftp.FolderCheckFTP(OUT_folder, ftpSettingsOptions);
+
+                    MessageBox.Show("User create succesfully");
+                }
+                else
+                {
+                    MessageBox.Show("User create failed");
+                }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
@@ -131,17 +179,17 @@ namespace BMCFileMangement.forms
             else return false;
         }
 
-       
+
 
         //private void txtConfirmPassword_Leave(object sender, EventArgs e)
         //{
-            
+
 
         //}
 
         //private void txtConfirmPassword_MouseUp(object sender, MouseEventArgs e)
         //{
-            
+
         //}
 
         private void txtConfirmPassword_KeyDown(object sender, KeyEventArgs e)
@@ -149,5 +197,6 @@ namespace BMCFileMangement.forms
             //if (!txtPassword.Text.Equals(txtConfirmPassword.Text)) errorProvider3.SetError(this.label2, "Password mismatch");
             //else errorProvider3.Clear();
         }
+
     }
 }

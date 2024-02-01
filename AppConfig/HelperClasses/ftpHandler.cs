@@ -213,12 +213,55 @@ namespace AppConfig.HelperClasses
                     if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
                     {
                         AppConfig.HelperClasses.ftpHandler objFTP = new ftpHandler();
-                        string mainfolder = fileUploadDir.Substring(0, 36);
-                        string userfolderpath = mainfolder + "/";
+                        //string mainfolder = fileUploadDir.Substring(0, 36);
+                        string userfolderpath = fileUploadDir + "/";
                         objFTP.CreateFTPDir(userfolderpath, ftpSettings);
                     }
                 }
             }
+        }
+
+        public void DeleteDirectoryFTP(string fileDir, FtpSettingsOptions ftpSettings)
+        {
+            string strMsg = string.Empty;
+            string strmsg = string.Empty;
+            try
+            {
+                //Check files inside 
+                //var direcotryChildren = directoryListSimple(directoryName);
+                //if (direcotryChildren.Any() && (!string.IsNullOrWhiteSpace(direcotryChildren[0])))
+                //{
+                //    foreach (var child in direcotryChildren)
+                //    {
+                //        delete(directoryName + "/" + child);
+                //    }
+                //}
+                
+
+
+                string _Password = ftpSettings.pass;
+                string _UserName = ftpSettings.user;
+                string _ftpURL = ftpSettings.ftpAddress;
+
+                /* Create an FTP Request */
+                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(_ftpURL + fileDir);
+                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
+                /* When in doubt, use these options */
+                ftpRequest.UseBinary = true;
+                ftpRequest.UsePassive = true;
+                ftpRequest.KeepAlive = true;
+                /* Specify the Type of FTP Request */
+                ftpRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
+
+                /* Establish Return Communication with the FTP Server */
+                FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                ftpResponse.Close();
+
+                ftpRequest = null;
+            }
+            catch (Exception ex) { strmsg = ex.Message; }
+            return;
         }
     }
 }
