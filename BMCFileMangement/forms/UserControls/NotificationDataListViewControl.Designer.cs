@@ -36,24 +36,29 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.dtGrdNotification);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(600, 183);
+            this.panel2.Size = new System.Drawing.Size(1054, 149);
             this.panel2.TabIndex = 1;
             // 
             // dtGrdNotification
             // 
+            this.dtGrdNotification.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtGrdNotification.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dtGrdNotification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGrdNotification.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtGrdNotification.Location = new System.Drawing.Point(0, 0);
             this.dtGrdNotification.Margin = new System.Windows.Forms.Padding(2);
             this.dtGrdNotification.Name = "dtGrdNotification";
             this.dtGrdNotification.RowHeadersWidth = 62;
             this.dtGrdNotification.RowTemplate.Height = 33;
-            this.dtGrdNotification.Size = new System.Drawing.Size(600, 183);
+            this.dtGrdNotification.Size = new System.Drawing.Size(1052, 143);
             this.dtGrdNotification.TabIndex = 1;
             // 
             // NotificationDataListViewControl
@@ -64,7 +69,7 @@
             this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "NotificationDataListViewControl";
-            this.Size = new System.Drawing.Size(600, 183);
+            this.Size = new System.Drawing.Size(1056, 166);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtGrdNotification)).EndInit();
             this.ResumeLayout(false);
