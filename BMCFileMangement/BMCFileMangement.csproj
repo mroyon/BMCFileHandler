@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="forms\UserControls\NotificationDataListViewControl.cs~RFea25e7e.TMP" />
     <None Remove="Images\Icons\customer-reviews.png" />
     <None Remove="Images\Money-Heist.jpg" />
     <None Remove="LanguagesFiles\_Common.xml" />
