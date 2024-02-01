@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Markup;
 using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
@@ -203,7 +204,29 @@ namespace BMCFileMangement.forms.UserControls
             {
                 //Setup columns and other UI stuff
                 //Set datasource of grid
+
+                dtGrdNotification.AutoGenerateColumns = false;
+
+                dtGrdNotification.Columns.Add("fromusername", "From User");
+                dtGrdNotification.Columns.Add("sentdate", "Sent Date");
+                dtGrdNotification.Columns.Add("filename", "File Name");
+                dtGrdNotification.Columns.Add("priority", "Priority");
+                dtGrdNotification.Columns.Add("fromuserremark", "Remarks");
+
+                dtGrdNotification.Columns["fromusername"].DataPropertyName = "fromusername";
+                dtGrdNotification.Columns["sentdate"].DataPropertyName = "sentdate";
+                dtGrdNotification.Columns["filename"].DataPropertyName = "filename";
+                dtGrdNotification.Columns["priority"].DataPropertyName = "priority";
+                dtGrdNotification.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
+
+                for (int i = 0; i < dtGrdNotification.Columns.Count - 1; i++)
+                {
+                    dtGrdNotification.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+                dtGrdNotification.Columns[dtGrdNotification.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
                 dtGrdNotification.DataSource = _fileNotificationList.CurrentListofNotificaitons?.ToList();
+                
             }));
 
         }

@@ -63,6 +63,66 @@ namespace BMCFileMangement.forms
             _LoadUser();
         }
 
+
+        private void _LoadUser()
+        {
+            try
+            {
+                CancellationToken cancellationToken = new CancellationToken();
+                IHttpContextAccessor httpContextAccessor = null;
+                var _users = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(httpContextAccessor).GetDataForDropDown(
+
+                    new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
+                    {
+                        PageSize = 10000,
+                        CurrentPage = 1
+                    },
+                    cancellationToken).Result;
+
+                if (_users != null && _users.Count > 0)
+                {
+                    cboUser.DataSource = _users;
+                    cboUser.ValueMember = "strValue1";
+                    cboUser.DisplayMember = "Text";
+                }
+            }
+            catch (Exception ex)
+            { throw ex; }
+        }
+
+        private void btnBrowseFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog fdlg = new OpenFileDialog();
+                fdlg.Title = "Select file";
+                fdlg.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+                fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "", "All Files", "*.*");
+                // Code for image filter  
+                ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+                foreach (ImageCodecInfo c in codecs)
+                {
+                    string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
+                    fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "|", codecName, c.FilenameExtension);
+                }
+                // Code for files filter  
+                fdlg.Filter = fdlg.Filter + "|CSV Files (*.csv)|*.csv";
+                fdlg.Filter = fdlg.Filter + "|Excel Files (.xls ,.xlsx)|  *.xls ;*.xlsx";
+                fdlg.Filter = fdlg.Filter + "|PDF Files (.pdf)|*.pdf";
+                fdlg.Filter = fdlg.Filter + "|Text Files (*.txt)|*.txt";
+                fdlg.Filter = fdlg.Filter + "|Word Files (.docx ,.doc)|*.docx;*.doc";
+                fdlg.Filter = fdlg.Filter + "|XML Files (*.xml)|*.xml";
+
+                fdlg.FilterIndex = 1;
+                fdlg.RestoreDirectory = true;
+                fdlg.Multiselect = true;
+                if (fdlg.ShowDialog() == DialogResult.OK)
+                {
+                    txtFilePath.Text = fdlg.FileName;
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
         private void btnSendFile_Click(object sender, EventArgs e)
         {
             // Let Shared Folder is C:\MyFolderss
@@ -147,67 +207,6 @@ namespace BMCFileMangement.forms
 
         }
 
-        private void _LoadUser()
-        {
-            try
-            {
-                CancellationToken cancellationToken = new CancellationToken();
-                IHttpContextAccessor httpContextAccessor = null;
-                var _users = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(httpContextAccessor).GetDataForDropDown(
-
-                    new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
-                    {
-                        PageSize = 10000,
-                        CurrentPage = 1
-                    },
-                    cancellationToken).Result;
-
-                if (_users != null && _users.Count > 0)
-                {
-                    cboUser.DataSource = _users;
-                    cboUser.ValueMember = "strValue1";
-                    cboUser.DisplayMember = "Text";
-                }
-            }
-            catch (Exception ex)
-            { throw ex; }
-        }
-
-        private void btnBrowseFile_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog fdlg = new OpenFileDialog();
-                fdlg.Title = "Select file";
-                fdlg.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
-                fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "", "All Files", "*.*");
-                // Code for image filter  
-                ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
-                foreach (ImageCodecInfo c in codecs)
-                {
-                    string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
-                    fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "|", codecName, c.FilenameExtension);
-                }
-                // Code for files filter  
-                fdlg.Filter = fdlg.Filter + "|CSV Files (*.csv)|*.csv";
-                fdlg.Filter = fdlg.Filter + "|Excel Files (.xls ,.xlsx)|  *.xls ;*.xlsx";
-                fdlg.Filter = fdlg.Filter + "|PDF Files (.pdf)|*.pdf";
-                fdlg.Filter = fdlg.Filter + "|Text Files (*.txt)|*.txt";
-                fdlg.Filter = fdlg.Filter + "|Word Files (.docx ,.doc)|*.docx;*.doc";
-                fdlg.Filter = fdlg.Filter + "|XML Files (*.xml)|*.xml";
-
-                fdlg.FilterIndex = 1;
-                fdlg.RestoreDirectory = true;
-                fdlg.Multiselect = true;
-                if (fdlg.ShowDialog() == DialogResult.OK)
-                {
-                    txtFilePath.Text = fdlg.FileName;
-                }
-            }
-            catch (Exception ex) { throw ex; }
-        }
-
-
         private DataTable loadFileNames(string folderpath)
         {
             String[] files = Directory.GetFiles(folderpath);
@@ -290,7 +289,6 @@ namespace BMCFileMangement.forms
                 //UpdateProgress();
             }
         }
-
         public TreeNode previousSelectedNode = null;
         private void treeFolder_AfterSelect(object sender, TreeViewEventArgs e)
         {
