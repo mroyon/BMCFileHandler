@@ -11,13 +11,13 @@ namespace BMCFileMangement.Services.Interface
 {
     public interface IFTPTransferService
     {
-        Task<string> CreateUserFTPDir(string pathToCreate);
+        string CreateUserFTPDir(string pathToCreate);
 
-        Task<string> UploadFile(string localFilePath, string remoteDirectory, string newFileName);
+        string UploadFile(string localFilePath, string remoteDirectory, string newFileName);
 
-        Task<string> DeleteFile(string remoteFilePath);
+        string DeleteFile(string remoteFilePath);
 
-        Task<Stream> DownloadFile(string remoteFilePath, string localFilePath);
+        Task<Stream> DownloadFile(string remoteFilePath);
 
     }
 }

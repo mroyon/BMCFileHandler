@@ -15,6 +15,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Sources;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BMCFileMangement.Services.Implementation
@@ -29,9 +30,9 @@ namespace BMCFileMangement.Services.Implementation
 
 
         public FTPTransferService(
-            IConfigurationRoot config, 
-            ILoggerFactory loggerFactory, 
-            ILogger<FTPTransferService> logger, 
+            IConfigurationRoot config,
+            ILoggerFactory loggerFactory,
+            ILogger<FTPTransferService> logger,
             IUserProfileService userProfileService)
         {
             _config = config;
@@ -48,8 +49,11 @@ namespace BMCFileMangement.Services.Implementation
         /// </summary>
         /// <param name="pathToCreate"></param>
         /// <returns></returns>
-        public async Task<string> CreateUserFTPDir(string pathToCreate)
+        public string CreateUserFTPDir(string pathToCreate)
         {
+            FtpWebRequest reqFTP = null;
+            Stream ftpStream = null;
+
             string retValue = string.Empty;
             string _Password = _ftpSettings.Password;
             string _UserName = _ftpSettings.UserName;
@@ -58,40 +62,23 @@ namespace BMCFileMangement.Services.Implementation
             try
             {
                 currentDir = _ftpURL + pathToCreate;
-
-                // Create the FTP request
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(new Uri($"{currentDir}"));
-                request.Credentials = new NetworkCredential(_UserName, _Password);
-                request.Method = WebRequestMethods.Ftp.MakeDirectory;
-
-                try
-                {
-                    // Perform the FTP request asynchronously
-                    using (FtpWebResponse response = (FtpWebResponse)await request.GetResponseAsync())
-                    {
-                        // The status code 257 indicates that the directory was created successfully
-                        if (response.StatusCode != FtpStatusCode.PathnameCreated)
-                        {
-                            retValue = $"Failed to create directory. Status code: {response.StatusCode}";
-                        }
-                    }
-                }
-                catch (WebException webEx)
-                {
-                    retValue = $"Error: {webEx.Message}";
-                }
+                reqFTP = (FtpWebRequest)FtpWebRequest.Create(currentDir);
+                reqFTP.Credentials = new NetworkCredential(_UserName, _Password);
+                reqFTP.Method = WebRequestMethods.Ftp.MakeDirectory;
+                reqFTP.UseBinary = false;
+                reqFTP.UsePassive = true;
+                reqFTP.EnableSsl = false;
+                FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
+                ftpStream = response.GetResponseStream();
+                ftpStream.Close();
+                response.Close();
+                retValue = "Folder created successfully.";
             }
-            catch (WebException e)
-            {
-                retValue = ((FtpWebResponse)e.Response).StatusDescription;
-            }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 retValue = $"Error: {ex.Message}";
             }
-
             return retValue;
-
         }
 
         /// <summary>
@@ -101,36 +88,32 @@ namespace BMCFileMangement.Services.Implementation
         /// <param name="remoteDirectory"></param>
         /// <param name="newFileName"></param>
         /// <returns></returns>
-        public async Task<string> UploadFile(string localFilePath, string remoteDirectory,string newFileName)
+        public string UploadFile(string localFilePath, string remoteDirectory, string newFileName)
         {
+            FtpWebRequest reqFTP = null;
+            Stream ftpStream = null;
+
             string retValue = string.Empty;
             string _Password = _ftpSettings.Password;
             string _UserName = _ftpSettings.UserName;
             string _ftpURL = _ftpSettings.FtpAddress;
 
             string remoteFileUrl = $"{_ftpURL}{remoteDirectory}{newFileName}";
-
-            // Create the FTP request
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(new Uri(remoteFileUrl));
-            request.Credentials = new NetworkCredential(_UserName, _Password);
-            request.Method = WebRequestMethods.Ftp.UploadFile;
-
             try
             {
-                using (Stream localFileStream = File.OpenRead(localFilePath))
-                using (Stream requestStream = await request.GetRequestStreamAsync())
-                {
-                    await localFileStream.CopyToAsync(requestStream);
-                }
+                byte[] fileBytes = File.ReadAllBytes(localFilePath);
 
-                using (FtpWebResponse response = (FtpWebResponse)await request.GetResponseAsync())
-                {
-                    // Check if the upload was successful (status code 226)
-                    if (response.StatusCode != FtpStatusCode.ClosingData)
-                    {
-                        retValue = $"Failed to upload file. Status code: {response.StatusCode}";
-                    }
-                }
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
+                request.Method = WebRequestMethods.Ftp.UploadFile;
+                request.Credentials = new NetworkCredential(_UserName, _Password);
+                Stream ftpstream = request.GetRequestStream();
+                ftpstream.Write(fileBytes, 0, fileBytes.Length);
+                ftpstream.Close();
+
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                retValue = response.StatusDescription;
+                response.Close();
             }
             catch (WebException webEx)
             {
@@ -149,34 +132,38 @@ namespace BMCFileMangement.Services.Implementation
         /// </summary>
         /// <param name="remoteFilePath"></param>
         /// <returns></returns>
-        public async Task<string> DeleteFile(string remoteFilePath)
+        public string DeleteFile(string remoteFilePath)
         {
             string retValue = string.Empty;
             string _Password = _ftpSettings.Password;
             string _UserName = _ftpSettings.UserName;
             string _ftpURL = _ftpSettings.FtpAddress;
 
-            // Create the FTP request
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(new Uri($"{_ftpURL}{remoteFilePath}"));
-            request.Credentials = new NetworkCredential(_UserName, _Password);
-            request.Method = WebRequestMethods.Ftp.DeleteFile;
 
             try
             {
-                using (FtpWebResponse response = (FtpWebResponse)await request.GetResponseAsync())
-                {
-                    // Check if the deletion was successful (status code 250)
-                    if (response.StatusCode != FtpStatusCode.FileActionOK)
-                    {
-                        retValue = $"Failed to delete file. Status code: {response.StatusCode}";
-                    }
-                }
+                string remoteFileUrl = $"{_ftpURL}{remoteFilePath}";
+
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
+                request.Method = WebRequestMethods.Ftp.DeleteFile;
+                request.Credentials = new NetworkCredential(_UserName, _Password);
+                request.Proxy = null;
+                request.UseBinary = false;
+                request.UsePassive = true;
+                request.KeepAlive = false;
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                Stream responseStream = response.GetResponseStream();
+                StreamReader sr = new StreamReader(responseStream);
+                sr.ReadToEnd();
+                retValue = response.StatusDescription;
+                sr.Close();
+                response.Close();
             }
             catch (WebException webEx)
             {
                 retValue = $"Error: {webEx.Message}";
             }
-            catch (Exception  ex)
+            catch (Exception ex)
             {
                 retValue = $"Error: {ex.Message}";
             }
@@ -188,22 +175,22 @@ namespace BMCFileMangement.Services.Implementation
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<Stream> DownloadFile(string remoteFilePath, string localFilePath)
+        public async Task<Stream> DownloadFile(string remoteFilePath)
         {
             Stream? retValue = null;
             string _Password = _ftpSettings.Password;
             string _UserName = _ftpSettings.UserName;
             string _ftpURL = _ftpSettings.FtpAddress;
 
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(new Uri($"{_ftpURL}{remoteFilePath}"));
+            string remoteFileUrl = $"{_ftpURL}{remoteFilePath}";
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
             request.Credentials = new NetworkCredential(_UserName, _Password);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
 
             try
             {
-                using (FtpWebResponse response = (FtpWebResponse)await request.GetResponseAsync())
-                using (Stream responseStream = response.GetResponseStream())
-                    retValue = responseStream;
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                retValue = response.GetResponseStream();
             }
             catch (WebException webEx)
             {
@@ -212,13 +199,7 @@ namespace BMCFileMangement.Services.Implementation
             return retValue;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="localFilePath">"path/to/local/file.txt"</param>
-        /// <param name="remoteDirectory">"/remote/directory/"</param>
-        /// <param name="newFileName">"new_file_name.txt"</param>
-        /// <returns></returns>
+
 
     }
 }
