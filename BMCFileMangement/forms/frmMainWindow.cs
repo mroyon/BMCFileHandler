@@ -43,7 +43,7 @@ namespace BMCFileMangement.forms
             IApplicationLogService applog,
             IUserProfileService userprofile,
             IFileNotificationService fileNotificationList, 
-            IFTPTransferService fTPTransferService)
+            IFTPTransferService fTPTransferService,
             //IFileNotificationService fileNotificationList,
             IOptions<FtpSettingsOptions> ftpOptions)
         {
