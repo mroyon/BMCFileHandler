@@ -1,8 +1,10 @@
-﻿using BMCFileMangement.Services.Interface;
+﻿using BDO.Core.DataAccessObjects.CommonEntities;
+using BMCFileMangement.Services.Interface;
 using FontAwesome.Sharp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +34,7 @@ namespace BMCFileMangement.forms
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
         private readonly IFTPTransferService _fTPTransferService;
+        private readonly IOptions<FtpSettingsOptions> _ftpOptions;
 
 
         public frmMainWindow(IConfigurationRoot config,
@@ -40,7 +43,9 @@ namespace BMCFileMangement.forms
             IApplicationLogService applog,
             IUserProfileService userprofile,
             IFileNotificationService fileNotificationList, 
-            IFTPTransferService fTPTransferService)
+            IFTPTransferService fTPTransferService,
+            //IFileNotificationService fileNotificationList,
+            IOptions<FtpSettingsOptions> ftpOptions)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -50,6 +55,7 @@ namespace BMCFileMangement.forms
             _fileNotificationList = fileNotificationList;
             _userprofile = userprofile;
             _fTPTransferService = fTPTransferService;
+            _ftpOptions = ftpOptions;
 
 
             InitializeComponent();
@@ -242,7 +248,7 @@ namespace BMCFileMangement.forms
                 Reset();
             }
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new Users(_config, _loggerFactory, _msgService, _applog, _userprofile));
+            OpenChildForm(new Users(_config, _loggerFactory, _msgService, _applog, _userprofile, _ftpOptions));
         }
 
         private void ibtnNotification_Click(object sender, EventArgs e)

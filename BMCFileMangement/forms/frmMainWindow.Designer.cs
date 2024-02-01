@@ -143,7 +143,7 @@ namespace BMCFileMangement.forms
             ibtnDashboard.TextAlign = ContentAlignment.MiddleLeft;
             ibtnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
             ibtnDashboard.UseVisualStyleBackColor = true;
-            ibtnDashboard.Click += ibtnDashboard_Click;
+            //ibtnDashboard.Click += ibtnDashboard_Click;
             // 
             // panel1
             // 
@@ -188,7 +188,7 @@ namespace BMCFileMangement.forms
             panleTitleBar.Name = "panleTitleBar";
             panleTitleBar.Size = new Size(1056, 47);
             panleTitleBar.TabIndex = 1;
-            panleTitleBar.MouseDown += panleTitleBar_MouseDown;
+            //panleTitleBar.MouseDown += panleTitleBar_MouseDown;
             // 
             // btnMaximizes
             // 
@@ -203,7 +203,7 @@ namespace BMCFileMangement.forms
             btnMaximizes.Size = new Size(30, 30);
             btnMaximizes.TabIndex = 8;
             btnMaximizes.TabStop = false;
-            btnMaximizes.Click += btnMaximizes_Click;
+            //btnMaximizes.Click += btnMaximizes_Click;
             // 
             // btnMinimize
             // 
@@ -218,7 +218,7 @@ namespace BMCFileMangement.forms
             btnMinimize.Size = new Size(30, 30);
             btnMinimize.TabIndex = 7;
             btnMinimize.TabStop = false;
-            btnMinimize.Click += btnMinimize_Click;
+            //btnMinimize.Click += btnMinimize_Click;
             // 
             // lblChildFormTitle
             // 
@@ -255,7 +255,7 @@ namespace BMCFileMangement.forms
             btnClose.Size = new Size(30, 30);
             btnClose.TabIndex = 7;
             btnClose.TabStop = false;
-            btnClose.Click += btnClose_Click;
+            //btnClose.Click += btnClose_Click;
             // 
             // panel2
             // 
