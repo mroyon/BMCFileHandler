@@ -97,6 +97,13 @@ namespace CLL.LLClasses.Models
                 return resourceProvider_filetransferinfo.GetResource("touserid", CultureInfo.CurrentUICulture.Name) as String;
             }
         }
+         public static string fromuserremark
+        {
+            get
+            {
+                return resourceProvider_filetransferinfo.GetResource("fromuserremark", CultureInfo.CurrentUICulture.Name) as String;
+            }
+        }
          public static string sentdate
         {
             get

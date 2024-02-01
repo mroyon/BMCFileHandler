@@ -12,6 +12,8 @@
        <resource culture="ar-kw" name="tousername" value="AR:  To Username"></resource>
        <resource culture="ar-kw" name="touserid" value="AR:  To User I D"></resource>
        <resource culture="ar-kw" name="sentdate" value="AR:  Sent Date"></resource>
+       <resource culture="ar-kw" name="showedpopup" value="AR:  Showed Pop U P"></resource>
+       <resource culture="ar-kw" name="showeddate" value="AR:  Showed Date"></resource>
        <resource culture="ar-kw" name="isreceived" value="AR:  Is Received"></resource>
        <resource culture="ar-kw" name="receiveddate" value="AR:  Received Date"></resource>
        <resource culture="ar-kw" name="isopen" value="AR:  Is Open"></resource>
@@ -20,6 +22,7 @@
        <resource culture="ar-kw" name="fileversion" value="AR:  File Version"></resource>
        <resource culture="ar-kw" name="fullpath" value="AR:  Full Path"></resource>
        <resource culture="ar-kw" name="priority" value="AR:  Priority"></resource>
+       <resource culture="ar-kw" name="filejsondata" value="AR:  File Json Data"></resource>
        <resource culture="ar-kw" name="status" value="AR:  Status"></resource>
        <resource culture="ar-kw" name="expecteddate" value="AR:  Expected Date"></resource>
 		<resource culture="ar-kw" name="filetransferinfoList" value="AR: View All"></resource>
@@ -39,6 +42,8 @@
        <resource culture="en-us" name="tousername" value=" To Username"></resource>
        <resource culture="en-us" name="touserid" value=" To User I D"></resource>
        <resource culture="en-us" name="sentdate" value=" Sent Date"></resource>
+       <resource culture="en-us" name="showedpopup" value=" Showed Pop U P"></resource>
+       <resource culture="en-us" name="showeddate" value=" Showed Date"></resource>
        <resource culture="en-us" name="isreceived" value=" Is Received"></resource>
        <resource culture="en-us" name="receiveddate" value=" Received Date"></resource>
        <resource culture="en-us" name="isopen" value=" Is Open"></resource>
@@ -47,6 +52,7 @@
        <resource culture="en-us" name="fileversion" value=" File Version"></resource>
        <resource culture="en-us" name="fullpath" value=" Full Path"></resource>
        <resource culture="en-us" name="priority" value=" Priority"></resource>
+       <resource culture="en-us" name="filejsondata" value=" File Json Data"></resource>
        <resource culture="en-us" name="status" value=" Status"></resource>
        <resource culture="en-us" name="expecteddate" value=" Expected Date"></resource>
         <resource culture="en-us" name="filetransferinfoList" value="View All"></resource>

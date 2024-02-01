@@ -52,7 +52,6 @@ namespace BMCFileMangement.forms
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panleTitleBar.SuspendLayout();
@@ -62,21 +61,20 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             this.panelBody.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
-            panelMenu.BackColor = Color.FromArgb(31, 30, 68);
-            panelMenu.Controls.Add(ibtnNotification);
-            panelMenu.Controls.Add(ibtnUser);
-            panelMenu.Controls.Add(ibtnDashboard);
-            panelMenu.Controls.Add(panel1);
-            panelMenu.Dock = DockStyle.Left;
-            panelMenu.Location = new Point(0, 0);
-            panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(220, 673);
-            panelMenu.TabIndex = 0;
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panelMenu.Controls.Add(this.ibtnNotification);
+            this.panelMenu.Controls.Add(this.ibtnUser);
+            this.panelMenu.Controls.Add(this.ibtnDashboard);
+            this.panelMenu.Controls.Add(this.panel1);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(220, 673);
+            this.panelMenu.TabIndex = 0;
             // 
             // ibtnNotification
             // 
@@ -102,220 +100,217 @@ namespace BMCFileMangement.forms
             // 
             // ibtnUser
             // 
-            ibtnUser.Dock = DockStyle.Top;
-            ibtnUser.FlatAppearance.BorderSize = 0;
-            ibtnUser.FlatStyle = FlatStyle.Flat;
-            ibtnUser.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            ibtnUser.ForeColor = Color.Gainsboro;
-            ibtnUser.IconChar = FontAwesome.Sharp.IconChar.User;
-            ibtnUser.IconColor = Color.White;
-            ibtnUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ibtnUser.IconSize = 32;
-            ibtnUser.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnUser.Location = new Point(0, 200);
-            ibtnUser.Name = "ibtnUser";
-            ibtnUser.Padding = new Padding(10, 0, 20, 0);
-            ibtnUser.Size = new Size(220, 60);
-            ibtnUser.TabIndex = 2;
-            ibtnUser.Text = "User";
-            ibtnUser.TextAlign = ContentAlignment.MiddleLeft;
-            ibtnUser.TextImageRelation = TextImageRelation.ImageBeforeText;
-            ibtnUser.UseVisualStyleBackColor = true;
+            this.ibtnUser.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ibtnUser.FlatAppearance.BorderSize = 0;
+            this.ibtnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnUser.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnUser.ForeColor = System.Drawing.Color.Gainsboro;
+            this.ibtnUser.IconChar = FontAwesome.Sharp.IconChar.User;
+            this.ibtnUser.IconColor = System.Drawing.Color.White;
+            this.ibtnUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnUser.IconSize = 32;
+            this.ibtnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnUser.Location = new System.Drawing.Point(0, 200);
+            this.ibtnUser.Name = "ibtnUser";
+            this.ibtnUser.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.ibtnUser.Size = new System.Drawing.Size(220, 60);
+            this.ibtnUser.TabIndex = 2;
+            this.ibtnUser.Text = "User";
+            this.ibtnUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnUser.UseVisualStyleBackColor = true;
             // 
             // ibtnDashboard
             // 
-            ibtnDashboard.Dock = DockStyle.Top;
-            ibtnDashboard.FlatAppearance.BorderSize = 0;
-            ibtnDashboard.FlatStyle = FlatStyle.Flat;
-            ibtnDashboard.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            ibtnDashboard.ForeColor = Color.Gainsboro;
-            ibtnDashboard.IconChar = FontAwesome.Sharp.IconChar.Dashboard;
-            ibtnDashboard.IconColor = Color.White;
-            ibtnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ibtnDashboard.IconSize = 32;
-            ibtnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnDashboard.Location = new Point(0, 140);
-            ibtnDashboard.Name = "ibtnDashboard";
-            ibtnDashboard.Padding = new Padding(10, 0, 20, 0);
-            ibtnDashboard.Size = new Size(220, 60);
-            ibtnDashboard.TabIndex = 1;
-            ibtnDashboard.Text = "Dashboard";
-            ibtnDashboard.TextAlign = ContentAlignment.MiddleLeft;
-            ibtnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
-            ibtnDashboard.UseVisualStyleBackColor = true;
-            //ibtnDashboard.Click += ibtnDashboard_Click;
+            this.ibtnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ibtnDashboard.FlatAppearance.BorderSize = 0;
+            this.ibtnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnDashboard.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnDashboard.ForeColor = System.Drawing.Color.Gainsboro;
+            this.ibtnDashboard.IconChar = FontAwesome.Sharp.IconChar.Dashboard;
+            this.ibtnDashboard.IconColor = System.Drawing.Color.White;
+            this.ibtnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnDashboard.IconSize = 32;
+            this.ibtnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnDashboard.Location = new System.Drawing.Point(0, 140);
+            this.ibtnDashboard.Name = "ibtnDashboard";
+            this.ibtnDashboard.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.ibtnDashboard.Size = new System.Drawing.Size(220, 60);
+            this.ibtnDashboard.TabIndex = 1;
+            this.ibtnDashboard.Text = "Dashboard";
+            this.ibtnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnDashboard.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(220, 140);
-            panel1.TabIndex = 0;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(220, 140);
+            this.panel1.TabIndex = 0;
             // 
             // label2
             // 
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(3, 101);
-            label2.Name = "label2";
-            label2.Size = new Size(217, 25);
-            label2.TabIndex = 2;
-            label2.Text = "Rabiul Islam RoNy";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 101);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(217, 25);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Rabiul Islam RoNy";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(0, 7);
-            label1.Name = "label1";
-            label1.Size = new Size(217, 25);
-            label1.TabIndex = 1;
-            label1.Text = "File Management";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(217, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "File Management";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panleTitleBar
             // 
-            panleTitleBar.BackColor = Color.FromArgb(31, 30, 68);
-            panleTitleBar.Controls.Add(btnMaximizes);
-            panleTitleBar.Controls.Add(btnMinimize);
-            panleTitleBar.Controls.Add(lblChildFormTitle);
-            panleTitleBar.Controls.Add(iconCurrentChildForm);
-            panleTitleBar.Controls.Add(btnClose);
-            panleTitleBar.Dock = DockStyle.Top;
-            panleTitleBar.Location = new Point(220, 0);
-            panleTitleBar.Name = "panleTitleBar";
-            panleTitleBar.Size = new Size(1056, 47);
-            panleTitleBar.TabIndex = 1;
-            //panleTitleBar.MouseDown += panleTitleBar_MouseDown;
+            this.panleTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panleTitleBar.Controls.Add(this.btnMaximizes);
+            this.panleTitleBar.Controls.Add(this.btnMinimize);
+            this.panleTitleBar.Controls.Add(this.lblChildFormTitle);
+            this.panleTitleBar.Controls.Add(this.iconCurrentChildForm);
+            this.panleTitleBar.Controls.Add(this.btnClose);
+            this.panleTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panleTitleBar.Location = new System.Drawing.Point(220, 0);
+            this.panleTitleBar.Name = "panleTitleBar";
+            this.panleTitleBar.Size = new System.Drawing.Size(1056, 47);
+            this.panleTitleBar.TabIndex = 1;
             // 
             // btnMaximizes
             // 
-            btnMaximizes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMaximizes.BackColor = Color.FromArgb(31, 30, 68);
-            btnMaximizes.IconChar = FontAwesome.Sharp.IconChar.Maximize;
-            btnMaximizes.IconColor = Color.White;
-            btnMaximizes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMaximizes.IconSize = 30;
-            btnMaximizes.Location = new Point(986, 10);
-            btnMaximizes.Name = "btnMaximizes";
-            btnMaximizes.Size = new Size(30, 30);
-            btnMaximizes.TabIndex = 8;
-            btnMaximizes.TabStop = false;
-            //btnMaximizes.Click += btnMaximizes_Click;
+            this.btnMaximizes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximizes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.btnMaximizes.IconChar = FontAwesome.Sharp.IconChar.Maximize;
+            this.btnMaximizes.IconColor = System.Drawing.Color.White;
+            this.btnMaximizes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnMaximizes.IconSize = 30;
+            this.btnMaximizes.Location = new System.Drawing.Point(986, 10);
+            this.btnMaximizes.Name = "btnMaximizes";
+            this.btnMaximizes.Size = new System.Drawing.Size(30, 30);
+            this.btnMaximizes.TabIndex = 8;
+            this.btnMaximizes.TabStop = false;
             // 
             // btnMinimize
             // 
-            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMinimize.BackColor = Color.FromArgb(31, 30, 68);
-            btnMinimize.IconChar = FontAwesome.Sharp.IconChar.Minus;
-            btnMinimize.IconColor = Color.White;
-            btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMinimize.IconSize = 30;
-            btnMinimize.Location = new Point(950, 11);
-            btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(30, 30);
-            btnMinimize.TabIndex = 7;
-            btnMinimize.TabStop = false;
-            //btnMinimize.Click += btnMinimize_Click;
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.btnMinimize.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            this.btnMinimize.IconColor = System.Drawing.Color.White;
+            this.btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnMinimize.IconSize = 30;
+            this.btnMinimize.Location = new System.Drawing.Point(950, 11);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(30, 30);
+            this.btnMinimize.TabIndex = 7;
+            this.btnMinimize.TabStop = false;
             // 
             // lblChildFormTitle
             // 
-            lblChildFormTitle.ForeColor = Color.Gainsboro;
-            lblChildFormTitle.Location = new Point(43, 13);
-            lblChildFormTitle.Name = "lblChildFormTitle";
-            lblChildFormTitle.Size = new Size(187, 25);
-            lblChildFormTitle.TabIndex = 1;
-            lblChildFormTitle.Text = "Home";
+            this.lblChildFormTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblChildFormTitle.Location = new System.Drawing.Point(43, 13);
+            this.lblChildFormTitle.Name = "lblChildFormTitle";
+            this.lblChildFormTitle.Size = new System.Drawing.Size(187, 25);
+            this.lblChildFormTitle.TabIndex = 1;
+            this.lblChildFormTitle.Text = "Home";
             // 
             // iconCurrentChildForm
             // 
-            iconCurrentChildForm.BackColor = Color.FromArgb(31, 30, 68);
-            iconCurrentChildForm.ForeColor = Color.MediumPurple;
-            iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.House;
-            iconCurrentChildForm.IconColor = Color.MediumPurple;
-            iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconCurrentChildForm.Location = new Point(5, 7);
-            iconCurrentChildForm.Name = "iconCurrentChildForm";
-            iconCurrentChildForm.Size = new Size(32, 33);
-            iconCurrentChildForm.TabIndex = 0;
-            iconCurrentChildForm.TabStop = false;
+            this.iconCurrentChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.iconCurrentChildForm.ForeColor = System.Drawing.Color.MediumPurple;
+            this.iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.House;
+            this.iconCurrentChildForm.IconColor = System.Drawing.Color.MediumPurple;
+            this.iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconCurrentChildForm.Location = new System.Drawing.Point(5, 7);
+            this.iconCurrentChildForm.Name = "iconCurrentChildForm";
+            this.iconCurrentChildForm.Size = new System.Drawing.Size(32, 33);
+            this.iconCurrentChildForm.TabIndex = 0;
+            this.iconCurrentChildForm.TabStop = false;
             // 
             // btnClose
             // 
-            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnClose.BackColor = Color.FromArgb(31, 30, 68);
-            btnClose.IconChar = FontAwesome.Sharp.IconChar.Xmark;
-            btnClose.IconColor = Color.White;
-            btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnClose.IconSize = 30;
-            btnClose.Location = new Point(1022, 11);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(30, 30);
-            btnClose.TabIndex = 7;
-            btnClose.TabStop = false;
-            //btnClose.Click += btnClose_Click;
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.btnClose.IconColor = System.Drawing.Color.White;
+            this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClose.IconSize = 30;
+            this.btnClose.Location = new System.Drawing.Point(1022, 11);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(30, 30);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(31, 30, 68);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(220, 47);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1056, 9);
-            panel2.TabIndex = 2;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(220, 47);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1056, 9);
+            this.panel2.TabIndex = 2;
             // 
             // panelBody
             // 
-            panelBody.Controls.Add(panel4);
-            panelBody.Controls.Add(panelDesktop);
-            panelBody.Controls.Add(panel3);
-            panelBody.Dock = DockStyle.Fill;
-            panelBody.Location = new Point(220, 56);
-            panelBody.Name = "panelBody";
-            panelBody.Size = new Size(1056, 617);
-            panelBody.TabIndex = 3;
+            this.panelBody.Controls.Add(this.panel4);
+            this.panelBody.Controls.Add(this.panelDesktop);
+            this.panelBody.Controls.Add(this.panel3);
+            this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBody.Location = new System.Drawing.Point(220, 56);
+            this.panelBody.Name = "panelBody";
+            this.panelBody.Size = new System.Drawing.Size(1056, 617);
+            this.panelBody.TabIndex = 3;
             // 
             // panel4
             // 
-            panel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            panel4.BackColor = Color.PowderBlue;
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Location = new Point(0, 167);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(1056, 8);
-            panel4.TabIndex = 0;
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Location = new System.Drawing.Point(0, 167);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1056, 8);
+            this.panel4.TabIndex = 0;
             // 
             // panelDesktop
             // 
-            panelDesktop.Location = new Point(0, 175);
-            panelDesktop.Name = "panelDesktop";
-            panelDesktop.Size = new Size(1062, 441);
-            panelDesktop.TabIndex = 1;
+            this.panelDesktop.Location = new System.Drawing.Point(0, 175);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(1062, 441);
+            this.panelDesktop.TabIndex = 1;
             // 
             // panel3
             // 
-            panel3.Controls.Add(groupBox1);
-            panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(0, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1056, 166);
-            panel3.TabIndex = 0;
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.groupBox1);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1056, 166);
+            this.panel3.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-           
-            this.groupBox1.Location = new System.Drawing.Point(0, 6);
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1056, 157);
+            this.groupBox1.Size = new System.Drawing.Size(1056, 166);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Data View";
-           
-            
             // 
             // frmMainWindow
             // 
@@ -325,7 +320,7 @@ namespace BMCFileMangement.forms
             this.Controls.Add(this.panleTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Name = "frmMainWindow";
-            this.Text = "BMC File Management";
+            this.Text = "File Management";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -336,7 +331,6 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             this.panelBody.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -363,9 +357,9 @@ namespace BMCFileMangement.forms
         private FontAwesome.Sharp.IconPictureBox btnMaximizes;
         private Panel panel3;
         private Panel panelDesktop;
-        private GroupBox groupBox1;
         private Panel panel4;
         private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
         private NotificationDataListViewControl notificationDataListViewControl1;
+        private GroupBox groupBox1;
     }
 }

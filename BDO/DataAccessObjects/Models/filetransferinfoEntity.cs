@@ -20,6 +20,7 @@ namespace BDO.Core.DataAccessObjects.Models
         protected Guid ? _fromuserid;
         protected string _tousername;
         protected Guid ? _touserid;
+        protected string _fromuserremark;
         protected DateTime ? _sentdate;
         protected bool ? _showedpopup;
         protected DateTime ? _showeddate;
@@ -93,6 +94,15 @@ namespace BDO.Core.DataAccessObjects.Models
         {
             get { return _touserid; }
             set { _touserid = value; this.OnChnaged(); }
+        }
+        
+        [DataMember]
+        [MaxLength(-1)]
+        [Display(Name = "fromuserremark", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
+        public string fromuserremark
+        {
+            get { return _fromuserremark; }
+            set { _fromuserremark = value; this.OnChnaged(); }
         }
         
         [DataMember]
@@ -243,6 +253,7 @@ namespace BDO.Core.DataAccessObjects.Models
                 if (!reader.IsDBNull(reader.GetOrdinal("FromUserID"))) _fromuserid = reader.GetGuid(reader.GetOrdinal("FromUserID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUsername"))) _tousername = reader.GetString(reader.GetOrdinal("ToUsername"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUserID"))) _touserid = reader.GetGuid(reader.GetOrdinal("ToUserID"));
+                if (!reader.IsDBNull(reader.GetOrdinal("FromUserRemark"))) _fromuserremark = reader.GetString(reader.GetOrdinal("FromUserRemark"));
                 if (!reader.IsDBNull(reader.GetOrdinal("SentDate"))) _sentdate = reader.GetDateTime(reader.GetOrdinal("SentDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ShowedPopUP"))) _showedpopup = reader.GetBoolean(reader.GetOrdinal("ShowedPopUP"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ShowedDate"))) _showeddate = reader.GetDateTime(reader.GetOrdinal("ShowedDate"));
@@ -281,6 +292,7 @@ namespace BDO.Core.DataAccessObjects.Models
                 if (!reader.IsDBNull(reader.GetOrdinal("FromUserID"))) _fromuserid = reader.GetGuid(reader.GetOrdinal("FromUserID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUsername"))) _tousername = reader.GetString(reader.GetOrdinal("ToUsername"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUserID"))) _touserid = reader.GetGuid(reader.GetOrdinal("ToUserID"));
+                if (!reader.IsDBNull(reader.GetOrdinal("FromUserRemark"))) _fromuserremark = reader.GetString(reader.GetOrdinal("FromUserRemark"));
                 if (!reader.IsDBNull(reader.GetOrdinal("SentDate"))) _sentdate = reader.GetDateTime(reader.GetOrdinal("SentDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ShowedPopUP"))) _showedpopup = reader.GetBoolean(reader.GetOrdinal("ShowedPopUP"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ShowedDate"))) _showeddate = reader.GetDateTime(reader.GetOrdinal("ShowedDate"));

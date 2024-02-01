@@ -68,69 +68,83 @@ namespace BMCFileMangement.forms
             // Let Shared Folder is C:\MyFolderss
             // string desPath = @"C:\MyFolder";
 
+            // Display a confirmation message box
+            DialogResult result = MessageBox.Show("Are you sure you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            var desPath = rootdirectorypath;
-
-
-            if (!Directory.Exists(desPath)) Directory.CreateDirectory(desPath);
-
-            string sourcepath = txtFilePath.Text.Trim();
-            string fileName = Path.GetFileName(sourcepath);
-            desPath = Path.Combine(desPath, fileName);
-
-            if (File.Exists(desPath)) File.Delete(desPath);
-            bool isCopy = false;
-            try
+            // Check the user's response
+            if (result == DialogResult.Yes)
             {
-                File.Copy(sourcepath, desPath, true);
-                isCopy = true;
-            }
-            catch { }
 
-            if (isCopy)
-            {
-                CancellationToken cancellationToken = new CancellationToken();
-                IHttpContextAccessor httpContextAccessor = null;
-                // Save File
-                var _file = BFC.Core.FacadeCreatorObjects.General.filestructureFCC.GetFacadeCreate(httpContextAccessor).Add(
-                    new BDO.Core.DataAccessObjects.Models.filestructureEntity
-                    {
-                        folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
-                        filename = fileName,
-                        userfilename = fileName,
-                        filepath = desPath,
-                        isdeleted = false
+                var desPath = rootdirectorypath;
 
-                    }, cancellationToken); ;
-                string ddd = cboUser.GetItemText(cboUser.SelectedItem);
-                var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
-                        new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
+                if (!Directory.Exists(desPath)) Directory.CreateDirectory(desPath);
+
+                string sourcepath = txtFilePath.Text.Trim();
+                string fileName = Path.GetFileName(sourcepath);
+                desPath = Path.Combine(desPath, fileName);
+
+                if (File.Exists(desPath)) File.Delete(desPath);
+                bool isCopy = false;
+                try
+                {
+                    File.Copy(sourcepath, desPath, true);
+                    isCopy = true;
+                }
+                catch { }
+
+                if (isCopy)
+                {
+                    CancellationToken cancellationToken = new CancellationToken();
+                    IHttpContextAccessor httpContextAccessor = null;
+                    // Save File
+                    var _file = BFC.Core.FacadeCreatorObjects.General.filestructureFCC.GetFacadeCreate(httpContextAccessor).Add(
+                        new BDO.Core.DataAccessObjects.Models.filestructureEntity
                         {
                             folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
-                            fileid = _file != null && _file.Result > 0 ? _file.Result : null,
-                            fromusername = _userprofile.CurrentUser.username,
-                            fromuserid = _userprofile.CurrentUser.userid,
-                            tousername = cboUser.GetItemText(cboUser.SelectedItem),
-                            touserid = new Guid(cboUser.SelectedValue.ToString()),
-                            sentdate = DateTime.Now,
-                            filename = Path.GetFileName(desPath),
-                            fileversion = null,
-                            fullpath = desPath,
-                            priority = 1,
-                            filejsondata = "",
-                            status = 1,
-                            expecteddate = DateTime.Now
-                        },
-                        cancellationToken);
+                            filename = fileName,
+                            userfilename = fileName,
+                            filepath = desPath,
+                            isdeleted = false
 
-                if (_filetrans.Result > 0)
-                {
-                    MessageBox.Show("Data sent successfully");
+                        }, cancellationToken); ;
+                    string ddd = cboUser.GetItemText(cboUser.SelectedItem);
+                    var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
+                            new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
+                            {
+                                folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
+                                fileid = _file != null && _file.Result > 0 ? _file.Result : null,
+                                fromusername = _userprofile.CurrentUser.username,
+                                fromuserid = _userprofile.CurrentUser.userid,
+                                tousername = cboUser.GetItemText(cboUser.SelectedItem),
+                                touserid = new Guid(cboUser.SelectedValue.ToString()),
+                                sentdate = DateTime.Now,
+                                filename = Path.GetFileName(desPath),
+                                fileversion = null,
+                                fullpath = desPath,
+                                priority = 1,
+                                filejsondata = "",
+                                status = 1,
+                                expecteddate = DateTime.Now
+                            },
+                            cancellationToken);
+
+                    if (_filetrans.Result > 0)
+                    {
+                        MessageBox.Show("Data sent successfully");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data sent failed");
+                    }
                 }
-                else {
-                    MessageBox.Show("Data sent failed");
-                }
+
             }
+            else
+            {
+                // User clicked No, do nothing or handle accordingly
+                MessageBox.Show("Action canceled!");
+            }
+
         }
 
         private void _LoadUser()
