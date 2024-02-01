@@ -26,13 +26,26 @@ namespace BMCFileMangement.forms
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
         private readonly string rootdirectorypath;
+        private readonly IFTPTransferService _fTPTransferService;
         private readonly string myfolderid;
+
+        /// <summary>
+        /// frmFileSend
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="loggerFactory"></param>
+        /// <param name="msgService"></param>
+        /// <param name="applog"></param>
+        /// <param name="userprofile"></param>
+        /// <param name="fileNotificationList"></param>
+        /// <param name="fTPTransferService"></param>
         public frmFileSend(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-            IFileNotificationService fileNotificationList)
+            IFileNotificationService fileNotificationList,
+            IFTPTransferService fTPTransferService)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -40,6 +53,7 @@ namespace BMCFileMangement.forms
             _msgService = msgService;
             _applog = applog;
             _fileNotificationList = fileNotificationList;
+            _fTPTransferService = fTPTransferService;
 
             _userprofile = userprofile;
             rootdirectorypath = _config.GetSection("UserDirectorySetting").GetSection("root").Value;
@@ -54,6 +68,7 @@ namespace BMCFileMangement.forms
             // Let Shared Folder is C:\MyFolderss
             // string desPath = @"C:\MyFolder";
 
+                
             var desPath = rootdirectorypath;
 
 

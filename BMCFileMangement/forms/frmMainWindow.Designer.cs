@@ -33,35 +33,37 @@ namespace BMCFileMangement.forms
         /// </summary>
         private void InitializeComponent()
         {
-            panelMenu = new Panel();
-            ibtnNotification = new FontAwesome.Sharp.IconButton();
-            ibtnUser = new FontAwesome.Sharp.IconButton();
-            ibtnDashboard = new FontAwesome.Sharp.IconButton();
-            panel1 = new Panel();
-            label2 = new Label();
-            label1 = new Label();
-            panleTitleBar = new Panel();
-            btnMaximizes = new FontAwesome.Sharp.IconPictureBox();
-            btnMinimize = new FontAwesome.Sharp.IconPictureBox();
-            lblChildFormTitle = new Label();
-            iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
-            btnClose = new FontAwesome.Sharp.IconPictureBox();
-            panel2 = new Panel();
-            panelBody = new Panel();
-            panel4 = new Panel();
-            panelDesktop = new Panel();
-            panel3 = new Panel();
-            groupBox1 = new GroupBox();
-            panelMenu.SuspendLayout();
-            panel1.SuspendLayout();
-            panleTitleBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)btnMaximizes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnMinimize).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)iconCurrentChildForm).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
-            panelBody.SuspendLayout();
-            panel3.SuspendLayout();
-            SuspendLayout();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.ibtnNotification = new FontAwesome.Sharp.IconButton();
+            this.ibtnUser = new FontAwesome.Sharp.IconButton();
+            this.ibtnDashboard = new FontAwesome.Sharp.IconButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panleTitleBar = new System.Windows.Forms.Panel();
+            this.btnMaximizes = new FontAwesome.Sharp.IconPictureBox();
+            this.btnMinimize = new FontAwesome.Sharp.IconPictureBox();
+            this.lblChildFormTitle = new System.Windows.Forms.Label();
+            this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
+            this.btnClose = new FontAwesome.Sharp.IconPictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelBody = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelDesktop = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+
+            this.panelMenu.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panleTitleBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMaximizes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
+            this.panelBody.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // panelMenu
             // 
@@ -78,25 +80,25 @@ namespace BMCFileMangement.forms
             // 
             // ibtnNotification
             // 
-            ibtnNotification.Dock = DockStyle.Top;
-            ibtnNotification.FlatAppearance.BorderSize = 0;
-            ibtnNotification.FlatStyle = FlatStyle.Flat;
-            ibtnNotification.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            ibtnNotification.ForeColor = Color.Gainsboro;
-            ibtnNotification.IconChar = FontAwesome.Sharp.IconChar.ShareFromSquare;
-            ibtnNotification.IconColor = Color.White;
-            ibtnNotification.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ibtnNotification.IconSize = 32;
-            ibtnNotification.ImageAlign = ContentAlignment.MiddleLeft;
-            ibtnNotification.Location = new Point(0, 260);
-            ibtnNotification.Name = "ibtnNotification";
-            ibtnNotification.Padding = new Padding(10, 0, 20, 0);
-            ibtnNotification.Size = new Size(220, 60);
-            ibtnNotification.TabIndex = 3;
-            ibtnNotification.Text = "File Send";
-            ibtnNotification.TextAlign = ContentAlignment.MiddleLeft;
-            ibtnNotification.TextImageRelation = TextImageRelation.ImageBeforeText;
-            ibtnNotification.UseVisualStyleBackColor = true;
+            this.ibtnNotification.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ibtnNotification.FlatAppearance.BorderSize = 0;
+            this.ibtnNotification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnNotification.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ibtnNotification.ForeColor = System.Drawing.Color.Gainsboro;
+            this.ibtnNotification.IconChar = FontAwesome.Sharp.IconChar.ShareFromSquare;
+            this.ibtnNotification.IconColor = System.Drawing.Color.White;
+            this.ibtnNotification.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnNotification.IconSize = 32;
+            this.ibtnNotification.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnNotification.Location = new System.Drawing.Point(0, 260);
+            this.ibtnNotification.Name = "ibtnNotification";
+            this.ibtnNotification.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.ibtnNotification.Size = new System.Drawing.Size(220, 60);
+            this.ibtnNotification.TabIndex = 3;
+            this.ibtnNotification.Text = "File Send";
+            this.ibtnNotification.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ibtnNotification.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnNotification.UseVisualStyleBackColor = true;
             // 
             // ibtnUser
             // 
@@ -303,34 +305,40 @@ namespace BMCFileMangement.forms
             // 
             // groupBox1
             // 
-            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Location = new Point(0, 6);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1056, 157);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Notification Data View";
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+           
+            this.groupBox1.Location = new System.Drawing.Point(0, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1056, 157);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Notification Data View";
+           
+            
             // 
             // frmMainWindow
             // 
-            ClientSize = new Size(1276, 673);
-            Controls.Add(panelBody);
-            Controls.Add(panel2);
-            Controls.Add(panleTitleBar);
-            Controls.Add(panelMenu);
-            Name = "frmMainWindow";
-            Text = "BMC File Management";
-            WindowState = FormWindowState.Maximized;
-            panelMenu.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panleTitleBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)btnMaximizes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnMinimize).EndInit();
-            ((System.ComponentModel.ISupportInitialize)iconCurrentChildForm).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnClose).EndInit();
-            panelBody.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            ResumeLayout(false);
+            this.ClientSize = new System.Drawing.Size(1276, 673);
+            this.Controls.Add(this.panelBody);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panleTitleBar);
+            this.Controls.Add(this.panelMenu);
+            this.Name = "frmMainWindow";
+            this.Text = "BMC File Management";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.panelMenu.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panleTitleBar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnMaximizes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
+            this.panelBody.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
