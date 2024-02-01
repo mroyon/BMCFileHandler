@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,7 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IFileNotificationService _fileNotificationList;
         private readonly IFTPTransferService _fTPTransferService;
 
-
         public BackgroundWorker backgroundWorkerPopUp;
-
 
         /// <summary>
         /// NotificationDataListViewControl
@@ -43,8 +42,6 @@ namespace BMCFileMangement.forms.UserControls
         {
             InitializeComponent();
         }
-
-
 
         /// <summary>
         /// NotificationDataListViewControl
@@ -97,7 +94,6 @@ namespace BMCFileMangement.forms.UserControls
             }
         }
 
-
         /// <summary>
         /// BackgroundWorkerPopUp_DoWork
         /// </summary>
@@ -115,6 +111,7 @@ namespace BMCFileMangement.forms.UserControls
                 //backgroundWorker.ReportProgress(0);
             }
         }
+
         /// <summary>
         /// watchFolderContents
         /// </summary>
@@ -126,7 +123,6 @@ namespace BMCFileMangement.forms.UserControls
             await Task.Delay(2000);
         }
 
-        // <summary>
         /// BackgroundWorker_ProgressChanged
         /// </summary>
         /// <param name="sender"></param>
@@ -190,6 +186,11 @@ namespace BMCFileMangement.forms.UserControls
             }
         }
 
+        /// <summary>
+        /// UpdatePopData
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         private async Task UpdatePopData(filetransferinfoEntity obj)
         {
             clsUpdatedDBHandler objHandler = new clsUpdatedDBHandler(_loggerFactory);
@@ -197,7 +198,9 @@ namespace BMCFileMangement.forms.UserControls
             objHandler.Dispose();
         }
 
-
+        /// <summary>
+        /// loadDataForNotification
+        /// </summary>
         public void loadDataForNotification()
         {
             this.Invoke(new Action(() =>
@@ -226,9 +229,40 @@ namespace BMCFileMangement.forms.UserControls
                 dtGrdNotification.Columns[dtGrdNotification.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 dtGrdNotification.DataSource = _fileNotificationList.CurrentListofNotificaitons?.ToList();
-                
             }));
-
         }
+
+
+        private void dtGrdNotification_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdNotification.Columns["filename"].Index)
+            {
+                string fileName = dtGrdNotification.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
+                DownloadFile(fileName);
+            }
+        }
+
+
+        private async Task DownloadFile(string fileName)
+        {
+            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/IN/" + fileName;
+            var fileStream = await _fTPTransferService.DownloadFile(fullPath);
+
+            // Using statement ensures that the FileStream is properly closed and resources are released
+            using (FileStream outputStream = new FileStream(fileName, FileMode.Create))
+            {
+                // Read from the input stream and write to the file stream
+                fileStream.CopyTo(outputStream);
+            }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = fileName,
+                UseShellExecute = true
+            });
+
+            //MessageBox.Show($"Downloading file: {fileName}");
+        }
+
     }
 }

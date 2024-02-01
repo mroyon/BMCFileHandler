@@ -36,8 +36,6 @@ namespace BMCFileMangement.forms.UserControls
             InitializeComponent();
         }
 
-
-
         public NotificationAndDataQueryBGWorker(
           IConfigurationRoot config,
           ILoggerFactory loggerFactory,
@@ -100,6 +98,7 @@ namespace BMCFileMangement.forms.UserControls
                 //backgroundWorker.ReportProgress(0);
             }
         }
+
         /// <summary>
         /// watchFolderContents
         /// </summary>
@@ -121,7 +120,6 @@ namespace BMCFileMangement.forms.UserControls
              await Task.Delay(30000);
         }
 
-        // <summary>
         /// BackgroundWorker_ProgressChanged
         /// </summary>
         /// <param name="sender"></param>

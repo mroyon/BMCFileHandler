@@ -56,10 +56,12 @@
             this.dtGrdNotification.Location = new System.Drawing.Point(0, 0);
             this.dtGrdNotification.Margin = new System.Windows.Forms.Padding(2);
             this.dtGrdNotification.Name = "dtGrdNotification";
+            this.dtGrdNotification.ReadOnly = true;
             this.dtGrdNotification.RowHeadersWidth = 62;
             this.dtGrdNotification.RowTemplate.Height = 33;
             this.dtGrdNotification.Size = new System.Drawing.Size(1052, 143);
             this.dtGrdNotification.TabIndex = 1;
+            this.dtGrdNotification.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdNotification_CellClick);
             // 
             // NotificationDataListViewControl
             // 
