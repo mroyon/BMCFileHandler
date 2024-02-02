@@ -19,5 +19,6 @@ namespace BMCFileMangement.Services.Interface
 
         Task<Stream> DownloadFile(string remoteFilePath);
 
+        string DeleteDirectoryFTP(string fileDir);
     }
 }

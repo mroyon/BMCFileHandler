@@ -70,7 +70,10 @@ namespace DAC.Core.DataAccessObjects.General
                 FillParameters(folderstructure, cmd,Database);
                 FillSequrityParameters(folderstructure.BaseSecurityParam, cmd, Database);
 				AddOutputParameter(cmd);
-				try
+                if (folderstructure.userid.HasValue)
+                    Database.AddInParameter(cmd, "@UserID", DbType.Guid, folderstructure.userid);
+
+                try
                 {
                     IAsyncResult result = Database.BeginExecuteNonQuery(cmd, null, null);
                     while (!result.IsCompleted)

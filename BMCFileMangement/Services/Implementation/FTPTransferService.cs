@@ -200,6 +200,38 @@ namespace BMCFileMangement.Services.Implementation
         }
 
 
+        public string DeleteDirectoryFTP(string fileDir)
+        {
+            string retValue = string.Empty;
+            string strMsg = string.Empty;
+            string strmsg = string.Empty;
+            try
+            {
+                string _Password = _ftpSettings.Password;
+                string _UserName = _ftpSettings.UserName;
+                string _ftpURL = _ftpSettings.FtpAddress;
+
+                /* Create an FTP Request */
+                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(_ftpURL + fileDir);
+                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
+                /* When in doubt, use these options */
+                ftpRequest.UseBinary = true;
+                ftpRequest.UsePassive = true;
+                ftpRequest.KeepAlive = true;
+                /* Specify the Type of FTP Request */
+                ftpRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
+
+                /* Establish Return Communication with the FTP Server */
+                FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                ftpResponse.Close();
+
+                ftpRequest = null;
+                retValue = "Folder deleted successfully.";
+            }
+            catch (Exception ex) { retValue = ex.Message; }
+            return retValue;
+        }
 
     }
 }

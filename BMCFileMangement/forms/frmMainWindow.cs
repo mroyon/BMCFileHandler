@@ -276,7 +276,7 @@ namespace BMCFileMangement.forms
                 Reset();
             }
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new Users(_config, _loggerFactory, _msgService, _applog, _userprofile, _ftpOptions));
+            OpenChildForm(new Users(_config, _loggerFactory, _msgService, _applog, _userprofile, _ftpOptions, _fTPTransferService));
         }
 
         private void ibtnNotification_Click(object sender, EventArgs e)

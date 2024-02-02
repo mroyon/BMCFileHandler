@@ -1,7 +1,11 @@
 ﻿using AppConfig.EncryptionHandler;
 using AppConfig.HelperClasses;
 using BDO.Core.DataAccessObjects.CommonEntities;
+using BDO.Core.DataAccessObjects.ExtendedEntities;
+using BDO.Core.DataAccessObjects.Models;
 using BDO.Core.DataAccessObjects.SecurityModels;
+using BDO.DataAccessObjects.ExtendedEntities;
+using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.Services.Interface;
 using FontAwesome.Sharp;
 using Microsoft.AspNetCore.Http;
@@ -38,11 +42,13 @@ namespace BMCFileMangement.forms
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
-        private readonly FtpSettingsOptions _ftpOptions;
-        private readonly string ftpuser;
-        private readonly string ftppassword;
-        private readonly string ftpaddress;
+        //private readonly FtpSettingsOptions _ftpOptions;
+        //private readonly string ftpuser;
+        //private readonly string ftppassword;
+        //private readonly string ftpaddress;
         private readonly DataGridViewImageColumn btnImgGridEdit;
+        private readonly IFTPTransferService _fTPTransferService;
+        private readonly FtpSettings _ftpSettings;
 
 
         private int PageSize = 10;
@@ -55,7 +61,8 @@ namespace BMCFileMangement.forms
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-            IOptions<FtpSettingsOptions> ftpOptions)
+            IOptions<FtpSettingsOptions> ftpOptions,
+            IFTPTransferService fTPTransferService)
         {
             _config = config;
             _loggerFactory = loggerFactory;
@@ -63,23 +70,19 @@ namespace BMCFileMangement.forms
             _msgService = msgService;
             _applog = applog;
             _userprofile = userprofile;
-            _ftpOptions = ftpOptions.Value;
-            //_contextAccessor = contextAccessor;
             btnImgGridEdit = new DataGridViewImageColumn();
             InitializeComponent();
             //_loadUserDataGrid();
             //BindDataToGrid(1, 10);
             BindGrid(CurrentPage);
-            ftpuser = _config.GetSection("FtpSettings").GetSection("UserName").Value;
-            ftppassword = _config.GetSection("FtpSettings").GetSection("Password").Value;
-            ftpaddress = _config.GetSection("FtpSettings").GetSection("FtpAddress").Value;
+            _fTPTransferService = fTPTransferService;
+            _ftpSettings = _config.GetSection(nameof(FtpSettings)).Get<FtpSettings>();
         }
 
         private void Users_Load(object sender, EventArgs e)
         {
             // _loadUser();
         }
-
         private void _loadUserDataGrid()
         {
             try
@@ -199,24 +202,23 @@ namespace BMCFileMangement.forms
                     //Create Folder this user 
                     if (i.Result != null && i.Result > 0)
                     {
-                        ftpHandler _ftp = new ftpHandler();
-                        FtpSettingsOptions ftpSettingsOptions = new FtpSettingsOptions();
-                        ftpSettingsOptions.ftpAddress = ftpaddress;
-
                         string userfolderpath = "", IN_folder = "", OUT_folder = "";
                         userfolderpath = _userid.ToString();
-                        IN_folder = _userid.ToString() + "/IN";
-                        OUT_folder = _userid.ToString() + "/OUT";
+                        IN_folder = _userid.ToString() + "/INBOX";
+                        OUT_folder = _userid.ToString() + "/OUTBOX";
 
-                        ftpSettingsOptions.user = ftpuser;
-                        ftpSettingsOptions.pass = ftppassword;
-                        _ftp.FolderCheckFTP(_userid.ToString(), ftpSettingsOptions);
-                        _ftp.FolderCheckFTP(IN_folder, ftpSettingsOptions);
-                        _ftp.FolderCheckFTP(OUT_folder, ftpSettingsOptions);
+                        long retValue = 0;
+                        if (_fTPTransferService.CreateUserFTPDir(userfolderpath) == "Folder created successfully.")
+                        {
+                            _fTPTransferService.CreateUserFTPDir(IN_folder);
+                            _fTPTransferService.CreateUserFTPDir(OUT_folder);
 
+                            retValue = _SaveFolderStructure(_userid.ToString(), userfolderpath);
+                        }
                         MessageBox.Show("User create succesfully");
                         _clearControl();
-                        _loadUserDataGrid();
+                        //_loadUserDataGrid();
+                        BindGrid(CurrentPage);
                     }
                     else
                     {
@@ -226,14 +228,11 @@ namespace BMCFileMangement.forms
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
         private bool _validatepassword()
         {
             if (txtPassword.PasswordChar.Equals(txtConfirmPassword.PasswordChar)) return true;
             else return false;
         }
-
-
         private void _clearControl()
         {
             if (btnAddUser.Text == "Update User") { btnAddUser.Text = "Add User"; btnAddUser.IconChar = FontAwesome.Sharp.IconChar.PlusCircle; }
@@ -247,7 +246,6 @@ namespace BMCFileMangement.forms
             dgvUsers.Rows.Clear();
             dgvUsers.Refresh();
         }
-
 
         //private void txtConfirmPassword_Leave(object sender, EventArgs e)
         //{
@@ -286,6 +284,31 @@ namespace BMCFileMangement.forms
             }
         }
 
+        private long _SaveFolderStructure(string userid, string folderpath)
+        {
+            long result = 0;
+            try
+            {
+                CancellationToken cancellationToken = new CancellationToken();
+                IHttpContextAccessor? _contextAccessor = null;
+                folderstructureEntity _folderStructure = new folderstructureEntity();
+
+                _folderStructure.userid = new Guid(userid);
+                _folderStructure.foldername = folderpath;
+                _folderStructure.physicalpath = $"{_ftpSettings.FtpAddress} {folderpath}";
+                _folderStructure.parentfolderid = null;
+                _folderStructure.isdeleted = false;
+
+                result = BFC.Core.FacadeCreatorObjects.General.folderstructureFCC.GetFacadeCreate(_contextAccessor)
+                        .Add(_folderStructure, cancellationToken).Result;
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show();
+            }
+            return result;
+        }
+
         #region Paging Method & Style 01
         private void BindGrid(int pageIndex)
         {
@@ -317,7 +340,7 @@ namespace BMCFileMangement.forms
         }
         private void PopulatePager(int recordCount, int currentPage)
         {
-            List<Page> pages = new List<Page>();
+            List<PageEntity> pages = new List<PageEntity>();
             int startIndex, endIndex;
             int pagerSpan = 5;
 
@@ -356,30 +379,30 @@ namespace BMCFileMangement.forms
             //Add the First Page Button.
             if (currentPage > 1)
             {
-                pages.Add(new Page { Text = "First", Value = "1" });
+                pages.Add(new PageEntity { Text = "First", Value = "1" });
             }
 
             //Add the Previous Button.
             if (currentPage > 1)
             {
-                pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
+                pages.Add(new PageEntity { Text = "<<", Value = (currentPage - 1).ToString() });
             }
 
             for (int i = startIndex; i <= endIndex; i++)
             {
-                pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
+                pages.Add(new PageEntity { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
             }
 
             //Add the Next Button.
             if (currentPage < pageCount)
             {
-                pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
+                pages.Add(new PageEntity { Text = ">>", Value = (currentPage + 1).ToString() });
             }
 
             //Add the Last Button.
             if (currentPage != pageCount)
             {
-                pages.Add(new Page { Text = "Last", Value = pageCount.ToString() });
+                pages.Add(new PageEntity { Text = "Last", Value = pageCount.ToString() });
             }
 
             //Clear existing Pager Buttons.
@@ -389,21 +412,9 @@ namespace BMCFileMangement.forms
             int count = 1;
             int width = 60;
             int pointX = 10;
-            foreach (Page page in pages)
+            foreach (PageEntity page in pages)
             {
                 System.Windows.Forms.Button btnPage = new System.Windows.Forms.Button();
-                //btnPage.Location = new System.Drawing.Point(38 * count, 5);
-                //btnPage.Size = new System.Drawing.Size(35, 20);
-                //btnPage.Name = page.Value;
-                //btnPage.Text = page.Text;
-                //btnPage.Enabled = !page.Selected;
-                //btnPage.Click += new System.EventHandler(this.Page_Click);
-                //pnlPager.Controls.Add(btnPage);
-                //count++;
-
-
-
-
                 //btnPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
                 btnPage.Location = new Point(pointX, 15);
                 btnPage.Name = page.Value;
@@ -415,7 +426,6 @@ namespace BMCFileMangement.forms
                 pnlPager.Controls.Add(btnPage);
                 count++;
                 pointX = pointX + width;
-
             }
         }
         private void Page_Click(object sender, EventArgs e)
@@ -498,12 +508,5 @@ namespace BMCFileMangement.forms
             }
         }
         #endregion Paging Method & Style 02
-    }
-
-    public class Page
-    {
-        public string Text { get; set; }
-        public string Value { get; set; }
-        public bool Selected { get; set; }
     }
 }
