@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             groupBox2 = new GroupBox();
             txtUserID = new TextBox();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -366,8 +368,11 @@
             dgvUsers.AllowUserToDeleteRows = false;
             dgvUsers.AllowUserToResizeColumns = false;
             dgvUsers.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.SelectionBackColor = Color.LightSkyBlue;
+            dgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvUsers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvUsers.BackgroundColor = Color.White;
+            dgvUsers.BorderStyle = BorderStyle.None;
             dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsers.Columns.AddRange(new DataGridViewColumn[] { SLNo, UserID, UserName, FullName, MilitaryNo, Email, Edit });
             dgvUsers.Location = new Point(3, 29);
@@ -383,6 +388,8 @@
             // SLNo
             // 
             SLNo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.BackColor = Color.Orange;
+            SLNo.DefaultCellStyle = dataGridViewCellStyle2;
             SLNo.HeaderText = "Sl";
             SLNo.MinimumWidth = 6;
             SLNo.Name = "SLNo";
