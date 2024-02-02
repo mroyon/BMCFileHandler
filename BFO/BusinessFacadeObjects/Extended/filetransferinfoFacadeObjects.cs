@@ -40,6 +40,34 @@ namespace BFO.Core.BusinessFacadeObjects.General
                 throw GetFacadeException(ex, SourceOfException("IList<filetransferinfoEntity> IfiletransferinfoFacade.GetAllMyNotificaiton"));
             }
 		}
+
+
+        async Task<IList<filetransferinfoEntity>> IfiletransferinfoFacadeObjects.GetAllByPagesInBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
+		{
+			try
+			{
+				return await DataAccessFactory.CreatefiletransferinfoDataAccess().GetAllByPagesInBoxView(filetransferinfo, cancellationToken);
+			}
+           
+            catch (Exception ex)
+            {
+                throw GetFacadeException(ex, SourceOfException("IList<filetransferinfoEntity> IfiletransferinfoFacade.GetAllByPagesInBoxView"));
+            }
+		}
         
+
+
+        async Task<IList<filetransferinfoEntity>> IfiletransferinfoFacadeObjects.GetAllByPagesOutBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
+		{
+			try
+			{
+				return await DataAccessFactory.CreatefiletransferinfoDataAccess().GetAllByPagesOutBoxView(filetransferinfo, cancellationToken);
+			}
+           
+            catch (Exception ex)
+            {
+                throw GetFacadeException(ex, SourceOfException("IList<filetransferinfoEntity> IfiletransferinfoFacade.GetAllByPagesOutBoxView"));
+            }
+		}
 	}
 }
