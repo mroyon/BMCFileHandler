@@ -80,7 +80,35 @@ namespace BMCFileMangement.forms
             btnMaximizes.Click += btnMaximizes_Click;
             btnMinimize.Click += btnMinimize_Click;
             btnClose.Click += btnClose_Click;
+            icnBtnViewInBox.Click += IcnBtnViewInBox_Click;
+            icnBtnViewOutBox.Click += IcnBtnViewOutBox_Click;
             #endregion
+        }
+
+        private void IcnBtnViewOutBox_Click(object? sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color3);
+            //OpenChildForm(new frmOutBox(
+            //    _config,
+            //    _loggerFactory,
+            //    _msgService,
+            //    _applog,
+            //    _userprofile,
+            //    _fileNotificationList,
+            //    _fTPTransferService));
+        }
+
+        private void IcnBtnViewInBox_Click(object? sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color3);
+            OpenChildForm(new frmInBox(
+                _config,
+                _loggerFactory,
+                _msgService,
+                _applog,
+                _userprofile,
+                _fileNotificationList,
+                _fTPTransferService));
         }
 
         private void InitializeComponent2()

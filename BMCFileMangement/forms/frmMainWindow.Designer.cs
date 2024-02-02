@@ -52,6 +52,8 @@ namespace BMCFileMangement.forms
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.icnBtnViewInBox = new FontAwesome.Sharp.IconButton();
+            this.icnBtnViewOutBox = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panleTitleBar.SuspendLayout();
@@ -66,6 +68,8 @@ namespace BMCFileMangement.forms
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panelMenu.Controls.Add(this.icnBtnViewOutBox);
+            this.panelMenu.Controls.Add(this.icnBtnViewInBox);
             this.panelMenu.Controls.Add(this.ibtnNotification);
             this.panelMenu.Controls.Add(this.ibtnUser);
             this.panelMenu.Controls.Add(this.ibtnDashboard);
@@ -312,6 +316,50 @@ namespace BMCFileMangement.forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Data View";
             // 
+            // icnBtnViewInBox
+            // 
+            this.icnBtnViewInBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnViewInBox.FlatAppearance.BorderSize = 0;
+            this.icnBtnViewInBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnViewInBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icnBtnViewInBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnViewInBox.IconChar = FontAwesome.Sharp.IconChar.Inbox;
+            this.icnBtnViewInBox.IconColor = System.Drawing.Color.White;
+            this.icnBtnViewInBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icnBtnViewInBox.IconSize = 32;
+            this.icnBtnViewInBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnViewInBox.Location = new System.Drawing.Point(0, 320);
+            this.icnBtnViewInBox.Name = "icnBtnViewInBox";
+            this.icnBtnViewInBox.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.icnBtnViewInBox.Size = new System.Drawing.Size(220, 60);
+            this.icnBtnViewInBox.TabIndex = 4;
+            this.icnBtnViewInBox.Text = "View InBox";
+            this.icnBtnViewInBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnViewInBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnViewInBox.UseVisualStyleBackColor = true;
+            // 
+            // icnBtnViewOutBox
+            // 
+            this.icnBtnViewOutBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnViewOutBox.FlatAppearance.BorderSize = 0;
+            this.icnBtnViewOutBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnViewOutBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icnBtnViewOutBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnViewOutBox.IconChar = FontAwesome.Sharp.IconChar.LevelUp;
+            this.icnBtnViewOutBox.IconColor = System.Drawing.Color.White;
+            this.icnBtnViewOutBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icnBtnViewOutBox.IconSize = 32;
+            this.icnBtnViewOutBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnViewOutBox.Location = new System.Drawing.Point(0, 380);
+            this.icnBtnViewOutBox.Name = "icnBtnViewOutBox";
+            this.icnBtnViewOutBox.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.icnBtnViewOutBox.Size = new System.Drawing.Size(220, 60);
+            this.icnBtnViewOutBox.TabIndex = 5;
+            this.icnBtnViewOutBox.Text = "View OutBox";
+            this.icnBtnViewOutBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnViewOutBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnViewOutBox.UseVisualStyleBackColor = true;
+            // 
             // frmMainWindow
             // 
             this.ClientSize = new System.Drawing.Size(1276, 673);
@@ -361,5 +409,7 @@ namespace BMCFileMangement.forms
         private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
         private NotificationDataListViewControl notificationDataListViewControl1;
         private GroupBox groupBox1;
+        private FontAwesome.Sharp.IconButton icnBtnViewOutBox;
+        private FontAwesome.Sharp.IconButton icnBtnViewInBox;
     }
 }
