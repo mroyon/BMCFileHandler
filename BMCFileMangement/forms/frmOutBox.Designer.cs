@@ -1,6 +1,6 @@
 ﻿namespace BMCFileMangement.forms
 {
-    partial class frmFileSend
+    partial class frmOutBox
     {
         /// <summary>
         /// Required designer variable.
@@ -28,135 +28,153 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.treeFolder = new System.Windows.Forms.TreeView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvFiles = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnFirstPage = new System.Windows.Forms.Button();
+            this.btnLastPage = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtContent = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dtGrdInBox = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSendFile = new System.Windows.Forms.Button();
             this.cboUser = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnBrowseFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGrdInBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.treeFolder);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(212, 294);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "My Directory";
-            // 
-            // treeFolder
-            // 
-            this.treeFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeFolder.BackColor = System.Drawing.Color.PowderBlue;
-            this.treeFolder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.treeFolder.Location = new System.Drawing.Point(6, 28);
-            this.treeFolder.Name = "treeFolder";
-            this.treeFolder.Size = new System.Drawing.Size(200, 262);
-            this.treeFolder.TabIndex = 0;
-            this.treeFolder.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeFolder_AfterSelect);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.dgvFiles);
-            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(233, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(801, 294);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "My Directory Files";
-            // 
-            // dgvFiles
-            // 
-            this.dgvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvFiles.BackgroundColor = System.Drawing.Color.White;
-            this.dgvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFiles.Location = new System.Drawing.Point(3, 28);
-            this.dgvFiles.Name = "dgvFiles";
-            this.dgvFiles.RowHeadersWidth = 51;
-            this.dgvFiles.RowTemplate.Height = 25;
-            this.dgvFiles.Size = new System.Drawing.Size(795, 262);
-            this.dgvFiles.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.dtGrdInBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1046, 309);
+            this.panel1.Size = new System.Drawing.Size(1046, 563);
             this.panel1.TabIndex = 2;
             // 
-            // panel2
+            // groupBox2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.groupBox3);
-            this.panel2.Location = new System.Drawing.Point(0, 329);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1046, 174);
-            this.panel2.TabIndex = 3;
+            this.groupBox2.Controls.Add(this.btnPreviousPage);
+            this.groupBox2.Controls.Add(this.btnNextPage);
+            this.groupBox2.Controls.Add(this.btnFirstPage);
+            this.groupBox2.Controls.Add(this.btnLastPage);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox2.Location = new System.Drawing.Point(0, 505);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1046, 58);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Paging";
             // 
-            // groupBox3
+            // btnPreviousPage
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.btnSendFile);
-            this.groupBox3.Controls.Add(this.cboUser);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.btnBrowseFile);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.txtFilePath);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(12, 4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1022, 157);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Send File";
+            this.btnPreviousPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPreviousPage.Location = new System.Drawing.Point(478, 15);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(46, 28);
+            this.btnPreviousPage.TabIndex = 5;
+            this.btnPreviousPage.Text = "<";
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // btnNextPage
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnNextPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNextPage.Location = new System.Drawing.Point(524, 15);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(46, 28);
+            this.btnNextPage.TabIndex = 6;
+            this.btnNextPage.Text = ">";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFirstPage.Location = new System.Drawing.Point(433, 15);
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(46, 28);
+            this.btnFirstPage.TabIndex = 8;
+            this.btnFirstPage.Text = "<<";
+            this.btnFirstPage.UseVisualStyleBackColor = true;
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLastPage.Location = new System.Drawing.Point(567, 15);
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(46, 28);
+            this.btnLastPage.TabIndex = 7;
+            this.btnLastPage.Text = ">>";
+            this.btnLastPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtContent);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1046, 58);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "View Out Box Files";
+            // 
+            // txtContent
+            // 
+            this.txtContent.Location = new System.Drawing.Point(66, 29);
+            this.txtContent.Name = "txtContent";
+            this.txtContent.Size = new System.Drawing.Size(381, 23);
+            this.txtContent.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 35);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 15);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Content";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(453, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(117, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Reload Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dtGrdInBox
+            // 
+            this.dtGrdInBox.AllowUserToAddRows = false;
+            this.dtGrdInBox.AllowUserToDeleteRows = false;
+            this.dtGrdInBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(93, 89);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(623, 62);
-            this.textBox1.TabIndex = 19;
+            this.dtGrdInBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtGrdInBox.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.dtGrdInBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGrdInBox.Location = new System.Drawing.Point(0, 64);
+            this.dtGrdInBox.Name = "dtGrdInBox";
+            this.dtGrdInBox.RowTemplate.Height = 25;
+            this.dtGrdInBox.Size = new System.Drawing.Size(1046, 438);
+            this.dtGrdInBox.TabIndex = 0;
+            this.dtGrdInBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdInBox_CellClick);
             // 
             // label1
             // 
@@ -167,28 +185,13 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Remark";
             // 
-            // btnSendFile
-            // 
-            this.btnSendFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSendFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSendFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSendFile.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSendFile.ForeColor = System.Drawing.Color.White;
-            this.btnSendFile.Location = new System.Drawing.Point(733, 21);
-            this.btnSendFile.Name = "btnSendFile";
-            this.btnSendFile.Size = new System.Drawing.Size(283, 130);
-            this.btnSendFile.TabIndex = 17;
-            this.btnSendFile.Text = "Send File";
-            this.btnSendFile.UseVisualStyleBackColor = false;
-            this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click);
-            // 
             // cboUser
             // 
             this.cboUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboUser.FormattingEnabled = true;
             this.cboUser.Location = new System.Drawing.Point(93, 57);
             this.cboUser.Name = "cboUser";
-            this.cboUser.Size = new System.Drawing.Size(623, 29);
+            this.cboUser.Size = new System.Drawing.Size(623, 23);
             this.cboUser.TabIndex = 16;
             // 
             // label4
@@ -202,15 +205,10 @@
             // 
             // btnBrowseFile
             // 
-            this.btnBrowseFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseFile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBrowseFile.Location = new System.Drawing.Point(622, 20);
+            this.btnBrowseFile.Location = new System.Drawing.Point(0, 0);
             this.btnBrowseFile.Name = "btnBrowseFile";
-            this.btnBrowseFile.Size = new System.Drawing.Size(94, 30);
-            this.btnBrowseFile.TabIndex = 14;
-            this.btnBrowseFile.Text = "Browse...";
-            this.btnBrowseFile.UseVisualStyleBackColor = true;
-            this.btnBrowseFile.Click += new System.EventHandler(this.btnBrowseFile_Click);
+            this.btnBrowseFile.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseFile.TabIndex = 0;
             // 
             // label3
             // 
@@ -231,46 +229,43 @@
             this.txtFilePath.Size = new System.Drawing.Size(529, 28);
             this.txtFilePath.TabIndex = 13;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // frmFileSend
+            // frmOutBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 502);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(1046, 563);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
-            this.Name = "frmFileSend";
-            this.Text = "File Send";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).EndInit();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmOutBox";
+            this.Text = "Out Box";
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGrdInBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private GroupBox groupBox1;
-        private GroupBox groupBox2;
-        private DataGridView dgvFiles;
-        private TreeView treeFolder;
         private Panel panel1;
-        private Panel panel2;
-        private GroupBox groupBox3;
         private ComboBox cboUser;
         private Label label4;
         private Button btnBrowseFile;
         private Label label3;
         private TextBox txtFilePath;
-        private Button btnSendFile;
-        private OpenFileDialog openFileDialog1;
-        private TextBox textBox1;
         private Label label1;
+        private DataGridView dtGrdInBox;
+        private GroupBox groupBox1;
+        private Button button1;
+        private GroupBox groupBox2;
+        private Button btnPreviousPage;
+        private Button btnNextPage;
+        private Button btnFirstPage;
+        private Button btnLastPage;
+        private Label label6;
+        private TextBox txtContent;
     }
 }
