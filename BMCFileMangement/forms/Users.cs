@@ -3,6 +3,7 @@ using AppConfig.HelperClasses;
 using BDO.Core.DataAccessObjects.CommonEntities;
 using BDO.Core.DataAccessObjects.SecurityModels;
 using BMCFileMangement.Services.Interface;
+using FontAwesome.Sharp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
@@ -13,7 +14,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,6 +24,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using static System.Windows.Forms.Design.AxImporter;
+using Button = System.Windows.Forms.Button;
 using Image = System.Drawing.Image;
 
 namespace BMCFileMangement.forms
@@ -39,6 +43,13 @@ namespace BMCFileMangement.forms
         private readonly string ftppassword;
         private readonly string ftpaddress;
         private readonly DataGridViewImageColumn btnImgGridEdit;
+
+
+        private int PageSize = 10;
+        private int CurrentPage = 1;
+        private int TotalPage = 0;
+
+
         public Users(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
@@ -56,8 +67,9 @@ namespace BMCFileMangement.forms
             //_contextAccessor = contextAccessor;
             btnImgGridEdit = new DataGridViewImageColumn();
             InitializeComponent();
-            _loadUserDataGrid();
-
+            //_loadUserDataGrid();
+            //BindDataToGrid(1, 10);
+            BindGrid(CurrentPage);
             ftpuser = _config.GetSection("FtpSettings").GetSection("UserName").Value;
             ftppassword = _config.GetSection("FtpSettings").GetSection("Password").Value;
             ftpaddress = _config.GetSection("FtpSettings").GetSection("FtpAddress").Value;
@@ -269,9 +281,229 @@ namespace BMCFileMangement.forms
 
                 btnAddUser.Text = "Update User";
                 btnAddUser.IconChar = FontAwesome.Sharp.IconChar.Edit;
-                
-               // MessageBox.Show("EDIT button clicked at row: " + e.RowIndex);
+
+                // MessageBox.Show("EDIT button clicked at row: " + e.RowIndex);
             }
         }
+
+        #region Paging Method & Style 01
+        private void BindGrid(int pageIndex)
+        {
+            dgvUsers.Rows.Clear();
+            dgvUsers.Refresh();
+            CancellationToken cancellationToken = new CancellationToken();
+            IHttpContextAccessor httpContextAccessor = null;
+            List<owin_userEntity> _users = new List<owin_userEntity>();
+            _users = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(httpContextAccessor).GAPgListView(
+                new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
+                {
+                    PageSize = this.PageSize,
+                    CurrentPage = pageIndex,
+                    SortExpression = "Masteruserid asc",
+                },
+                cancellationToken).Result.ToList();
+
+            if (_users.Count > 0)
+            {
+                int recordCount = (int)_users.FirstOrDefault().RETURN_KEY;
+                int Srno = 0;
+                foreach (var user in _users)
+                {
+                    dgvUsers.Rows.Add(++Srno, user.userid, user.username, user.loweredusername, user.pkeyex, user.emailaddress);
+                }
+
+                this.PopulatePager(recordCount, pageIndex);
+            }
+        }
+        private void PopulatePager(int recordCount, int currentPage)
+        {
+            List<Page> pages = new List<Page>();
+            int startIndex, endIndex;
+            int pagerSpan = 5;
+
+            //Calculate the Start and End Index of pages to be displayed.
+            double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(PageSize));
+            int pageCount = (int)Math.Ceiling(dblPageCount);
+            startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
+            endIndex = pageCount > pagerSpan ? pagerSpan : pageCount;
+            if (currentPage > pagerSpan % 2)
+            {
+                if (currentPage == 2)
+                {
+                    endIndex = 5;
+                }
+                else
+                {
+                    endIndex = currentPage + 2;
+                }
+            }
+            else
+            {
+                endIndex = (pagerSpan - currentPage) + 1;
+            }
+
+            if (endIndex - (pagerSpan - 1) > startIndex)
+            {
+                startIndex = endIndex - (pagerSpan - 1);
+            }
+
+            if (endIndex > pageCount)
+            {
+                endIndex = pageCount;
+                startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
+            }
+
+            //Add the First Page Button.
+            if (currentPage > 1)
+            {
+                pages.Add(new Page { Text = "First", Value = "1" });
+            }
+
+            //Add the Previous Button.
+            if (currentPage > 1)
+            {
+                pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
+            }
+
+            for (int i = startIndex; i <= endIndex; i++)
+            {
+                pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
+            }
+
+            //Add the Next Button.
+            if (currentPage < pageCount)
+            {
+                pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
+            }
+
+            //Add the Last Button.
+            if (currentPage != pageCount)
+            {
+                pages.Add(new Page { Text = "Last", Value = pageCount.ToString() });
+            }
+
+            //Clear existing Pager Buttons.
+            pnlPager.Controls.Clear();
+
+            //Loop and add Buttons for Pager.
+            int count = 1;
+            int width = 60;
+            int pointX = 10;
+            foreach (Page page in pages)
+            {
+                System.Windows.Forms.Button btnPage = new System.Windows.Forms.Button();
+                //btnPage.Location = new System.Drawing.Point(38 * count, 5);
+                //btnPage.Size = new System.Drawing.Size(35, 20);
+                //btnPage.Name = page.Value;
+                //btnPage.Text = page.Text;
+                //btnPage.Enabled = !page.Selected;
+                //btnPage.Click += new System.EventHandler(this.Page_Click);
+                //pnlPager.Controls.Add(btnPage);
+                //count++;
+
+
+
+
+                //btnPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+                btnPage.Location = new Point(pointX, 15);
+                btnPage.Name = page.Value;
+                btnPage.Size = new Size(width, 38);
+                btnPage.Text = page.Text;
+                btnPage.Enabled = !page.Selected;
+                btnPage.UseVisualStyleBackColor = true;
+                btnPage.Click += new System.EventHandler(this.Page_Click);
+                pnlPager.Controls.Add(btnPage);
+                count++;
+                pointX = pointX + width;
+
+            }
+        }
+        private void Page_Click(object sender, EventArgs e)
+        {
+            Button btnPager = (sender as Button);
+            this.BindGrid(int.Parse(btnPager.Name));
+        }
+        #endregion Paging Method & Style 01
+
+        #region Paging Method & Style 02
+        private void BindDataToGrid(int currentpage, int pageSize)
+        {
+            List<owin_userEntity> _users = _loadUserDataGrid(currentpage, pageSize);
+            //dgvUsers.DataSource = _users;
+            int Srno = 0;
+            foreach (var user in _users)
+            {
+                dgvUsers.Rows.Add(++Srno, user.userid, user.username, user.loweredusername, user.pkeyex, user.emailaddress);
+            }
+        }
+        private List<owin_userEntity> _loadUserDataGrid(int currentpage, int pageSize)
+        {
+            List<owin_userEntity> _users = new List<owin_userEntity>();
+            try
+            {
+
+                dgvUsers.Rows.Clear();
+                dgvUsers.Refresh();
+                //btnImgGridEdit = new DataGridViewImageColumn();
+                CancellationToken cancellationToken = new CancellationToken();
+                IHttpContextAccessor httpContextAccessor = null;
+                _users = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(httpContextAccessor).GAPgListView(
+                    new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
+                    {
+                        PageSize = pageSize,
+                        CurrentPage = currentpage,
+                        SortExpression = "Masteruserid asc",
+                    },
+                    cancellationToken).Result.ToList();
+
+                if (_users.Count > 0)
+                {
+                    int rowCount = (int)_users.FirstOrDefault().RETURN_KEY;
+                    this.TotalPage = rowCount / PageSize;
+                    if (rowCount % PageSize > 0) // if remainder is more than  zero 
+                    {
+                        this.TotalPage += 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            { throw ex; }
+
+            return _users;
+        }
+        private void btnFirstPage_Click(object sender, EventArgs e)
+        {
+            this.CurrentPage = 1;
+            BindDataToGrid(this.CurrentPage, this.PageSize);
+        }
+        private void btnLastPage_Click(object sender, EventArgs e)
+        {
+            this.CurrentPage = this.TotalPage;
+            BindDataToGrid(this.CurrentPage, this.PageSize);
+        }
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            if (this.CurrentPage > 1)
+            {
+                this.CurrentPage--;
+                BindDataToGrid(this.CurrentPage, this.PageSize);
+            }
+        }
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            if (this.CurrentPage < this.TotalPage)
+            {
+                this.CurrentPage++;
+                BindDataToGrid(this.CurrentPage, this.PageSize);
+            }
+        }
+        #endregion Paging Method & Style 02
+    }
+
+    public class Page
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
+        public bool Selected { get; set; }
     }
 }
