@@ -88,14 +88,14 @@ namespace BMCFileMangement.forms
         private void IcnBtnViewOutBox_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            //OpenChildForm(new frmOutBox(
-            //    _config,
-            //    _loggerFactory,
-            //    _msgService,
-            //    _applog,
-            //    _userprofile,
-            //    _fileNotificationList,
-            //    _fTPTransferService));
+            OpenChildForm(new frmOutBox(
+                _config,
+                _loggerFactory,
+                _msgService,
+                _applog,
+                _userprofile,
+                _fileNotificationList,
+                _fTPTransferService));
         }
 
         private void IcnBtnViewInBox_Click(object? sender, EventArgs e)

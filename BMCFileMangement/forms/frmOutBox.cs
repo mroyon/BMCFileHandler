@@ -70,7 +70,7 @@ namespace BMCFileMangement.forms
         {
             dtGrdInBox.AutoGenerateColumns = false;
 
-            dtGrdInBox.Columns.Add("fromusername", "From User");
+            dtGrdInBox.Columns.Add("tousername", "To User");
             dtGrdInBox.Columns.Add("sentdate", "Sent Date");
             dtGrdInBox.Columns.Add("filename", "File Name");
             dtGrdInBox.Columns.Add("priority", "Priority");
@@ -81,7 +81,7 @@ namespace BMCFileMangement.forms
             dtGrdInBox.Columns.Add("OpenDate", "Open Date");
             dtGrdInBox.Columns.Add("Status", "Status");
 
-            dtGrdInBox.Columns["fromusername"].DataPropertyName = "fromusername";
+            dtGrdInBox.Columns["tousername"].DataPropertyName = "tousername";
             dtGrdInBox.Columns["sentdate"].DataPropertyName = "sentdate";
             dtGrdInBox.Columns["filename"].DataPropertyName = "filename";
             dtGrdInBox.Columns["priority"].DataPropertyName = "priority";
