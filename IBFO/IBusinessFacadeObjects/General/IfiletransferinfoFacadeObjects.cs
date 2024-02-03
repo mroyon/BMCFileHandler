@@ -53,12 +53,13 @@ namespace IBFO.Core.IBusinessFacadeObjects.General
          #region ForListView Paged Method
          [OperationContract]
          Task<IList<filetransferinfoEntity>> GAPgListView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
-         #endregion
-         
+        #endregion
+
         #region Extras Reviewed, Published, Archived
-        #endregion 
-        
-        
-            
+        #endregion
+
+        [OperationContract]
+        Task<long> AddExt(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
     }
 }

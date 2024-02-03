@@ -39,16 +39,16 @@ namespace IDAC.Core.IDataAccessObjects.General
          
          #region ForListView Paged Method
          Task<IList<filetransferinfoEntity>> GAPgListView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
-         #endregion
-         
+        #endregion
+
         #region Extras Reviewed, Published, Archived
-        #endregion        
-        
-        
-               
-        
-        
-        
-        
+        #endregion
+
+
+        Task<long> AddExt(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
+
+
+
     }
 }

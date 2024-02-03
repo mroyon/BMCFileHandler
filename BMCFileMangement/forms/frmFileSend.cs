@@ -169,6 +169,8 @@ namespace BMCFileMangement.forms
                             isdeleted = false,
                         }, cancellationToken);
                     string ddd = cboUser.GetItemText(cboUser.SelectedItem);
+
+                    //File Transfer Save
                     var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
                             new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
                             {
@@ -189,6 +191,8 @@ namespace BMCFileMangement.forms
                                 fromuserremark = txtRemarks.Text,
                             },
                             cancellationToken);
+
+
 
                     if (_filetrans.Result > 0)
                     {

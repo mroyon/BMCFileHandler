@@ -530,10 +530,36 @@ namespace DAC.Core.DataAccessObjects.General
             }
         }
         #endregion
-        
+
         #region Extras Reviewed, Published, Archived
         #endregion
-        
-            
-	}
+
+        public async Task<long> SaveFileUserRelation(fileuserrelationEntity fileuserrelation, CancellationToken cancellationToken)
+        {
+            long returnCode = -99;
+            const string SP = "fileuserrelation_Ins";
+
+            using (DbCommand cmd = Database.GetStoredProcCommand(SP))
+            {
+                FillParameters(fileuserrelation, cmd, Database);
+                FillSequrityParameters(fileuserrelation.BaseSecurityParam, cmd, Database);
+                AddOutputParameter(cmd);
+                try
+                {
+                    IAsyncResult result = Database.BeginExecuteNonQuery(cmd, null, null);
+                    while (!result.IsCompleted)
+                    {
+                    }
+                    returnCode = Database.EndExecuteNonQuery(result);
+                    returnCode = (Int64)(cmd.Parameters["@RETURN_KEY"].Value);
+                }
+                catch (Exception ex)
+                {
+                    throw GetDataAccessException(ex, SourceOfException("IfileuserrelationDataAccess.Addfileuserrelation"));
+                }
+                cmd.Dispose();
+            }
+            return returnCode;
+        }
+    }
 }

@@ -635,10 +635,45 @@ namespace DAC.Core.DataAccessObjects.General
             }
         }
         #endregion
-        
+
         #region Extras Reviewed, Published, Archived
         #endregion
-        
-            
-	}
+
+        public async Task<long> SaveFileStructure(filestructureEntity filestructure, CancellationToken cancellationToken)
+        {
+            long returnCode = -99;
+            const string SP = "filestructure_Ins";
+
+            using (DbCommand cmd = Database.GetStoredProcCommand(SP))
+            {
+                FillParameters(filestructure, cmd, Database);
+                FillSequrityParameters(filestructure.BaseSecurityParam, cmd, Database);
+                AddOutputParameter(cmd);
+                try
+                {
+                    IAsyncResult result = Database.BeginExecuteNonQuery(cmd, null, null);
+                    while (!result.IsCompleted)
+                    {
+                    }
+                    returnCode = Database.EndExecuteNonQuery(result);
+                    returnCode = (Int64)(cmd.Parameters["@RETURN_KEY"].Value);
+                    if (returnCode > 0)
+                    {
+
+                        fileuserrelationEntity objEntity = new fileuserrelationEntity();
+                        objEntity.fileid = returnCode;
+                        objEntity.userid = filestructure.userid;
+                        fileuserrelationDataAccessObjects objFileUserRelation = new fileuserrelationDataAccessObjects(this.Context);
+                        var res = await objFileUserRelation.SaveFileUserRelation(objEntity, cancellationToken);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw GetDataAccessException(ex, SourceOfException("IfilestructureDataAccess.Addfilestructure"));
+                }
+                cmd.Dispose();
+            }
+            return returnCode;
+        }
+    }
 }

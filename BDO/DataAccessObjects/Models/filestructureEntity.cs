@@ -21,8 +21,16 @@ namespace BDO.Core.DataAccessObjects.Models
         protected bool ? _isdeleted;
         protected string _deletedbyuser;
         protected DateTime ? _deleteddate;
-                
-        
+
+        protected Guid? _userid;
+        [DataMember]
+        public Guid? userid
+        {
+            get { return _userid; }
+            set { _userid = value; this.OnChnaged(); }
+        }
+
+
         [DataMember]
         public long ? fileid
         {
