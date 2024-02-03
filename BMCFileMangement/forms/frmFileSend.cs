@@ -140,49 +140,60 @@ namespace BMCFileMangement.forms
             // Check the user's response
             if (result == DialogResult.Yes)
             {
-                var desPath = _userrootdirectorypath; //rootdirectorypath;
-
                 string sourcepath = txtFilePath.Text.Trim();
                 string fileName = Path.GetFileName(sourcepath);
-                desPath = Path.Combine(desPath, fileName);
-
-                if (File.Exists(desPath)) File.Delete(desPath);
-                bool isCopy = false;
+                bool isUploadedFile = false;
                 try
                 {
-                    File.Copy(sourcepath, desPath, true);
-                    isCopy = true;
-                }
-                catch { }
+                    // Upload file into Sender OUTBOX: Start
+                    var sOutboxPath = $"{this._myfolderName}/OUTBOX/";
+                    var _SenderUploadfile = _fTPTransferService.UploadFile(sourcepath, sOutboxPath, fileName);
+                    // Upload file into Sender OUTBOX: END
 
-                if (isCopy)
+                    // Upload file into Receiver INBOX: Start
+                    var rInboxPath = $"{cboUser.SelectedValue.ToString()}/INBOX/";
+                    var _ReceiverUploadfile = _fTPTransferService.UploadFile(sourcepath, rInboxPath, fileName);
+                    // Upload file into Receiver INBOX: END
+                    isUploadedFile = true;
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                //Upload File into FTP 
+
+
+
+                if (isUploadedFile)
                 {
                     CancellationToken cancellationToken = new CancellationToken();
                     IHttpContextAccessor httpContextAccessor = null;
                     // Save File
-                    var _file = BFC.Core.FacadeCreatorObjects.General.filestructureFCC.GetFacadeCreate(httpContextAccessor).Add(
-                        new BDO.Core.DataAccessObjects.Models.filestructureEntity
-                        {
-                            folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
-                            filename = fileName,
-                            userfilename = fileName,
-                            filepath = desPath,
-                            isdeleted = false,
-                        }, cancellationToken);
-                    string ddd = cboUser.GetItemText(cboUser.SelectedItem);
-                    var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
+                    //var _file = BFC.Core.FacadeCreatorObjects.General.filestructureFCC.GetFacadeCreate(httpContextAccessor).Add(
+                    //    new BDO.Core.DataAccessObjects.Models.filestructureEntity
+                    //    {
+                    //        folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
+                    //        filename = fileName,
+                    //        userfilename = fileName,
+                    //        filepath = desPath,
+                    //        isdeleted = false,
+                    //    }, cancellationToken);
+                    //string ddd = cboUser.GetItemText(cboUser.SelectedItem);
+
+                    //File Transfer Save
+                    var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).AddExt(
                             new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
                             {
                                 //folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
-                                fileid = _file != null && _file.Result > 0 ? _file.Result : null,
+                                //fileid = _file != null && _file.Result > 0 ? _file.Result : null,
                                 fromusername = _userprofile.CurrentUser.username,
                                 fromuserid = _userprofile.CurrentUser.userid,
                                 tousername = cboUser.GetItemText(cboUser.SelectedItem),
                                 touserid = new Guid(cboUser.SelectedValue.ToString()),
                                 sentdate = DateTime.Now,
-                                filename = Path.GetFileName(desPath),
+                                filename = fileName,//Path.GetFileName(desPath),
                                 fileversion = null,
-                                fullpath = desPath,
+                                fullpath = _ftpSettings.FtpAddress,
                                 priority = 1,
                                 filejsondata = "",
                                 status = 1,
@@ -190,6 +201,8 @@ namespace BMCFileMangement.forms
                                 fromuserremark = txtRemarks.Text,
                             },
                             cancellationToken);
+
+
 
                     if (_filetrans.Result > 0)
                     {
@@ -211,7 +224,9 @@ namespace BMCFileMangement.forms
 
         private DataTable loadFileNames(string folderpath)
         {
-            List<string> _filesFTP = _fTPTransferService.GetAllFilesFromDirectoryFTP(folderpath);
+            //String[] files = Directory.GetFiles(folderpath);
+            List<string> _filesFTP = _fTPTransferService.GetFileFromFtp(folderpath);
+            List<string> _filesFTPExt = _fTPTransferService.GetAllFilesFromDirectoryFTP(folderpath);
 
             DataTable table = new DataTable();
             table.Columns.Add("File Name");

@@ -224,16 +224,27 @@ namespace BFO.Core.BusinessFacadeObjects.General
             }
 		}
         #endregion
-        
+
         #region Extras Reviewed, Published, Archived
-        #endregion 
-    
-    
-    
-            
-        
-    
-    
         #endregion
-	}
+
+
+
+
+        async Task<long> IfiletransferinfoFacadeObjects.AddExt(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await DataAccessFactory.CreatefiletransferinfoDataAccess().AddExt(filetransferinfo, cancellationToken);
+            }
+
+            catch (Exception ex)
+            {
+                throw GetFacadeException(ex, SourceOfException("IfiletransferinfoFacade.Addfiletransferinfo"));
+            }
+        }
+
+
+        #endregion
+    }
 }

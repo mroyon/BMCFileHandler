@@ -202,6 +202,44 @@ namespace BMCFileMangement.Services.Implementation
             return retValue;
         }
 
+        /// <summary>
+        /// DeleteDirectoryFTP
+        /// </summary>
+        /// <param name="fileDir"></param>
+        /// <returns></returns>
+        public string DeleteDirectoryFTP(string fileDir)
+        {
+            string retValue = string.Empty;
+            string strMsg = string.Empty;
+            string strmsg = string.Empty;
+            try
+            {
+                string _Password = _ftpSettings.Password;
+                string _UserName = _ftpSettings.UserName;
+                string _ftpURL = _ftpSettings.FtpAddress;
+
+                /* Create an FTP Request */
+                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(_ftpURL + fileDir);
+                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
+                /* When in doubt, use these options */
+                ftpRequest.UseBinary = true;
+                ftpRequest.UsePassive = true;
+                ftpRequest.KeepAlive = true;
+                /* Specify the Type of FTP Request */
+                ftpRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
+
+                /* Establish Return Communication with the FTP Server */
+                FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                ftpResponse.Close();
+
+                ftpRequest = null;
+                retValue = "Folder deleted successfully.";
+            }
+            catch (Exception ex) { retValue = ex.Message; }
+            return retValue;
+        }
+
         public bool IsExistFolderFTP(string ftpUrl)
         {
             string _Password = _ftpSettings.Password;
@@ -232,7 +270,11 @@ namespace BMCFileMangement.Services.Implementation
             }
             return isexist;
         }
-
+        /// <summary>
+        /// GetDirectoryListFTP
+        /// </summary>
+        /// <param name="ParentFolderpath"></param>
+        /// <returns></returns>
         public List<string> GetDirectoryListFTP(string ParentFolderpath)
         {
             //string _Password = _ftpSettings.Password;
@@ -292,6 +334,7 @@ namespace BMCFileMangement.Services.Implementation
             }
         }
 
+
         public List<string> GetAllFilesFromDirectoryFTP(string ParentFolderpath)
         {
             string _Password = _ftpSettings.Password;
@@ -327,6 +370,30 @@ namespace BMCFileMangement.Services.Implementation
             }
         }
 
+        public List<string> GetFilesFromFtp(string ParentFolderpath)
+        {
+            string _Password = _ftpSettings.Password;
+            string _UserName = _ftpSettings.UserName;
+            string _ftpURL = _ftpSettings.FtpAddress;
+            List<string> res = new List<string>();
+            try
+            {
+                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(_ftpURL + ParentFolderpath);
+                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
+                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
+                FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
+
+                Stream stream = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream);
+                string data = streamReader.ReadToEnd();
+                res = data.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return res;
+        }
         public void SetFtpWorkingDirectory(string directory="")
         {
             string _Password = _ftpSettings.Password;
@@ -349,6 +416,34 @@ namespace BMCFileMangement.Services.Implementation
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
+        public DateTime GetFileDateFTP(string filepath)
+        {
+            string _Password = _ftpSettings.Password;
+            string _UserName = _ftpSettings.UserName;
+            string _ftpURL = _ftpSettings.FtpAddress;
+           
+            DateTime result = DateTime.MinValue;
+            try
+            {
+                FtpWebRequest reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(filepath));
+                reqFTP.UseBinary = true;
+                reqFTP.Credentials = new NetworkCredential(_UserName, _Password);
+                reqFTP.Method = WebRequestMethods.Ftp.GetDateTimestamp;
+                FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
+                result = response.LastModified;
+                response.Close();
+            }
+            catch
+            {
+
+            }
+            return result;
+        }
+        public long GetFileSizeFTP(string filepath)
+        {
+            string _Password = _ftpSettings.Password;
+            string _UserName = _ftpSettings.UserName;
+            string _ftpURL = _ftpSettings.FtpAddress;
 
 
     }

@@ -35,8 +35,15 @@ namespace BDO.Core.DataAccessObjects.Models
         protected string _filejsondata;
         protected int ? _status;
         protected DateTime ? _expecteddate;
-                
-        
+
+        protected filestructureEntity _filestructureinfo;
+        [DataMember]
+        public filestructureEntity filestructureinfo
+        {
+            get { return _filestructureinfo; }
+            set { _filestructureinfo = value; this.OnChnaged(); }
+        }
+
         [DataMember]
         public long ? filetransid
         {
