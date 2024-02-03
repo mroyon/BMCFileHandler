@@ -201,6 +201,12 @@ namespace BMCFileMangement.Services.Implementation
             }
             return retValue;
         }
+
+        /// <summary>
+        /// DeleteDirectoryFTP
+        /// </summary>
+        /// <param name="fileDir"></param>
+        /// <returns></returns>
         public string DeleteDirectoryFTP(string fileDir)
         {
             string retValue = string.Empty;
@@ -233,7 +239,11 @@ namespace BMCFileMangement.Services.Implementation
             catch (Exception ex) { retValue = ex.Message; }
             return retValue;
         }
-
+        /// <summary>
+        /// IsExistFolderFTP
+        /// </summary>
+        /// <param name="ftpUrl"></param>
+        /// <returns></returns>
         public bool IsExistFolderFTP(string ftpUrl)
         {
             string _Password = _ftpSettings.Password;
@@ -264,7 +274,11 @@ namespace BMCFileMangement.Services.Implementation
             }
             return isexist;
         }
-
+        /// <summary>
+        /// GetDirectoryListFTP
+        /// </summary>
+        /// <param name="ParentFolderpath"></param>
+        /// <returns></returns>
         public List<string> GetDirectoryListFTP(string ParentFolderpath)
         {
             //string _Password = _ftpSettings.Password;
@@ -323,8 +337,11 @@ namespace BMCFileMangement.Services.Implementation
                 throw ex;
             }
         }
-
-
+        /// <summary>
+        /// GetAllFilesFromDirectoryFTP
+        /// </summary>
+        /// <param name="ParentFolderpath"></param>
+        /// <returns></returns>
         public List<string> GetAllFilesFromDirectoryFTP(string ParentFolderpath)
         {
             string _Password = _ftpSettings.Password;
@@ -360,7 +377,11 @@ namespace BMCFileMangement.Services.Implementation
                 throw ex;
             }
         }
-
+        /// <summary>
+        /// GetFilesFromFtp
+        /// </summary>
+        /// <param name="ParentFolderpath"></param>
+        /// <returns></returns>
         public List<string> GetFilesFromFtp(string ParentFolderpath)
         {
             string _Password = _ftpSettings.Password;
@@ -385,6 +406,10 @@ namespace BMCFileMangement.Services.Implementation
             }
             return res;
         }
+        /// <summary>
+        /// SetFtpWorkingDirectory
+        /// </summary>
+        /// <param name="directory"></param>
         public void SetFtpWorkingDirectory(string directory="")
         {
             string _Password = _ftpSettings.Password;
@@ -407,6 +432,11 @@ namespace BMCFileMangement.Services.Implementation
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
+        /// <summary>
+        /// GetFileDateFTP
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
         public DateTime GetFileDateFTP(string filepath)
         {
             string _Password = _ftpSettings.Password;
@@ -430,6 +460,11 @@ namespace BMCFileMangement.Services.Implementation
             }
             return result;
         }
+        /// <summary>
+        /// GetFileDateFTP
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
         public long GetFileSizeFTP(string filepath)
         {
             string _Password = _ftpSettings.Password;

@@ -27,7 +27,7 @@ namespace BMCFileMangement.Services.Interface
 
         List<string> GetAllFilesFromDirectoryFTP(string ParentFolderpath);
         void SetFtpWorkingDirectory(string directory = "");
-        List<string> GetFileFromFtp(string ParentFolderpath);
+        List<string> GetFilesFromFtp(string ParentFolderpath);
         DateTime GetFileDateFTP(string filepath);
         long GetFileSizeFTP(string filepath);
     }

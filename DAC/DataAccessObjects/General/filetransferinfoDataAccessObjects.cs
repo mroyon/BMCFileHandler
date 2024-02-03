@@ -56,8 +56,8 @@ namespace DAC.Core.DataAccessObjects.General
 				Database.AddInParameter(cmd, "@ToUserID", DbType.Guid, filetransferinfo.touserid);
 
 
-            if (!(string.IsNullOrEmpty(filetransferinfo.fromuserremark)))
-                Database.AddInParameter(cmd, "@FromUserRemark", DbType.String, filetransferinfo.fromuserremark);
+            //if (!(string.IsNullOrEmpty(filetransferinfo.fromuserremark)))
+            //    Database.AddInParameter(cmd, "@FromUserRemark", DbType.String, filetransferinfo.fromuserremark);
 
             if ((filetransferinfo.sentdate.HasValue))
 				Database.AddInParameter(cmd, "@SentDate", DbType.DateTime, filetransferinfo.sentdate);
@@ -579,7 +579,7 @@ namespace DAC.Core.DataAccessObjects.General
         async Task<long> IfiletransferinfoDataAccessObjects.AddExt(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
         {
             long returnCode = -99;
-            const string SP = "filetransferinfo_Ins";
+            const string SP = "filetransferinfo_InsEXT";
 
             DbConnection connection = Database.CreateConnection();
             connection.Open();
@@ -588,6 +588,9 @@ namespace DAC.Core.DataAccessObjects.General
             {
                 using (DbCommand cmd = Database.GetStoredProcCommand(SP))
                 {
+                    filetransferinfo.BaseSecurityParam = new SecurityCapsule();
+                    filetransferinfo.BaseSecurityParam.transid = "1";
+
                     FillParameters(filetransferinfo, cmd, Database);
                     FillSequrityParameters(filetransferinfo.BaseSecurityParam, cmd, Database);
                     AddOutputParameter(cmd);
@@ -602,22 +605,22 @@ namespace DAC.Core.DataAccessObjects.General
                     {
                         throw new ArgumentException("Error in transaction.");
                     }
-                    else
-                    {
-                        #region Save File Structure for From User and To User
-                        filestructureDataAccessObjects _objFileStructureDA = new filestructureDataAccessObjects(this.Context);
-                        filestructureEntity filestructure = new filestructureEntity();
-                        filestructure.filename = filetransferinfo.filestructureinfo.filename;
+                    //else
+                    //{
+                    //    #region Save File Structure for From User and To User
+                    //    filestructureDataAccessObjects _objFileStructureDA = new filestructureDataAccessObjects(this.Context);
+                    //    filestructureEntity filestructure = new filestructureEntity();
+                    //    filestructure.filename = filetransferinfo.filestructureinfo.filename;
 
-                        //Save File for From User
-                        filestructure.userid = filetransferinfo.fromuserid;
-                       _objFileStructureDA.SaveFileStructure(filestructure, cancellationToken);
+                    //    //Save File for From User
+                    //    filestructure.userid = filetransferinfo.fromuserid;
+                    //   _objFileStructureDA.SaveFileStructure(filestructure, cancellationToken);
 
-                        //Save File For To user
-                        filestructure.userid = filetransferinfo.touserid;
-                        _objFileStructureDA.SaveFileStructure(filestructure, cancellationToken);
-                        #endregion
-                    }
+                    //    //Save File For To user
+                    //    filestructure.userid = filetransferinfo.touserid;
+                    //    _objFileStructureDA.SaveFileStructure(filestructure, cancellationToken);
+                    //    #endregion
+                    //}
                     cmd.Dispose();
                 }
                 transaction.Commit();
