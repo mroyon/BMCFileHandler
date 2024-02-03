@@ -29,9 +29,7 @@ namespace BMCFileMangement.forms
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
         private readonly IFileNotificationService _fileNotificationList;
-        private readonly string rootdirectorypath;
         private readonly IFTPTransferService _fTPTransferService;
-        private readonly string myfolderid;
 
 
         private int PageSize = 10;
@@ -58,11 +56,8 @@ namespace BMCFileMangement.forms
             _fTPTransferService = fTPTransferService;
 
             _userprofile = userprofile;
-            rootdirectorypath = _config.GetSection("UserDirectorySetting").GetSection("root").Value;
-            myfolderid = _config.GetSection("UserDirectorySetting").GetSection("myfolderid").Value;
             InitializeComponent();
             InitializeComponent2();
-            LoadTransFiles();
         }
 
 
@@ -102,11 +97,6 @@ namespace BMCFileMangement.forms
             BindDataToGrid(1, 10);
         }
 
-        public void LoadTransFiles()
-        {
-
-            string Dir = rootdirectorypath;
-        }
 
 
         #region Paging Method & Style 02

@@ -1,4 +1,5 @@
 ﻿using BDO.Core.DataAccessObjects.ExtendedEntities;
+using BDO.Core.DataAccessObjects.Models;
 using BMCFileMangement.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
@@ -139,7 +141,6 @@ namespace BMCFileMangement.forms
             if (result == DialogResult.Yes)
             {
                 var desPath = _userrootdirectorypath; //rootdirectorypath;
-                //if (!Directory.Exists(desPath)) Directory.CreateDirectory(desPath);
 
                 string sourcepath = txtFilePath.Text.Trim();
                 string fileName = Path.GetFileName(sourcepath);
@@ -199,7 +200,6 @@ namespace BMCFileMangement.forms
                         MessageBox.Show("Data sent failed");
                     }
                 }
-
             }
             else
             {
@@ -211,11 +211,7 @@ namespace BMCFileMangement.forms
 
         private DataTable loadFileNames(string folderpath)
         {
-            //String[] files = Directory.GetFiles(folderpath);
-            List<string> _filesFTP = _fTPTransferService.GetFileFromFtp(folderpath);
-            List<string> _filesFTPExt = _fTPTransferService.GetAllFilesFromDirectoryFTP(folderpath);
-
-            //_fTPTransferService.SetFtpWorkingDirectory();
+            List<string> _filesFTP = _fTPTransferService.GetAllFilesFromDirectoryFTP(folderpath);
 
             DataTable table = new DataTable();
             table.Columns.Add("File Name");
@@ -225,34 +221,49 @@ namespace BMCFileMangement.forms
 
             for (int i = 0; i < _filesFTP.Count; i++)
             {
-                //File.GetLastAccessTime("ftp://192.168.43.205/MyFtpFolder/29640e6f-d66f-4d89-a249-013f05d9c9c5/INBOX/Grid-2.docx");
-                //FileInfo file = new FileInfo(_filesFTP[i]);
+                var file = GetFileInfoAsync(_ftpSettings.httpAddress + folderpath + "/" + _filesFTP[i]);
                 DataRow dr = table.NewRow();
                 dr[0] = _filesFTP[i];// file.Name;
-                dr[1] = FileSizeFormatter.FormatSize(_fTPTransferService.GetFileSizeFTP($"{_ftpSettings.FtpAddress}{folderpath}/{_filesFTP[i].ToString()}"));  //file.Length;
-                dr[2] = _fTPTransferService.GetFileDateFTP($"{_ftpSettings.FtpAddress}{folderpath}/{_filesFTP[i].ToString()}");
-                // dr[3] = file.LastWriteTime;
+                dr[1] = file.ContentType;//file..ContentLength.ToString();// FileSizeFormatter.FormatSize(_fTPTransferService.GetFileSizeFTP($"{_ftpSettings.FtpAddress}{folderpath}/{_filesFTP[i].ToString()}"));  //file.Length;
+                dr[2] = file.ContentLength.ToString();// file. _fTPTransferService.GetFileDateFTP($"{_ftpSettings.FtpAddress}{folderpath}/{_filesFTP[i].ToString()}");
                 table.Rows.Add(dr);
             }
             return table;
         }
-        public static class FileSizeFormatter
+
+        public fileStructureReadOnlyEntity GetFileInfoAsync(string fileUrl)
         {
-            // Load all suffixes in an array
-            static readonly string[] suffixes =
-            { "Bytes", "KB", "MB", "GB", "TB", "PB" };
-            public static string FormatSize(Int64 bytes)
+            try
             {
-                int counter = 0;
-                decimal number = (decimal)bytes;
-                while (Math.Round(number / 1024) >= 1)
+                using (var httpClient = new HttpClient())
+                using (var response = httpClient.Send(new HttpRequestMessage(HttpMethod.Head, fileUrl)))
                 {
-                    number = number / 1024;
-                    counter++;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var fileInfo = new fileStructureReadOnlyEntity
+                        {
+                            FileName = response.Content.Headers.ContentDisposition?.FileNameStar ?? response.Content.Headers.ContentDisposition?.FileName,
+                            ContentType = response.Content.Headers.ContentType?.ToString(),
+                            ContentLength = response.Content.Headers.ContentLength.GetValueOrDefault()
+                        };
+
+                        return fileInfo;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"HTTP request failed with status code: {response.StatusCode}");
+                    }
                 }
-                return string.Format("{0:n1}{1}", number, suffixes[counter]);
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return null;
         }
+
+
         public void LoadDirectoryByUser()
         {
             string userid = _userprofile.CurrentUser.userid.ToString();
@@ -261,40 +272,22 @@ namespace BMCFileMangement.forms
 
             if (_fTPTransferService.IsExistFolderFTP(userid))
             {
-                //this._userrootdirectorypath = Path.Combine(Dir, userid.ToString());
-                //var userid = _userprofile.CurrentUser.userid;
-
-                //string _userDirectory = Path.Combine(Dir, userid.ToString());
-                //if (!Directory.Exists(this._userrootdirectorypath)) { Directory.CreateDirectory(this._userrootdirectorypath); }
-
                 DirectoryInfo di = new DirectoryInfo(this._userrootdirectorypath);
                 TreeNode tds = treeFolder.Nodes.Add(di.Name);
                 tds.Tag = di.FullName;
                 tds.StateImageIndex = 0;
                 tds.Tag = _userrootdirectorypath;
-                //LoadFiles(Dir, tds);
-                //LoadSubDirectories(this._userrootdirectorypath, tds);
                 LoadSubDirectories(_myfolderName, tds);
             }
             else
             {
                 MessageBox.Show("Directory not found...Contact with System Admin");
             }
-
-
-
-
         }
+
         private void LoadSubDirectories(string dir, TreeNode td)
         {
-            // Get all subdirectories
-            //string[] subdirectoryEntries = Directory.GetDirectories(dir);
-
-
             List<string> _filesFTP = _fTPTransferService.GetDirectoryListFTP(dir);
-            //List<string> _filesFTP= _fTPTransferService.GetAllFilesFTP(dir);
-            //string[] subdirectoryEntries = _fTPTransferService.GetFtpDirectoryList(dir);
-
 
             // Loop through them to see if they have any other subdirectories
             foreach (string subdirectory in _filesFTP)
@@ -305,9 +298,6 @@ namespace BMCFileMangement.forms
                 TreeNode tds = td.Nodes.Add(di.Name);
                 tds.StateImageIndex = 0;
                 tds.Tag = subDir;
-                //LoadFiles(subdirectory, tds);
-                //LoadSubDirectories(subDir, tds);
-                //UpdateProgress();
             }
         }
         public TreeNode previousSelectedNode = null;
@@ -341,4 +331,6 @@ namespace BMCFileMangement.forms
             dgvFiles.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
     }
+
+   
 }

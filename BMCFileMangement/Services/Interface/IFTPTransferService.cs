@@ -19,16 +19,14 @@ namespace BMCFileMangement.Services.Interface
 
         Task<Stream> DownloadFile(string remoteFilePath);
 
-        string DeleteDirectoryFTP(string fileDir);
-
         bool IsExistFolderFTP(string fileDir);
 
         List<string> GetDirectoryListFTP(string ftpUrl);
 
         List<string> GetAllFilesFromDirectoryFTP(string ParentFolderpath);
+
         void SetFtpWorkingDirectory(string directory = "");
-        List<string> GetFileFromFtp(string ParentFolderpath);
-        DateTime GetFileDateFTP(string filepath);
-        long GetFileSizeFTP(string filepath);
+
+
     }
 }
