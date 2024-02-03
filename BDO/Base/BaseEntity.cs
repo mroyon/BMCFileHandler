@@ -110,8 +110,20 @@ namespace BDO.Core.Base
             get;
             set;
         }
-       
 
+        [DataMember]
+        public DateTime? fromdate
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public DateTime? todate
+        {
+            get;
+            set;
+        }
         [DataMember]
         public EntityState CurrentState
         {

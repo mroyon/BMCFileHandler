@@ -11,7 +11,12 @@ namespace IDAC.Core.IDataAccessObjects.General
     {
         Task<long> UpdatePopUpData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
         Task<IList<filetransferinfoEntity>> GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
-		
-		
+
+        Task<IList<filetransferinfoEntity>> GetAllByPagesInBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
+        Task<IList<filetransferinfoEntity>> GetAllByPagesOutBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
+        
+
     }
 }

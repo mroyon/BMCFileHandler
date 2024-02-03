@@ -1,4 +1,6 @@
-﻿using BMCFileMangement.Services.Interface;
+﻿using BDO.Core.DataAccessObjects.Models;
+using BDO.Core.DataAccessObjects.SecurityModels;
+using BMCFileMangement.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -7,8 +9,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +20,7 @@ using System.Windows.Forms;
 
 namespace BMCFileMangement.forms
 {
-    public partial class frmFileSend : Form
+    public partial class frmOutBox : Form
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<frmMainWindow> _logger;
@@ -29,17 +33,15 @@ namespace BMCFileMangement.forms
         private readonly IFTPTransferService _fTPTransferService;
         private readonly string myfolderid;
 
-        /// <summary>
-        /// frmFileSend
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="loggerFactory"></param>
-        /// <param name="msgService"></param>
-        /// <param name="applog"></param>
-        /// <param name="userprofile"></param>
-        /// <param name="fileNotificationList"></param>
-        /// <param name="fTPTransferService"></param>
-        public frmFileSend(IConfigurationRoot config,
+
+        private int PageSize = 10;
+        private int CurrentPage = 1;
+        private int TotalPage = 0;
+
+
+
+
+        public frmOutBox(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
@@ -59,262 +61,164 @@ namespace BMCFileMangement.forms
             rootdirectorypath = _config.GetSection("UserDirectorySetting").GetSection("root").Value;
             myfolderid = _config.GetSection("UserDirectorySetting").GetSection("myfolderid").Value;
             InitializeComponent();
-            LoadDirectoryByUser();
-            _LoadUser();
+            InitializeComponent2();
+            LoadTransFiles();
         }
 
 
-        private void _LoadUser()
+        public void InitializeComponent2()
         {
+            dtGrdInBox.AutoGenerateColumns = false;
+
+            dtGrdInBox.Columns.Add("tousername", "To User");
+            dtGrdInBox.Columns.Add("sentdate", "Sent Date");
+            dtGrdInBox.Columns.Add("filename", "File Name");
+            dtGrdInBox.Columns.Add("priority", "Priority");
+            dtGrdInBox.Columns.Add("fromuserremark", "Remarks");
+
+            dtGrdInBox.Columns.Add("SentDate", "Sent Date");
+            dtGrdInBox.Columns.Add("ReceivedDate", "Received Date");
+            dtGrdInBox.Columns.Add("OpenDate", "Open Date");
+            dtGrdInBox.Columns.Add("Status", "Status");
+
+            dtGrdInBox.Columns["tousername"].DataPropertyName = "tousername";
+            dtGrdInBox.Columns["sentdate"].DataPropertyName = "sentdate";
+            dtGrdInBox.Columns["filename"].DataPropertyName = "filename";
+            dtGrdInBox.Columns["priority"].DataPropertyName = "priority";
+            dtGrdInBox.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
+
+
+            dtGrdInBox.Columns["SentDate"].DataPropertyName = "SentDate";
+            dtGrdInBox.Columns["ReceivedDate"].DataPropertyName = "ReceivedDate";
+            dtGrdInBox.Columns["OpenDate"].DataPropertyName = "OpenDate";
+            dtGrdInBox.Columns["Status"].DataPropertyName = "Status";
+
+            dtGrdInBox.AutoResizeColumns();
+
+            // Configure the details DataGridView so that its columns automatically
+            // adjust their widths when the data changes.
+            dtGrdInBox.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            BindDataToGrid(1, 10);
+        }
+
+        public void LoadTransFiles()
+        {
+
+            string Dir = rootdirectorypath;
+        }
+
+
+        #region Paging Method & Style 02
+        private void BindDataToGrid(int currentpage, int pageSize)
+        {
+            List<filetransferinfoEntity> _users = _loadUserDataGrid(currentpage, pageSize);
+            //dtGrdInBox.DataSource = _users;
+            int Srno = 0;
+            foreach (var user in _users)
+            {
+                dtGrdInBox.Rows.Add(user.fromusername, user.sentdate, user.filename, user.fromuserremark, user.showedpopup);
+            }
+        }
+        private List<filetransferinfoEntity> _loadUserDataGrid(int currentpage, int pageSize)
+        {
+            List<filetransferinfoEntity> _users = new List<filetransferinfoEntity>();
             try
             {
+                dtGrdInBox.Rows.Clear();
+                dtGrdInBox.Refresh();
+                //btnImgGridEdit = new DataGridViewImageColumn();
                 CancellationToken cancellationToken = new CancellationToken();
+
+                filetransferinfoEntity objEntity = new filetransferinfoEntity();
+                objEntity.PageSize = pageSize;
+                objEntity.CurrentPage = currentpage;
+                objEntity.SortExpression = "ReceivedDate desc";
+                objEntity.fromuserid = _userprofile.CurrentUser.userid;
+
+                if (txtContent.Text != "")
+                    objEntity.strCommonSerachParam = txtContent.Text;
+
+
                 IHttpContextAccessor httpContextAccessor = null;
-                var _users = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(httpContextAccessor).GetDataForDropDown(
+                _users = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).GetAllByPagesInBoxView(objEntity,cancellationToken).Result.ToList();
 
-                    new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
-                    {
-                        PageSize = 10000,
-                        CurrentPage = 1
-                    },
-                    cancellationToken).Result;
-
-                if (_users != null && _users.Count > 0)
+                if (_users.Count > 0)
                 {
-                    cboUser.DataSource = _users;
-                    cboUser.ValueMember = "strValue1";
-                    cboUser.DisplayMember = "Text";
+                    int rowCount = (int)_users.FirstOrDefault().RETURN_KEY;
+                    this.TotalPage = rowCount / PageSize;
+                    if (rowCount % PageSize > 0) // if remainder is more than  zero 
+                    {
+                        this.TotalPage += 1;
+                    }
                 }
             }
             catch (Exception ex)
             { throw ex; }
-        }
 
-        private void btnBrowseFile_Click(object sender, EventArgs e)
+            return _users;
+        }
+        private void btnFirstPage_Click(object sender, EventArgs e)
         {
-            try
+            this.CurrentPage = 1;
+            BindDataToGrid(this.CurrentPage, this.PageSize);
+        }
+        private void btnLastPage_Click(object sender, EventArgs e)
+        {
+            this.CurrentPage = this.TotalPage;
+            BindDataToGrid(this.CurrentPage, this.PageSize);
+        }
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            if (this.CurrentPage > 1)
             {
-                OpenFileDialog fdlg = new OpenFileDialog();
-                fdlg.Title = "Select file";
-                fdlg.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
-                fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "", "All Files", "*.*");
-                // Code for image filter  
-                ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
-                foreach (ImageCodecInfo c in codecs)
+                this.CurrentPage--;
+                BindDataToGrid(this.CurrentPage, this.PageSize);
+            }
+        }
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            if (this.CurrentPage < this.TotalPage)
+            {
+                this.CurrentPage++;
+                BindDataToGrid(this.CurrentPage, this.PageSize);
+            }
+        }
+        #endregion Paging Method & Style 02
+
+        private void dtGrdInBox_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+                if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["filename"].Index)
                 {
-                    string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
-                    fdlg.Filter = string.Format("{0}{1}{2} ({3})|{3}", fdlg.Filter, "|", codecName, c.FilenameExtension);
+                    string fileName = dtGrdInBox.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
+                    DownloadFile(fileName);
                 }
-                // Code for files filter  
-                fdlg.Filter = fdlg.Filter + "|CSV Files (*.csv)|*.csv";
-                fdlg.Filter = fdlg.Filter + "|Excel Files (.xls ,.xlsx)|  *.xls ;*.xlsx";
-                fdlg.Filter = fdlg.Filter + "|PDF Files (.pdf)|*.pdf";
-                fdlg.Filter = fdlg.Filter + "|Text Files (*.txt)|*.txt";
-                fdlg.Filter = fdlg.Filter + "|Word Files (.docx ,.doc)|*.docx;*.doc";
-                fdlg.Filter = fdlg.Filter + "|XML Files (*.xml)|*.xml";
-
-                fdlg.FilterIndex = 1;
-                fdlg.RestoreDirectory = true;
-                fdlg.Multiselect = true;
-                if (fdlg.ShowDialog() == DialogResult.OK)
-                {
-                    txtFilePath.Text = fdlg.FileName;
-                }
-            }
-            catch (Exception ex) { throw ex; }
-        }
-        private void btnSendFile_Click(object sender, EventArgs e)
-        {
-            // Let Shared Folder is C:\MyFolderss
-            // string desPath = @"C:\MyFolder";
-
-            // Display a confirmation message box
-            DialogResult result = MessageBox.Show("Are you sure you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            // Check the user's response
-            if (result == DialogResult.Yes)
-            {
-
-                var desPath = rootdirectorypath;
-
-                if (!Directory.Exists(desPath)) Directory.CreateDirectory(desPath);
-
-                string sourcepath = txtFilePath.Text.Trim();
-                string fileName = Path.GetFileName(sourcepath);
-                desPath = Path.Combine(desPath, fileName);
-
-                if (File.Exists(desPath)) File.Delete(desPath);
-                bool isCopy = false;
-                try
-                {
-                    File.Copy(sourcepath, desPath, true);
-                    isCopy = true;
-                }
-                catch { }
-
-                if (isCopy)
-                {
-                    CancellationToken cancellationToken = new CancellationToken();
-                    IHttpContextAccessor httpContextAccessor = null;
-                    // Save File
-                    var _file = BFC.Core.FacadeCreatorObjects.General.filestructureFCC.GetFacadeCreate(httpContextAccessor).Add(
-                        new BDO.Core.DataAccessObjects.Models.filestructureEntity
-                        {
-                            folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
-                            filename = fileName,
-                            userfilename = fileName,
-                            filepath = desPath,
-                            isdeleted = false
-
-                        }, cancellationToken); ;
-                    string ddd = cboUser.GetItemText(cboUser.SelectedItem);
-                    var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
-                            new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
-                            {
-                                folderid = long.Parse(myfolderid),//_userprofile.CurrentUser.folderid,
-                                fileid = _file != null && _file.Result > 0 ? _file.Result : null,
-                                fromusername = _userprofile.CurrentUser.username,
-                                fromuserid = _userprofile.CurrentUser.userid,
-                                tousername = cboUser.GetItemText(cboUser.SelectedItem),
-                                touserid = new Guid(cboUser.SelectedValue.ToString()),
-                                sentdate = DateTime.Now,
-                                filename = Path.GetFileName(desPath),
-                                fileversion = null,
-                                fullpath = desPath,
-                                priority = 1,
-                                filejsondata = "",
-                                status = 1,
-                                expecteddate = DateTime.Now
-                            },
-                            cancellationToken);
-
-                    if (_filetrans.Result > 0)
-                    {
-                        MessageBox.Show("Data sent successfully");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Data sent failed");
-                    }
-                }
-
-            }
-            else
-            {
-                // User clicked No, do nothing or handle accordingly
-                MessageBox.Show("Action canceled!");
-            }
-
         }
 
-        private DataTable loadFileNames(string folderpath)
+        private async Task DownloadFile(string fileName)
         {
-            String[] files = Directory.GetFiles(folderpath);
-            DataTable table = new DataTable();
-            table.Columns.Add("File Name");
-            table.Columns.Add("Length");
-            table.Columns.Add("Last Access Time");
-            table.Columns.Add("Last Write Time");
+            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/IN/" + fileName;
+            var fileStream = await _fTPTransferService.DownloadFile(fullPath);
 
-            for (int i = 0; i < files.Length; i++)
+            // Using statement ensures that the FileStream is properly closed and resources are released
+            using (FileStream outputStream = new FileStream(fileName, FileMode.Create))
             {
-                FileInfo file = new FileInfo(files[i]);
-                DataRow dr = table.NewRow();
-                dr[0] = file.Name;
-                dr[1] = FileSizeFormatter.FormatSize(file.Length);  //file.Length;
-                dr[2] = file.LastAccessTime;
-                dr[3] = file.LastWriteTime;
-                table.Rows.Add(dr);
+                // Read from the input stream and write to the file stream
+                fileStream.CopyTo(outputStream);
             }
-            return table;
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = fileName,
+                UseShellExecute = true
+            });
+
+            //MessageBox.Show($"Downloading file: {fileName}");
         }
-        public static class FileSizeFormatter
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            // Load all suffixes in an array
-            static readonly string[] suffixes =
-            { "Bytes", "KB", "MB", "GB", "TB", "PB" };
-            public static string FormatSize(Int64 bytes)
-            {
-                int counter = 0;
-                decimal number = (decimal)bytes;
-                while (Math.Round(number / 1024) >= 1)
-                {
-                    number = number / 1024;
-                    counter++;
-                }
-                return string.Format("{0:n1}{1}", number, suffixes[counter]);
-            }
-        }
-        public void LoadDirectoryByUser()
-        {
-            string Dir = rootdirectorypath;
-
-
-            if (Directory.Exists(Dir))
-            {
-                var userid = _userprofile.CurrentUser.userid;
-
-                string _userDirectory = Path.Combine(Dir, userid.ToString());
-                if (!Directory.Exists(_userDirectory)) { Directory.CreateDirectory(_userDirectory); }
-
-                DirectoryInfo di = new DirectoryInfo(_userDirectory);
-                TreeNode tds = treeFolder.Nodes.Add(di.Name);
-                tds.Tag = di.FullName;
-                tds.StateImageIndex = 0;
-                //LoadFiles(Dir, tds);
-                LoadSubDirectories(_userDirectory, tds);
-            }
-            else
-            {
-                MessageBox.Show("directory not found");
-            }
-
-
-
-
-        }
-        private void LoadSubDirectories(string dir, TreeNode td)
-        {
-            // Get all subdirectories
-            string[] subdirectoryEntries = Directory.GetDirectories(dir);
-            // Loop through them to see if they have any other subdirectories
-            foreach (string subdirectory in subdirectoryEntries)
-            {
-                DirectoryInfo di = new DirectoryInfo(subdirectory);
-                TreeNode tds = td.Nodes.Add(di.Name);
-                tds.StateImageIndex = 0;
-                tds.Tag = di.FullName;
-                //LoadFiles(subdirectory, tds);
-                LoadSubDirectories(subdirectory, tds);
-                //UpdateProgress();
-            }
-        }
-        public TreeNode previousSelectedNode = null;
-        private void treeFolder_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node == null) return;
-
-            if (treeFolder.SelectedNode != null)
-            {
-                treeFolder.SelectedNode.BackColor = Color.Green;
-                treeFolder.SelectedNode.ForeColor = Color.White;
-
-                if (previousSelectedNode != null)
-                {
-                    previousSelectedNode.BackColor = Color.Gainsboro;
-                    previousSelectedNode.ForeColor = SystemColors.WindowText;
-                }
-            }
-            previousSelectedNode = treeFolder.SelectedNode;
-            string di = treeFolder.SelectedNode.Tag as string;
-            //dgvFiles.DataSource = new System.IO.DirectoryInfo(di).GetFiles();
-            dgvFiles.DataSource = loadFileNames(di);
-
-            for (int i = 0; i < dgvFiles.Columns.Count - 1; i++)
-            {
-                dgvFiles.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            }
-            dgvFiles.Columns[dgvFiles.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            BindDataToGrid(1, 10);
         }
     }
 }

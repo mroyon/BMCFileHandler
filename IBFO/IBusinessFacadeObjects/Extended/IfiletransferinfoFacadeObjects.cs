@@ -19,8 +19,12 @@ namespace IBFO.Core.IBusinessFacadeObjects.General
 
         [OperationContract]
         Task<IList<filetransferinfoEntity>> GetAllMyNotificaiton(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
-        
-        
-            
+
+        [OperationContract]
+        Task<IList<filetransferinfoEntity>> GetAllByPagesInBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
+        [OperationContract]
+        Task<IList<filetransferinfoEntity>> GetAllByPagesOutBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
     }
 }
