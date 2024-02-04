@@ -77,7 +77,9 @@ namespace BMCFileMangement.forms
             BindGrid(CurrentPage);
             _fTPTransferService = fTPTransferService;
             _ftpSettings = _config.GetSection(nameof(FtpSettings)).Get<FtpSettings>();
+            btnAddUser.Click += BtnAddUser_Click;
         }
+
 
         private void Users_Load(object sender, EventArgs e)
         {
@@ -143,7 +145,7 @@ namespace BMCFileMangement.forms
                 e.Value = Properties.Resources.programer01;
             }
         }
-        private void btnAddUser_Click(object sender, EventArgs e)
+        private void BtnAddUser_Click(object sender, EventArgs e)
         {
             try
             {

@@ -69,5 +69,21 @@ namespace BFO.Core.BusinessFacadeObjects.General
                 throw GetFacadeException(ex, SourceOfException("IList<filetransferinfoEntity> IfiletransferinfoFacade.GetAllByPagesOutBoxView"));
             }
 		}
-	}
+
+
+        async Task<long> IfiletransferinfoFacadeObjects.UpdateOpenData(BDO.Core.DataAccessObjects.Models.filetransferinfoEntity filetransferinfo, System.Threading.CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await DataAccessFactory.CreatefiletransferinfoDataAccess().UpdateOpenData(filetransferinfo, cancellationToken);
+            }
+
+            catch (Exception ex)
+            {
+                throw GetFacadeException(ex, SourceOfException("IfiletransferinfoFacade.UpdateOpenData"));
+            }
+        }
+
+
+    }
 }

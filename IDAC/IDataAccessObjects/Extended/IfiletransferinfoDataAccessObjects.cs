@@ -16,7 +16,8 @@ namespace IDAC.Core.IDataAccessObjects.General
 
         Task<IList<filetransferinfoEntity>> GetAllByPagesOutBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
 
-        
+        Task<long> UpdateOpenData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
 
     }
 }

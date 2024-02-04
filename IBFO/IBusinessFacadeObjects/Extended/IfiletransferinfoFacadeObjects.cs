@@ -26,5 +26,10 @@ namespace IBFO.Core.IBusinessFacadeObjects.General
         [OperationContract]
         Task<IList<filetransferinfoEntity>> GetAllByPagesOutBoxView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
 
+
+
+        [OperationContract]
+        Task<long> UpdateOpenData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
     }
 }

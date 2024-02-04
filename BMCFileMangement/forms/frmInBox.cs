@@ -1,4 +1,5 @@
-﻿using BDO.Core.DataAccessObjects.Models;
+﻿using BDO.Core.DataAccessObjects.ExtendedEntities;
+using BDO.Core.DataAccessObjects.Models;
 using BDO.Core.DataAccessObjects.SecurityModels;
 using BMCFileMangement.Services.Interface;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -67,6 +69,9 @@ namespace BMCFileMangement.forms
             btnClearSearchInboxData.Click += BtnClearSearchInboxData_Click;
             dtGrdInBox.AutoGenerateColumns = false;
 
+
+            dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
+
             dtGrdInBox.Columns.Add("fromusername", "From User");
             dtGrdInBox.Columns.Add("sentdate", "Sent Date");
             dtGrdInBox.Columns.Add("filename", "File Name");
@@ -77,6 +82,9 @@ namespace BMCFileMangement.forms
             dtGrdInBox.Columns.Add("ReceivedDate", "Received Date");
             dtGrdInBox.Columns.Add("OpenDate", "Open Date");
             dtGrdInBox.Columns.Add("Status", "Status");
+
+
+            dtGrdInBox.Columns["filetransid"].DataPropertyName = "filetransid";
 
             dtGrdInBox.Columns["fromusername"].DataPropertyName = "fromusername";
             dtGrdInBox.Columns["sentdate"].DataPropertyName = "sentdate";
@@ -129,7 +137,6 @@ namespace BMCFileMangement.forms
                     _file_inbox.opendate,
                     _file_inbox.status,
                     _file_inbox.showedpopup);
-
             }
         }
 
@@ -205,10 +212,27 @@ namespace BMCFileMangement.forms
             if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["filename"].Index)
             {
                 string fileName = dtGrdInBox.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
+                string filetransid = dtGrdInBox.Rows[e.RowIndex].Cells["filetransid"].Value.ToString(); // Replace with the actual column name containing file information
                 DialogResult result = MessageBox.Show("Are you sure you want to proceed to download this file?", "Download Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    DateTime dt = DateTime.Now;
                     DownloadFile(fileName);
+
+                    CancellationToken cancellationToken = new CancellationToken();
+                    IHttpContextAccessor httpContextAccessor = null;
+                    filetransferinfoEntity objFileInBox = new filetransferinfoEntity()
+                    {
+                        filetransid = long.Parse(filetransid),
+                        isopen = true,
+                        opendate = dt,
+                        status = 2
+                    };
+
+                    objFileInBox.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
+                    objFileInBox.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
+                    var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
+                        GetFacadeCreate(httpContextAccessor).UpdateOpenData(objFileInBox, cancellationToken);
                 }
             }
         }
