@@ -173,6 +173,8 @@
             // 
             this.dtGrdInBox.AllowUserToAddRows = false;
             this.dtGrdInBox.AllowUserToDeleteRows = false;
+            this.dtGrdInBox.AllowUserToResizeColumns = false;
+            this.dtGrdInBox.AllowUserToResizeRows = false;
             this.dtGrdInBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
