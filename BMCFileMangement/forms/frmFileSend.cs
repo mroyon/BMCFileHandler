@@ -207,6 +207,10 @@ namespace BMCFileMangement.forms
 
                     if (_filetrans.Result > 0)
                     {
+                        
+                        txtFilePath.Text = "";
+                        cboUser.SelectedIndex = 0;
+                        txtRemarks.Text = "";
                         MessageBox.Show("Data sent successfully");
                     }
                     else
