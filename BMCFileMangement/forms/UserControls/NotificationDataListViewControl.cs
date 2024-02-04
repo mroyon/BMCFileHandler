@@ -155,7 +155,7 @@ namespace BMCFileMangement.forms.UserControls
                     {
                         string folderPath = @"C:\TestFolderBMC";
 
-                        var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Money-Heist.jpg");
+                        var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Picture1.png");
                         new ToastContentBuilder()
                             .AddText(objSingle.filename)
                             .AddInlineImage(new Uri(heroImage))
