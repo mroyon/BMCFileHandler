@@ -68,28 +68,31 @@ namespace BMCFileMangement.forms
 
             dtGrdInBox.AutoGenerateColumns = false;
 
-            dtGrdInBox.Columns.Add("tousername", "To User");
-            dtGrdInBox.Columns.Add("sentdate", "Sent Date");
+            dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
+
+            dtGrdInBox.Columns.Add("fromusername", "From User");
             dtGrdInBox.Columns.Add("filename", "File Name");
             dtGrdInBox.Columns.Add("priority", "Priority");
-            dtGrdInBox.Columns.Add("fromuserremark", "Remarks");
 
             dtGrdInBox.Columns.Add("SentDate", "Sent Date");
             dtGrdInBox.Columns.Add("ReceivedDate", "Received Date");
             dtGrdInBox.Columns.Add("OpenDate", "Open Date");
             dtGrdInBox.Columns.Add("Status", "Status");
+            dtGrdInBox.Columns.Add("fromuserremark", "Remarks");
 
-            dtGrdInBox.Columns["tousername"].DataPropertyName = "tousername";
-            dtGrdInBox.Columns["sentdate"].DataPropertyName = "sentdate";
+
+
+            dtGrdInBox.Columns["filetransid"].DataPropertyName = "filetransid";
+
+            dtGrdInBox.Columns["fromusername"].DataPropertyName = "fromusername";
             dtGrdInBox.Columns["filename"].DataPropertyName = "filename";
             dtGrdInBox.Columns["priority"].DataPropertyName = "priority";
-            dtGrdInBox.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
-
 
             dtGrdInBox.Columns["SentDate"].DataPropertyName = "SentDate";
             dtGrdInBox.Columns["ReceivedDate"].DataPropertyName = "ReceivedDate";
             dtGrdInBox.Columns["OpenDate"].DataPropertyName = "OpenDate";
             dtGrdInBox.Columns["Status"].DataPropertyName = "Status";
+            dtGrdInBox.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
 
             dtGrdInBox.AutoResizeColumns();
 
@@ -210,6 +213,7 @@ namespace BMCFileMangement.forms
             if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["filename"].Index)
             {
                 string fileName = dtGrdInBox.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
+                string filetransid = dtGrdInBox.Rows[e.RowIndex].Cells["filetransid"].Value.ToString(); // Replace with the actual column name containing file information
 
                 DialogResult result = MessageBox.Show("Are you sure you want to proceed to download this file?", "Download Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)

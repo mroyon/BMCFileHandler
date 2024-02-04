@@ -73,7 +73,6 @@ namespace BMCFileMangement.forms
             dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
 
             dtGrdInBox.Columns.Add("fromusername", "From User");
-            //dtGrdInBox.Columns.Add("sentdate", "Sent Date");
             dtGrdInBox.Columns.Add("filename", "File Name");
             dtGrdInBox.Columns.Add("priority", "Priority");
 
