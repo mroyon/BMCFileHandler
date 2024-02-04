@@ -53,7 +53,6 @@ namespace BMCFileMangement.forms
             this.btnClose = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -352,7 +351,6 @@ namespace BMCFileMangement.forms
             // 
             // panelBody
             // 
-            this.panelBody.Controls.Add(this.panel4);
             this.panelBody.Controls.Add(this.panelDesktop);
             this.panelBody.Controls.Add(this.panel3);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -360,16 +358,6 @@ namespace BMCFileMangement.forms
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(1056, 617);
             this.panelBody.TabIndex = 3;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Location = new System.Drawing.Point(0, 167);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1056, 8);
-            this.panel4.TabIndex = 0;
             // 
             // panelDesktop
             // 
@@ -391,10 +379,8 @@ namespace BMCFileMangement.forms
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1056, 166);
@@ -448,7 +434,6 @@ namespace BMCFileMangement.forms
         private FontAwesome.Sharp.IconPictureBox btnMaximizes;
         private Panel panel3;
         private Panel panelDesktop;
-        private Panel panel4;
         private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
         private NotificationDataListViewControl notificationDataListViewControl1;
         private GroupBox groupBox1;
