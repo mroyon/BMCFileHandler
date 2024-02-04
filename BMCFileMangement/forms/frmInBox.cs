@@ -129,14 +129,20 @@ namespace BMCFileMangement.forms
                     //_file_inbox.showedpopup,
                     _file_inbox.fromuserremark);
 
+                    for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
+                    {
+                        dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    }
+                    dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            if (_files_inbox.Count == 0)
+            {
                 for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
                 {
-                    dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-                dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
             }
         }
 
