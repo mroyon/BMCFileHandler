@@ -34,6 +34,7 @@ namespace BMCFileMangement.forms
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@ namespace BMCFileMangement.forms
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel4.SuspendLayout();
@@ -82,6 +84,7 @@ namespace BMCFileMangement.forms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label2);
@@ -92,15 +95,25 @@ namespace BMCFileMangement.forms
             this.panel1.Size = new System.Drawing.Size(300, 529);
             this.panel1.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(76, 31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(152, 119);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.Moccasin;
             this.label5.Location = new System.Drawing.Point(0, 509);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 21);
             this.label5.TabIndex = 11;
-            this.label5.Text = "version: 1.0";
+            this.label5.Text = "version: 1.900";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
@@ -112,13 +125,13 @@ namespace BMCFileMangement.forms
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label4.Size = new System.Drawing.Size(202, 21);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Dev Team";
+            this.label4.Text = "OKP-10 Dev Team";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.Color.SandyBrown;
             this.label2.Location = new System.Drawing.Point(0, 487);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(300, 21);
@@ -130,7 +143,7 @@ namespace BMCFileMangement.forms
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 185);
+            this.label1.Location = new System.Drawing.Point(3, 179);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(300, 39);
             this.label1.TabIndex = 8;
@@ -233,7 +246,7 @@ namespace BMCFileMangement.forms
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(400, 33);
             this.label3.TabIndex = 6;
-            this.label3.Text = "File Management";
+            this.label3.Text = "BMC File Management";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmLogin
@@ -251,6 +264,7 @@ namespace BMCFileMangement.forms
             this.Text = "frmLogin";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel4.ResumeLayout(false);
@@ -280,5 +294,6 @@ namespace BMCFileMangement.forms
         private Label label5;
         private Label label4;
         private PictureBox pictureBox4;
+        private PictureBox pictureBox1;
     }
 }

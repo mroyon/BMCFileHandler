@@ -35,12 +35,14 @@ namespace BMCFileMangement.forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainWindow));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.icnBtnChangePassword = new FontAwesome.Sharp.IconButton();
             this.icnBtnViewOutBox = new FontAwesome.Sharp.IconButton();
             this.icnBtnViewInBox = new FontAwesome.Sharp.IconButton();
             this.ibtnNotification = new FontAwesome.Sharp.IconButton();
             this.ibtnUser = new FontAwesome.Sharp.IconButton();
             this.ibtnDashboard = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblUserName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panleTitleBar = new System.Windows.Forms.Panel();
@@ -55,10 +57,9 @@ namespace BMCFileMangement.forms
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.icnBtnChangePassword = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panleTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
@@ -66,7 +67,6 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             this.panelBody.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -85,6 +85,29 @@ namespace BMCFileMangement.forms
             this.panelMenu.Size = new System.Drawing.Size(220, 673);
             this.panelMenu.TabIndex = 0;
             // 
+            // icnBtnChangePassword
+            // 
+            this.icnBtnChangePassword.Dock = System.Windows.Forms.DockStyle.Top;
+            this.icnBtnChangePassword.FlatAppearance.BorderSize = 0;
+            this.icnBtnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnChangePassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icnBtnChangePassword.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnChangePassword.IconChar = FontAwesome.Sharp.IconChar.Key;
+            this.icnBtnChangePassword.IconColor = System.Drawing.Color.White;
+            this.icnBtnChangePassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icnBtnChangePassword.IconSize = 32;
+            this.icnBtnChangePassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnChangePassword.Location = new System.Drawing.Point(0, 406);
+            this.icnBtnChangePassword.Name = "icnBtnChangePassword";
+            this.icnBtnChangePassword.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.icnBtnChangePassword.Size = new System.Drawing.Size(220, 60);
+            this.icnBtnChangePassword.TabIndex = 6;
+            this.icnBtnChangePassword.Text = "Change Password";
+            this.icnBtnChangePassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnChangePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnChangePassword.UseVisualStyleBackColor = true;
+            this.icnBtnChangePassword.Click += new System.EventHandler(this.icnBtnChangePassword_Click);
+            // 
             // icnBtnViewOutBox
             // 
             this.icnBtnViewOutBox.Dock = System.Windows.Forms.DockStyle.Top;
@@ -97,7 +120,7 @@ namespace BMCFileMangement.forms
             this.icnBtnViewOutBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icnBtnViewOutBox.IconSize = 32;
             this.icnBtnViewOutBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnViewOutBox.Location = new System.Drawing.Point(0, 347);
+            this.icnBtnViewOutBox.Location = new System.Drawing.Point(0, 346);
             this.icnBtnViewOutBox.Name = "icnBtnViewOutBox";
             this.icnBtnViewOutBox.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.icnBtnViewOutBox.Size = new System.Drawing.Size(220, 60);
@@ -119,7 +142,7 @@ namespace BMCFileMangement.forms
             this.icnBtnViewInBox.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icnBtnViewInBox.IconSize = 32;
             this.icnBtnViewInBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnViewInBox.Location = new System.Drawing.Point(0, 287);
+            this.icnBtnViewInBox.Location = new System.Drawing.Point(0, 286);
             this.icnBtnViewInBox.Name = "icnBtnViewInBox";
             this.icnBtnViewInBox.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.icnBtnViewInBox.Size = new System.Drawing.Size(220, 60);
@@ -141,7 +164,7 @@ namespace BMCFileMangement.forms
             this.ibtnNotification.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnNotification.IconSize = 32;
             this.ibtnNotification.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnNotification.Location = new System.Drawing.Point(0, 227);
+            this.ibtnNotification.Location = new System.Drawing.Point(0, 226);
             this.ibtnNotification.Name = "ibtnNotification";
             this.ibtnNotification.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.ibtnNotification.Size = new System.Drawing.Size(220, 60);
@@ -163,7 +186,7 @@ namespace BMCFileMangement.forms
             this.ibtnUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnUser.IconSize = 32;
             this.ibtnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnUser.Location = new System.Drawing.Point(0, 167);
+            this.ibtnUser.Location = new System.Drawing.Point(0, 166);
             this.ibtnUser.Name = "ibtnUser";
             this.ibtnUser.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.ibtnUser.Size = new System.Drawing.Size(220, 60);
@@ -185,7 +208,7 @@ namespace BMCFileMangement.forms
             this.ibtnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ibtnDashboard.IconSize = 32;
             this.ibtnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ibtnDashboard.Location = new System.Drawing.Point(0, 107);
+            this.ibtnDashboard.Location = new System.Drawing.Point(0, 106);
             this.ibtnDashboard.Name = "ibtnDashboard";
             this.ibtnDashboard.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.ibtnDashboard.Size = new System.Drawing.Size(220, 60);
@@ -203,17 +226,29 @@ namespace BMCFileMangement.forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(220, 107);
+            this.panel1.Size = new System.Drawing.Size(220, 106);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(43, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.btnHomeLogo_Click);
             // 
             // lblUserName
             // 
-            this.lblUserName.ForeColor = System.Drawing.Color.White;
-            this.lblUserName.Location = new System.Drawing.Point(2, 103);
+            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblUserName.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblUserName.Location = new System.Drawing.Point(3, 62);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(217, 25);
             this.lblUserName.TabIndex = 2;
-            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
@@ -225,6 +260,7 @@ namespace BMCFileMangement.forms
             this.label1.TabIndex = 1;
             this.label1.Text = "BMC File Management";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.btnHomeLogo_Click);
             // 
             // panleTitleBar
             // 
@@ -328,7 +364,7 @@ namespace BMCFileMangement.forms
             // panel4
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Location = new System.Drawing.Point(0, 167);
             this.panel4.Name = "panel4";
@@ -366,39 +402,6 @@ namespace BMCFileMangement.forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Data View";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(43, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // icnBtnChangePassword
-            // 
-            this.icnBtnChangePassword.Dock = System.Windows.Forms.DockStyle.Top;
-            this.icnBtnChangePassword.FlatAppearance.BorderSize = 0;
-            this.icnBtnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icnBtnChangePassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.icnBtnChangePassword.ForeColor = System.Drawing.Color.Gainsboro;
-            this.icnBtnChangePassword.IconChar = FontAwesome.Sharp.IconChar.Key;
-            this.icnBtnChangePassword.IconColor = System.Drawing.Color.White;
-            this.icnBtnChangePassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icnBtnChangePassword.IconSize = 32;
-            this.icnBtnChangePassword.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnChangePassword.Location = new System.Drawing.Point(0, 407);
-            this.icnBtnChangePassword.Name = "icnBtnChangePassword";
-            this.icnBtnChangePassword.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.icnBtnChangePassword.Size = new System.Drawing.Size(220, 60);
-            this.icnBtnChangePassword.TabIndex = 6;
-            this.icnBtnChangePassword.Text = "Change Password";
-            this.icnBtnChangePassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.icnBtnChangePassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.icnBtnChangePassword.UseVisualStyleBackColor = true;
-            this.icnBtnChangePassword.Click += new System.EventHandler(this.icnBtnChangePassword_Click);
-            // 
             // frmMainWindow
             // 
             this.ClientSize = new System.Drawing.Size(1276, 673);
@@ -411,6 +414,7 @@ namespace BMCFileMangement.forms
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panleTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
@@ -418,7 +422,6 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             this.panelBody.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -453,5 +456,6 @@ namespace BMCFileMangement.forms
         private FontAwesome.Sharp.IconButton icnBtnViewInBox;
         private PictureBox pictureBox1;
         private FontAwesome.Sharp.IconButton icnBtnChangePassword;
+        private PictureBox pictureBox2;
     }
 }

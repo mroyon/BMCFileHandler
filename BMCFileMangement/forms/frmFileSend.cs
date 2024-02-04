@@ -90,11 +90,12 @@ namespace BMCFileMangement.forms
 
                 if (_users != null && _users.Count > 0)
                 {
+                    cboUser.Items.Insert(0, "Please select user");
+                    cboUser.SelectedIndex = 0;
                     cboUser.DataSource = _users;
                     cboUser.ValueMember = "strValue1";
                     cboUser.DisplayMember = "Text";
-                    cboUser.Items.Insert(0, "Please select user");
-                    cboUser.SelectedIndex = 0;
+                    
                 }
             }
             catch (Exception ex)
