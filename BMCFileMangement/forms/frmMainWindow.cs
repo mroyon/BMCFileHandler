@@ -82,7 +82,11 @@ namespace BMCFileMangement.forms
             btnClose.Click += btnClose_Click;
             icnBtnViewInBox.Click += IcnBtnViewInBox_Click;
             icnBtnViewOutBox.Click += IcnBtnViewOutBox_Click;
+            this.icnBtnChangePassword.Click += new System.EventHandler(this.icnBtnChangePassword_Click);
             #endregion
+
+
+            lblUserName.Text = userprofile.CurrentUser.username;
         }
 
         private void IcnBtnViewOutBox_Click(object? sender, EventArgs e)
@@ -345,5 +349,18 @@ namespace BMCFileMangement.forms
                 WindowState = FormWindowState.Normal;
         }
         #endregion
+
+        private void icnBtnChangePassword_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color4);
+            OpenChildForm(new ChangePassword(
+                _config,
+                _loggerFactory,
+                _msgService,
+                _applog,
+                _userprofile,
+                _fileNotificationList,
+                _fTPTransferService));
+        }
     }
 }

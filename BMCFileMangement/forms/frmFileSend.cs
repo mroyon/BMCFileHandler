@@ -90,9 +90,12 @@ namespace BMCFileMangement.forms
 
                 if (_users != null && _users.Count > 0)
                 {
+                    cboUser.Items.Insert(0, "Please select user");
+                    cboUser.SelectedIndex = 0;
                     cboUser.DataSource = _users;
                     cboUser.ValueMember = "strValue1";
                     cboUser.DisplayMember = "Text";
+                    
                 }
             }
             catch (Exception ex)
@@ -204,6 +207,10 @@ namespace BMCFileMangement.forms
 
                     if (_filetrans.Result > 0)
                     {
+                        
+                        txtFilePath.Text = "";
+                        cboUser.SelectedIndex = 0;
+                        txtRemarks.Text = "";
                         MessageBox.Show("Data sent successfully");
                     }
                     else

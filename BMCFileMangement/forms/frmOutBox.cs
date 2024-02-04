@@ -69,6 +69,7 @@ namespace BMCFileMangement.forms
             dtGrdInBox.AutoGenerateColumns = false;
 
             dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
+            dtGrdInBox.Columns["filetransid"].Visible = false;
 
             dtGrdInBox.Columns.Add("fromusername", "From User");
             dtGrdInBox.Columns.Add("filename", "File Name");
@@ -125,16 +126,26 @@ namespace BMCFileMangement.forms
             int Srno = 0;
             foreach (var _file_outbox in _files_outbox)
             {
-                dtGrdInBox.Rows.Add(_file_outbox.tousername,
-                    _file_outbox.sentdate,
+                dtGrdInBox.Rows.Add(
+                    _file_outbox.filetransid,
+                    _file_outbox.tousername,
+                    //_file_outbox.sentdate,
                     _file_outbox.filename,
                     _file_outbox.priority,
-                    _file_outbox.fromuserremark,
                     _file_outbox.sentdate,
                     _file_outbox.receiveddate,
                     _file_outbox.opendate,
                     _file_outbox.status,
-                    _file_outbox.showedpopup);
+                    //_file_outbox.showedpopup,
+                    _file_outbox.fromuserremark);
+
+                for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
+                {
+                    dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+                dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
 

@@ -71,6 +71,7 @@ namespace BMCFileMangement.forms
 
 
             dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
+            dtGrdInBox.Columns["filetransid"].Visible = false;
 
             dtGrdInBox.Columns.Add("fromusername", "From User");
             dtGrdInBox.Columns.Add("filename", "File Name");
@@ -124,7 +125,9 @@ namespace BMCFileMangement.forms
             int Srno = 0;
             foreach (var _file_inbox in _files_inbox)
             {
-                dtGrdInBox.Rows.Add(_file_inbox.fromusername,
+                dtGrdInBox.Rows.Add(
+                    _file_inbox.filetransid,
+                    _file_inbox.fromusername,
                     //_file_inbox.sentdate,
                     _file_inbox.filename,
                     _file_inbox.priority,
