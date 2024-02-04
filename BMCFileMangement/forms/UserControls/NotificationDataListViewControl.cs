@@ -153,8 +153,6 @@ namespace BMCFileMangement.forms.UserControls
                 {
                     if (!objSingle.showedpopup.GetValueOrDefault(true))
                     {
-                        string folderPath = @"C:\TestFolderBMC";
-
                         var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Picture1.png");
                         new ToastContentBuilder()
                             .AddText(objSingle.filename)
@@ -164,7 +162,8 @@ namespace BMCFileMangement.forms.UserControls
                                         .AddArgument(objSingle.filetransid.GetValueOrDefault().ToString())
                                         .AddArgument(objSingle.touserid.GetValueOrDefault().ToString())
                                         .AddArgument(objSingle.filename)
-                                        .AddArgument(objSingle.touserid.GetValueOrDefault().ToString() + "/" + "INBOX" + "/" + objSingle.filename))
+                                        .AddArgument(objSingle.touserid.GetValueOrDefault().ToString() + "/" + "INBOX" + "/" + objSingle.filename)
+                                        .AddArgument(objSingle.tousername))
                             .AddAttributionText(objSingle.fromuserremark)
                             .SetToastScenario(ToastScenario.Alarm)
                             .Show(toast =>

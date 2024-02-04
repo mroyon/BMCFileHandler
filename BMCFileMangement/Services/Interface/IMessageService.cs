@@ -10,6 +10,5 @@ namespace BMCFileMangement.Services.Interface
     {
         string GetSuccessMessage();
 
-        string GetUserIPAddress();
     }
 }

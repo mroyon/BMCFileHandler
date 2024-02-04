@@ -2,6 +2,7 @@
 using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.Models;
 using BDO.DataAccessObjects.ExtendedEntities;
+using BMCFileMangement.Services.DisServices;
 using BMCFileMangement.Services.Interface;
 using CLL.LLClasses.Models;
 using Microsoft.AspNetCore.Http;
@@ -217,9 +218,11 @@ namespace BMCFileMangement.forms
                         status = 1,
                         expecteddate = dt
                     };
-                   
+
+                    clsSecurityCapsule objCap = new clsSecurityCapsule();
+
                     objFileInBox.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
-                    objFileInBox.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
+                    objFileInBox.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
                     var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
                         GetFacadeCreate(httpContextAccessor).Add(objFileInBox,cancellationToken);
 

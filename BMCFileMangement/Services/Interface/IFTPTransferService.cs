@@ -23,6 +23,5 @@ namespace BMCFileMangement.Services.Interface
 
         Task<Stream> DownloadFile(string remoteFilePath);
 
-        SecurityCapsule GetSecurityCapsule(DateTime dt);
     }
 }

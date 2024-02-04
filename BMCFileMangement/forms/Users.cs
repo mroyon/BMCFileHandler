@@ -5,6 +5,7 @@ using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.Models;
 using BDO.Core.DataAccessObjects.SecurityModels;
 using BDO.DataAccessObjects.ExtendedEntities;
+using BMCFileMangement.Services.DisServices;
 using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.Services.Interface;
 using FontAwesome.Sharp;
@@ -176,8 +177,11 @@ namespace BMCFileMangement.forms
                         emailaddress = txtEmail.Text,
                         pkeyex = long.Parse(txtMilitaryNo.Text)
                     };
+
+                    clsSecurityCapsule objCap = new clsSecurityCapsule();
+
                     _user.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
-                    _user.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
+                    _user.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
                     _logger.LogInformation(JsonConvert.SerializeObject(_user));
                     var i = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(_contextAccessor)
                         .Update(_user, cancellationToken);
@@ -210,8 +214,10 @@ namespace BMCFileMangement.forms
                         pkeyex = long.Parse(txtMilitaryNo.Text), //Mil ID
                     };
 
+                    clsSecurityCapsule objCap = new clsSecurityCapsule();
+
                     _user.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
-                    _user.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
+                    _user.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
 
                     _logger.LogInformation(JsonConvert.SerializeObject(_user));
                     var i = BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial.FCCKAFUserSecurity.GetFacadeCreate(_contextAccessor)

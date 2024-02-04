@@ -280,18 +280,5 @@ namespace BMCFileMangement.Services.Implementation
 
 
 
-        public SecurityCapsule GetSecurityCapsule(DateTime dt)
-        {
-            AppConfig.HelperClasses.transactioncodeGen objTrans = new transactioncodeGen();
-            SecurityCapsule objSec = new BDO.Core.Base.SecurityCapsule();
-            objSec.transid = objTrans.GetRandomAlphaNumericStringForTransactionActivity("FST", dt);
-            objSec.createdbyusername = _userProfileService.CurrentUser.username;
-            objSec.createddate = dt;
-            objSec.updatedbyusername = _userProfileService.CurrentUser.username;
-            objSec.updateddate = dt;
-            objSec.ipaddress = _msgService.GetUserIPAddress();
-            return objSec;
-        }
-
     }
 }

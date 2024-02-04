@@ -1,7 +1,11 @@
-﻿using BDO.Core.DataAccessObjects.ExtendedEntities;
+﻿using AppConfig.HelperClasses;
+using BDO.Core.Base;
+using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.Models;
 using BMCFileMangement.forms.UserControls;
+using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.Services.Interface;
+using CLL.LLClasses.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Uwp.Notifications;
@@ -11,12 +15,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BMCFileMangement.Services.DisServices
 {
-    public  class clsUpdatedDBHandler : IDisposable
+    public class clsUpdatedDBHandler : IDisposable
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<clsUpdatedDBHandler> _logger;
@@ -50,7 +56,7 @@ namespace BMCFileMangement.Services.DisServices
 
         // Unmanaged resources or other disposable objects can be declared here
 
-      
+
 
         // Custom method of the class
         public void SomeMethod()
@@ -137,12 +143,19 @@ namespace BMCFileMangement.Services.DisServices
                 string[] augArray = e.Argument.Split(';');
                 if (augArray.Length > 0)
                 {
-                    Stream? fileStream = null;
-                    string _Password = "Asdf1234";// _ftpSettings.Password;
-                    string _UserName = "ftpuser";//_ftpSettings.UserName;
-                    string _ftpURL = "ftp://192.168.200.182/";//_ftpSettings.FtpAddress;
 
-                    string remoteFileUrl =  $"{_ftpURL}{augArray[3].ToString()}";
+                    IConfiguration configuration = new ConfigurationBuilder()
+                        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                        .AddJsonFile("appsettings.json")
+                        .Build();
+                    DateTime dt = DateTime.Now;
+
+                    Stream? fileStream = null;
+                    string _Password = configuration["FtpSettings:Password"];
+                    string _UserName = configuration["FtpSettings:UserName"];
+                    string _ftpURL = configuration["FtpSettings:FtpAddress"];
+
+                    string remoteFileUrl = $"{_ftpURL}{augArray[3].ToString()}";
                     FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
                     request.Credentials = new NetworkCredential(_UserName, _Password);
                     request.Method = WebRequestMethods.Ftp.DownloadFile;
@@ -158,15 +171,24 @@ namespace BMCFileMangement.Services.DisServices
                             // Read from the input stream and write to the file stream
                             fileStream.CopyTo(outputStream);
                         }
-
                         Process.Start(new ProcessStartInfo
                         {
                             FileName = augArray[2].ToString(),
                             UseShellExecute = true
                         });
 
+                        clsSecurityCapsule objCap = new clsSecurityCapsule();
 
+                        filetransferinfoEntity obj = new filetransferinfoEntity();
+                        obj.filetransid = long.Parse(augArray[0].ToString());
+                        obj.BaseSecurityParam = new SecurityCapsule();
+                        obj.BaseSecurityParam = objCap.GetSecurityCapsule(dt, augArray[4]);
 
+                        obj.showedpopup = true;
+                        obj.showeddate = dt;
+                        obj.opendate = dt;
+                        obj.isopen = true;
+                        BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null).UpdatePopUpData(obj, cancellationToken);
 
                     }
                     catch (WebException webEx)
@@ -176,9 +198,11 @@ namespace BMCFileMangement.Services.DisServices
                 }
 
             }
-
-           
         }
+
+      
+
+
 
     }
 }

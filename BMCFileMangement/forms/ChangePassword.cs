@@ -1,5 +1,6 @@
 ﻿using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.SecurityModels;
+using BMCFileMangement.Services.DisServices;
 using BMCFileMangement.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -80,8 +81,9 @@ namespace BMCFileMangement.forms
             request.newpassword = txtNewPassword.Text;
             request.confirmpassword = txtConfirmPassword.Text;
 
+            clsSecurityCapsule objCap = new clsSecurityCapsule();
             request.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
-            request.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
+            request.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
 
             CancellationToken cancellationToken = new CancellationToken();
             IHttpContextAccessor httpContextAccessor = null;
