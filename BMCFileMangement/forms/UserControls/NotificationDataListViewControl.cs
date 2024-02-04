@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Markup;
+using Windows.ApplicationModel.Activation;
 using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -71,7 +72,10 @@ namespace BMCFileMangement.forms.UserControls
 
             InitializeComponent();
             InitializeBackgroundWorkerPopUp();
+
         }
+
+        // ToastArguments args = ToastArguments.Parse(e.Argument);
 
         /// <summary>
         /// InitializeBackgroundWorker
@@ -133,6 +137,7 @@ namespace BMCFileMangement.forms.UserControls
             // Update UI or perform any necessary actions based on the background work
         }
 
+
         /// <summary>
         /// BackgroundWorker_RunWorkerCompleted
         /// </summary>
@@ -152,15 +157,16 @@ namespace BMCFileMangement.forms.UserControls
 
                         var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Money-Heist.jpg");
                         new ToastContentBuilder()
-                            .AddArgument("action", "viewConversation")
-                            .AddArgument("conversationId", 100)
                             .AddText(objSingle.filename)
                             .AddInlineImage(new Uri(heroImage))
                             .AddButton(new ToastButton()
-                                        .SetContent("Open Folder")
-                                        .AddArgument("url", objSingle.fromuserremark))
-                            .AddAttributionText(objSingle.fullpath)
-                            .SetToastScenario(ToastScenario.Default)
+                                        .SetContent("Open File")
+                                        .AddArgument(objSingle.filetransid.GetValueOrDefault().ToString())
+                                        .AddArgument(objSingle.touserid.GetValueOrDefault().ToString())
+                                        .AddArgument(objSingle.filename)
+                                        .AddArgument(objSingle.touserid.GetValueOrDefault().ToString() + "/" + "INBOX" + "/" + objSingle.filename))
+                            .AddAttributionText(objSingle.fromuserremark)
+                            .SetToastScenario(ToastScenario.Alarm)
                             .Show(toast =>
                             {
                                 toast.ExpirationTime = DateTime.Now.AddSeconds(15);
@@ -233,19 +239,20 @@ namespace BMCFileMangement.forms.UserControls
         }
 
 
+
         private void dtGrdNotification_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdNotification.Columns["filename"].Index)
             {
                 string fileName = dtGrdNotification.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
-                DownloadFile(fileName);
+                //DownloadFile(fileName);
             }
         }
 
 
         private async Task DownloadFile(string fileName)
         {
-            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/IN/" + fileName;
+            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/INBOX/" + fileName;
             var fileStream = await _fTPTransferService.DownloadFile(fullPath);
 
             // Using statement ensures that the FileStream is properly closed and resources are released

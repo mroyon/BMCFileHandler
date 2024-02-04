@@ -250,6 +250,8 @@ namespace BMCFileMangement.forms
                     objFileInBox.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
                     var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
                         GetFacadeCreate(httpContextAccessor).UpdateOpenData(objFileInBox, cancellationToken);
+
+                    BindDataToGrid(this.CurrentPage, this.PageSize);
                 }
             }
         }

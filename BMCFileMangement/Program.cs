@@ -9,6 +9,9 @@ using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.forms;
 using System.Windows.Forms.Design;
 using Microsoft.Extensions.Logging;
+using Microsoft.Toolkit.Uwp.Notifications;
+using BMCFileMangement.forms.UserControls;
+using BMCFileMangement.Services.DisServices;
 
 namespace BMCFileMangement
 {
@@ -20,6 +23,12 @@ namespace BMCFileMangement
         [STAThread]
         static void Main(string[] args)
         {
+            if (args.Contains("buttonClickedAsdf"))
+            {
+                // Simulate the activation event manually
+                ToastNotificationManagerCompat_OnActivated(null);
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
@@ -36,6 +45,9 @@ namespace BMCFileMangement
                 var host = CreateHostBuilder(args).Build();//.Run();
 
                 ServiceProvider = host.Services;
+
+                ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated; ;
+
 
                 // Show splash screen
                 var splashScreen = new frmSplashScreen(); // Replace with your splash screen form
@@ -65,7 +77,6 @@ namespace BMCFileMangement
                 //// Check login result
                 if (loginResult == DialogResult.OK)
                 {
-
                     Application.Run(ServiceProvider.GetRequiredService<BMCFileMangement.forms.frmMainWindow>()); // Replace with your main form
                 }
 
@@ -78,6 +89,12 @@ namespace BMCFileMangement
             {
                 Log.CloseAndFlush();
             }
+        }
+
+        private static void ToastNotificationManagerCompat_OnActivated(ToastNotificationActivatedEventArgsCompat e)
+        {
+            clsUpdatedDBHandler objCls = new clsUpdatedDBHandler();
+            objCls.UpdateFileOpenAndShowPopAndDownload(e);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

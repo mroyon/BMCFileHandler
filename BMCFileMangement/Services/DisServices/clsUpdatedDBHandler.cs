@@ -1,11 +1,16 @@
-﻿using BDO.Core.DataAccessObjects.Models;
+﻿using BDO.Core.DataAccessObjects.ExtendedEntities;
+using BDO.Core.DataAccessObjects.Models;
 using BMCFileMangement.forms.UserControls;
 using BMCFileMangement.Services.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +36,11 @@ namespace BMCFileMangement.Services.DisServices
         {
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<clsUpdatedDBHandler>();
+        }
+
+
+        public clsUpdatedDBHandler()
+        {
         }
 
         #region Disposable
@@ -111,6 +121,63 @@ namespace BMCFileMangement.Services.DisServices
             obj.showeddate = DateTime.Now;
             obj.showedpopup = true;
             BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null).UpdatePopUpData(obj, cancellationToken);
+        }
+
+        /// <summary>
+        /// UpdateFileOpenAndShowPopAndDownload
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public void UpdateFileOpenAndShowPopAndDownload(ToastNotificationActivatedEventArgsCompat e)
+        {
+            CancellationToken cancellationToken = new CancellationToken();
+
+            if (e.Argument != String.Empty)
+            {
+                string[] augArray = e.Argument.Split(';');
+                if (augArray.Length > 0)
+                {
+                    Stream? fileStream = null;
+                    string _Password = "Asdf1234";// _ftpSettings.Password;
+                    string _UserName = "ftpuser";//_ftpSettings.UserName;
+                    string _ftpURL = "ftp://192.168.200.182/";//_ftpSettings.FtpAddress;
+
+                    string remoteFileUrl =  $"{_ftpURL}{augArray[3].ToString()}";
+                    FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
+                    request.Credentials = new NetworkCredential(_UserName, _Password);
+                    request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                    try
+                    {
+                        FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                        fileStream = response.GetResponseStream();
+
+                        // Using statement ensures that the FileStream is properly closed and resources are released
+                        using (FileStream outputStream = new FileStream(augArray[2].ToString(), FileMode.Create))
+                        {
+                            // Read from the input stream and write to the file stream
+                            fileStream.CopyTo(outputStream);
+                        }
+
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = augArray[2].ToString(),
+                            UseShellExecute = true
+                        });
+
+
+
+
+                    }
+                    catch (WebException webEx)
+                    {
+                        throw new InvalidOperationException($"Error: {webEx.Message}", webEx);
+                    }
+                }
+
+            }
+
+           
         }
 
     }
