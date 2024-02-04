@@ -152,6 +152,19 @@ namespace BMCFileMangement.forms
                 CancellationToken cancellationToken = new CancellationToken();
                 IHttpContextAccessor _contextAccessor = null;
                 //if(!_validatepassword())
+                DateTime dt = DateTime.Now;
+
+                if (string.IsNullOrEmpty(txtUsername.Text)) { MessageBox.Show("Please enter user name"); return; }
+                if (string.IsNullOrEmpty(txtName.Text)) { MessageBox.Show("Please enter name"); return; }
+                if (string.IsNullOrEmpty(txtMilitaryNo.Text)) { MessageBox.Show("Please enter military no"); return; }
+                if (string.IsNullOrEmpty(txtEmail.Text)) { MessageBox.Show("Please enter email address"); return; }
+                if (string.IsNullOrEmpty(txtPassword.Text)) { MessageBox.Show("Please enter password"); return; }
+                if (string.IsNullOrEmpty(txtConfirmPassword.Text)) { MessageBox.Show("Please enter confirm password"); return; }
+
+                if (txtPassword.Text != txtConfirmPassword.Text)
+                {
+                    MessageBox.Show("Password mismatched"); return;
+                }
 
                 if (btnAddUser.Text == "Update User" && !string.IsNullOrEmpty(txtUserID.Text))
                 {
@@ -163,6 +176,8 @@ namespace BMCFileMangement.forms
                         emailaddress = txtEmail.Text,
                         pkeyex = long.Parse(txtMilitaryNo.Text)
                     };
+                    _user.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
+                    _user.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
                     _logger.LogInformation(JsonConvert.SerializeObject(_user));
                     var i = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(_contextAccessor)
                         .Update(_user, cancellationToken);
@@ -194,6 +209,9 @@ namespace BMCFileMangement.forms
                         roleid = 12, //User Role,
                         pkeyex = long.Parse(txtMilitaryNo.Text), //Mil ID
                     };
+
+                    _user.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
+                    _user.BaseSecurityParam = _fTPTransferService.GetSecurityCapsule(dt);
 
                     _logger.LogInformation(JsonConvert.SerializeObject(_user));
                     var i = BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial.FCCKAFUserSecurity.GetFacadeCreate(_contextAccessor)
