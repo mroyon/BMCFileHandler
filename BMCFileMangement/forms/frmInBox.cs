@@ -37,8 +37,6 @@ namespace BMCFileMangement.forms
         private int TotalPage = 0;
 
 
-
-
         public frmInBox(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
@@ -52,8 +50,12 @@ namespace BMCFileMangement.forms
             _logger = _loggerFactory.CreateLogger<frmMainWindow>();
             _msgService = msgService;
             _applog = applog;
-
             _userprofile = userprofile;
+
+            _fileNotificationList = fileNotificationList;
+            _fTPTransferService = fTPTransferService;
+
+
             InitializeComponent();
             InitializeComponent2();
         }
@@ -61,6 +63,8 @@ namespace BMCFileMangement.forms
 
         public void InitializeComponent2()
         {
+            btnSearchInboxData.Click += BtnReloadInboxData_Click;
+            btnClearSearchInboxData.Click += BtnClearSearchInboxData_Click;
             dtGrdInBox.AutoGenerateColumns = false;
 
             dtGrdInBox.Columns.Add("fromusername", "From User");
@@ -95,22 +99,43 @@ namespace BMCFileMangement.forms
             BindDataToGrid(1, 10);
         }
 
+        private void BtnClearSearchInboxData_Click(object? sender, EventArgs e)
+        {
+            txtContent.Text = String.Empty;
+            BindDataToGrid(1, 10);
+        }
+
+        private void BtnReloadInboxData_Click(object? sender, EventArgs e)
+        {
+            BindDataToGrid(1, 10);
+        }
 
 
         #region Paging Method & Style 02
         private void BindDataToGrid(int currentpage, int pageSize)
         {
-            List<filetransferinfoEntity> _users = _loadUserDataGrid(currentpage, pageSize);
+            List<filetransferinfoEntity> _files_inbox = _loadUserDataGrid(currentpage, pageSize);
             //dtGrdInBox.DataSource = _users;
             int Srno = 0;
-            foreach (var user in _users)
+            foreach (var _file_inbox in _files_inbox)
             {
-                dtGrdInBox.Rows.Add(user.fromusername, user.sentdate, user.filename, user.fromuserremark, user.showedpopup);
+                dtGrdInBox.Rows.Add(_file_inbox.fromusername,
+                    _file_inbox.sentdate,
+                    _file_inbox.filename,
+                    _file_inbox.priority,
+                    _file_inbox.fromuserremark,
+                    _file_inbox.sentdate,
+                    _file_inbox.receiveddate,
+                    _file_inbox.opendate,
+                    _file_inbox.status,
+                    _file_inbox.showedpopup);
+
             }
         }
+
         private List<filetransferinfoEntity> _loadUserDataGrid(int currentpage, int pageSize)
         {
-            List<filetransferinfoEntity> _users = new List<filetransferinfoEntity>();
+            List<filetransferinfoEntity> _files_inbox = new List<filetransferinfoEntity>();
             try
             {
                 dtGrdInBox.Rows.Clear();
@@ -129,11 +154,12 @@ namespace BMCFileMangement.forms
 
 
                 IHttpContextAccessor httpContextAccessor = null;
-                _users = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).GetAllByPagesInBoxView(objEntity,cancellationToken).Result.ToList();
+                _files_inbox = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
+                    GetFacadeCreate(httpContextAccessor).GetAllByPagesInBoxView(objEntity, cancellationToken).Result.ToList();
 
-                if (_users.Count > 0)
+                if (_files_inbox.Count > 0)
                 {
-                    int rowCount = (int)_users.FirstOrDefault().RETURN_KEY;
+                    int rowCount = (int)_files_inbox.FirstOrDefault().RETURN_KEY;
                     this.TotalPage = rowCount / PageSize;
                     if (rowCount % PageSize > 0) // if remainder is more than  zero 
                     {
@@ -144,7 +170,7 @@ namespace BMCFileMangement.forms
             catch (Exception ex)
             { throw ex; }
 
-            return _users;
+            return _files_inbox;
         }
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
@@ -176,17 +202,21 @@ namespace BMCFileMangement.forms
 
         private void dtGrdInBox_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-                if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["filename"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["filename"].Index)
+            {
+                string fileName = dtGrdInBox.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
+                DialogResult result = MessageBox.Show("Are you sure you want to proceed to download this file?", "Download Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    string fileName = dtGrdInBox.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
                     DownloadFile(fileName);
                 }
+            }
         }
 
         private async Task DownloadFile(string fileName)
         {
-            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/IN/" + fileName;
-            var fileStream = await _fTPTransferService.DownloadFile(fullPath);
+            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/INBOX/" + fileName;
+            var fileStream = await _fTPTransferService.DownloadFile_FileStream(fullPath);
 
             // Using statement ensures that the FileStream is properly closed and resources are released
             using (FileStream outputStream = new FileStream(fileName, FileMode.Create))
@@ -204,9 +234,6 @@ namespace BMCFileMangement.forms
             //MessageBox.Show($"Downloading file: {fileName}");
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            BindDataToGrid(1, 10);
-        }
+
     }
 }

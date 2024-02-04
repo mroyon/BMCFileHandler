@@ -14,8 +14,6 @@ namespace BDO.Core.DataAccessObjects.Models
         #region Properties
     
         protected long ? _filetransid;
-        protected long ? _folderid;
-        protected long ? _fileid;
         protected string _fromusername;
         protected Guid ? _fromuserid;
         protected string _tousername;
@@ -36,13 +34,6 @@ namespace BDO.Core.DataAccessObjects.Models
         protected int ? _status;
         protected DateTime ? _expecteddate;
 
-        protected filestructureEntity _filestructureinfo;
-        [DataMember]
-        public filestructureEntity filestructureinfo
-        {
-            get { return _filestructureinfo; }
-            set { _filestructureinfo = value; this.OnChnaged(); }
-        }
 
         [DataMember]
         public long ? filetransid
@@ -51,23 +42,7 @@ namespace BDO.Core.DataAccessObjects.Models
             set { _filetransid = value; this.OnChnaged(); }
         }
         
-        [DataMember]
-        [Display(Name = "folderid", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
-        [Required(ErrorMessageResourceType = typeof(CLL.LLClasses.Models._filetransferinfo), ErrorMessageResourceName = "folderidRequired")]
-        public long ? folderid
-        {
-            get { return _folderid; }
-            set { _folderid = value; this.OnChnaged(); }
-        }
-        
-        [DataMember]
-        [Display(Name = "fileid", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
-        [Required(ErrorMessageResourceType = typeof(CLL.LLClasses.Models._filetransferinfo), ErrorMessageResourceName = "fileidRequired")]
-        public long ? fileid
-        {
-            get { return _fileid; }
-            set { _fileid = value; this.OnChnaged(); }
-        }
+       
         
         [DataMember]
         [MaxLength(256)]
@@ -254,8 +229,6 @@ namespace BDO.Core.DataAccessObjects.Models
             {
                 this.BaseSecurityParam = new SecurityCapsule();
                 if (!reader.IsDBNull(reader.GetOrdinal("FileTransID"))) _filetransid = reader.GetInt64(reader.GetOrdinal("FileTransID"));
-                if (!reader.IsDBNull(reader.GetOrdinal("FolderID"))) _folderid = reader.GetInt64(reader.GetOrdinal("FolderID"));
-                if (!reader.IsDBNull(reader.GetOrdinal("FileID"))) _fileid = reader.GetInt64(reader.GetOrdinal("FileID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("FromUsername"))) _fromusername = reader.GetString(reader.GetOrdinal("FromUsername"));
                 if (!reader.IsDBNull(reader.GetOrdinal("FromUserID"))) _fromuserid = reader.GetGuid(reader.GetOrdinal("FromUserID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUsername"))) _tousername = reader.GetString(reader.GetOrdinal("ToUsername"));
@@ -293,8 +266,6 @@ namespace BDO.Core.DataAccessObjects.Models
             {
                 this.BaseSecurityParam = new SecurityCapsule();
                 if (!reader.IsDBNull(reader.GetOrdinal("FileTransID"))) _filetransid = reader.GetInt64(reader.GetOrdinal("FileTransID"));
-                if (!reader.IsDBNull(reader.GetOrdinal("FolderID"))) _folderid = reader.GetInt64(reader.GetOrdinal("FolderID"));
-                if (!reader.IsDBNull(reader.GetOrdinal("FileID"))) _fileid = reader.GetInt64(reader.GetOrdinal("FileID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("FromUsername"))) _fromusername = reader.GetString(reader.GetOrdinal("FromUsername"));
                 if (!reader.IsDBNull(reader.GetOrdinal("FromUserID"))) _fromuserid = reader.GetGuid(reader.GetOrdinal("FromUserID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUsername"))) _tousername = reader.GetString(reader.GetOrdinal("ToUsername"));

@@ -63,6 +63,9 @@ namespace BMCFileMangement.forms
 
         public void InitializeComponent2()
         {
+            btnSearchData.Click += BtnSearchData_Click;
+            btnClearData.Click += BtnClearData_Click;
+
             dtGrdInBox.AutoGenerateColumns = false;
 
             dtGrdInBox.Columns.Add("tousername", "To User");
@@ -97,22 +100,44 @@ namespace BMCFileMangement.forms
             BindDataToGrid(1, 10);
         }
 
+        private void BtnClearData_Click(object? sender, EventArgs e)
+        {
+            txtContent.Text = String.Empty;
+            BindDataToGrid(1, 10);
+        }
+
+        private void BtnSearchData_Click(object? sender, EventArgs e)
+        {
+
+            BindDataToGrid(1, 10);
+        }
+
 
 
         #region Paging Method & Style 02
         private void BindDataToGrid(int currentpage, int pageSize)
         {
-            List<filetransferinfoEntity> _users = _loadUserDataGrid(currentpage, pageSize);
+            List<filetransferinfoEntity> _files_outbox = _loadUserDataGrid(currentpage, pageSize);
             //dtGrdInBox.DataSource = _users;
             int Srno = 0;
-            foreach (var user in _users)
+            foreach (var _file_outbox in _files_outbox)
             {
-                dtGrdInBox.Rows.Add(user.fromusername, user.sentdate, user.filename, user.fromuserremark, user.showedpopup);
+                dtGrdInBox.Rows.Add(_file_outbox.tousername,
+                    _file_outbox.sentdate,
+                    _file_outbox.filename,
+                    _file_outbox.priority,
+                    _file_outbox.fromuserremark,
+                    _file_outbox.sentdate,
+                    _file_outbox.receiveddate,
+                    _file_outbox.opendate,
+                    _file_outbox.status,
+                    _file_outbox.showedpopup);
             }
         }
+
         private List<filetransferinfoEntity> _loadUserDataGrid(int currentpage, int pageSize)
         {
-            List<filetransferinfoEntity> _users = new List<filetransferinfoEntity>();
+            List<filetransferinfoEntity> _files_outbox = new List<filetransferinfoEntity>();
             try
             {
                 dtGrdInBox.Rows.Clear();
@@ -129,13 +154,13 @@ namespace BMCFileMangement.forms
                 if (txtContent.Text != "")
                     objEntity.strCommonSerachParam = txtContent.Text;
 
-
                 IHttpContextAccessor httpContextAccessor = null;
-                _users = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).GetAllByPagesInBoxView(objEntity,cancellationToken).Result.ToList();
+                _files_outbox = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
+                    GetFacadeCreate(httpContextAccessor).GetAllByPagesOutBoxView(objEntity, cancellationToken).Result.ToList();
 
-                if (_users.Count > 0)
+                if (_files_outbox.Count > 0)
                 {
-                    int rowCount = (int)_users.FirstOrDefault().RETURN_KEY;
+                    int rowCount = (int)_files_outbox.FirstOrDefault().RETURN_KEY;
                     this.TotalPage = rowCount / PageSize;
                     if (rowCount % PageSize > 0) // if remainder is more than  zero 
                     {
@@ -146,18 +171,21 @@ namespace BMCFileMangement.forms
             catch (Exception ex)
             { throw ex; }
 
-            return _users;
+            return _files_outbox;
         }
+
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
             this.CurrentPage = 1;
             BindDataToGrid(this.CurrentPage, this.PageSize);
         }
+
         private void btnLastPage_Click(object sender, EventArgs e)
         {
             this.CurrentPage = this.TotalPage;
             BindDataToGrid(this.CurrentPage, this.PageSize);
         }
+
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
             if (this.CurrentPage > 1)
@@ -166,6 +194,7 @@ namespace BMCFileMangement.forms
                 BindDataToGrid(this.CurrentPage, this.PageSize);
             }
         }
+
         private void btnNextPage_Click(object sender, EventArgs e)
         {
             if (this.CurrentPage < this.TotalPage)
@@ -178,17 +207,22 @@ namespace BMCFileMangement.forms
 
         private void dtGrdInBox_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-                if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["filename"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["filename"].Index)
+            {
+                string fileName = dtGrdInBox.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
+
+                DialogResult result = MessageBox.Show("Are you sure you want to proceed to download this file?", "Download Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    string fileName = dtGrdInBox.Rows[e.RowIndex].Cells["filename"].Value.ToString(); // Replace with the actual column name containing file information
                     DownloadFile(fileName);
                 }
+            }
         }
 
         private async Task DownloadFile(string fileName)
         {
-            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/IN/" + fileName;
-            var fileStream = await _fTPTransferService.DownloadFile(fullPath);
+            string fullPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/OUTBOX/" + fileName;
+            var fileStream = await _fTPTransferService.DownloadFile_FileStream(fullPath);
 
             // Using statement ensures that the FileStream is properly closed and resources are released
             using (FileStream outputStream = new FileStream(fileName, FileMode.Create))
@@ -202,13 +236,8 @@ namespace BMCFileMangement.forms
                 FileName = fileName,
                 UseShellExecute = true
             });
-
-            //MessageBox.Show($"Downloading file: {fileName}");
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            BindDataToGrid(1, 10);
-        }
+
     }
 }

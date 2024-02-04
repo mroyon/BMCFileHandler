@@ -291,16 +291,16 @@ namespace BMCFileMangement.forms
             {
                 CancellationToken cancellationToken = new CancellationToken();
                 IHttpContextAccessor? _contextAccessor = null;
-                folderstructureEntity _folderStructure = new folderstructureEntity();
+                //folderstructureEntity _folderStructure = new folderstructureEntity();
 
-                _folderStructure.userid = new Guid(userid);
-                _folderStructure.foldername = folderpath;
-                _folderStructure.physicalpath = $"{_ftpSettings.FtpAddress} {folderpath}";
-                _folderStructure.parentfolderid = null;
-                _folderStructure.isdeleted = false;
+                //_folderStructure.userid = new Guid(userid);
+                //_folderStructure.foldername = folderpath;
+                //_folderStructure.physicalpath = $"{_ftpSettings.FtpAddress} {folderpath}";
+                //_folderStructure.parentfolderid = null;
+                //_folderStructure.isdeleted = false;
 
-                result = BFC.Core.FacadeCreatorObjects.General.folderstructureFCC.GetFacadeCreate(_contextAccessor)
-                        .Add(_folderStructure, cancellationToken).Result;
+                //result = BFC.Core.FacadeCreatorObjects.General.folderstructureFCC.GetFacadeCreate(_contextAccessor)
+                //        .Add(_folderStructure, cancellationToken).Result;
             }
             catch (Exception ex)
             {

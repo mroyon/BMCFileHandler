@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BDO.Core.DataAccessObjects.Models;
+using BDO.Core.Base;
 
 namespace BMCFileMangement.Services.Interface
 {
@@ -17,17 +18,10 @@ namespace BMCFileMangement.Services.Interface
 
         string DeleteFile(string remoteFilePath);
 
+        Task<Stream> DownloadFile_FileStream(string remoteFilePath);
+
         Task<Stream> DownloadFile(string remoteFilePath);
 
-        bool IsExistFolderFTP(string fileDir);
-
-        List<string> GetDirectoryListFTP(string ftpUrl);
-
-        List<string> GetAllFilesFromDirectoryFTP(string ParentFolderpath);
-
-        void SetFtpWorkingDirectory(string directory = "");
-        List<string> GetFilesFromFtp(string ParentFolderpath);
-        DateTime GetFileDateFTP(string filepath);
-        long GetFileSizeFTP(string filepath);
+        SecurityCapsule GetSecurityCapsule(DateTime dt);
     }
 }

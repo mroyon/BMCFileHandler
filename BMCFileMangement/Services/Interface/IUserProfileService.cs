@@ -1,4 +1,5 @@
-﻿using BDO.Core.DataAccessObjects.SecurityModels;
+﻿using BDO.Core.Base;
+using BDO.Core.DataAccessObjects.SecurityModels;
 using BMCFileMangement.Models;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,7 @@ namespace BMCFileMangement.Services.Interface
     {
         void SetCurrentUser(owin_userEntity user);
         LoggedInUserProfile CurrentUser { get; }
+
+       
     }
 }

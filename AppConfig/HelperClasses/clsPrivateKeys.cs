@@ -17,6 +17,7 @@ namespace AppConfig.HelperClasses
         /// <param name="Action"></param>
         /// <param name="param"></param>
         /// <returns></returns>
+        /// 
         public string EncodeUrlParams(string Controller, string Action, params string[] param)
         {
             string RequestParam = "";

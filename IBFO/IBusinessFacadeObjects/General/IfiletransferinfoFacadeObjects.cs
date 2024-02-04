@@ -58,8 +58,5 @@ namespace IBFO.Core.IBusinessFacadeObjects.General
         #region Extras Reviewed, Published, Archived
         #endregion
 
-        [OperationContract]
-        Task<long> AddExt(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
-
     }
 }

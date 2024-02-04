@@ -330,8 +330,6 @@ namespace BMCFileMangement.forms
                 var i = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).Add(
                         new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
                         {
-                            folderid = _userprofile.CurrentUser.folderid,
-                            fileid = _file != null && _file.Result > 0 ? _file.Result : null,
                             fromusername = _userprofile.CurrentUser.username,
                             fromuserid = _userprofile.CurrentUser.userid,
                             tousername = cboUser.SelectedText,

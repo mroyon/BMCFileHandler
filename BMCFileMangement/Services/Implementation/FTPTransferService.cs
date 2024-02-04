@@ -1,4 +1,5 @@
 ﻿using AppConfig.HelperClasses;
+using BDO.Core.Base;
 using BDO.Core.DataAccessObjects.CommonEntities;
 using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.Models;
@@ -29,21 +30,30 @@ namespace BMCFileMangement.Services.Implementation
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<FTPTransferService> _logger;
         private readonly IUserProfileService _userProfileService;
+        private readonly IMessageService _msgService;
         private readonly FtpSettings _ftpSettings;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="loggerFactory"></param>
+        /// <param name="logger"></param>
+        /// <param name="userProfileService"></param>
+        /// <param name="msgService"></param>
         public FTPTransferService(
             IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             ILogger<FTPTransferService> logger,
-            IUserProfileService userProfileService)
+            IUserProfileService userProfileService,
+            IMessageService msgService)
         {
             _config = config;
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<FTPTransferService>();
             _userProfileService = userProfileService;
             _ftpSettings = _config.GetSection(nameof(FtpSettings)).Get<FtpSettings>();
-
+            _msgService = msgService;
         }
 
 
@@ -174,6 +184,37 @@ namespace BMCFileMangement.Services.Implementation
         }
 
         /// <summary>
+        /// DownloadFile_FileStream
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public async Task<Stream> DownloadFile_FileStream(string remoteFilePath)
+        {
+            Stream? retValue = null;
+            string _Password = _ftpSettings.Password;
+            string _UserName = _ftpSettings.UserName;
+            string _ftpURL = _ftpSettings.FtpAddress;
+
+            string remoteFileUrl = $"{_ftpURL}{remoteFilePath}";
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
+            request.Credentials = new NetworkCredential(_UserName, _Password);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            try
+            {
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                retValue = response.GetResponseStream();
+            }
+            catch (WebException webEx)
+            {
+                throw new InvalidOperationException($"Error: {webEx.Message}", webEx);
+            }
+            return retValue;
+
+
+
+        }
+        /// <summary>
         /// DownloadFile
         /// </summary>
         /// <param name="item"></param>
@@ -202,249 +243,19 @@ namespace BMCFileMangement.Services.Implementation
             return retValue;
         }
 
-        /// <summary>
-        /// DeleteDirectoryFTP
-        /// </summary>
-        /// <param name="fileDir"></param>
-        /// <returns></returns>
-        public string DeleteDirectoryFTP(string fileDir)
+
+        public SecurityCapsule GetSecurityCapsule(DateTime dt)
         {
-            string retValue = string.Empty;
-            string strMsg = string.Empty;
-            string strmsg = string.Empty;
-            try
-            {
-                string _Password = _ftpSettings.Password;
-                string _UserName = _ftpSettings.UserName;
-                string _ftpURL = _ftpSettings.FtpAddress;
-
-                /* Create an FTP Request */
-                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(_ftpURL + fileDir);
-                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
-                /* When in doubt, use these options */
-                ftpRequest.UseBinary = true;
-                ftpRequest.UsePassive = true;
-                ftpRequest.KeepAlive = true;
-                /* Specify the Type of FTP Request */
-                ftpRequest.Method = WebRequestMethods.Ftp.RemoveDirectory;
-
-                /* Establish Return Communication with the FTP Server */
-                FtpWebResponse ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
-                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
-                ftpResponse.Close();
-
-                ftpRequest = null;
-                retValue = "Folder deleted successfully.";
-            }
-            catch (Exception ex) { retValue = ex.Message; }
-            return retValue;
+            AppConfig.HelperClasses.transactioncodeGen objTrans = new transactioncodeGen();
+            SecurityCapsule objSec = new BDO.Core.Base.SecurityCapsule();
+            objSec.transid = objTrans.GetRandomAlphaNumericStringForTransactionActivity("FST", dt);
+            objSec.createdbyusername = _userProfileService.CurrentUser.username;
+            objSec.createddate = dt;
+            objSec.updatedbyusername = _userProfileService.CurrentUser.username;
+            objSec.updateddate = dt;
+            objSec.ipaddress = _msgService.GetUserIPAddress();
+            return objSec;
         }
-
-        public bool IsExistFolderFTP(string ftpUrl)
-        {
-            string _Password = _ftpSettings.Password;
-            string _UserName = _ftpSettings.UserName;
-            string _ftpURL = _ftpSettings.FtpAddress;
-            bool isexist = false;
-
-            try
-            {
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(_ftpURL + ftpUrl);
-                request.Credentials = new NetworkCredential(_UserName, _Password);
-                request.Method = WebRequestMethods.Ftp.ListDirectory;
-                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
-                {
-                    isexist = true;
-                }
-            }
-            catch (WebException ex)
-            {
-                if (ex.Response != null)
-                {
-                    FtpWebResponse response = (FtpWebResponse)ex.Response;
-                    if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return isexist;
-        }
-        /// <summary>
-        /// GetDirectoryListFTP
-        /// </summary>
-        /// <param name="ParentFolderpath"></param>
-        /// <returns></returns>
-        public List<string> GetDirectoryListFTP(string ParentFolderpath)
-        {
-            //string _Password = _ftpSettings.Password;
-            //string _UserName = _ftpSettings.UserName;
-            //string _ftpURL = _ftpSettings.FtpAddress;
-
-            //FtpWebRequest request = (FtpWebRequest)WebRequest.Create(_ftpURL + ftpUrl);
-            //request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
-            //request.Credentials = new NetworkCredential(_UserName, _Password);
-            //List<string> directoryItems = new List<string>();
-            //using (WebResponse response = request.GetResponse())
-            //    //using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            //    //{
-            //    //    //string directoryList = reader.ReadToEnd();
-            //    //    //return directoryList.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-            //    //}
-
-            //using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            //{
-            //    while (!reader.EndOfStream)
-            //    {
-            //        string line = reader.ReadLine();
-            //        directoryItems.Add(line);
-            //    }
-            //}
-            //return directoryItems.ToArray();
-
-            string _Password = _ftpSettings.Password;
-            string _UserName = _ftpSettings.UserName;
-            string _ftpURL = _ftpSettings.FtpAddress;
-            try
-            {
-                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(_ftpURL + ParentFolderpath);
-                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
-                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
-                FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
-                StreamReader streamReader = new StreamReader(response.GetResponseStream());
-
-                List<string> directories = new List<string>();
-
-                string line = streamReader.ReadLine();
-                while (!string.IsNullOrEmpty(line))
-                {
-                    var lineArr = line.Split('/');
-                    line = lineArr[lineArr.Count() - 1];
-                    directories.Add(line);
-                    line = streamReader.ReadLine();
-                }
-
-                streamReader.Close();
-
-                return directories;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        public List<string> GetAllFilesFromDirectoryFTP(string ParentFolderpath)
-        {
-            string _Password = _ftpSettings.Password;
-            string _UserName = _ftpSettings.UserName;
-            string _ftpURL = _ftpSettings.FtpAddress;
-            try
-            {
-                FtpWebRequest ftpRequest = (FtpWebRequest)FtpWebRequest.Create(_ftpURL + ParentFolderpath);
-                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
-                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
-                FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
-                StreamReader streamReader = new StreamReader(response.GetResponseStream());
-
-                List<string> directories = new List<string>();
-
-                string line = streamReader.ReadLine();
-                while (!string.IsNullOrEmpty(line))
-                {
-                    var lineArr = line.Split('/');
-                    line = lineArr[lineArr.Count() - 1];
-
-                    directories.Add(line);
-                    line = streamReader.ReadLine();
-                }
-
-                streamReader.Close();
-
-                return directories;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public List<string> GetFilesFromFtp(string ParentFolderpath)
-        {
-            string _Password = _ftpSettings.Password;
-            string _UserName = _ftpSettings.UserName;
-            string _ftpURL = _ftpSettings.FtpAddress;
-            List<string> res = new List<string>();
-            try
-            {
-                FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(_ftpURL + ParentFolderpath);
-                ftpRequest.Credentials = new NetworkCredential(_UserName, _Password);
-                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
-                FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
-
-                Stream stream = response.GetResponseStream();
-                StreamReader streamReader = new StreamReader(stream);
-                string data = streamReader.ReadToEnd();
-                res = data.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return res;
-        }
-        public void SetFtpWorkingDirectory(string directory="")
-        {
-            string _Password = _ftpSettings.Password;
-            string _UserName = _ftpSettings.UserName;
-            string _ftpURL = _ftpSettings.FtpAddress;
-
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(_ftpSettings.FtpAddress + directory);
-            request.Credentials = new NetworkCredential(_UserName, _Password);
-            request.Method = WebRequestMethods.Ftp.PrintWorkingDirectory;
-
-            try
-            {
-                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
-                {
-                    Console.WriteLine($"Current working directory: {response.StatusDescription}");
-                }
-            }
-            catch (WebException ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-        }
-        public DateTime GetFileDateFTP(string filepath)
-        {
-            string _Password = _ftpSettings.Password;
-            string _UserName = _ftpSettings.UserName;
-            string _ftpURL = _ftpSettings.FtpAddress;
-           
-            DateTime result = DateTime.MinValue;
-            try
-            {
-                FtpWebRequest reqFTP = (FtpWebRequest)FtpWebRequest.Create(new Uri(filepath));
-                reqFTP.UseBinary = true;
-                reqFTP.Credentials = new NetworkCredential(_UserName, _Password);
-                reqFTP.Method = WebRequestMethods.Ftp.GetDateTimestamp;
-                FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
-                result = response.LastModified;
-                response.Close();
-            }
-            catch
-            {
-
-            }
-            return result;
-        }
-        public long GetFileSizeFTP(string filepath)
-        {
-            string _Password = _ftpSettings.Password;
-            string _UserName = _ftpSettings.UserName;
-            string _ftpURL = _ftpSettings.FtpAddress;
-
 
     }
 }

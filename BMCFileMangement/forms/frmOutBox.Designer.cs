@@ -37,7 +37,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtContent = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSearchData = new System.Windows.Forms.Button();
             this.dtGrdInBox = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.cboUser = new System.Windows.Forms.ComboBox();
@@ -45,6 +45,7 @@
             this.btnBrowseFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
+            this.btnClearData = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,9 +123,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnClearData);
             this.groupBox1.Controls.Add(this.txtContent);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnSearchData);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
@@ -135,7 +137,7 @@
             // 
             // txtContent
             // 
-            this.txtContent.Location = new System.Drawing.Point(66, 29);
+            this.txtContent.Location = new System.Drawing.Point(140, 22);
             this.txtContent.Name = "txtContent";
             this.txtContent.Size = new System.Drawing.Size(381, 23);
             this.txtContent.TabIndex = 6;
@@ -143,21 +145,20 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 35);
+            this.label6.Location = new System.Drawing.Point(81, 26);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 15);
             this.label6.TabIndex = 5;
             this.label6.Text = "Content";
             // 
-            // button1
+            // btnSearchData
             // 
-            this.button1.Location = new System.Drawing.Point(453, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Reload Data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSearchData.Location = new System.Drawing.Point(530, 22);
+            this.btnSearchData.Name = "btnSearchData";
+            this.btnSearchData.Size = new System.Drawing.Size(117, 23);
+            this.btnSearchData.TabIndex = 0;
+            this.btnSearchData.Text = "Search";
+            this.btnSearchData.UseVisualStyleBackColor = true;
             // 
             // dtGrdInBox
             // 
@@ -229,6 +230,15 @@
             this.txtFilePath.Size = new System.Drawing.Size(529, 28);
             this.txtFilePath.TabIndex = 13;
             // 
+            // btnClearData
+            // 
+            this.btnClearData.Location = new System.Drawing.Point(656, 22);
+            this.btnClearData.Name = "btnClearData";
+            this.btnClearData.Size = new System.Drawing.Size(117, 23);
+            this.btnClearData.TabIndex = 7;
+            this.btnClearData.Text = "Clear";
+            this.btnClearData.UseVisualStyleBackColor = true;
+            // 
             // frmOutBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -259,7 +269,7 @@
         private Label label1;
         private DataGridView dtGrdInBox;
         private GroupBox groupBox1;
-        private Button button1;
+        private Button btnSearchData;
         private GroupBox groupBox2;
         private Button btnPreviousPage;
         private Button btnNextPage;
@@ -267,5 +277,6 @@
         private Button btnLastPage;
         private Label label6;
         private TextBox txtContent;
+        private Button btnClearData;
     }
 }

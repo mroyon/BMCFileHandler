@@ -69,38 +69,26 @@ namespace DAC.Core.CoreFactory
         #region Factory Methods 
 
 
-        #region filestructure
-        public abstract IfilestructureDataAccessObjects CreatefilestructureDataAccess();
-        #endregion filestructure
+        
 
 
-        #region filestructurehist
-        public abstract IfilestructurehistDataAccessObjects CreatefilestructurehistDataAccess();
-        #endregion filestructurehist
+        
 
 
-        #region fileuserrelation
-        public abstract IfileuserrelationDataAccessObjects CreatefileuserrelationDataAccess();
-        #endregion fileuserrelation
+        
 
         #region filetransferinfo
         public abstract IfiletransferinfoDataAccessObjects CreatefiletransferinfoDataAccess();
         #endregion filetransferinfo
 
 
-        #region folderstructure
-        public abstract IfolderstructureDataAccessObjects CreatefolderstructureDataAccess();
-        #endregion folderstructure
+        
 
 
-        #region folderstructurehist
-        public abstract IfolderstructurehistDataAccessObjects CreatefolderstructurehistDataAccess();
-        #endregion folderstructurehist
+        
 
 
-        #region folderuserrelation
-        public abstract IfolderuserrelationDataAccessObjects CreatefolderuserrelationDataAccess();
-        #endregion folderuserrelation
+        
 
         #region gen_serviceinfo
         public abstract Igen_serviceinfoDataAccessObjects Creategen_serviceinfoDataAccess();

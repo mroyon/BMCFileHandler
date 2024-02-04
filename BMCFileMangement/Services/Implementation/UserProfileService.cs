@@ -1,4 +1,5 @@
-﻿using BDO.Core.DataAccessObjects.SecurityModels;
+﻿using BDO.Core.Base;
+using BDO.Core.DataAccessObjects.SecurityModels;
 using BMCFileMangement.Models;
 using BMCFileMangement.Services.Interface;
 using System;
@@ -15,6 +16,8 @@ namespace BMCFileMangement.Services.Implementation
         public static LoggedInUserProfile StaticCurrentUser { get; set; }
 
         public LoggedInUserProfile CurrentUser => StaticCurrentUser;
+
+       
 
         public void SetCurrentUser(owin_userEntity user)
         {

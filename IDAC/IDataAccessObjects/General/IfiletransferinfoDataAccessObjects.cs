@@ -45,9 +45,6 @@ namespace IDAC.Core.IDataAccessObjects.General
         #endregion
 
 
-        Task<long> AddExt(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
-
-
 
 
     }

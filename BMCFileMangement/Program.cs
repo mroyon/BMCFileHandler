@@ -95,7 +95,6 @@ namespace BMCFileMangement
                 services.AddTransient<IUserProfileService, UserProfileService>();
                 services.AddTransient<IFileNotificationService, FileNotificationService>();
                 services.AddTransient<IFTPTransferService, FTPTransferService>();
-                services.AddTransient<MainWindows>();
                 services.AddTransient<BMCFileMangement.forms.frmMainWindow>();
                 //services.AddHostedService<WorkerNotification>();
             });

@@ -9,5 +9,7 @@ namespace BMCFileMangement.Services.Interface
     public interface IMessageService
     {
         string GetSuccessMessage();
+
+        string GetUserIPAddress();
     }
 }

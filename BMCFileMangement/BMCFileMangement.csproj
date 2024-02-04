@@ -10,6 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="forms\frmLoginForm.cs" />
+    <Compile Remove="forms\frmLoginForm.Designer.cs" />
+    <Compile Remove="forms\MainWindow.cs" />
+    <Compile Remove="forms\MainWindow.Designer.cs" />
+    <Compile Remove="MainWindows.cs" />
+    <Compile Remove="MainWindows.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="forms\frmLoginForm.resx" />
+    <EmbeddedResource Remove="forms\MainWindow.resx" />
+    <EmbeddedResource Remove="MainWindows.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="appsettings.json" />
     <None Remove="forms\UserControls\NotificationDataListViewControl.cs~RFea25e7e.TMP" />
     <None Remove="Images\Icons\customer-reviews.png" />
