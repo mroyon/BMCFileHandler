@@ -101,7 +101,7 @@ namespace BMCFileMangement.Services.Implementation
         /// <param name="remoteDirectory"></param>
         /// <param name="newFileName"></param>
         /// <returns></returns>
-        public string UploadFile(string localFilePath, string remoteDirectory, string newFileName)
+        public string UploadFile(string localFilePath, string remoteDirectory, string newFileName )
         {
             FtpWebRequest reqFTP = null;
             Stream ftpStream = null;
@@ -114,11 +114,6 @@ namespace BMCFileMangement.Services.Implementation
             string remoteFileUrl = $"{_ftpURL}{remoteDirectory}{newFileName}";
             try
             {
-
-                if (FileExistsOnFtp(remoteDirectory, newFileName))
-                {
-                    remoteFileUrl = $"{_ftpURL}{remoteDirectory}{"2_" + newFileName}";
-                }
 
                 byte[] fileBytes = System.IO.File.ReadAllBytes(localFilePath);
 

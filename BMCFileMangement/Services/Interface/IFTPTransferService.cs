@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BDO.Core.DataAccessObjects.Models;
 using BDO.Core.Base;
+using Windows.Media.AppBroadcasting;
 
 namespace BMCFileMangement.Services.Interface
 {

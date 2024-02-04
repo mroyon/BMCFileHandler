@@ -3,6 +3,7 @@ using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.Models;
 using BDO.DataAccessObjects.ExtendedEntities;
 using BMCFileMangement.Services.Interface;
+using CLL.LLClasses.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -137,6 +138,9 @@ namespace BMCFileMangement.forms
         }
         private void btnSendFile_Click(object sender, EventArgs e)
         {
+            CancellationToken cancellationToken = new CancellationToken();
+            IHttpContextAccessor httpContextAccessor = null;
+
             // Display a confirmation message box
             DialogResult result = MessageBox.Show("Are you sure you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -147,6 +151,8 @@ namespace BMCFileMangement.forms
                 string sourcepath = txtFilePath.Text.Trim();
                 string fileName = Path.GetFileName(sourcepath);
 
+                int maxId = 1;
+                string TempNewName = "";
 
                 FileInfo _file = new FileInfo(sourcepath);
                 CustomFileClassEntity fileDetails = new CustomFileClassEntity(_file);
@@ -155,14 +161,28 @@ namespace BMCFileMangement.forms
                 bool isUploadedFile = false;
                 try
                 {
+
+                    var obj =  BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).GetAll(
+                        new filetransferinfoEntity()
+                        {
+                            filename = fileName
+                        }, cancellationToken).Result;
+
+                    if(obj != null && obj.Count >0)
+                    {
+                        maxId = obj.Max(item => item.fileversion.GetValueOrDefault());
+                        maxId += 1;
+
+                    }
+                    
                     // Upload file into Sender OUTBOX: Start
                     var sOutboxPath = $"{_userprofile.CurrentUser.userid.GetValueOrDefault().ToString()}/OUTBOX/";
-                    var _SenderUploadfile = _fTPTransferService.UploadFile(sourcepath, sOutboxPath, fileName);
+                    var _SenderUploadfile = _fTPTransferService.UploadFile(sourcepath, sOutboxPath, maxId.ToString() + "_" + fileName);
                     // Upload file into Sender OUTBOX: END
 
                     // Upload file into Receiver INBOX: Start
                     var rInboxPath = $"{cboUser.SelectedValue.ToString()}/INBOX/";
-                    var _ReceiverUploadfile = _fTPTransferService.UploadFile(sourcepath, rInboxPath, fileName);
+                    var _ReceiverUploadfile = _fTPTransferService.UploadFile(sourcepath, rInboxPath, maxId.ToString() + "_" + fileName);
                     // Upload file into Receiver INBOX: END
                     isUploadedFile = true;
                 }
@@ -174,9 +194,7 @@ namespace BMCFileMangement.forms
                 //Upload File into FTP 
                 if (isUploadedFile)
                 {
-                    CancellationToken cancellationToken = new CancellationToken();
-                    IHttpContextAccessor httpContextAccessor = null;
-
+                   
                     filetransferinfoEntity objFileInBox = new filetransferinfoEntity()
                     {
                         fromusername = _userprofile.CurrentUser.username,
@@ -192,7 +210,7 @@ namespace BMCFileMangement.forms
                         isopen = false,
                         opendate = null,
                         filename = fileName,//Path.GetFileName(desPath),
-                        fileversion = 1,
+                        fileversion = maxId,
                         fullpath = _ftpSettings.FtpAddress + cboUser.SelectedValue.ToString() + "/INBOX/",
                         priority = 1,
                         filejsondata = jsonFile,
