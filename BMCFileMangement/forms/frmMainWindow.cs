@@ -352,7 +352,15 @@ namespace BMCFileMangement.forms
 
         private void icnBtnChangePassword_Click(object sender, EventArgs e)
         {
-
+            ActivateButton(sender, RGBColors.color4);
+            OpenChildForm(new ChangePassword(
+                _config,
+                _loggerFactory,
+                _msgService,
+                _applog,
+                _userprofile,
+                _fileNotificationList,
+                _fTPTransferService));
         }
     }
 }
