@@ -158,7 +158,7 @@ namespace BMCFileMangement.forms.UserControls
                             .AddInlineImage(new Uri(heroImage))
                             .AddButton(new ToastButton()
                                         .SetContent("Open Folder")
-                                        .AddArgument("url", folderPath))
+                                        .AddArgument("url", objSingle.fromuserremark))
                             .AddAttributionText(objSingle.fullpath)
                             .SetToastScenario(ToastScenario.Default)
                             .Show(toast =>
