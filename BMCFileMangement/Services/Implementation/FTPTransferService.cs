@@ -114,6 +114,12 @@ namespace BMCFileMangement.Services.Implementation
             string remoteFileUrl = $"{_ftpURL}{remoteDirectory}{newFileName}";
             try
             {
+
+                if (FileExistsOnFtp(remoteDirectory, newFileName))
+                {
+                    remoteFileUrl = $"{_ftpURL}{remoteDirectory}{"2_" + newFileName}";
+                }
+
                 byte[] fileBytes = System.IO.File.ReadAllBytes(localFilePath);
 
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
@@ -242,6 +248,41 @@ namespace BMCFileMangement.Services.Implementation
             }
             return retValue;
         }
+
+
+
+        public bool FileExistsOnFtp(string remoteDirectory, string FileName)
+        {
+            FtpWebRequest reqFTP = null;
+            Stream ftpStream = null;
+            string retValue = string.Empty;
+            string _Password = _ftpSettings.Password;
+            string _UserName = _ftpSettings.UserName;
+            string _ftpURL = _ftpSettings.FtpAddress;
+            string remoteFileUrl = $"{_ftpURL}{remoteDirectory}{FileName}";
+            try
+            {
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteFileUrl);
+                request.Credentials = new NetworkCredential(_UserName, _Password);
+                request.Method = WebRequestMethods.Ftp.GetFileSize;
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                response.Close();
+                return true;
+            }
+            catch (WebException ex)
+            {
+                FtpWebResponse response = (FtpWebResponse)ex.Response;
+                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                {
+                    return false;
+                }
+                else
+                {
+                    throw; // Handle other exceptions if needed
+                }
+            }
+        }
+
 
 
         public SecurityCapsule GetSecurityCapsule(DateTime dt)
