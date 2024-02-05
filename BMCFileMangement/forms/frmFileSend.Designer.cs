@@ -33,6 +33,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cboPriority = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboUser = new System.Windows.Forms.ComboBox();
@@ -73,6 +75,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.cboPriority);
+            this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txtRemarks);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.cboUser);
@@ -90,18 +94,40 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Send File";
             // 
+            // cboPriority
+            // 
+            this.cboPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPriority.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboPriority.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cboPriority.FormattingEnabled = true;
+            this.cboPriority.Location = new System.Drawing.Point(102, 121);
+            this.cboPriority.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.cboPriority.Name = "cboPriority";
+            this.cboPriority.Size = new System.Drawing.Size(787, 29);
+            this.cboPriority.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(15, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 23);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Priority:";
+            // 
             // txtRemarks
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(102, 121);
+            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtRemarks.Location = new System.Drawing.Point(102, 156);
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(787, 168);
-            this.txtRemarks.TabIndex = 25;
+            this.txtRemarks.Size = new System.Drawing.Size(787, 104);
+            this.txtRemarks.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(15, 124);
+            this.label1.Location = new System.Drawing.Point(15, 159);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 24;
@@ -109,14 +135,18 @@
             // 
             // cboUser
             // 
+            this.cboUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboUser.FormattingEnabled = true;
             this.cboUser.Items.AddRange(new object[] {
             "Please Select User"});
             this.cboUser.Location = new System.Drawing.Point(102, 86);
             this.cboUser.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.cboUser.MaxDropDownItems = 50;
             this.cboUser.Name = "cboUser";
             this.cboUser.Size = new System.Drawing.Size(787, 29);
-            this.cboUser.TabIndex = 23;
+            this.cboUser.TabIndex = 2;
             // 
             // label4
             // 
@@ -125,7 +155,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 23);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Select User:";
+            this.label4.Text = "To User:";
             // 
             // label3
             // 
@@ -143,7 +173,7 @@
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
             this.txtFilePath.Size = new System.Drawing.Size(693, 30);
-            this.txtFilePath.TabIndex = 21;
+            this.txtFilePath.TabIndex = 1;
             // 
             // btnSendFile
             // 
@@ -152,10 +182,10 @@
             this.btnSendFile.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSendFile.ForeColor = System.Drawing.Color.White;
             this.btnSendFile.Image = ((System.Drawing.Image)(resources.GetObject("btnSendFile.Image")));
-            this.btnSendFile.Location = new System.Drawing.Point(710, 308);
+            this.btnSendFile.Location = new System.Drawing.Point(710, 277);
             this.btnSendFile.Name = "btnSendFile";
             this.btnSendFile.Size = new System.Drawing.Size(179, 36);
-            this.btnSendFile.TabIndex = 17;
+            this.btnSendFile.TabIndex = 5;
             this.btnSendFile.Text = "Send File";
             this.btnSendFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSendFile.UseVisualStyleBackColor = false;
@@ -210,5 +240,7 @@
         private Button btnBrowseFile;
         private Panel panel1;
         private Panel panel3;
+        private ComboBox cboPriority;
+        private Label label2;
     }
 }

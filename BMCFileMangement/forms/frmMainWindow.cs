@@ -1,4 +1,5 @@
 ﻿using BDO.Core.DataAccessObjects.CommonEntities;
+using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.Services.Interface;
 using FontAwesome.Sharp;
 using Microsoft.AspNetCore.Http;
@@ -69,7 +70,7 @@ namespace BMCFileMangement.forms
             this.Text = string.Empty;
             this.ControlBox = false;
             this.DoubleBuffered = true;
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            //this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             #endregion
 
             #region form Event Handle
@@ -184,6 +185,8 @@ namespace BMCFileMangement.forms
             {
                 notificationAndDataQuerybgWorker1.backgroundWorker.CancelAsync();
             }
+
+            this.Close();
         }
 
         #region Form Building : : Tamatama
@@ -361,6 +364,11 @@ namespace BMCFileMangement.forms
                 _userprofile,
                 _fileNotificationList,
                 _fTPTransferService));
+        }
+
+        private void icnBtnLogout_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

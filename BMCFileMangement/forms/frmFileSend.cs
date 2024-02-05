@@ -1,6 +1,7 @@
 ﻿using AppConfig.HelperClasses;
 using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.Models;
+using BDO.Core.DataAccessObjects.SecurityModels;
 using BDO.DataAccessObjects.ExtendedEntities;
 using BMCFileMangement.Services.DisServices;
 using BMCFileMangement.Services.Interface;
@@ -73,7 +74,9 @@ namespace BMCFileMangement.forms
             btnBrowseFile.Click += btnBrowseFile_Click;
             btnSendFile.Click += btnSendFile_Click;
             _LoadUser();
+            _loadPriority();
         }
+
 
         private void _LoadUser()
         {
@@ -86,24 +89,42 @@ namespace BMCFileMangement.forms
                     new BDO.Core.DataAccessObjects.SecurityModels.owin_userEntity()
                     {
                         PageSize = 10000,
-                        CurrentPage = 1
+                        CurrentPage = 1,
+                        username = _userprofile.CurrentUser.username
                     },
                     cancellationToken).Result;
 
                 if (_users != null && _users.Count > 0)
                 {
-                    cboUser.Items.Insert(0, "Please select user");
-                    cboUser.SelectedIndex = 0;
+                    gen_dropdownEntity us = new gen_dropdownEntity();
+                    us.strValue1 = "-99";
+                    us.Text = "Please select user";
+                    _users.Add(us);
+
                     cboUser.DataSource = _users;
                     cboUser.ValueMember = "strValue1";
                     cboUser.DisplayMember = "Text";
-                    
+                    cboUser.SelectedIndex = cboUser.Items.Count - 1;
+
                 }
             }
             catch (Exception ex)
             { throw ex; }
         }
 
+        private void _loadPriority()
+        {
+            List<gen_dropdownEntity> _priority = new List<gen_dropdownEntity>();
+            _priority.Add(new gen_dropdownEntity { Id = -99, Text = "Please select priority" });
+            _priority.Add(new gen_dropdownEntity { Id = 1, Text = "High" });
+            _priority.Add(new gen_dropdownEntity { Id = 2, Text = "Medium" });
+            _priority.Add(new gen_dropdownEntity { Id = 3, Text = "Low" });
+
+            cboPriority.DataSource = _priority;
+            cboPriority.ValueMember = "Id";
+            cboPriority.DisplayMember = "Text";
+            cboPriority.SelectedIndex = 0;
+        }
         private void btnBrowseFile_Click(object sender, EventArgs e)
         {
             try
@@ -142,6 +163,24 @@ namespace BMCFileMangement.forms
             CancellationToken cancellationToken = new CancellationToken();
             IHttpContextAccessor httpContextAccessor = null;
 
+            if (string.IsNullOrEmpty(txtFilePath.Text))
+            {
+                MessageBox.Show("Please select file");
+                return;
+            }
+
+            if (cboUser.SelectedValue == "-99")
+            {
+                MessageBox.Show("Please select user");
+                return;
+            }
+
+            if (cboPriority.SelectedValue.ToString() == "-99")
+            {
+                MessageBox.Show("Please select priority");
+                return;
+            }
+
             // Display a confirmation message box
             DialogResult result = MessageBox.Show("Are you sure you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -160,6 +199,9 @@ namespace BMCFileMangement.forms
                 string jsonFile = JsonConvert.SerializeObject(fileDetails);
 
                 bool isUploadedFile = false;
+
+                
+
                 try
                 {
 
@@ -192,6 +234,8 @@ namespace BMCFileMangement.forms
                     MessageBox.Show(ex.Message);
                     isUploadedFile = false;
                 }
+
+
                 //Upload File into FTP 
                 if (isUploadedFile)
                 {
@@ -213,7 +257,7 @@ namespace BMCFileMangement.forms
                         filename = fileName,//Path.GetFileName(desPath),
                         fileversion = maxId,
                         fullpath = _ftpSettings.FtpAddress + cboUser.SelectedValue.ToString() + "/INBOX/",
-                        priority = 1,
+                        priority = Convert.ToInt32(cboPriority.SelectedValue),
                         filejsondata = jsonFile,
                         status = 1,
                         expecteddate = dt

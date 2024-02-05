@@ -33,7 +33,6 @@ namespace BMCFileMangement.forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainWindow));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.icnBtnChangePassword = new FontAwesome.Sharp.IconButton();
             this.icnBtnViewOutBox = new FontAwesome.Sharp.IconButton();
@@ -46,6 +45,7 @@ namespace BMCFileMangement.forms
             this.lblUserName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panleTitleBar = new System.Windows.Forms.Panel();
+            this.icnBtnLogout = new FontAwesome.Sharp.IconButton();
             this.btnMaximizes = new FontAwesome.Sharp.IconPictureBox();
             this.btnMinimize = new FontAwesome.Sharp.IconPictureBox();
             this.lblChildFormTitle = new System.Windows.Forms.Label();
@@ -230,7 +230,6 @@ namespace BMCFileMangement.forms
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(3, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(43, 40);
@@ -264,6 +263,7 @@ namespace BMCFileMangement.forms
             // panleTitleBar
             // 
             this.panleTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
+            this.panleTitleBar.Controls.Add(this.icnBtnLogout);
             this.panleTitleBar.Controls.Add(this.btnMaximizes);
             this.panleTitleBar.Controls.Add(this.btnMinimize);
             this.panleTitleBar.Controls.Add(this.lblChildFormTitle);
@@ -274,6 +274,28 @@ namespace BMCFileMangement.forms
             this.panleTitleBar.Name = "panleTitleBar";
             this.panleTitleBar.Size = new System.Drawing.Size(1056, 47);
             this.panleTitleBar.TabIndex = 1;
+            // 
+            // icnBtnLogout
+            // 
+            this.icnBtnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.icnBtnLogout.FlatAppearance.BorderSize = 0;
+            this.icnBtnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icnBtnLogout.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.icnBtnLogout.ForeColor = System.Drawing.Color.Gainsboro;
+            this.icnBtnLogout.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
+            this.icnBtnLogout.IconColor = System.Drawing.Color.White;
+            this.icnBtnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icnBtnLogout.IconSize = 32;
+            this.icnBtnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnLogout.Location = new System.Drawing.Point(888, 9);
+            this.icnBtnLogout.Name = "icnBtnLogout";
+            this.icnBtnLogout.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.icnBtnLogout.Size = new System.Drawing.Size(56, 35);
+            this.icnBtnLogout.TabIndex = 7;
+            this.icnBtnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.icnBtnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.icnBtnLogout.UseVisualStyleBackColor = true;
+            this.icnBtnLogout.Click += new System.EventHandler(this.icnBtnLogout_Click);
             // 
             // btnMaximizes
             // 
@@ -338,7 +360,6 @@ namespace BMCFileMangement.forms
             this.btnClose.Size = new System.Drawing.Size(30, 30);
             this.btnClose.TabIndex = 7;
             this.btnClose.TabStop = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel2
             // 
@@ -387,6 +408,7 @@ namespace BMCFileMangement.forms
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Data View";
+            this.groupBox1.Visible = false;
             // 
             // frmMainWindow
             // 
@@ -396,7 +418,7 @@ namespace BMCFileMangement.forms
             this.Controls.Add(this.panleTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Name = "frmMainWindow";
-            this.Text = "File Management";
+            this.Text = "BMC File Management";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -442,5 +464,6 @@ namespace BMCFileMangement.forms
         private PictureBox pictureBox1;
         private FontAwesome.Sharp.IconButton icnBtnChangePassword;
         private PictureBox pictureBox2;
+        private FontAwesome.Sharp.IconButton icnBtnLogout;
     }
 }
