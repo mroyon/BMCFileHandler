@@ -22,7 +22,9 @@ namespace BMCFileMangement.Services.Implementation
         {
             if(_NotificaitonItems == null)
                 _NotificaitonItems = new List<filetransferinfoEntity>();
-            _NotificaitonItems.AddRange(item);
+
+            if(item != null && item.Count> 0)
+                _NotificaitonItems.AddRange(item);
         }
 
         public void DeleteCurrentNotificaitonItems(filetransferinfoEntity item)

@@ -11,6 +11,7 @@ using IDAC.Core.IDataAccessObjects.General;
 using BDO.Core.DataAccessObjects.Models;
 using BDO.Core.Base;
 using BDO.Core.DataAccessObjects.ExtendedEntities;
+using DAC.Core.CoreFactory;
 
 namespace DAC.Core.DataAccessObjects.General
 {
@@ -213,6 +214,33 @@ namespace DAC.Core.DataAccessObjects.General
         }
 
 
+        async Task<long> IfiletransferinfoDataAccessObjects.UpdateOpenDataNPopUpData(BDO.Core.DataAccessObjects.Models.filetransferinfoEntity filetransferinfo, System.Threading.CancellationToken cancellationToken)
+        {
+            long returnCode = -99;
+            const string SP = "filetransferinfo_Upd_OpenNPop";
+
+            using (DbCommand cmd = Database.GetStoredProcCommand(SP))
+            {
+                FillParameters(filetransferinfo, cmd, Database);
+                FillSequrityParameters(filetransferinfo.BaseSecurityParam, cmd, Database);
+                AddOutputParameter(cmd);
+                try
+                {
+                    IAsyncResult result = Database.BeginExecuteNonQuery(cmd, null, null);
+                    while (!result.IsCompleted)
+                    {
+                    }
+                    returnCode = Database.EndExecuteNonQuery(result);
+                    returnCode = (Int64)(cmd.Parameters["@RETURN_KEY"].Value);
+                }
+                catch (Exception ex)
+                {
+                    throw GetDataAccessException(ex, SourceOfException("IfiletransferinfoDataAccess.UpdateOpenDataNPopUpData"));
+                }
+                cmd.Dispose();
+            }
+            return returnCode;
+        }
 
 
     }

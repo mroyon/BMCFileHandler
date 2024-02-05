@@ -154,6 +154,7 @@ namespace BMCFileMangement.forms.UserControls
                     if (!objSingle.showedpopup.GetValueOrDefault(true))
                     {
                         var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Picture1.png");
+
                         new ToastContentBuilder()
                             .AddText(objSingle.filename)
                             .AddInlineImage(new Uri(heroImage))
@@ -170,6 +171,7 @@ namespace BMCFileMangement.forms.UserControls
                             {
                                 toast.ExpirationTime = DateTime.Now.AddSeconds(15);
                             });
+
                         await Task.Delay(10000);
 
                         UpdatePopData(objSingle);
@@ -187,6 +189,7 @@ namespace BMCFileMangement.forms.UserControls
                     _fileNotificationList.DeleteCurrentNotificaitonItems(objSingle);
                     loadDataForNotification();
                 }
+
                 itemsToRemove = new List<filetransferinfoEntity>();
             }
         }
@@ -219,21 +222,27 @@ namespace BMCFileMangement.forms.UserControls
                 dtGrdNotification.Columns.Add("sentdate", "Sent Date");
                 dtGrdNotification.Columns.Add("filename", "File Name");
                 dtGrdNotification.Columns.Add("priority", "Priority");
+                dtGrdNotification.Columns.Add("status", "Status");
                 dtGrdNotification.Columns.Add("fromuserremark", "Remarks");
 
                 dtGrdNotification.Columns["fromusername"].DataPropertyName = "fromusername";
                 dtGrdNotification.Columns["sentdate"].DataPropertyName = "sentdate";
                 dtGrdNotification.Columns["filename"].DataPropertyName = "filename";
                 dtGrdNotification.Columns["priority"].DataPropertyName = "priority";
+                dtGrdNotification.Columns["status"].DataPropertyName = "status";
                 dtGrdNotification.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
 
-                for (int i = 0; i < dtGrdNotification.Columns.Count - 1; i++)
-                {
-                    dtGrdNotification.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-                dtGrdNotification.Columns[dtGrdNotification.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dtGrdNotification.AutoResizeColumns();
 
-                dtGrdNotification.DataSource = _fileNotificationList.CurrentListofNotificaitons?.ToList();
+                // Configure the details DataGridView so that its columns automatically
+                // adjust their widths when the data changes.
+                dtGrdNotification.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                if (_fileNotificationList.CurrentListofNotificaitons != null && _fileNotificationList.CurrentListofNotificaitons.Count > 0)
+                    dtGrdNotification.DataSource = _fileNotificationList.CurrentListofNotificaitons?.ToList();
+                else
+                    dtGrdNotification.DataSource = null;
+
             }));
         }
 

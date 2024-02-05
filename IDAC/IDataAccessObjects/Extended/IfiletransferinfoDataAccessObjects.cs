@@ -19,5 +19,6 @@ namespace IDAC.Core.IDataAccessObjects.General
         Task<long> UpdateOpenData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
 
 
+        Task<long> UpdateOpenDataNPopUpData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
     }
 }
