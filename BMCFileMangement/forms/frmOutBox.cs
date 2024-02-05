@@ -253,6 +253,32 @@ namespace BMCFileMangement.forms
             });
         }
 
+        private void dtGrdInBox_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    DataGridViewRow row = dtGrdInBox.Rows[e.RowIndex];
+                    bool isOpen = Convert.ToBoolean(row.Cells["isopen"].Value);
+                    bool isShowedpopup = Convert.ToBoolean(row.Cells["showedpopup"].Value);
+                    bool isReceived = Convert.ToBoolean(row.Cells["isreceived"].Value);
 
+                    if (isOpen)
+                    {
+                        row.Cells["isopen"].Style.BackColor = Color.LightBlue;
+                    }
+                    else if (isShowedpopup && !isOpen)
+                    {
+                        row.Cells["showedpopup"].Style.BackColor = Color.Yellow;
+                    }
+                    else if (isReceived && !isShowedpopup && !isOpen)
+                    {
+                        row.Cells["isreceived"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+            catch { }
+        }
     }
 }

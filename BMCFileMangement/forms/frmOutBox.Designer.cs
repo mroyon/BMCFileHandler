@@ -35,6 +35,7 @@
             this.btnFirstPage = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClearData = new System.Windows.Forms.Button();
             this.txtContent = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSearchData = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.btnBrowseFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
-            this.btnClearData = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -135,6 +135,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "View Out Box Files";
             // 
+            // btnClearData
+            // 
+            this.btnClearData.Location = new System.Drawing.Point(656, 22);
+            this.btnClearData.Name = "btnClearData";
+            this.btnClearData.Size = new System.Drawing.Size(117, 23);
+            this.btnClearData.TabIndex = 7;
+            this.btnClearData.Text = "Clear";
+            this.btnClearData.UseVisualStyleBackColor = true;
+            // 
             // txtContent
             // 
             this.txtContent.Location = new System.Drawing.Point(140, 22);
@@ -176,6 +185,7 @@
             this.dtGrdInBox.Size = new System.Drawing.Size(1046, 438);
             this.dtGrdInBox.TabIndex = 0;
             this.dtGrdInBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdInBox_CellClick);
+            this.dtGrdInBox.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtGrdInBox_CellFormatting);
             // 
             // label1
             // 
@@ -229,15 +239,6 @@
             this.txtFilePath.ReadOnly = true;
             this.txtFilePath.Size = new System.Drawing.Size(529, 28);
             this.txtFilePath.TabIndex = 13;
-            // 
-            // btnClearData
-            // 
-            this.btnClearData.Location = new System.Drawing.Point(656, 22);
-            this.btnClearData.Name = "btnClearData";
-            this.btnClearData.Size = new System.Drawing.Size(117, 23);
-            this.btnClearData.TabIndex = 7;
-            this.btnClearData.Text = "Clear";
-            this.btnClearData.UseVisualStyleBackColor = true;
             // 
             // frmOutBox
             // 
