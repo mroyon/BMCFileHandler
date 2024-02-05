@@ -31,5 +31,9 @@ namespace IBFO.Core.IBusinessFacadeObjects.General
         [OperationContract]
         Task<long> UpdateOpenData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
 
+
+        [OperationContract]
+        Task<long> UpdateOpenDataNPopUpData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
     }
 }

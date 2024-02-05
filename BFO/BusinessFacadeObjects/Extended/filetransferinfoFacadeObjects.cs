@@ -84,6 +84,19 @@ namespace BFO.Core.BusinessFacadeObjects.General
             }
         }
 
+        async Task<long> IfiletransferinfoFacadeObjects.UpdateOpenDataNPopUpData(BDO.Core.DataAccessObjects.Models.filetransferinfoEntity filetransferinfo, System.Threading.CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await DataAccessFactory.CreatefiletransferinfoDataAccess().UpdateOpenDataNPopUpData(filetransferinfo, cancellationToken);
+            }
+
+            catch (Exception ex)
+            {
+                throw GetFacadeException(ex, SourceOfException("IfiletransferinfoFacade.UpdateOpenDataNPopUpData"));
+            }
+        }
+
 
     }
 }

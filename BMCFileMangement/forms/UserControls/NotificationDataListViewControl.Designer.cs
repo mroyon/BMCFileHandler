@@ -35,18 +35,16 @@
             // 
             // dtGrdNotification
             // 
-            this.dtGrdNotification.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtGrdNotification.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dtGrdNotification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGrdNotification.Location = new System.Drawing.Point(2, 2);
+            this.dtGrdNotification.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtGrdNotification.Location = new System.Drawing.Point(0, 0);
             this.dtGrdNotification.Margin = new System.Windows.Forms.Padding(2);
             this.dtGrdNotification.Name = "dtGrdNotification";
             this.dtGrdNotification.ReadOnly = true;
             this.dtGrdNotification.RowHeadersWidth = 62;
             this.dtGrdNotification.RowTemplate.Height = 33;
-            this.dtGrdNotification.Size = new System.Drawing.Size(1047, 160);
+            this.dtGrdNotification.Size = new System.Drawing.Size(1056, 160);
             this.dtGrdNotification.TabIndex = 1;
             this.dtGrdNotification.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdNotification_CellClick);
             // 
@@ -67,7 +65,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.dtGrdNotification);
-            //this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "NotificationDataListViewControl";
             this.Size = new System.Drawing.Size(1056, 160);

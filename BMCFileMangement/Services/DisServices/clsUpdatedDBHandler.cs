@@ -188,7 +188,9 @@ namespace BMCFileMangement.Services.DisServices
                         obj.showeddate = dt;
                         obj.opendate = dt;
                         obj.isopen = true;
-                        BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null).UpdatePopUpData(obj, cancellationToken);
+                        obj.status = 2;
+
+                        BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null).UpdateOpenDataNPopUpData(obj, cancellationToken);
 
                     }
                     catch (WebException webEx)
