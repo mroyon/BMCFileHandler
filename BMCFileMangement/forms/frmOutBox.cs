@@ -32,7 +32,7 @@ namespace BMCFileMangement.forms
         private readonly IFTPTransferService _fTPTransferService;
 
 
-        private int PageSize = 10;
+        private int _PageSize = 500;
         private int CurrentPage = 1;
         private int TotalPage = 0;
 
@@ -65,27 +65,27 @@ namespace BMCFileMangement.forms
         {
             btnSearchData.Click += BtnSearchData_Click;
             btnClearData.Click += BtnClearData_Click;
-            BindDataToGrid(1, 10);
+            BindDataToGrid(1);
         }
 
         private void BtnClearData_Click(object? sender, EventArgs e)
         {
             txtContent.Text = String.Empty;
-            BindDataToGrid(1, 10);
+            BindDataToGrid(1);
         }
 
         private void BtnSearchData_Click(object? sender, EventArgs e)
         {
 
-            BindDataToGrid(1, 10);
+            BindDataToGrid(1);
         }
 
 
 
         #region Paging Method & Style 02
-        private void BindDataToGrid(int currentpage, int pageSize)
+        private void BindDataToGrid(int currentpage)
         {
-            List<filetransferinfoEntity> _files_outbox = _loadUserDataGrid(currentpage, pageSize);
+            List<filetransferinfoEntity> _files_outbox = _loadUserDataGrid(currentpage);
             //dtGrdInBox.DataSource = _users;
             int Srno = 0;
             foreach (var _file_outbox in _files_outbox)
@@ -107,7 +107,7 @@ namespace BMCFileMangement.forms
             }
         }
 
-        private List<filetransferinfoEntity> _loadUserDataGrid(int currentpage, int pageSize)
+        private List<filetransferinfoEntity> _loadUserDataGrid(int currentpage)
         {
             List<filetransferinfoEntity> _files_outbox = new List<filetransferinfoEntity>();
             try
@@ -118,7 +118,7 @@ namespace BMCFileMangement.forms
                 CancellationToken cancellationToken = new CancellationToken();
 
                 filetransferinfoEntity objEntity = new filetransferinfoEntity();
-                objEntity.PageSize = pageSize;
+                objEntity.PageSize = _PageSize;
                 objEntity.CurrentPage = currentpage;
                 objEntity.SortExpression = "ReceivedDate desc";
                 objEntity.fromuserid = _userprofile.CurrentUser.userid;
@@ -133,8 +133,8 @@ namespace BMCFileMangement.forms
                 if (_files_outbox.Count > 0)
                 {
                     int rowCount = (int)_files_outbox.FirstOrDefault().RETURN_KEY;
-                    this.TotalPage = rowCount / PageSize;
-                    if (rowCount % PageSize > 0) // if remainder is more than  zero 
+                    this.TotalPage = rowCount / _PageSize;
+                    if (rowCount % _PageSize > 0) // if remainder is more than  zero 
                     {
                         this.TotalPage += 1;
                     }
@@ -149,13 +149,13 @@ namespace BMCFileMangement.forms
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
             this.CurrentPage = 1;
-            BindDataToGrid(this.CurrentPage, this.PageSize);
+            BindDataToGrid(this.CurrentPage);
         }
 
         private void btnLastPage_Click(object sender, EventArgs e)
         {
             this.CurrentPage = this.TotalPage;
-            BindDataToGrid(this.CurrentPage, this.PageSize);
+            BindDataToGrid(this.CurrentPage);
         }
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
@@ -163,7 +163,7 @@ namespace BMCFileMangement.forms
             if (this.CurrentPage > 1)
             {
                 this.CurrentPage--;
-                BindDataToGrid(this.CurrentPage, this.PageSize);
+                BindDataToGrid(this.CurrentPage);
             }
         }
 
@@ -172,7 +172,7 @@ namespace BMCFileMangement.forms
             if (this.CurrentPage < this.TotalPage)
             {
                 this.CurrentPage++;
-                BindDataToGrid(this.CurrentPage, this.PageSize);
+                BindDataToGrid(this.CurrentPage);
             }
         }
         #endregion Paging Method & Style 02
