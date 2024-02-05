@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnPreviousPage = new System.Windows.Forms.Button();
@@ -40,6 +45,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnSearchInboxData = new System.Windows.Forms.Button();
             this.dtGrdInBox = new System.Windows.Forms.DataGridView();
+            this.filetransid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fromusername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filename = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sentdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isreceived = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiveddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.showedpopup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.showeddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isopen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opendate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fromuserremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.cboUser = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -113,7 +131,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLastPage.Location = new System.Drawing.Point(567, 15);
+            this.btnLastPage.Location = new System.Drawing.Point(569, 15);
             this.btnLastPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(46, 28);
@@ -179,14 +197,175 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtGrdInBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtGrdInBox.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGrdInBox.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtGrdInBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGrdInBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.filetransid,
+            this.fromusername,
+            this.filename,
+            this.priority,
+            this.sentdate,
+            this.isreceived,
+            this.receiveddate,
+            this.showedpopup,
+            this.showeddate,
+            this.isopen,
+            this.opendate,
+            this.status,
+            this.fromuserremark});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtGrdInBox.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dtGrdInBox.EnableHeadersVisualStyles = false;
             this.dtGrdInBox.Location = new System.Drawing.Point(0, 64);
             this.dtGrdInBox.Name = "dtGrdInBox";
-            this.dtGrdInBox.RowTemplate.Height = 25;
+            this.dtGrdInBox.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGrdInBox.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            this.dtGrdInBox.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dtGrdInBox.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dtGrdInBox.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
+            this.dtGrdInBox.RowTemplate.Height = 35;
+            this.dtGrdInBox.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dtGrdInBox.Size = new System.Drawing.Size(1046, 438);
             this.dtGrdInBox.TabIndex = 0;
             this.dtGrdInBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdInBox_CellClick);
+            this.dtGrdInBox.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtGrdInBox_CellFormatting);
+            // 
+            // filetransid
+            // 
+            this.filetransid.DataPropertyName = "filetransid";
+            this.filetransid.HeaderText = "filetransid";
+            this.filetransid.Name = "filetransid";
+            this.filetransid.ReadOnly = true;
+            this.filetransid.Visible = false;
+            // 
+            // fromusername
+            // 
+            this.fromusername.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fromusername.DataPropertyName = "fromusername";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.fromusername.DefaultCellStyle = dataGridViewCellStyle2;
+            this.fromusername.HeaderText = "From User";
+            this.fromusername.Name = "fromusername";
+            this.fromusername.ReadOnly = true;
+            // 
+            // filename
+            // 
+            this.filename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.filename.DataPropertyName = "filename";
+            this.filename.HeaderText = "File Name";
+            this.filename.Name = "filename";
+            this.filename.ReadOnly = true;
+            // 
+            // priority
+            // 
+            this.priority.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.priority.DataPropertyName = "priority";
+            this.priority.HeaderText = "Priority";
+            this.priority.Name = "priority";
+            this.priority.ReadOnly = true;
+            this.priority.Width = 85;
+            // 
+            // sentdate
+            // 
+            this.sentdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.sentdate.DataPropertyName = "sentdate";
+            this.sentdate.HeaderText = "Sent Date";
+            this.sentdate.Name = "sentdate";
+            this.sentdate.ReadOnly = true;
+            this.sentdate.Width = 90;
+            // 
+            // isreceived
+            // 
+            this.isreceived.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isreceived.DataPropertyName = "isreceived";
+            this.isreceived.HeaderText = "Is Received?";
+            this.isreceived.Name = "isreceived";
+            this.isreceived.ReadOnly = true;
+            this.isreceived.Width = 106;
+            // 
+            // receiveddate
+            // 
+            this.receiveddate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.receiveddate.DataPropertyName = "receiveddate";
+            this.receiveddate.HeaderText = "Received Date";
+            this.receiveddate.Name = "receiveddate";
+            this.receiveddate.ReadOnly = true;
+            this.receiveddate.Width = 119;
+            // 
+            // showedpopup
+            // 
+            this.showedpopup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.showedpopup.DataPropertyName = "showedpopup";
+            this.showedpopup.HeaderText = "Showed Popup";
+            this.showedpopup.Name = "showedpopup";
+            this.showedpopup.ReadOnly = true;
+            this.showedpopup.Width = 124;
+            // 
+            // showeddate
+            // 
+            this.showeddate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.showeddate.DataPropertyName = "showeddate";
+            this.showeddate.HeaderText = "Popup Date";
+            this.showeddate.Name = "showeddate";
+            this.showeddate.ReadOnly = true;
+            this.showeddate.Width = 104;
+            // 
+            // isopen
+            // 
+            this.isopen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isopen.DataPropertyName = "isopen";
+            this.isopen.HeaderText = "Is Open?";
+            this.isopen.Name = "isopen";
+            this.isopen.ReadOnly = true;
+            this.isopen.Width = 83;
+            // 
+            // opendate
+            // 
+            this.opendate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.opendate.DataPropertyName = "opendate";
+            this.opendate.HeaderText = "Open Date";
+            this.opendate.Name = "opendate";
+            this.opendate.ReadOnly = true;
+            this.opendate.Width = 97;
+            // 
+            // status
+            // 
+            this.status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Width = 74;
+            // 
+            // fromuserremark
+            // 
+            this.fromuserremark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.fromuserremark.DataPropertyName = "fromuserremark";
+            this.fromuserremark.HeaderText = "Remarks";
+            this.fromuserremark.Name = "fromuserremark";
+            this.fromuserremark.ReadOnly = true;
+            this.fromuserremark.Width = 92;
             // 
             // label1
             // 
@@ -280,5 +459,18 @@
         private Label label6;
         private TextBox txtContent;
         private Button btnClearSearchInboxData;
+        private DataGridViewTextBoxColumn filetransid;
+        private DataGridViewTextBoxColumn fromusername;
+        private DataGridViewTextBoxColumn filename;
+        private DataGridViewTextBoxColumn priority;
+        private DataGridViewTextBoxColumn sentdate;
+        private DataGridViewTextBoxColumn isreceived;
+        private DataGridViewTextBoxColumn receiveddate;
+        private DataGridViewTextBoxColumn showedpopup;
+        private DataGridViewTextBoxColumn showeddate;
+        private DataGridViewTextBoxColumn isopen;
+        private DataGridViewTextBoxColumn opendate;
+        private DataGridViewTextBoxColumn status;
+        private DataGridViewTextBoxColumn fromuserremark;
     }
 }

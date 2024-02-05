@@ -68,40 +68,44 @@ namespace BMCFileMangement.forms
         {
             btnSearchInboxData.Click += BtnReloadInboxData_Click;
             btnClearSearchInboxData.Click += BtnClearSearchInboxData_Click;
-            dtGrdInBox.AutoGenerateColumns = false;
+            //dtGrdInBox.ColumnHeadersDefaultCellStyle.BackColor = Color.Blue;
+            dtGrdInBox.EnableHeadersVisualStyles = false;
 
 
-            dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
-            dtGrdInBox.Columns["filetransid"].Visible = false;
+            //dtGrdInBox.AutoGenerateColumns = false;
+            //dtGrdInBox.RowTemplate.Height = 100;
 
-            dtGrdInBox.Columns.Add("fromusername", "From User");
-            dtGrdInBox.Columns.Add("filename", "File Name");
-            dtGrdInBox.Columns.Add("priority", "Priority");
+            //dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
+            //dtGrdInBox.Columns["filetransid"].Visible = false;
 
-            dtGrdInBox.Columns.Add("SentDate", "Sent Date");
-            dtGrdInBox.Columns.Add("ReceivedDate", "Received Date");
-            dtGrdInBox.Columns.Add("OpenDate", "Open Date");
-            dtGrdInBox.Columns.Add("Status", "Status");
-            dtGrdInBox.Columns.Add("fromuserremark", "Remarks");
+            //dtGrdInBox.Columns.Add("fromusername", "From User");
+            //dtGrdInBox.Columns.Add("filename", "File Name");
+            //dtGrdInBox.Columns.Add("priority", "Priority");
+
+            //dtGrdInBox.Columns.Add("SentDate", "Sent Date");
+            //dtGrdInBox.Columns.Add("ReceivedDate", "Received Date");
+            //dtGrdInBox.Columns.Add("OpenDate", "Open Date");
+            //dtGrdInBox.Columns.Add("Status", "Status");
+            //dtGrdInBox.Columns.Add("fromuserremark", "Remarks");
 
 
-            dtGrdInBox.Columns["filetransid"].DataPropertyName = "filetransid";
+            //dtGrdInBox.Columns["filetransid"].DataPropertyName = "filetransid";
 
-            dtGrdInBox.Columns["fromusername"].DataPropertyName = "fromusername";
-            dtGrdInBox.Columns["filename"].DataPropertyName = "filename";
-            dtGrdInBox.Columns["priority"].DataPropertyName = "priority";
+            //dtGrdInBox.Columns["fromusername"].DataPropertyName = "fromusername";
+            //dtGrdInBox.Columns["filename"].DataPropertyName = "filename";
+            //dtGrdInBox.Columns["priority"].DataPropertyName = "priority";
 
-            dtGrdInBox.Columns["SentDate"].DataPropertyName = "SentDate";
-            dtGrdInBox.Columns["ReceivedDate"].DataPropertyName = "ReceivedDate";
-            dtGrdInBox.Columns["OpenDate"].DataPropertyName = "OpenDate";
-            dtGrdInBox.Columns["Status"].DataPropertyName = "Status";
-            dtGrdInBox.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
+            //dtGrdInBox.Columns["SentDate"].DataPropertyName = "SentDate";
+            //dtGrdInBox.Columns["ReceivedDate"].DataPropertyName = "ReceivedDate";
+            //dtGrdInBox.Columns["OpenDate"].DataPropertyName = "OpenDate";
+            //dtGrdInBox.Columns["Status"].DataPropertyName = "Status";
+            //dtGrdInBox.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
 
-            dtGrdInBox.AutoResizeColumns();
+            //dtGrdInBox.AutoResizeColumns();
 
-            // Configure the details DataGridView so that its columns automatically
-            // adjust their widths when the data changes.
-            dtGrdInBox.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //// Configure the details DataGridView so that its columns automatically
+            //// adjust their widths when the data changes.
+            //dtGrdInBox.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             BindDataToGrid(1, 10);
         }
@@ -134,19 +138,23 @@ namespace BMCFileMangement.forms
                     _file_inbox.priority,
                     
                     _file_inbox.sentdate,
+                    _file_inbox.isreceived,
                     _file_inbox.receiveddate,
+                    _file_inbox.showedpopup,
+                    _file_inbox.showeddate,
+                    _file_inbox.isopen,
                     _file_inbox.opendate,
                     _file_inbox.status,
                     //_file_inbox.showedpopup,
                     _file_inbox.fromuserremark);
 
-                    for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
-                    {
-                        dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    }
-                    dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    //for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
+                    //{
+                    //    dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    //}
+                    //dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    //dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    //dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             if (_files_inbox.Count == 0)
             {
@@ -280,6 +288,32 @@ namespace BMCFileMangement.forms
             //MessageBox.Show($"Downloading file: {fileName}");
         }
 
+        private void dtGrdInBox_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    DataGridViewRow row = dtGrdInBox.Rows[e.RowIndex];
+                    bool isOpen = Convert.ToBoolean(row.Cells["isopen"].Value);
+                    bool isShowedpopup = Convert.ToBoolean(row.Cells["showedpopup"].Value);
+                    bool isReceived = Convert.ToBoolean(row.Cells["isreceived"].Value);
 
+                    if (isOpen)
+                    {
+                        row.Cells["isopen"].Style.BackColor = Color.LightBlue;
+                    }
+                    else if (isShowedpopup && !isOpen)
+                    {
+                        row.Cells["showedpopup"].Style.BackColor = Color.Yellow;
+                    }
+                    else if (isReceived && !isShowedpopup && !isOpen)
+                    {
+                        row.Cells["isreceived"].Style.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+            catch { }
+        }
     }
 }
