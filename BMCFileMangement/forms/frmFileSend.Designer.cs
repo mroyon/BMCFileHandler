@@ -114,6 +114,7 @@
             this.label2.Size = new System.Drawing.Size(81, 23);
             this.label2.TabIndex = 26;
             this.label2.Text = "Priority:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtRemarks
             // 
@@ -132,6 +133,7 @@
             this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 24;
             this.label1.Text = "Remark";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cboUser
             // 
@@ -156,6 +158,7 @@
             this.label4.Size = new System.Drawing.Size(81, 23);
             this.label4.TabIndex = 22;
             this.label4.Text = "To User:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -165,6 +168,7 @@
             this.label3.Size = new System.Drawing.Size(81, 30);
             this.label3.TabIndex = 20;
             this.label3.Text = "Select File: ";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtFilePath
             // 
