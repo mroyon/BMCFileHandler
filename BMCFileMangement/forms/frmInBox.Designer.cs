@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnPreviousPage = new System.Windows.Forms.Button();
@@ -192,7 +197,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtGrdInBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtGrdInBox.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGrdInBox.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtGrdInBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGrdInBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.filetransid,
@@ -208,10 +220,31 @@
             this.opendate,
             this.status,
             this.fromuserremark});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtGrdInBox.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtGrdInBox.Location = new System.Drawing.Point(0, 64);
             this.dtGrdInBox.Name = "dtGrdInBox";
             this.dtGrdInBox.ReadOnly = true;
-            this.dtGrdInBox.RowTemplate.Height = 25;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGrdInBox.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            this.dtGrdInBox.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dtGrdInBox.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dtGrdInBox.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
+            this.dtGrdInBox.RowTemplate.Height = 35;
+            this.dtGrdInBox.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dtGrdInBox.Size = new System.Drawing.Size(1046, 438);
             this.dtGrdInBox.TabIndex = 0;
             this.dtGrdInBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdInBox_CellClick);
@@ -229,6 +262,8 @@
             // 
             this.fromusername.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.fromusername.DataPropertyName = "fromusername";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.fromusername.DefaultCellStyle = dataGridViewCellStyle2;
             this.fromusername.HeaderText = "From User";
             this.fromusername.Name = "fromusername";
             this.fromusername.ReadOnly = true;
@@ -248,7 +283,7 @@
             this.priority.HeaderText = "Priority";
             this.priority.Name = "priority";
             this.priority.ReadOnly = true;
-            this.priority.Width = 70;
+            this.priority.Width = 85;
             // 
             // sentdate
             // 
@@ -257,7 +292,7 @@
             this.sentdate.HeaderText = "Sent Date";
             this.sentdate.Name = "sentdate";
             this.sentdate.ReadOnly = true;
-            this.sentdate.Width = 76;
+            this.sentdate.Width = 90;
             // 
             // isreceived
             // 
@@ -266,7 +301,7 @@
             this.isreceived.HeaderText = "Is Received?";
             this.isreceived.Name = "isreceived";
             this.isreceived.ReadOnly = true;
-            this.isreceived.Width = 88;
+            this.isreceived.Width = 106;
             // 
             // receiveddate
             // 
@@ -275,7 +310,7 @@
             this.receiveddate.HeaderText = "Received Date";
             this.receiveddate.Name = "receiveddate";
             this.receiveddate.ReadOnly = true;
-            this.receiveddate.Width = 97;
+            this.receiveddate.Width = 119;
             // 
             // showedpopup
             // 
@@ -284,7 +319,7 @@
             this.showedpopup.HeaderText = "Showed Popup";
             this.showedpopup.Name = "showedpopup";
             this.showedpopup.ReadOnly = true;
-            this.showedpopup.Width = 103;
+            this.showedpopup.Width = 124;
             // 
             // showeddate
             // 
@@ -293,7 +328,7 @@
             this.showeddate.HeaderText = "Popup Date";
             this.showeddate.Name = "showeddate";
             this.showeddate.ReadOnly = true;
-            this.showeddate.Width = 87;
+            this.showeddate.Width = 104;
             // 
             // isopen
             // 
@@ -302,7 +337,7 @@
             this.isopen.HeaderText = "Is Open?";
             this.isopen.Name = "isopen";
             this.isopen.ReadOnly = true;
-            this.isopen.Width = 71;
+            this.isopen.Width = 83;
             // 
             // opendate
             // 
@@ -311,7 +346,7 @@
             this.opendate.HeaderText = "Open Date";
             this.opendate.Name = "opendate";
             this.opendate.ReadOnly = true;
-            this.opendate.Width = 81;
+            this.opendate.Width = 97;
             // 
             // status
             // 
@@ -320,15 +355,16 @@
             this.status.HeaderText = "Status";
             this.status.Name = "status";
             this.status.ReadOnly = true;
-            this.status.Width = 64;
+            this.status.Width = 74;
             // 
             // fromuserremark
             // 
-            this.fromuserremark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fromuserremark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.fromuserremark.DataPropertyName = "fromuserremark";
             this.fromuserremark.HeaderText = "Remarks";
             this.fromuserremark.Name = "fromuserremark";
             this.fromuserremark.ReadOnly = true;
+            this.fromuserremark.Width = 92;
             // 
             // label1
             // 

@@ -68,8 +68,12 @@ namespace BMCFileMangement.forms
         {
             btnSearchInboxData.Click += BtnReloadInboxData_Click;
             btnClearSearchInboxData.Click += BtnClearSearchInboxData_Click;
-            dtGrdInBox.AutoGenerateColumns = false;
+            //dtGrdInBox.ColumnHeadersDefaultCellStyle.BackColor = Color.Blue;
+            dtGrdInBox.EnableHeadersVisualStyles = false;
 
+
+            //dtGrdInBox.AutoGenerateColumns = false;
+            //dtGrdInBox.RowTemplate.Height = 100;
 
             //dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
             //dtGrdInBox.Columns["filetransid"].Visible = false;
@@ -144,13 +148,13 @@ namespace BMCFileMangement.forms
                     //_file_inbox.showedpopup,
                     _file_inbox.fromuserremark);
 
-                    for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
-                    {
-                        dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    }
-                    dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    //for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
+                    //{
+                    //    dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    //}
+                    //dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    //dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    //dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             if (_files_inbox.Count == 0)
             {

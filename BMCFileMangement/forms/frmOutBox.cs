@@ -66,40 +66,40 @@ namespace BMCFileMangement.forms
             btnSearchData.Click += BtnSearchData_Click;
             btnClearData.Click += BtnClearData_Click;
 
-            dtGrdInBox.AutoGenerateColumns = false;
+            //dtGrdInBox.AutoGenerateColumns = false;
 
-            dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
-            dtGrdInBox.Columns["filetransid"].Visible = false;
+            //dtGrdInBox.Columns.Add("filetransid", "File Transfer ID");
+            //dtGrdInBox.Columns["filetransid"].Visible = false;
 
-            dtGrdInBox.Columns.Add("fromusername", "From User");
-            dtGrdInBox.Columns.Add("filename", "File Name");
-            dtGrdInBox.Columns.Add("priority", "Priority");
+            //dtGrdInBox.Columns.Add("fromusername", "From User");
+            //dtGrdInBox.Columns.Add("filename", "File Name");
+            //dtGrdInBox.Columns.Add("priority", "Priority");
 
-            dtGrdInBox.Columns.Add("SentDate", "Sent Date");
-            dtGrdInBox.Columns.Add("ReceivedDate", "Received Date");
-            dtGrdInBox.Columns.Add("OpenDate", "Open Date");
-            dtGrdInBox.Columns.Add("Status", "Status");
-            dtGrdInBox.Columns.Add("fromuserremark", "Remarks");
+            //dtGrdInBox.Columns.Add("SentDate", "Sent Date");
+            //dtGrdInBox.Columns.Add("ReceivedDate", "Received Date");
+            //dtGrdInBox.Columns.Add("OpenDate", "Open Date");
+            //dtGrdInBox.Columns.Add("Status", "Status");
+            //dtGrdInBox.Columns.Add("fromuserremark", "Remarks");
 
 
 
-            dtGrdInBox.Columns["filetransid"].DataPropertyName = "filetransid";
+            //dtGrdInBox.Columns["filetransid"].DataPropertyName = "filetransid";
 
-            dtGrdInBox.Columns["fromusername"].DataPropertyName = "fromusername";
-            dtGrdInBox.Columns["filename"].DataPropertyName = "filename";
-            dtGrdInBox.Columns["priority"].DataPropertyName = "priority";
+            //dtGrdInBox.Columns["fromusername"].DataPropertyName = "fromusername";
+            //dtGrdInBox.Columns["filename"].DataPropertyName = "filename";
+            //dtGrdInBox.Columns["priority"].DataPropertyName = "priority";
 
-            dtGrdInBox.Columns["SentDate"].DataPropertyName = "SentDate";
-            dtGrdInBox.Columns["ReceivedDate"].DataPropertyName = "ReceivedDate";
-            dtGrdInBox.Columns["OpenDate"].DataPropertyName = "OpenDate";
-            dtGrdInBox.Columns["Status"].DataPropertyName = "Status";
-            dtGrdInBox.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
+            //dtGrdInBox.Columns["SentDate"].DataPropertyName = "SentDate";
+            //dtGrdInBox.Columns["ReceivedDate"].DataPropertyName = "ReceivedDate";
+            //dtGrdInBox.Columns["OpenDate"].DataPropertyName = "OpenDate";
+            //dtGrdInBox.Columns["Status"].DataPropertyName = "Status";
+            //dtGrdInBox.Columns["fromuserremark"].DataPropertyName = "fromuserremark";
 
-            dtGrdInBox.AutoResizeColumns();
+            //dtGrdInBox.AutoResizeColumns();
 
-            // Configure the details DataGridView so that its columns automatically
-            // adjust their widths when the data changes.
-            dtGrdInBox.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //// Configure the details DataGridView so that its columns automatically
+            //// adjust their widths when the data changes.
+            //dtGrdInBox.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             BindDataToGrid(1, 10);
         }
@@ -127,25 +127,40 @@ namespace BMCFileMangement.forms
             foreach (var _file_outbox in _files_outbox)
             {
                 dtGrdInBox.Rows.Add(
-                    _file_outbox.filetransid,
-                    _file_outbox.tousername,
-                    //_file_outbox.sentdate,
-                    _file_outbox.filename,
-                    _file_outbox.priority,
-                    _file_outbox.sentdate,
-                    _file_outbox.receiveddate,
-                    _file_outbox.opendate,
-                    _file_outbox.status,
-                    //_file_outbox.showedpopup,
-                    _file_outbox.fromuserremark);
+                   _file_outbox.filetransid,
+                   _file_outbox.tousername,
+                   _file_outbox.filename,
+                   _file_outbox.priority,
+                   _file_outbox.sentdate,
+                   _file_outbox.isreceived,
+                   _file_outbox.receiveddate,
+                   _file_outbox.showedpopup,
+                   _file_outbox.showeddate,
+                   _file_outbox.isopen,
+                   _file_outbox.opendate,
+                   _file_outbox.status,
+                   _file_outbox.fromuserremark);
 
-                for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
-                {
-                    dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-                dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                //dtGrdInBox.Rows.Add(
+                //    _file_outbox.filetransid,
+                //    _file_outbox.tousername,
+                //    //_file_outbox.sentdate,
+                //    _file_outbox.filename,
+                //    _file_outbox.priority,
+                //    _file_outbox.sentdate,
+                //    _file_outbox.receiveddate,
+                //    _file_outbox.opendate,
+                //    _file_outbox.status,
+                //    //_file_outbox.showedpopup,
+                //    _file_outbox.fromuserremark);
+
+                //for (int i = 0; i < dtGrdInBox.Columns.Count - 1; i++)
+                //{
+                //    dtGrdInBox.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //}
+                //dtGrdInBox.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                //dtGrdInBox.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                //dtGrdInBox.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
 

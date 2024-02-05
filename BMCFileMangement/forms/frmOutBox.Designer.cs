@@ -46,6 +46,19 @@
             this.btnBrowseFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
+            this.filetransid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tousername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filename = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sentdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isreceived = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiveddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.showedpopup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.showeddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isopen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opendate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fromuserremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -179,6 +192,20 @@
             this.dtGrdInBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtGrdInBox.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
             this.dtGrdInBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGrdInBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.filetransid,
+            this.tousername,
+            this.filename,
+            this.priority,
+            this.sentdate,
+            this.isreceived,
+            this.receiveddate,
+            this.showedpopup,
+            this.showeddate,
+            this.isopen,
+            this.opendate,
+            this.status,
+            this.fromuserremark});
             this.dtGrdInBox.Location = new System.Drawing.Point(0, 64);
             this.dtGrdInBox.Name = "dtGrdInBox";
             this.dtGrdInBox.RowTemplate.Height = 25;
@@ -240,6 +267,106 @@
             this.txtFilePath.Size = new System.Drawing.Size(529, 28);
             this.txtFilePath.TabIndex = 13;
             // 
+            // filetransid
+            // 
+            this.filetransid.DataPropertyName = "filetransid";
+            this.filetransid.HeaderText = "filetransid";
+            this.filetransid.Name = "filetransid";
+            this.filetransid.Visible = false;
+            // 
+            // tousername
+            // 
+            this.tousername.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tousername.DataPropertyName = "tousername";
+            this.tousername.HeaderText = "To User";
+            this.tousername.Name = "tousername";
+            // 
+            // filename
+            // 
+            this.filename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.filename.DataPropertyName = "filename";
+            this.filename.HeaderText = "File Name";
+            this.filename.Name = "filename";
+            // 
+            // priority
+            // 
+            this.priority.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.priority.DataPropertyName = "priority";
+            this.priority.HeaderText = "Priority";
+            this.priority.Name = "priority";
+            this.priority.Width = 70;
+            // 
+            // sentdate
+            // 
+            this.sentdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.sentdate.DataPropertyName = "sentdate";
+            this.sentdate.HeaderText = "Sent Date";
+            this.sentdate.Name = "sentdate";
+            this.sentdate.Width = 82;
+            // 
+            // isreceived
+            // 
+            this.isreceived.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isreceived.DataPropertyName = "isreceived";
+            this.isreceived.HeaderText = "Is Received?";
+            this.isreceived.Name = "isreceived";
+            this.isreceived.Width = 95;
+            // 
+            // receiveddate
+            // 
+            this.receiveddate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.receiveddate.DataPropertyName = "receiveddate";
+            this.receiveddate.HeaderText = "Received Date";
+            this.receiveddate.Name = "receiveddate";
+            this.receiveddate.Width = 106;
+            // 
+            // showedpopup
+            // 
+            this.showedpopup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.showedpopup.DataPropertyName = "showedpopup";
+            this.showedpopup.HeaderText = "Is Showed Popup?";
+            this.showedpopup.Name = "showedpopup";
+            this.showedpopup.Width = 117;
+            // 
+            // showeddate
+            // 
+            this.showeddate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.showeddate.DataPropertyName = "showeddate";
+            this.showeddate.HeaderText = "Showed Date";
+            this.showeddate.Name = "showeddate";
+            this.showeddate.Width = 93;
+            // 
+            // isopen
+            // 
+            this.isopen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isopen.DataPropertyName = "isopen";
+            this.isopen.HeaderText = "Is Open?";
+            this.isopen.Name = "isopen";
+            this.isopen.Width = 71;
+            // 
+            // opendate
+            // 
+            this.opendate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.opendate.DataPropertyName = "opendate";
+            this.opendate.HeaderText = "Open Date";
+            this.opendate.Name = "opendate";
+            this.opendate.Width = 81;
+            // 
+            // status
+            // 
+            this.status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            this.status.Width = 64;
+            // 
+            // fromuserremark
+            // 
+            this.fromuserremark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fromuserremark.DataPropertyName = "fromuserremark";
+            this.fromuserremark.HeaderText = "Remarks";
+            this.fromuserremark.Name = "fromuserremark";
+            // 
             // frmOutBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -279,5 +406,18 @@
         private Label label6;
         private TextBox txtContent;
         private Button btnClearData;
+        private DataGridViewTextBoxColumn filetransid;
+        private DataGridViewTextBoxColumn tousername;
+        private DataGridViewTextBoxColumn filename;
+        private DataGridViewTextBoxColumn priority;
+        private DataGridViewTextBoxColumn sentdate;
+        private DataGridViewTextBoxColumn isreceived;
+        private DataGridViewTextBoxColumn receiveddate;
+        private DataGridViewTextBoxColumn showedpopup;
+        private DataGridViewTextBoxColumn showeddate;
+        private DataGridViewTextBoxColumn isopen;
+        private DataGridViewTextBoxColumn opendate;
+        private DataGridViewTextBoxColumn status;
+        private DataGridViewTextBoxColumn fromuserremark;
     }
 }
