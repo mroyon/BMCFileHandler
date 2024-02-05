@@ -23,6 +23,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -534,5 +535,35 @@ namespace BMCFileMangement.forms
             }
         }
         #endregion Paging Method & Style 02
+
+        private void txtMilitaryNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                try
+                {
+                    MailAddress mailAddress = new MailAddress(email);
+                    return true;
+                }
+                catch (FormatException)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (!IsValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Invalid email address. Please enter a valid email.");
+            }
+        }
     }
 }

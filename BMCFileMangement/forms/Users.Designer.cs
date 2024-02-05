@@ -234,6 +234,7 @@
             this.txtMilitaryNo.Name = "txtMilitaryNo";
             this.txtMilitaryNo.Size = new System.Drawing.Size(240, 24);
             this.txtMilitaryNo.TabIndex = 29;
+            this.txtMilitaryNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMilitaryNo_KeyPress);
             // 
             // txtEmail
             // 
@@ -243,6 +244,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(241, 24);
             this.txtEmail.TabIndex = 25;
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // label4
             // 
