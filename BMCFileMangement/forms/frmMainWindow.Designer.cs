@@ -230,6 +230,7 @@ namespace BMCFileMangement.forms
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::BMCFileMangement.Properties.Resources.Picture1;
             this.pictureBox1.Location = new System.Drawing.Point(3, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(43, 40);
@@ -382,9 +383,10 @@ namespace BMCFileMangement.forms
             // 
             // panelDesktop
             // 
-            this.panelDesktop.Location = new System.Drawing.Point(0, 175);
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1062, 441);
+            this.panelDesktop.Size = new System.Drawing.Size(1056, 617);
             this.panelDesktop.TabIndex = 1;
             // 
             // panel3
@@ -401,7 +403,6 @@ namespace BMCFileMangement.forms
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1056, 166);

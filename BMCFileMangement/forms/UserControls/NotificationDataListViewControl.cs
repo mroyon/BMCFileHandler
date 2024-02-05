@@ -154,7 +154,6 @@ namespace BMCFileMangement.forms.UserControls
                     if (!objSingle.showedpopup.GetValueOrDefault(true))
                     {
                         var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Picture1.png");
-
                         new ToastContentBuilder()
                             .AddText(objSingle.filename)
                             .AddInlineImage(new Uri(heroImage))
@@ -166,7 +165,7 @@ namespace BMCFileMangement.forms.UserControls
                                         .AddArgument(objSingle.touserid.GetValueOrDefault().ToString() + "/" + "INBOX" + "/" + objSingle.filename)
                                         .AddArgument(objSingle.tousername))
                             .AddAttributionText(objSingle.fromuserremark)
-                            .SetToastScenario(ToastScenario.Alarm)
+                            .SetToastScenario(ToastScenario.Default)
                             .Show(toast =>
                             {
                                 toast.ExpirationTime = DateTime.Now.AddSeconds(15);
