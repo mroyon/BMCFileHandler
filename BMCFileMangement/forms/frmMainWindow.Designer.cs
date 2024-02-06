@@ -54,6 +54,8 @@ namespace BMCFileMangement.forms
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.pieChart2 = new LiveCharts.WinForms.PieChart();
+            this.pieChart1 = new LiveCharts.WinForms.PieChart();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelMenu.SuspendLayout();
@@ -65,6 +67,7 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             this.panelBody.SuspendLayout();
+            this.panelDesktop.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -383,11 +386,31 @@ namespace BMCFileMangement.forms
             // 
             // panelDesktop
             // 
+            this.panelDesktop.Controls.Add(this.pieChart2);
+            this.panelDesktop.Controls.Add(this.pieChart1);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(1056, 617);
             this.panelDesktop.TabIndex = 1;
+            // 
+            // pieChart2
+            // 
+            this.pieChart2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pieChart2.Location = new System.Drawing.Point(574, 70);
+            this.pieChart2.Name = "pieChart2";
+            this.pieChart2.Size = new System.Drawing.Size(302, 280);
+            this.pieChart2.TabIndex = 1;
+            this.pieChart2.Text = "pieChart2";
+            // 
+            // pieChart1
+            // 
+            this.pieChart1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pieChart1.Location = new System.Drawing.Point(155, 70);
+            this.pieChart1.Name = "pieChart1";
+            this.pieChart1.Size = new System.Drawing.Size(302, 280);
+            this.pieChart1.TabIndex = 0;
+            this.pieChart1.Text = "pieChart1";
             // 
             // panel3
             // 
@@ -430,6 +453,7 @@ namespace BMCFileMangement.forms
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             this.panelBody.ResumeLayout(false);
+            this.panelDesktop.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -466,5 +490,7 @@ namespace BMCFileMangement.forms
         private FontAwesome.Sharp.IconButton icnBtnChangePassword;
         private PictureBox pictureBox2;
         private FontAwesome.Sharp.IconButton icnBtnLogout;
+        private LiveCharts.WinForms.PieChart pieChart1;
+        private LiveCharts.WinForms.PieChart pieChart2;
     }
 }

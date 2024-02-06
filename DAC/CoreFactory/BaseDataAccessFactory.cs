@@ -69,13 +69,15 @@ namespace DAC.Core.CoreFactory
         #region Factory Methods 
 
 
-        
+
+        #region chart
+        public abstract IchartDataAccessObjects CreatechartDataAccess();
+        #endregion chart
 
 
-        
 
 
-        
+
 
         #region filetransferinfo
         public abstract IfiletransferinfoDataAccessObjects CreatefiletransferinfoDataAccess();

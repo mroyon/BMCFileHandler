@@ -46,10 +46,21 @@ namespace DAC.Core.CoreFactory
 
         #region Factory Methods 
 
-        
 
 
-        
+        #region chart
+        [DebuggerStepThrough()]
+        public override IchartDataAccessObjects CreatechartDataAccess()
+        {
+            string type = typeof(chartDataAccessObjects).ToString();
+            if (!CurrentContext.Contains(type))
+            {
+                CurrentContext[type] = new chartDataAccessObjects(CurrentContext);
+            }
+            return (IchartDataAccessObjects)CurrentContext[type];
+        }
+        #endregion chart
+
 
 
         #region filetransferinfo

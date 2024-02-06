@@ -1,7 +1,10 @@
 ﻿using BDO.Core.DataAccessObjects.CommonEntities;
+using BDO.Core.DataAccessObjects.Models;
 using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.Services.Interface;
 using FontAwesome.Sharp;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -14,6 +17,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.Services.Maps;
@@ -37,7 +41,7 @@ namespace BMCFileMangement.forms
         private readonly IFTPTransferService _fTPTransferService;
         private readonly IOptions<FtpSettingsOptions> _ftpOptions;
 
-
+        Func<ChartPoint, string> _labelPoint = chartpoint => string.Format("{0}({1:P})", chartpoint.Y, chartpoint.Participation);
         public frmMainWindow(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
@@ -97,6 +101,40 @@ namespace BMCFileMangement.forms
 
 
             lblUserName.Text = userprofile.CurrentUser.username;
+
+            pieChart1.LegendLocation = LegendLocation.Top;
+            pieChart2.LegendLocation = LegendLocation.Top;
+            _chartInitialize();
+        }
+
+        private async Task _chartInitialize()
+        {
+            CancellationToken cancellationToken = new CancellationToken();
+            IHttpContextAccessor httpContextAccessor = null;
+            chartEntity _chart = new chartEntity();
+            IList<chartEntity> _chartDataList = new List<chartEntity>();
+
+            _chart.userid = _userprofile.CurrentUser.userid;
+
+            _chartDataList = await BFC.Core.FacadeCreatorObjects.General.chartFCC.
+                       GetFacadeCreate(httpContextAccessor).GetAll(_chart, cancellationToken);
+
+            SeriesCollection _sc = new SeriesCollection();
+            foreach (var _data in _chartDataList)
+            {
+                _sc.Add(new PieSeries() { Title = _data.charttitle, Values = new ChartValues<int> { Convert.ToInt32(_data.chartvalues) }, DataLabels = true, LabelPoint = _labelPoint });
+            }
+            pieChart1.Series = _sc;
+
+            SeriesCollection _sc2 = new SeriesCollection();
+            foreach (var _data in _chartDataList)
+            {
+                if (!string.IsNullOrEmpty(_data.username))
+                {
+                    _sc2.Add(new PieSeries() { Title = _data.username, Values = new ChartValues<int> { Convert.ToInt32(_data.chartvalues) }, DataLabels = true, LabelPoint = _labelPoint });
+                }
+            }
+            pieChart2.Series = _sc2;
         }
 
         private void IcnBtnViewOutBox_Click(object? sender, EventArgs e)
