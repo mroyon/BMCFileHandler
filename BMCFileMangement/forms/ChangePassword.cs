@@ -84,6 +84,7 @@ namespace BMCFileMangement.forms
             clsSecurityCapsule objCap = new clsSecurityCapsule();
             request.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
             request.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
+            objCap.Dispose();
 
             CancellationToken cancellationToken = new CancellationToken();
             IHttpContextAccessor httpContextAccessor = null;

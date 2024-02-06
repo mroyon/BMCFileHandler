@@ -267,6 +267,7 @@ namespace BMCFileMangement.forms
 
                     objFileInBox.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
                     objFileInBox.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
+                    objCap.Dispose();
                     var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
                         GetFacadeCreate(httpContextAccessor).Add(objFileInBox,cancellationToken);
 

@@ -95,6 +95,7 @@ namespace BMCFileMangement
         {
             clsUpdatedDBHandler objCls = new clsUpdatedDBHandler();
             objCls.UpdateFileOpenAndShowPopAndDownload(e);
+            objCls.Dispose();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
