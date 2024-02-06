@@ -70,6 +70,15 @@ namespace BMCFileMangement.forms
             this.Text = string.Empty;
             this.ControlBox = false;
             this.DoubleBuffered = true;
+
+            //FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //Left = Top = 0;
+            //Width = Screen.PrimaryScreen.WorkingArea.Width;
+            //Height = Screen.PrimaryScreen.WorkingArea.Height;
+            var workingArea = Screen.FromHandle(Handle).WorkingArea;
+            MaximizedBounds = new Rectangle(0, 0, workingArea.Width, workingArea.Height);
+            WindowState = FormWindowState.Maximized;
+
             //this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             #endregion
 
@@ -347,7 +356,11 @@ namespace BMCFileMangement.forms
         private void btnMaximizes_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
+            {
+                var workingArea = Screen.FromHandle(Handle).WorkingArea;
+                MaximizedBounds = new Rectangle(0, 0, workingArea.Width, workingArea.Height);
                 WindowState = FormWindowState.Maximized;
+            }
             else
                 WindowState = FormWindowState.Normal;
         }
