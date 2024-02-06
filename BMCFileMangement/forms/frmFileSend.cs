@@ -254,7 +254,7 @@ namespace BMCFileMangement.forms
                         receiveddate = dt,
                         isopen = false,
                         opendate = null,
-                        filename = fileName,//Path.GetFileName(desPath),
+                        filename = maxId.ToString() + "_" + fileName,//Path.GetFileName(desPath),
                         fileversion = maxId,
                         fullpath = _ftpSettings.FtpAddress + cboUser.SelectedValue.ToString() + "/INBOX/",
                         priority = Convert.ToInt32(cboPriority.SelectedValue),
