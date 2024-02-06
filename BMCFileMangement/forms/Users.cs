@@ -183,6 +183,7 @@ namespace BMCFileMangement.forms
 
                     _user.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
                     _user.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
+                    objCap.Dispose();
                     _logger.LogInformation(JsonConvert.SerializeObject(_user));
                     var i = BFC.Core.FacadeCreatorObjects.Security.owin_userFCC.GetFacadeCreate(_contextAccessor)
                         .Update(_user, cancellationToken);
@@ -219,6 +220,7 @@ namespace BMCFileMangement.forms
 
                     _user.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
                     _user.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
+                    objCap.Dispose();
 
                     _logger.LogInformation(JsonConvert.SerializeObject(_user));
                     var i = BFC.Core.FacadeCreatorObjects.Security.ExtendedPartial.FCCKAFUserSecurity.GetFacadeCreate(_contextAccessor)

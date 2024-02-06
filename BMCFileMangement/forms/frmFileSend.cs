@@ -254,7 +254,7 @@ namespace BMCFileMangement.forms
                         receiveddate = dt,
                         isopen = false,
                         opendate = null,
-                        filename = fileName,//Path.GetFileName(desPath),
+                        filename = maxId.ToString() + "_" + fileName,//Path.GetFileName(desPath),
                         fileversion = maxId,
                         fullpath = _ftpSettings.FtpAddress + cboUser.SelectedValue.ToString() + "/INBOX/",
                         priority = Convert.ToInt32(cboPriority.SelectedValue),
@@ -267,6 +267,7 @@ namespace BMCFileMangement.forms
 
                     objFileInBox.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
                     objFileInBox.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
+                    objCap.Dispose();
                     var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
                         GetFacadeCreate(httpContextAccessor).Add(objFileInBox,cancellationToken);
 

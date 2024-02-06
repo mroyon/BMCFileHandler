@@ -183,6 +183,7 @@ namespace BMCFileMangement.Services.DisServices
                         obj.filetransid = long.Parse(augArray[0].ToString());
                         obj.BaseSecurityParam = new SecurityCapsule();
                         obj.BaseSecurityParam = objCap.GetSecurityCapsule(dt, augArray[4]);
+                        objCap.Dispose();
 
                         obj.showedpopup = true;
                         obj.showeddate = dt;
