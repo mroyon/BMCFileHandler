@@ -277,6 +277,7 @@ namespace BMCFileMangement.forms
                         cboUser.SelectedIndex = 0;
                         txtRemarks.Text = "";
                         MessageBox.Show("Data sent successfully");
+                        this.Close();
                     }
                     else
                     {
