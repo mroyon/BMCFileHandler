@@ -19,6 +19,7 @@ namespace BDO.Core.DataAccessObjects.Models
         protected string _tousername;
         protected Guid ? _touserid;
         protected string _fromuserremark;
+        protected string _documentblock;
         protected DateTime ? _sentdate;
         protected bool ? _showedpopup;
         protected DateTime ? _showeddate;
@@ -79,14 +80,22 @@ namespace BDO.Core.DataAccessObjects.Models
         }
         
         [DataMember]
-        [MaxLength(-1)]
         [Display(Name = "fromuserremark", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
         public string fromuserremark
         {
             get { return _fromuserremark; }
             set { _fromuserremark = value; this.OnChnaged(); }
         }
-        
+
+
+        [DataMember]
+        //[Display(Name = "documentblock", ResourceType = typeof(CLL.LLClasses.Models._documentblock))]
+        public string documentblock
+        {
+            get { return _documentblock; }
+            set { _documentblock = value; this.OnChnaged(); }
+        }
+
         [DataMember]
         [Display(Name = "sentdate", ResourceType = typeof(CLL.LLClasses.Models._filetransferinfo))]
         public DateTime ? sentdate

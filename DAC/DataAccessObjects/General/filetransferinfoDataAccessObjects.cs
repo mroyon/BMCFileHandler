@@ -54,6 +54,8 @@ namespace DAC.Core.DataAccessObjects.General
 
             if (!(string.IsNullOrEmpty(filetransferinfo.fromuserremark)))
                 Database.AddInParameter(cmd, "@FromUserRemark", DbType.String, filetransferinfo.fromuserremark);
+            if (!(string.IsNullOrEmpty(filetransferinfo.documentblock)))
+                Database.AddInParameter(cmd, "@DocumentBlock", DbType.String, filetransferinfo.documentblock);
 
             if ((filetransferinfo.sentdate.HasValue))
 				Database.AddInParameter(cmd, "@SentDate", DbType.DateTime, filetransferinfo.sentdate);
