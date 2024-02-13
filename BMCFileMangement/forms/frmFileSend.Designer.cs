@@ -33,6 +33,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tinyMceEditor = new WinFormTinyMCE.TinyMCE();
             this.cboPriority = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.TextBox();
@@ -67,14 +68,15 @@
             // 
             this.panel3.Controls.Add(this.groupBox3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 38);
+            this.panel3.Location = new System.Drawing.Point(0, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(984, 364);
+            this.panel3.Size = new System.Drawing.Size(984, 392);
             this.panel3.TabIndex = 3;
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.tinyMceEditor);
             this.groupBox3.Controls.Add(this.cboPriority);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txtRemarks);
@@ -89,10 +91,21 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(984, 364);
+            this.groupBox3.Size = new System.Drawing.Size(984, 392);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Send File";
+            // 
+            // tinyMceEditor
+            // 
+            this.tinyMceEditor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tinyMceEditor.HtmlContent = "";
+            this.tinyMceEditor.Location = new System.Drawing.Point(102, 175);
+            this.tinyMceEditor.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
+            this.tinyMceEditor.Name = "tinyMceEditor";
+            this.tinyMceEditor.Size = new System.Drawing.Size(787, 162);
+            this.tinyMceEditor.TabIndex = 27;
             // 
             // cboPriority
             // 
@@ -100,7 +113,7 @@
             this.cboPriority.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboPriority.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboPriority.FormattingEnabled = true;
-            this.cboPriority.Location = new System.Drawing.Point(102, 121);
+            this.cboPriority.Location = new System.Drawing.Point(102, 93);
             this.cboPriority.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.cboPriority.Name = "cboPriority";
             this.cboPriority.Size = new System.Drawing.Size(787, 29);
@@ -109,7 +122,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(15, 127);
+            this.label2.Location = new System.Drawing.Point(15, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 23);
             this.label2.TabIndex = 26;
@@ -119,16 +132,16 @@
             // txtRemarks
             // 
             this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtRemarks.Location = new System.Drawing.Point(102, 156);
+            this.txtRemarks.Location = new System.Drawing.Point(102, 128);
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(787, 104);
+            this.txtRemarks.Size = new System.Drawing.Size(787, 40);
             this.txtRemarks.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(15, 159);
+            this.label1.Location = new System.Drawing.Point(15, 131);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 24;
@@ -143,7 +156,7 @@
             this.cboUser.FormattingEnabled = true;
             this.cboUser.Items.AddRange(new object[] {
             "Please Select User"});
-            this.cboUser.Location = new System.Drawing.Point(102, 86);
+            this.cboUser.Location = new System.Drawing.Point(102, 58);
             this.cboUser.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.cboUser.MaxDropDownItems = 50;
             this.cboUser.Name = "cboUser";
@@ -153,7 +166,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(15, 92);
+            this.label4.Location = new System.Drawing.Point(15, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 23);
             this.label4.TabIndex = 22;
@@ -163,7 +176,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(15, 53);
+            this.label3.Location = new System.Drawing.Point(15, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 30);
             this.label3.TabIndex = 20;
@@ -172,7 +185,7 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(102, 51);
+            this.txtFilePath.Location = new System.Drawing.Point(102, 23);
             this.txtFilePath.Multiline = true;
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
@@ -181,23 +194,25 @@
             // 
             // btnSendFile
             // 
+            this.btnSendFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSendFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnSendFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendFile.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSendFile.ForeColor = System.Drawing.Color.White;
             this.btnSendFile.Image = ((System.Drawing.Image)(resources.GetObject("btnSendFile.Image")));
-            this.btnSendFile.Location = new System.Drawing.Point(710, 277);
+            this.btnSendFile.Location = new System.Drawing.Point(710, 344);
             this.btnSendFile.Name = "btnSendFile";
             this.btnSendFile.Size = new System.Drawing.Size(179, 36);
             this.btnSendFile.TabIndex = 5;
             this.btnSendFile.Text = "Send File";
             this.btnSendFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSendFile.UseVisualStyleBackColor = false;
+            this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click);
             // 
             // btnBrowseFile
             // 
             this.btnBrowseFile.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBrowseFile.Location = new System.Drawing.Point(795, 50);
+            this.btnBrowseFile.Location = new System.Drawing.Point(795, 22);
             this.btnBrowseFile.Name = "btnBrowseFile";
             this.btnBrowseFile.Size = new System.Drawing.Size(94, 32);
             this.btnBrowseFile.TabIndex = 14;
@@ -209,7 +224,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 38);
+            this.panel1.Size = new System.Drawing.Size(984, 10);
             this.panel1.TabIndex = 2;
             // 
             // frmFileSend
@@ -246,5 +261,6 @@
         private Panel panel3;
         private ComboBox cboPriority;
         private Label label2;
+        private WinFormTinyMCE.TinyMCE tinyMceEditor;
     }
 }

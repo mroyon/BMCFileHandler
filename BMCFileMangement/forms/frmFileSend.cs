@@ -76,6 +76,7 @@ namespace BMCFileMangement.forms
             btnSendFile.Click += btnSendFile_Click;
             _LoadUser();
             _loadPriority();
+            tinyMceEditor.CreateEditor();
         }
 
 
@@ -164,9 +165,9 @@ namespace BMCFileMangement.forms
             CancellationToken cancellationToken = new CancellationToken();
             IHttpContextAccessor httpContextAccessor = null;
 
-            if (string.IsNullOrEmpty(txtFilePath.Text))
+            if (string.IsNullOrEmpty(txtFilePath.Text) && string.IsNullOrEmpty(tinyMceEditor.HtmlContent))
             {
-                MessageBox.Show("Please select file");
+                MessageBox.Show("Please select file or create file");
                 return;
             }
 
@@ -261,7 +262,8 @@ namespace BMCFileMangement.forms
                         priority = Convert.ToInt32(cboPriority.SelectedValue),
                         filejsondata = jsonFile,
                         status = 1,
-                        expecteddate = dt
+                        expecteddate = dt,
+                        documentblock = tinyMceEditor.HtmlContent
                     };
 
                     clsSecurityCapsule objCap = new clsSecurityCapsule();
