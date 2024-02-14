@@ -57,6 +57,7 @@
     <None Remove="LanguagesFiles\_Responses.xml" />
     <None Remove="LanguagesFiles\_Status.xml" />
     <None Remove="LanguagesFiles\_tran_login.xml" />
+    <None Remove="Resources\template.docx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -159,6 +160,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\template.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
@@ -185,6 +192,7 @@
     <ProjectReference Include="..\BFC\BFC.csproj" />
     <ProjectReference Include="..\BFO\BFO.csproj" />
     <ProjectReference Include="..\CLL\CLL.csproj" />
+    <ProjectReference Include="..\Html2OpenXml\HtmlToOpenXml.csproj" />
     <ProjectReference Include="..\IBFO\IBFO.csproj" />
     <ProjectReference Include="..\IDAC\IDAC.csproj" />
   </ItemGroup>
@@ -272,6 +280,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\user.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="test.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="tinymce\jscripts\tiny_mce\tiny_mce.js">

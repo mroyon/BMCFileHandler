@@ -21,7 +21,7 @@ namespace WinFormTinyMCE
       get
       {
         string content = string.Empty;
-        if (webBrowserControl.Document != null)
+        if (webBrowserControl != null && webBrowserControl.Document != null)
         {
           object html = webBrowserControl.Document.InvokeScript("GetContent");
           content = html as string;

@@ -33,6 +33,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tinyMceEditor = new WinFormTinyMCE.TinyMCE();
             this.cboPriority = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,7 +63,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(984, 402);
+            this.panel2.Size = new System.Drawing.Size(984, 519);
             this.panel2.TabIndex = 3;
             // 
             // panel3
@@ -70,12 +72,14 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(984, 392);
+            this.panel3.Size = new System.Drawing.Size(984, 509);
             this.panel3.TabIndex = 3;
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.tinyMceEditor);
             this.groupBox3.Controls.Add(this.cboPriority);
             this.groupBox3.Controls.Add(this.label2);
@@ -91,20 +95,39 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(984, 392);
+            this.groupBox3.Size = new System.Drawing.Size(984, 509);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Send File";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.Location = new System.Drawing.Point(102, 128);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(787, 26);
+            this.textBox1.TabIndex = 28;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(15, 131);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 23);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "File Name";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tinyMceEditor
             // 
             this.tinyMceEditor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.tinyMceEditor.HtmlContent = "";
-            this.tinyMceEditor.Location = new System.Drawing.Point(102, 175);
+            this.tinyMceEditor.Location = new System.Drawing.Point(101, 161);
             this.tinyMceEditor.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.tinyMceEditor.Name = "tinyMceEditor";
-            this.tinyMceEditor.Size = new System.Drawing.Size(787, 162);
+            this.tinyMceEditor.Size = new System.Drawing.Size(787, 221);
             this.tinyMceEditor.TabIndex = 27;
             // 
             // cboPriority
@@ -131,21 +154,23 @@
             // 
             // txtRemarks
             // 
+            this.txtRemarks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtRemarks.Location = new System.Drawing.Point(102, 128);
+            this.txtRemarks.Location = new System.Drawing.Point(102, 389);
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(787, 40);
+            this.txtRemarks.Size = new System.Drawing.Size(787, 56);
             this.txtRemarks.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(15, 131);
+            this.label1.Location = new System.Drawing.Point(15, 402);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 23);
             this.label1.TabIndex = 24;
-            this.label1.Text = "Remark";
+            this.label1.Text = "Comment";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cboUser
@@ -194,20 +219,19 @@
             // 
             // btnSendFile
             // 
-            this.btnSendFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSendFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnSendFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendFile.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSendFile.ForeColor = System.Drawing.Color.White;
             this.btnSendFile.Image = ((System.Drawing.Image)(resources.GetObject("btnSendFile.Image")));
-            this.btnSendFile.Location = new System.Drawing.Point(710, 344);
+            this.btnSendFile.Location = new System.Drawing.Point(710, 451);
             this.btnSendFile.Name = "btnSendFile";
             this.btnSendFile.Size = new System.Drawing.Size(179, 36);
             this.btnSendFile.TabIndex = 5;
             this.btnSendFile.Text = "Send File";
             this.btnSendFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSendFile.UseVisualStyleBackColor = false;
-            this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click);
             // 
             // btnBrowseFile
             // 
@@ -231,7 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 402);
+            this.ClientSize = new System.Drawing.Size(984, 519);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmFileSend";
@@ -262,5 +286,7 @@
         private ComboBox cboPriority;
         private Label label2;
         private WinFormTinyMCE.TinyMCE tinyMceEditor;
+        private TextBox textBox1;
+        private Label label5;
     }
 }
