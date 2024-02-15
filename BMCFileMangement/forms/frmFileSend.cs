@@ -197,54 +197,85 @@ namespace BMCFileMangement.forms
             if (result == DialogResult.Yes)
             {
                 DateTime dt = DateTime.Now;
-                string sourcepath = txtFilePath.Text.Trim();
-                //string fileName = Path.GetFileName(sourcepath);
-
                 int maxId = 1;
                 string TempNewName = "";
-
-                string sFilePath = ConvertHtmlContentToDocX("This.docx", tinyMceEditor.HtmlContent);
-                string fileName = Path.GetFileName(sFilePath);
-                FileInfo _file = new FileInfo(sFilePath);
-                CustomFileClassEntity fileDetails = new CustomFileClassEntity(_file);
-                string jsonFile = JsonConvert.SerializeObject(fileDetails);
-
                 bool isUploadedFile = false;
+                string jsonFile = "";
+                string fileName = "";
 
-                try
+                #region Upload File from File dialog
+                if (!string.IsNullOrEmpty(txtFilePath.Text.Trim()))
                 {
+                    string sourcepath = txtFilePath.Text.Trim();
+                    //string fileName = Path.GetFileName(sourcepath);
+                    
 
-                    var obj =  BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).GetAll(
-                        new filetransferinfoEntity()
-                        {
-                            filename = fileName
-                        }, cancellationToken).Result;
-
-                    if(obj != null && obj.Count >0)
+                    fileName = Path.GetFileName(sourcepath);
+                    FileInfo _file = new FileInfo(sourcepath);
+                    CustomFileClassEntity fileDetails = new CustomFileClassEntity(_file);
+                    jsonFile = JsonConvert.SerializeObject(fileDetails);
+                    
+                    try
                     {
-                        maxId = obj.Max(item => item.fileversion.GetValueOrDefault());
-                        maxId += 1;
+                        var obj = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(httpContextAccessor).GetAll(
+                            new filetransferinfoEntity()
+                            {
+                                filename = fileName
+                            }, cancellationToken).Result;
 
+                        if (obj != null && obj.Count > 0)
+                        {
+                            maxId = obj.Max(item => item.fileversion.GetValueOrDefault());
+                            maxId += 1;
+
+                        }
+
+                        // Upload file into Sender OUTBOX: Start
+                        var sOutboxPath = $"{_userprofile.CurrentUser.userid.GetValueOrDefault().ToString()}/OUTBOX/";
+                        var _SenderUploadfile = _fTPTransferService.UploadFile(sourcepath, sOutboxPath, maxId.ToString() + "_" + fileName);
+                        // Upload file into Sender OUTBOX: END
+
+                        // Upload file into Receiver INBOX: Start
+                        var rInboxPath = $"{cboUser.SelectedValue.ToString()}/INBOX/";
+                        var _ReceiverUploadfile = _fTPTransferService.UploadFile(sourcepath, rInboxPath, maxId.ToString() + "_" + fileName);
+                        // Upload file into Receiver INBOX: END
+                        isUploadedFile = true;
                     }
-
-                    // Upload file into Sender OUTBOX: Start
-                    var sOutboxPath = $"{_userprofile.CurrentUser.userid.GetValueOrDefault().ToString()}/OUTBOX/";
-                    var _SenderUploadfile = _fTPTransferService.UploadFile(sFilePath, sOutboxPath, maxId.ToString() + "_" + fileName);
-                    // Upload file into Sender OUTBOX: END
-
-                    // Upload file into Receiver INBOX: Start
-                    var rInboxPath = $"{cboUser.SelectedValue.ToString()}/INBOX/";
-                    var _ReceiverUploadfile = _fTPTransferService.UploadFile(sFilePath, rInboxPath, maxId.ToString() + "_" + fileName);
-                    // Upload file into Receiver INBOX: END
-                    isUploadedFile = true;
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        isUploadedFile = false;
+                    }
                 }
-                catch (Exception ex)
+                #endregion
+
+                #region Upload File from TinyMCE Content
+                if (!string.IsNullOrEmpty(tinyMceEditor.HtmlContent))
                 {
-                    MessageBox.Show(ex.Message);
-                    isUploadedFile = false;
+                    AppConfig.HelperClasses.transactioncodeGen transactioncodeGen = new AppConfig.HelperClasses.transactioncodeGen();
+                    fileName = transactioncodeGen.GetRandomAlphaNumericString(8) + ".docx";
+
+                    string sFilePath = ConvertHtmlContentToDocX(tinyMceEditor.HtmlContent);
+                    try
+                    {
+                        // Upload file into Sender OUTBOX: Start
+                        var sOutboxPath = $"{_userprofile.CurrentUser.userid.GetValueOrDefault().ToString()}/OUTBOX/";
+                        var _SenderUploadfile = _fTPTransferService.UploadFile(sFilePath, sOutboxPath, fileName);
+                        // Upload file into Sender OUTBOX: END
+
+                        // Upload file into Receiver INBOX: Start
+                        var rInboxPath = $"{cboUser.SelectedValue.ToString()}/INBOX/";
+                        var _ReceiverUploadfile = _fTPTransferService.UploadFile(sFilePath, rInboxPath, fileName);
+                        // Upload file into Receiver INBOX: END
+                        isUploadedFile = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        isUploadedFile = false;
+                    }
                 }
-
-
+                #endregion
                 //Upload File into FTP 
                 if (isUploadedFile)
                 {
@@ -287,9 +318,9 @@ namespace BMCFileMangement.forms
                         txtFilePath.Text = "";
                         cboUser.SelectedIndex = 0;
                         txtRemarks.Text = "";
-                        //MessageBox.Show("Data sent successfully");
+                        MessageBox.Show("Data sent successfully");
                         
-                        //this.Close();
+                        this.Close();
                     }
                     else
                     {
@@ -305,7 +336,7 @@ namespace BMCFileMangement.forms
 
         }
 
-        private string ConvertHtmlContentToDocX(string _filename, string _htmlContent)
+        private string ConvertHtmlContentToDocX(string _htmlContent)
         {
             string filename = "test.docx";
             string html = _htmlContent;//"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html>\r\n<head>\r\n<title>Untitled document</title>\r\n</head>\r\n<body>\r\n<p><span>\r\n<p dir=\"ltr\" align=\"center\">Sample Letter</p>\r\n<em>\r\n<p dir=\"ltr\" align=\"left\">(Name of Company/Person)<br />(Address)<br /><br />(Today&rsquo;s date)</p>\r\n</em><br /><br /><br />Re: Request that　 my record be updated to reflect my changed name<br /><br /><br />Dear XXXXX,<br /><br />Please change my record to reflect my new name. <br /><br />My account number is ____________________. <br />My Social Security number is _____________________.<em>(Include this only if necessary to identify you)</em><br /><br />My former name is <em>(former name)</em>. However, as of (<em>date of court order or date you decided to assume your new name)</em>, my new name is (<em>New Name). </em><br /><br /><span style=\"color: #ff0000;\">Please make modify my records with you as soon as possible. I am enclosing copy of the court order. (<em>Delete this sentence if not appropriate.) </em><br /></span><br />If there are any questions regarding the change of my name, please contact me immediately. During the day I can best be reached by <em>(fill in how you want to be reached and the hours if appropriate) <br /></em><br />Thank you for your assistance. I would appreciate written confirmation that you have acted upon my request.<br /><br /><br />Sincerely,<br /><br /><br /><br /><em>(New Name &ndash; written and typed)</em> formerly known as <em>(Former Name &ndash; written and typed)</em><br /><em>(Address)</em><br />(<em>Email)</em><br /><em>(Phone) </em>\r\n<p dir=\"ltr\" align=\"left\">&nbsp;</p>\r\n</span></p>\r\n</body>\r\n</html>";//ResourceHelper.GetString("Resources.CompleteRunTest.html");

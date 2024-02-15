@@ -65,6 +65,7 @@ namespace BMCFileMangement.forms
 
             InitializeComponent();
             InitializeComponent2();
+            //tinyMceEditor.CreateEditor();
         }
 
 

@@ -12,11 +12,15 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using BDO.Core.DataAccessObjects.Models;
 using CLL.LLClasses.Models;
 using System.Threading;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace BMCFileMangement.forms
 {
     public partial class frmFileSendEdit : Form
     {
+        static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+
+
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<frmMainWindow> _logger;
         private readonly IMessageService _msgService;
@@ -54,9 +58,25 @@ namespace BMCFileMangement.forms
             btnSendFile.Click += btnSendFile_Click;
             _LoadUser();
             _loadPriority();
-            tinyMceEditor.CreateEditor();
+            //tinyMceEditor.CreateEditor();
 
-            _getInboxData();
+            //myTimer.Tick += new EventHandler(TimerEventProcessor);
+            //// Sets the timer interval to 5 seconds.
+            //myTimer.Interval = 200;
+            //myTimer.Start();
+
+            var workingArea = Screen.FromHandle(Handle).WorkingArea;
+            this.MaximizedBounds = new Rectangle(0, 0, workingArea.Width, workingArea.Height);
+            WindowState = FormWindowState.Maximized;
+        }
+
+        private void TimerEventProcessor(object? sender, EventArgs e)
+        {
+            //if (tinyMceEditor.checkif())
+            //{
+            //    myTimer.Stop();
+            //    _getInboxData();
+            //}
         }
 
         private void frmFileSendEdit_Load(object sender, EventArgs e)
@@ -114,7 +134,7 @@ namespace BMCFileMangement.forms
             cboPriority.SelectedIndex = 0;
         }
 
-        private string ConvertHtmlContentToDocX(string _filename, string _htmlContent)
+        private string ConvertHtmlContentToDocX(string _htmlContent)
         {
             string filename = "test.docx";
             string html = _htmlContent;//"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html>\r\n<head>\r\n<title>Untitled document</title>\r\n</head>\r\n<body>\r\n<p><span>\r\n<p dir=\"ltr\" align=\"center\">Sample Letter</p>\r\n<em>\r\n<p dir=\"ltr\" align=\"left\">(Name of Company/Person)<br />(Address)<br /><br />(Today&rsquo;s date)</p>\r\n</em><br /><br /><br />Re: Request that　 my record be updated to reflect my changed name<br /><br /><br />Dear XXXXX,<br /><br />Please change my record to reflect my new name. <br /><br />My account number is ____________________. <br />My Social Security number is _____________________.<em>(Include this only if necessary to identify you)</em><br /><br />My former name is <em>(former name)</em>. However, as of (<em>date of court order or date you decided to assume your new name)</em>, my new name is (<em>New Name). </em><br /><br /><span style=\"color: #ff0000;\">Please make modify my records with you as soon as possible. I am enclosing copy of the court order. (<em>Delete this sentence if not appropriate.) </em><br /></span><br />If there are any questions regarding the change of my name, please contact me immediately. During the day I can best be reached by <em>(fill in how you want to be reached and the hours if appropriate) <br /></em><br />Thank you for your assistance. I would appreciate written confirmation that you have acted upon my request.<br /><br /><br />Sincerely,<br /><br /><br /><br /><em>(New Name &ndash; written and typed)</em> formerly known as <em>(Former Name &ndash; written and typed)</em><br /><em>(Address)</em><br />(<em>Email)</em><br /><em>(Phone) </em>\r\n<p dir=\"ltr\" align=\"left\">&nbsp;</p>\r\n</span></p>\r\n</body>\r\n</html>";//ResourceHelper.GetString("Resources.CompleteRunTest.html");
@@ -191,18 +211,104 @@ namespace BMCFileMangement.forms
 
                 if (obj != null)
                 {
-                    //tinyMceEditor.CreateEditor();
-                    //tinyMceEditor.docum = File.ReadAllText(obj.documentblock);
-                    //tinyMceEditor.HtmlContent = File.ReadAllText(obj.documentblock);
+                    //string fileSubPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/OUTBOX/" + obj.fromuserremark;
+                    ////string fileFullPath = $"{_ftpSettings.FtpAddress}{fileSubPath}";
+                    //var fileStream = _fTPTransferService.DownloadFile_FileStream(fileSubPath).Result;
+                    //string contents;
+                    //using (var sr = new StreamReader(fileStream))
+                    //{
+                    //    contents = sr.ReadToEnd();
+                    //}
+                    //Task.Delay(2000);
+                    string filename = ConvertHtmlContentToDocX(obj.documentblock);
+                    tinyMceEditor.HtmlContent = obj.documentblock;//File.ReadAllText(filename);
+
+
                     tinyMceEditor.HtmlContent = obj.documentblock;
-                    cboPriority.SelectedValue = obj.priority;
-                    cboUser.SelectedValue = obj.fromuserid;
+                    //cboPriority.SelectedValue = obj.priority;
+                    int index = cboPriority.Items.IndexOf(obj.priority);
+
+                    var itemPriority = cboPriority.Items.Cast<gen_dropdownEntity>().FirstOrDefault(x => x.Id == obj.priority);
+                    cboPriority.SelectedIndex = cboPriority.Items.IndexOf(itemPriority); 
+
+                    var itemuser = cboUser.Items.Cast<gen_dropdownEntity>().FirstOrDefault(x => x.strValue1 == obj.fromuserid.ToString());
+                    cboUser.SelectedIndex = cboUser.Items.IndexOf(itemuser); 
                 }
             }
             catch (Exception ex)
             {
 
             }
+        }
+        private int GetIndexById(ComboBox comboBox, string id)
+        {
+            for (int i = 0; i < comboBox.Items.Count; i++)
+            {
+                gen_dropdownEntity item = (gen_dropdownEntity)comboBox.Items[i];
+
+                if (item.Id.ToString() == id)
+                {
+                    return i; 
+                }
+            }
+            return -1; 
+        }
+
+        private string _getFile(string _filename, string _htmlContent)
+        {
+            string filename = "test.docx";
+            string html = _htmlContent;//"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html>\r\n<head>\r\n<title>Untitled document</title>\r\n</head>\r\n<body>\r\n<p><span>\r\n<p dir=\"ltr\" align=\"center\">Sample Letter</p>\r\n<em>\r\n<p dir=\"ltr\" align=\"left\">(Name of Company/Person)<br />(Address)<br /><br />(Today&rsquo;s date)</p>\r\n</em><br /><br /><br />Re: Request that　 my record be updated to reflect my changed name<br /><br /><br />Dear XXXXX,<br /><br />Please change my record to reflect my new name. <br /><br />My account number is ____________________. <br />My Social Security number is _____________________.<em>(Include this only if necessary to identify you)</em><br /><br />My former name is <em>(former name)</em>. However, as of (<em>date of court order or date you decided to assume your new name)</em>, my new name is (<em>New Name). </em><br /><br /><span style=\"color: #ff0000;\">Please make modify my records with you as soon as possible. I am enclosing copy of the court order. (<em>Delete this sentence if not appropriate.) </em><br /></span><br />If there are any questions regarding the change of my name, please contact me immediately. During the day I can best be reached by <em>(fill in how you want to be reached and the hours if appropriate) <br /></em><br />Thank you for your assistance. I would appreciate written confirmation that you have acted upon my request.<br /><br /><br />Sincerely,<br /><br /><br /><br /><em>(New Name &ndash; written and typed)</em> formerly known as <em>(Former Name &ndash; written and typed)</em><br /><em>(Address)</em><br />(<em>Email)</em><br /><em>(Phone) </em>\r\n<p dir=\"ltr\" align=\"left\">&nbsp;</p>\r\n</span></p>\r\n</body>\r\n</html>";//ResourceHelper.GetString("Resources.CompleteRunTest.html");
+            if (File.Exists(filename)) File.Delete(filename);
+            
+            string fileSubPath = _userprofile.CurrentUser.userid.GetValueOrDefault().ToString() + "/OUTBOX/" + _filename;
+            var fileStream = _fTPTransferService.DownloadFile_FileStream(fileSubPath).Result;
+
+            using (MemoryStream generatedDocument = new MemoryStream())
+            {
+                // Uncomment and comment the second using() to open an existing template document
+                // instead of creating it from scratch.
+                using (var buffer = _fTPTransferService.DownloadFile_FileStream(fileSubPath).Result)
+                {
+                    buffer.CopyTo(generatedDocument);
+                }
+
+                generatedDocument.Position = 0L;
+                using (WordprocessingDocument package = WordprocessingDocument.Open(generatedDocument, true))
+                //using (WordprocessingDocument package = WordprocessingDocument.Create(generatedDocument, WordprocessingDocumentType.Document))
+                {
+                    MainDocumentPart mainPart = package.MainDocumentPart;
+                    if (mainPart == null)
+                    {
+                        mainPart = package.AddMainDocumentPart();
+                        new Document(new Body()).Save(mainPart);
+                    }
+
+                    HtmlConverter converter = new HtmlConverter(mainPart);
+                    Body body = mainPart.Document.Body;
+
+                    converter.ParseHtml(html);
+                    mainPart.Document.Save();
+
+                    AssertThatOpenXmlDocumentIsValid(package);
+                }
+
+                File.WriteAllBytes(filename, generatedDocument.ToArray());
+            }
+
+            //Process.Start(new ProcessStartInfo(filename) { UseShellExecute = true });
+
+            return filename;
+        }
+
+        private void frmFileSendEdit_Load_1(object sender, EventArgs e)
+        {
+            tinyMceEditor.CreateEditor();
+            
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            _getInboxData();
         }
     }
 }

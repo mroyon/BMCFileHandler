@@ -284,6 +284,9 @@
     <None Update="test.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="tinymce\jscripts\tiny_mce\jquery.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="tinymce\jscripts\tiny_mce\tiny_mce.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
