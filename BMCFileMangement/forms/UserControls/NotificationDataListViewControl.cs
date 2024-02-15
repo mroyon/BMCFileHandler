@@ -165,10 +165,11 @@ namespace BMCFileMangement.forms.UserControls
                                         .AddArgument(objSingle.touserid.GetValueOrDefault().ToString() + "/" + "INBOX" + "/" + objSingle.filename)
                                         .AddArgument(objSingle.tousername))
                             .AddAttributionText(objSingle.fromuserremark)
+                            .AddAttributionText("Priority: High")
                             .SetToastScenario(ToastScenario.Default)
                             .Show(toast =>
                             {
-                                toast.ExpirationTime = DateTime.Now.AddSeconds(15);
+                                //toast.ExpirationTime = DateTime.Now.AddSeconds(15);
                             });
 
                         await Task.Delay(10000);

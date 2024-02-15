@@ -354,7 +354,7 @@ namespace BMCFileMangement.forms
                 if (!string.IsNullOrEmpty(tinyMceEditor.HtmlContent))
                 {
                     AppConfig.HelperClasses.transactioncodeGen transactioncodeGen = new AppConfig.HelperClasses.transactioncodeGen();
-                    fileName = transactioncodeGen.GetRandomAlphaNumericString(8) + ".docx";
+                    fileName = transactioncodeGen.GetRandomAlphaString(16) + ".docx";
 
                     string sFilePath = ConvertHtmlContentToDocX(tinyMceEditor.HtmlContent);
                     try
@@ -394,7 +394,7 @@ namespace BMCFileMangement.forms
                         receiveddate = dt,
                         isopen = false,
                         opendate = null,
-                        filename = maxId.ToString() + "_" + fileName,//Path.GetFileName(desPath),
+                        filename = fileName, //maxId.ToString() + "_" + fileName,//Path.GetFileName(desPath),
                         fileversion = maxId,
                         fullpath = _ftpSettings.FtpAddress + cboUser.SelectedValue.ToString() + "/INBOX/",
                         priority = Convert.ToInt32(cboPriority.SelectedValue),
