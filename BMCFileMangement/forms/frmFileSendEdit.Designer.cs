@@ -209,6 +209,7 @@
             this.btnSendFile.Text = "Send";
             this.btnSendFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSendFile.UseVisualStyleBackColor = false;
+            this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click_1);
             // 
             // frmFileSendEdit
             // 

@@ -13,6 +13,9 @@ using BDO.Core.DataAccessObjects.Models;
 using CLL.LLClasses.Models;
 using System.Threading;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using BDO.DataAccessObjects.ExtendedEntities;
+using BMCFileMangement.Services.DisServices;
+using Newtonsoft.Json;
 
 namespace BMCFileMangement.forms
 {
@@ -309,6 +312,124 @@ namespace BMCFileMangement.forms
         private void btnLoad_Click(object sender, EventArgs e)
         {
             _getInboxData();
+        }
+
+        private void btnSendFile_Click_1(object sender, EventArgs e)
+        {
+            CancellationToken cancellationToken = new CancellationToken();
+            IHttpContextAccessor httpContextAccessor = null;
+
+            if (string.IsNullOrEmpty(tinyMceEditor.HtmlContent))
+            {
+                MessageBox.Show("Please enter document body");
+                return;
+            }
+
+            if (cboUser.SelectedValue == "-99")
+            {
+                MessageBox.Show("Please select user");
+                return;
+            }
+
+            if (cboPriority.SelectedValue.ToString() == "-99")
+            {
+                MessageBox.Show("Please select priority");
+                return;
+            }
+
+            // Display a confirmation message box
+            DialogResult result = MessageBox.Show("Are you sure you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Check the user's response
+            if (result == DialogResult.Yes)
+            {
+                DateTime dt = DateTime.Now;
+                int maxId = 1;
+                string TempNewName = "";
+                bool isUploadedFile = false;
+                string jsonFile = "";
+                string fileName = "";
+
+                #region Upload File from TinyMCE Content
+                if (!string.IsNullOrEmpty(tinyMceEditor.HtmlContent))
+                {
+                    AppConfig.HelperClasses.transactioncodeGen transactioncodeGen = new AppConfig.HelperClasses.transactioncodeGen();
+                    fileName = transactioncodeGen.GetRandomAlphaNumericString(8) + ".docx";
+
+                    string sFilePath = ConvertHtmlContentToDocX(tinyMceEditor.HtmlContent);
+                    try
+                    {
+                        // Upload file into Sender OUTBOX: Start
+                        var sOutboxPath = $"{_userprofile.CurrentUser.userid.GetValueOrDefault().ToString()}/OUTBOX/";
+                        var _SenderUploadfile = _fTPTransferService.UploadFile(sFilePath, sOutboxPath, fileName);
+                        // Upload file into Sender OUTBOX: END
+
+                        // Upload file into Receiver INBOX: Start
+                        var rInboxPath = $"{cboUser.SelectedValue.ToString()}/INBOX/";
+                        var _ReceiverUploadfile = _fTPTransferService.UploadFile(sFilePath, rInboxPath, fileName);
+                        // Upload file into Receiver INBOX: END
+                        isUploadedFile = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        isUploadedFile = false;
+                    }
+                }
+                #endregion
+                //Upload File into FTP 
+                if (isUploadedFile)
+                {
+                    filetransferinfoEntity objFileInBox = new filetransferinfoEntity()
+                    {
+                        fromusername = _userprofile.CurrentUser.username,
+                        fromuserid = _userprofile.CurrentUser.userid,
+                        tousername = cboUser.GetItemText(cboUser.SelectedItem),
+                        touserid = new Guid(cboUser.SelectedValue.ToString()),
+                        fromuserremark = txtRemarks.Text,
+                        sentdate = dt,
+                        showedpopup = false,
+                        showeddate = null,
+                        isreceived = true,
+                        receiveddate = dt,
+                        isopen = false,
+                        opendate = null,
+                        filename = maxId.ToString() + "_" + fileName,//Path.GetFileName(desPath),
+                        fileversion = maxId,
+                        fullpath = _ftpSettings.FtpAddress + cboUser.SelectedValue.ToString() + "/INBOX/",
+                        priority = Convert.ToInt32(cboPriority.SelectedValue),
+                        filejsondata = jsonFile,
+                        status = 2,
+                        expecteddate = dt,
+                        documentblock = tinyMceEditor.HtmlContent
+                    };
+
+                    clsSecurityCapsule objCap = new clsSecurityCapsule();
+
+                    objFileInBox.BaseSecurityParam = new BDO.Core.Base.SecurityCapsule();
+                    objFileInBox.BaseSecurityParam = objCap.GetSecurityCapsule(dt, _userprofile.CurrentUser.username);
+                    objCap.Dispose();
+                    var _filetrans = BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.
+                        GetFacadeCreate(httpContextAccessor).Add(objFileInBox, cancellationToken);
+
+                    if (_filetrans.Result > 0)
+                    {
+                        cboUser.SelectedIndex = 0;
+                        txtRemarks.Text = "";
+                        MessageBox.Show("Data sent successfully");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data sent failed");
+                    }
+                }
+            }
+            else
+            {
+                // User clicked No, do nothing or handle accordingly
+                MessageBox.Show("Action canceled!");
+            }
         }
     }
 }
