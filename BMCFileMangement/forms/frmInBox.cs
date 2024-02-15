@@ -1,11 +1,14 @@
-﻿using BDO.Core.DataAccessObjects.ExtendedEntities;
+﻿using BDO.Core.DataAccessObjects.CommonEntities;
+using BDO.Core.DataAccessObjects.ExtendedEntities;
 using BDO.Core.DataAccessObjects.Models;
 using BDO.Core.DataAccessObjects.SecurityModels;
 using BMCFileMangement.Services.DisServices;
 using BMCFileMangement.Services.Interface;
+using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +37,7 @@ namespace BMCFileMangement.forms
         private readonly IFileNotificationService _fileNotificationList;
         private readonly IFTPTransferService _fTPTransferService;
 
+        private readonly IOptions<FtpSettingsOptions> _ftpOptions;
 
         private int _PageSize = 500;
         private int CurrentPage = 1;
@@ -184,6 +188,18 @@ namespace BMCFileMangement.forms
                 BindDataToGrid(this.CurrentPage);
             }
         }
+
+        //private Form GetFrmMainWindow()
+        //{
+        //    IOptions<FtpSettingsOptions> ftpOptions = new IOptions<FtpSettingsOptions>();
+        //    return frmMainWindow(_config,
+        //        _loggerFactory,
+        //    _msgService,
+        //    _applog,
+        //        _userprofile,
+        //        _fileNotificationList,
+        //        _fTPTransferService, ftpOptions);
+        //}
         #endregion Paging Method & Style 02
 
         private void dtGrdInBox_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -218,6 +234,25 @@ namespace BMCFileMangement.forms
 
                     BindDataToGrid(this.CurrentPage);
                 }
+            }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == dtGrdInBox.Columns["fromusername"].Index)
+            {
+                filetransferinfoEntity _filetransferinfo = new filetransferinfoEntity();
+                string filetransid = dtGrdInBox.Rows[e.RowIndex].Cells["filetransid"].Value.ToString();
+                _filetransferinfo.filetransid = !string.IsNullOrEmpty(filetransid) ? long.Parse(filetransid) : -99;
+                //this.IsMdiContainer = true;
+                var _frmFileSendEdit = new frmFileSendEdit(
+                                                            _filetransferinfo,
+                                                            _config,
+                                                            _loggerFactory,
+                                                            _msgService,
+                                                            _applog,
+                                                            _userprofile,
+                                                            _fileNotificationList,
+                                                            _fTPTransferService
+                                                          );
+                _frmFileSendEdit.ShowDialog();
             }
         }
 
@@ -268,6 +303,11 @@ namespace BMCFileMangement.forms
                 }
             }
             catch { }
+        }
+
+        private void frmInBox_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -6,44 +6,50 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows.Controls;
 
 namespace WinFormTinyMCE
 {
-  public partial class TinyMCE : UserControl
-  {
-    public TinyMCE()
+  public partial class TinyMCE : System.Windows.Forms.UserControl
     {
-      InitializeComponent();
-    }
-
-    public string HtmlContent
-    {
-      get
-      {
-        string content = string.Empty;
-        if (webBrowserControl != null && webBrowserControl.Document != null)
+        public TinyMCE()
         {
-          object html = webBrowserControl.Document.InvokeScript("GetContent");
-          content = html as string;
+            InitializeComponent();
+            webBrowserControl.DocumentCompleted += WebBrowser_DocumentCompleted;
         }
-        return content;
-      }
-      set
-      {
-        if (webBrowserControl.Document != null)
+        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-          webBrowserControl.Document.InvokeScript("SetContent", new object[] { value });
+            if (e.Url.AbsolutePath == webBrowserControl.Url.AbsolutePath)
+            {
+                //webBrowserControl.Document.InvokeScript("SetContent", new object[] {  });
+            }
         }
-      }
-    }
+        public string HtmlContent
+        {
+            get
+            {
+                string content = string.Empty;
+                if (webBrowserControl != null && webBrowserControl.Document != null)
+                {
+                    object html = webBrowserControl.Document.InvokeScript("GetContent");
+                    content = html as string;
+                }
+                return content;
+            }
+            set
+            {
+                if (webBrowserControl.Document != null)
+                {
+                    webBrowserControl.Document.InvokeScript("SetContent", new object[] { value });
+                }
+            }
+        }
 
         public void CreateEditor()
         {
             // Check if the main script file exist being used by the HTML page
             if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"tinymce\jscripts\tiny_mce\tiny_mce.js")))
             {
-                string basepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
-                string ________basepath = @"file:///" + Path.Combine(basepath, @"tinymce.htm");
                 webBrowserControl.Url = new Uri(@"file:///" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tinymce.htm").Replace('\\', '/'));
             }
             else

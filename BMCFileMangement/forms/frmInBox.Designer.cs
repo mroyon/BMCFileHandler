@@ -28,422 +28,425 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnPreviousPage = new System.Windows.Forms.Button();
-            this.btnNextPage = new System.Windows.Forms.Button();
-            this.btnFirstPage = new System.Windows.Forms.Button();
-            this.btnLastPage = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnClearSearchInboxData = new System.Windows.Forms.Button();
-            this.txtContent = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnSearchInboxData = new System.Windows.Forms.Button();
-            this.dtGrdInBox = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cboUser = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnBrowseFile = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtFilePath = new System.Windows.Forms.TextBox();
-            this.filetransid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fromusername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.filename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priority = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sentdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isreceived = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiveddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.showedpopup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.showeddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isopen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.opendate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fromuserremark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGrdInBox)).BeginInit();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            panel1 = new Panel();
+            groupBox2 = new GroupBox();
+            btnPreviousPage = new Button();
+            btnNextPage = new Button();
+            btnFirstPage = new Button();
+            btnLastPage = new Button();
+            groupBox1 = new GroupBox();
+            btnClearSearchInboxData = new Button();
+            txtContent = new TextBox();
+            label6 = new Label();
+            btnSearchInboxData = new Button();
+            dtGrdInBox = new DataGridView();
+            filetransid = new DataGridViewTextBoxColumn();
+            fromusername = new DataGridViewTextBoxColumn();
+            filename = new DataGridViewTextBoxColumn();
+            priority = new DataGridViewTextBoxColumn();
+            sentdate = new DataGridViewTextBoxColumn();
+            isreceived = new DataGridViewTextBoxColumn();
+            receiveddate = new DataGridViewTextBoxColumn();
+            showedpopup = new DataGridViewTextBoxColumn();
+            showeddate = new DataGridViewTextBoxColumn();
+            isopen = new DataGridViewTextBoxColumn();
+            opendate = new DataGridViewTextBoxColumn();
+            status = new DataGridViewTextBoxColumn();
+            fromuserremark = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            cboUser = new ComboBox();
+            label4 = new Label();
+            btnBrowseFile = new Button();
+            label3 = new Label();
+            txtFilePath = new TextBox();
+            panel1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtGrdInBox).BeginInit();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.dtGrdInBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1046, 563);
-            this.panel1.TabIndex = 2;
+            panel1.Controls.Add(groupBox2);
+            panel1.Controls.Add(groupBox1);
+            panel1.Controls.Add(dtGrdInBox);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1195, 751);
+            panel1.TabIndex = 2;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnPreviousPage);
-            this.groupBox2.Controls.Add(this.btnNextPage);
-            this.groupBox2.Controls.Add(this.btnFirstPage);
-            this.groupBox2.Controls.Add(this.btnLastPage);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 505);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1046, 58);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Paging";
+            groupBox2.Controls.Add(btnPreviousPage);
+            groupBox2.Controls.Add(btnNextPage);
+            groupBox2.Controls.Add(btnFirstPage);
+            groupBox2.Controls.Add(btnLastPage);
+            groupBox2.Dock = DockStyle.Bottom;
+            groupBox2.Location = new Point(0, 674);
+            groupBox2.Margin = new Padding(3, 4, 3, 4);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(3, 4, 3, 4);
+            groupBox2.Size = new Size(1195, 77);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Paging";
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPreviousPage.Location = new System.Drawing.Point(478, 15);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(46, 28);
-            this.btnPreviousPage.TabIndex = 5;
-            this.btnPreviousPage.Text = "<";
-            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            btnPreviousPage.Anchor = AnchorStyles.None;
+            btnPreviousPage.Location = new Point(546, 20);
+            btnPreviousPage.Name = "btnPreviousPage";
+            btnPreviousPage.Size = new Size(53, 37);
+            btnPreviousPage.TabIndex = 5;
+            btnPreviousPage.Text = "<";
+            btnPreviousPage.UseVisualStyleBackColor = true;
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnNextPage.Location = new System.Drawing.Point(524, 15);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(46, 28);
-            this.btnNextPage.TabIndex = 6;
-            this.btnNextPage.Text = ">";
-            this.btnNextPage.UseVisualStyleBackColor = true;
+            btnNextPage.Anchor = AnchorStyles.None;
+            btnNextPage.Location = new Point(599, 20);
+            btnNextPage.Name = "btnNextPage";
+            btnNextPage.Size = new Size(53, 37);
+            btnNextPage.TabIndex = 6;
+            btnNextPage.Text = ">";
+            btnNextPage.UseVisualStyleBackColor = true;
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnFirstPage.Location = new System.Drawing.Point(433, 15);
-            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(46, 28);
-            this.btnFirstPage.TabIndex = 8;
-            this.btnFirstPage.Text = "|<";
-            this.btnFirstPage.UseVisualStyleBackColor = true;
+            btnFirstPage.Anchor = AnchorStyles.None;
+            btnFirstPage.Location = new Point(495, 20);
+            btnFirstPage.Name = "btnFirstPage";
+            btnFirstPage.Size = new Size(53, 37);
+            btnFirstPage.TabIndex = 8;
+            btnFirstPage.Text = "|<";
+            btnFirstPage.UseVisualStyleBackColor = true;
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLastPage.Location = new System.Drawing.Point(569, 15);
-            this.btnLastPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(46, 28);
-            this.btnLastPage.TabIndex = 7;
-            this.btnLastPage.Text = ">|";
-            this.btnLastPage.UseVisualStyleBackColor = true;
+            btnLastPage.Anchor = AnchorStyles.None;
+            btnLastPage.Location = new Point(650, 20);
+            btnLastPage.Name = "btnLastPage";
+            btnLastPage.Size = new Size(53, 37);
+            btnLastPage.TabIndex = 7;
+            btnLastPage.Text = ">|";
+            btnLastPage.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnClearSearchInboxData);
-            this.groupBox1.Controls.Add(this.txtContent);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.btnSearchInboxData);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1046, 58);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "View In Box Files";
+            groupBox1.Controls.Add(btnClearSearchInboxData);
+            groupBox1.Controls.Add(txtContent);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(btnSearchInboxData);
+            groupBox1.Dock = DockStyle.Top;
+            groupBox1.Location = new Point(0, 0);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(1195, 77);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "View In Box Files";
             // 
             // btnClearSearchInboxData
             // 
-            this.btnClearSearchInboxData.Location = new System.Drawing.Point(624, 23);
-            this.btnClearSearchInboxData.Name = "btnClearSearchInboxData";
-            this.btnClearSearchInboxData.Size = new System.Drawing.Size(117, 23);
-            this.btnClearSearchInboxData.TabIndex = 7;
-            this.btnClearSearchInboxData.Text = "Clear";
-            this.btnClearSearchInboxData.UseVisualStyleBackColor = true;
+            btnClearSearchInboxData.Location = new Point(713, 31);
+            btnClearSearchInboxData.Margin = new Padding(3, 4, 3, 4);
+            btnClearSearchInboxData.Name = "btnClearSearchInboxData";
+            btnClearSearchInboxData.Size = new Size(134, 31);
+            btnClearSearchInboxData.TabIndex = 7;
+            btnClearSearchInboxData.Text = "Clear";
+            btnClearSearchInboxData.UseVisualStyleBackColor = true;
             // 
             // txtContent
             // 
-            this.txtContent.Location = new System.Drawing.Point(114, 23);
-            this.txtContent.Name = "txtContent";
-            this.txtContent.Size = new System.Drawing.Size(381, 23);
-            this.txtContent.TabIndex = 6;
+            txtContent.Location = new Point(130, 31);
+            txtContent.Margin = new Padding(3, 4, 3, 4);
+            txtContent.Name = "txtContent";
+            txtContent.Size = new Size(435, 27);
+            txtContent.TabIndex = 6;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(58, 27);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 15);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Content";
+            label6.AutoSize = true;
+            label6.Location = new Point(66, 36);
+            label6.Name = "label6";
+            label6.Size = new Size(61, 20);
+            label6.TabIndex = 5;
+            label6.Text = "Content";
             // 
             // btnSearchInboxData
             // 
-            this.btnSearchInboxData.Location = new System.Drawing.Point(501, 23);
-            this.btnSearchInboxData.Name = "btnSearchInboxData";
-            this.btnSearchInboxData.Size = new System.Drawing.Size(117, 23);
-            this.btnSearchInboxData.TabIndex = 0;
-            this.btnSearchInboxData.Text = "Search";
-            this.btnSearchInboxData.UseVisualStyleBackColor = true;
+            btnSearchInboxData.Location = new Point(573, 31);
+            btnSearchInboxData.Margin = new Padding(3, 4, 3, 4);
+            btnSearchInboxData.Name = "btnSearchInboxData";
+            btnSearchInboxData.Size = new Size(134, 31);
+            btnSearchInboxData.TabIndex = 0;
+            btnSearchInboxData.Text = "Search";
+            btnSearchInboxData.UseVisualStyleBackColor = true;
             // 
             // dtGrdInBox
             // 
-            this.dtGrdInBox.AllowUserToAddRows = false;
-            this.dtGrdInBox.AllowUserToDeleteRows = false;
-            this.dtGrdInBox.AllowUserToResizeColumns = false;
-            this.dtGrdInBox.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dtGrdInBox.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dtGrdInBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtGrdInBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Teal;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtGrdInBox.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dtGrdInBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGrdInBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.filetransid,
-            this.fromusername,
-            this.filename,
-            this.priority,
-            this.sentdate,
-            this.isreceived,
-            this.receiveddate,
-            this.showedpopup,
-            this.showeddate,
-            this.isopen,
-            this.opendate,
-            this.status,
-            this.fromuserremark});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.PaleGoldenrod;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtGrdInBox.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dtGrdInBox.EnableHeadersVisualStyles = false;
-            this.dtGrdInBox.Location = new System.Drawing.Point(0, 64);
-            this.dtGrdInBox.Name = "dtGrdInBox";
-            this.dtGrdInBox.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtGrdInBox.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            this.dtGrdInBox.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dtGrdInBox.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dtGrdInBox.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
-            this.dtGrdInBox.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            this.dtGrdInBox.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.dtGrdInBox.RowTemplate.Height = 35;
-            this.dtGrdInBox.Size = new System.Drawing.Size(1046, 438);
-            this.dtGrdInBox.TabIndex = 0;
-            this.dtGrdInBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGrdInBox_CellClick);
-            this.dtGrdInBox.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtGrdInBox_CellFormatting);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(6, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 23);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Remark";
-            // 
-            // cboUser
-            // 
-            this.cboUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboUser.FormattingEnabled = true;
-            this.cboUser.Location = new System.Drawing.Point(93, 57);
-            this.cboUser.Name = "cboUser";
-            this.cboUser.Size = new System.Drawing.Size(623, 23);
-            this.cboUser.TabIndex = 16;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(6, 63);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 23);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Select User:";
-            // 
-            // btnBrowseFile
-            // 
-            this.btnBrowseFile.Location = new System.Drawing.Point(0, 0);
-            this.btnBrowseFile.Name = "btnBrowseFile";
-            this.btnBrowseFile.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowseFile.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(6, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 30);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Select File: ";
-            // 
-            // txtFilePath
-            // 
-            this.txtFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilePath.Location = new System.Drawing.Point(93, 22);
-            this.txtFilePath.Multiline = true;
-            this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.ReadOnly = true;
-            this.txtFilePath.Size = new System.Drawing.Size(529, 28);
-            this.txtFilePath.TabIndex = 13;
+            dtGrdInBox.AllowUserToAddRows = false;
+            dtGrdInBox.AllowUserToDeleteRows = false;
+            dtGrdInBox.AllowUserToResizeColumns = false;
+            dtGrdInBox.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            dtGrdInBox.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtGrdInBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dtGrdInBox.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Teal;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dtGrdInBox.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dtGrdInBox.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtGrdInBox.Columns.AddRange(new DataGridViewColumn[] { filetransid, fromusername, filename, priority, sentdate, isreceived, receiveddate, showedpopup, showeddate, isopen, opendate, status, fromuserremark });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.PaleGoldenrod;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Control;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dtGrdInBox.DefaultCellStyle = dataGridViewCellStyle4;
+            dtGrdInBox.EnableHeadersVisualStyles = false;
+            dtGrdInBox.Location = new Point(0, 85);
+            dtGrdInBox.Margin = new Padding(3, 4, 3, 4);
+            dtGrdInBox.Name = "dtGrdInBox";
+            dtGrdInBox.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dtGrdInBox.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dtGrdInBox.RowHeadersWidth = 51;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dtGrdInBox.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dtGrdInBox.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dtGrdInBox.RowTemplate.DefaultCellStyle.Padding = new Padding(2);
+            dtGrdInBox.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.DodgerBlue;
+            dtGrdInBox.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.White;
+            dtGrdInBox.RowTemplate.Height = 35;
+            dtGrdInBox.Size = new Size(1195, 584);
+            dtGrdInBox.TabIndex = 0;
+            dtGrdInBox.CellClick += dtGrdInBox_CellClick;
+            dtGrdInBox.CellFormatting += dtGrdInBox_CellFormatting;
             // 
             // filetransid
             // 
-            this.filetransid.DataPropertyName = "filetransid";
-            this.filetransid.HeaderText = "filetransid";
-            this.filetransid.Name = "filetransid";
-            this.filetransid.ReadOnly = true;
-            this.filetransid.Visible = false;
+            filetransid.DataPropertyName = "filetransid";
+            filetransid.HeaderText = "filetransid";
+            filetransid.MinimumWidth = 6;
+            filetransid.Name = "filetransid";
+            filetransid.ReadOnly = true;
+            filetransid.Visible = false;
             // 
             // fromusername
             // 
-            this.fromusername.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fromusername.DataPropertyName = "fromusername";
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.fromusername.DefaultCellStyle = dataGridViewCellStyle3;
-            this.fromusername.HeaderText = "From User";
-            this.fromusername.MinimumWidth = 62;
-            this.fromusername.Name = "fromusername";
-            this.fromusername.ReadOnly = true;
+            fromusername.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            fromusername.DataPropertyName = "fromusername";
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            fromusername.DefaultCellStyle = dataGridViewCellStyle3;
+            fromusername.HeaderText = "From User";
+            fromusername.MinimumWidth = 62;
+            fromusername.Name = "fromusername";
+            fromusername.ReadOnly = true;
             // 
             // filename
             // 
-            this.filename.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.filename.DataPropertyName = "filename";
-            this.filename.HeaderText = "File Name";
-            this.filename.MinimumWidth = 62;
-            this.filename.Name = "filename";
-            this.filename.ReadOnly = true;
+            filename.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            filename.DataPropertyName = "filename";
+            filename.HeaderText = "File Name";
+            filename.MinimumWidth = 62;
+            filename.Name = "filename";
+            filename.ReadOnly = true;
             // 
             // priority
             // 
-            this.priority.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.priority.DataPropertyName = "priority";
-            this.priority.HeaderText = "Priority";
-            this.priority.Name = "priority";
-            this.priority.ReadOnly = true;
-            this.priority.Width = 85;
+            priority.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            priority.DataPropertyName = "priority";
+            priority.HeaderText = "Priority";
+            priority.MinimumWidth = 6;
+            priority.Name = "priority";
+            priority.ReadOnly = true;
+            priority.Width = 99;
             // 
             // sentdate
             // 
-            this.sentdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.sentdate.DataPropertyName = "sentdate";
-            this.sentdate.HeaderText = "Sent Date";
-            this.sentdate.Name = "sentdate";
-            this.sentdate.ReadOnly = true;
-            this.sentdate.Width = 98;
+            sentdate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            sentdate.DataPropertyName = "sentdate";
+            sentdate.HeaderText = "Sent Date";
+            sentdate.MinimumWidth = 6;
+            sentdate.Name = "sentdate";
+            sentdate.ReadOnly = true;
+            sentdate.Width = 118;
             // 
             // isreceived
             // 
-            this.isreceived.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.isreceived.DataPropertyName = "isreceived";
-            this.isreceived.HeaderText = "Is Received?";
-            this.isreceived.Name = "isreceived";
-            this.isreceived.ReadOnly = true;
-            this.isreceived.Width = 115;
+            isreceived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            isreceived.DataPropertyName = "isreceived";
+            isreceived.HeaderText = "Is Received?";
+            isreceived.MinimumWidth = 6;
+            isreceived.Name = "isreceived";
+            isreceived.ReadOnly = true;
+            isreceived.Width = 134;
             // 
             // receiveddate
             // 
-            this.receiveddate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.receiveddate.DataPropertyName = "receiveddate";
-            this.receiveddate.HeaderText = "Received Date";
-            this.receiveddate.Name = "receiveddate";
-            this.receiveddate.ReadOnly = true;
-            this.receiveddate.Width = 130;
+            receiveddate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            receiveddate.DataPropertyName = "receiveddate";
+            receiveddate.HeaderText = "Received Date";
+            receiveddate.MinimumWidth = 6;
+            receiveddate.Name = "receiveddate";
+            receiveddate.ReadOnly = true;
+            receiveddate.Width = 153;
             // 
             // showedpopup
             // 
-            this.showedpopup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.showedpopup.DataPropertyName = "showedpopup";
-            this.showedpopup.HeaderText = "Is Popup?";
-            this.showedpopup.Name = "showedpopup";
-            this.showedpopup.ReadOnly = true;
-            this.showedpopup.Width = 98;
+            showedpopup.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            showedpopup.DataPropertyName = "showedpopup";
+            showedpopup.HeaderText = "Is Popup?";
+            showedpopup.MinimumWidth = 6;
+            showedpopup.Name = "showedpopup";
+            showedpopup.ReadOnly = true;
+            showedpopup.Width = 114;
             // 
             // showeddate
             // 
-            this.showeddate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.showeddate.DataPropertyName = "showeddate";
-            this.showeddate.HeaderText = "Popup Date";
-            this.showeddate.Name = "showeddate";
-            this.showeddate.ReadOnly = true;
-            this.showeddate.Width = 113;
+            showeddate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            showeddate.DataPropertyName = "showeddate";
+            showeddate.HeaderText = "Popup Date";
+            showeddate.MinimumWidth = 6;
+            showeddate.Name = "showeddate";
+            showeddate.ReadOnly = true;
+            showeddate.Width = 133;
             // 
             // isopen
             // 
-            this.isopen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.isopen.DataPropertyName = "isopen";
-            this.isopen.HeaderText = "Is Open?";
-            this.isopen.Name = "isopen";
-            this.isopen.ReadOnly = true;
-            this.isopen.Width = 90;
+            isopen.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            isopen.DataPropertyName = "isopen";
+            isopen.HeaderText = "Is Open?";
+            isopen.MinimumWidth = 6;
+            isopen.Name = "isopen";
+            isopen.ReadOnly = true;
+            isopen.Width = 106;
             // 
             // opendate
             // 
-            this.opendate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.opendate.DataPropertyName = "opendate";
-            this.opendate.HeaderText = "Open Date";
-            this.opendate.Name = "opendate";
-            this.opendate.ReadOnly = true;
-            this.opendate.Width = 105;
+            opendate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            opendate.DataPropertyName = "opendate";
+            opendate.HeaderText = "Open Date";
+            opendate.MinimumWidth = 6;
+            opendate.Name = "opendate";
+            opendate.ReadOnly = true;
+            opendate.Width = 125;
             // 
             // status
             // 
-            this.status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.status.DataPropertyName = "status";
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Width = 74;
+            status.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            status.DataPropertyName = "status";
+            status.HeaderText = "Status";
+            status.MinimumWidth = 6;
+            status.Name = "status";
+            status.ReadOnly = true;
+            status.Width = 89;
             // 
             // fromuserremark
             // 
-            this.fromuserremark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.fromuserremark.DataPropertyName = "fromuserremark";
-            this.fromuserremark.HeaderText = "Remarks";
-            this.fromuserremark.Name = "fromuserremark";
-            this.fromuserremark.ReadOnly = true;
-            this.fromuserremark.Width = 92;
+            fromuserremark.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            fromuserremark.DataPropertyName = "fromuserremark";
+            fromuserremark.HeaderText = "Remarks";
+            fromuserremark.MinimumWidth = 6;
+            fromuserremark.Name = "fromuserremark";
+            fromuserremark.ReadOnly = true;
+            fromuserremark.Width = 108;
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(6, 95);
+            label1.Name = "label1";
+            label1.Size = new Size(81, 23);
+            label1.TabIndex = 18;
+            label1.Text = "Remark";
+            // 
+            // cboUser
+            // 
+            cboUser.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cboUser.FormattingEnabled = true;
+            cboUser.Location = new Point(93, 57);
+            cboUser.Name = "cboUser";
+            cboUser.Size = new Size(623, 28);
+            cboUser.TabIndex = 16;
+            // 
+            // label4
+            // 
+            label4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(6, 63);
+            label4.Name = "label4";
+            label4.Size = new Size(81, 23);
+            label4.TabIndex = 15;
+            label4.Text = "Select User:";
+            // 
+            // btnBrowseFile
+            // 
+            btnBrowseFile.Location = new Point(0, 0);
+            btnBrowseFile.Name = "btnBrowseFile";
+            btnBrowseFile.Size = new Size(75, 23);
+            btnBrowseFile.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(6, 24);
+            label3.Name = "label3";
+            label3.Size = new Size(81, 30);
+            label3.TabIndex = 12;
+            label3.Text = "Select File: ";
+            // 
+            // txtFilePath
+            // 
+            txtFilePath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtFilePath.Location = new Point(93, 22);
+            txtFilePath.Multiline = true;
+            txtFilePath.Name = "txtFilePath";
+            txtFilePath.ReadOnly = true;
+            txtFilePath.Size = new Size(529, 28);
+            txtFilePath.TabIndex = 13;
             // 
             // frmInBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 563);
-            this.ControlBox = false;
-            this.Controls.Add(this.panel1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmInBox";
-            this.Text = "In Box";
-            this.panel1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGrdInBox)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1195, 751);
+            ControlBox = false;
+            Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "frmInBox";
+            Text = "In Box";
+            Load += frmInBox_Load;
+            panel1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtGrdInBox).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

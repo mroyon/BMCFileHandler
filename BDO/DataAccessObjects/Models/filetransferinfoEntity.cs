@@ -243,6 +243,7 @@ namespace BDO.Core.DataAccessObjects.Models
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUsername"))) _tousername = reader.GetString(reader.GetOrdinal("ToUsername"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ToUserID"))) _touserid = reader.GetGuid(reader.GetOrdinal("ToUserID"));
                 if (!reader.IsDBNull(reader.GetOrdinal("FromUserRemark"))) _fromuserremark = reader.GetString(reader.GetOrdinal("FromUserRemark"));
+                if (!reader.IsDBNull(reader.GetOrdinal("DocumentBlock"))) _documentblock = reader.GetString(reader.GetOrdinal("DocumentBlock"));
                 if (!reader.IsDBNull(reader.GetOrdinal("SentDate"))) _sentdate = reader.GetDateTime(reader.GetOrdinal("SentDate"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ShowedPopUP"))) _showedpopup = reader.GetBoolean(reader.GetOrdinal("ShowedPopUP"));
                 if (!reader.IsDBNull(reader.GetOrdinal("ShowedDate"))) _showeddate = reader.GetDateTime(reader.GetOrdinal("ShowedDate"));

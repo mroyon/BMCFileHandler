@@ -117,43 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="filetransid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="fromusername.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="filename.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="priority.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="sentdate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="isreceived.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="receiveddate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="showedpopup.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="showeddate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="isopen.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="opendate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="status.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="fromuserremark.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnSendFile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAzxJREFUSEvt
+        lMtPE1EUh0fU4EJdUGixUCCmSxPDimDi2v/AhQnqSuLCdTFxUR5CMaIEw8OgJhofKGrwgSAEscibgkj6
+        mk7fnZm+WyjFaIg5njsdxIGCgLjzl3yZu5h7vnvPvTPU/2wrvf39p2mb7ZOV3j0YxqHH0vtSBkx3T0+F
+        y+WGpaWvu4bb7YGioqIDooKiBgf1mlgsDtPTM5BILMLiYnLHBAJBoGmbMFar1ZmiIiVJJpcEgclsBpbl
+        IB6f3zZGown8/gCQWgSJZAAlRLACkczOfoFwOLIlQqEwTE5OQTQa+1WDIJUMDGrm5xfgd8hkMpHn/UIL
+        NsLucILZbAHSbkmNhcR6CXlpLRFcmcVKgxVhWV4Kx4PBMAM+3HU0zVyCRNLXN6AJR6KQDh57bDBMw9jY
+        uNBGj9cn3JzR0TEwmczYKmwZvucPRiAojldYJwliXyUEQ8AwdqFdfmwLeZotVpiaMoDD6RIOmLTUiCIO
+        d9Whd8OpO27wciFxflgq6e3t05BCK3CcH2w2Bg8yLjngjSBzdG+sUNDzA0qfx8HtCwiLkEjeoYSslEPI
+        R0lWEsMrGYttneYhXpAU9gGUdsbA4ebWSno1Ph8rtGHtx7URiQQiPheQtpEgqF59B9XbZYGSJ2HIKrl0
+        WFRQ1OvunooQbjvd74GQRBaTKdhYEgy+BDydi0PlxzCceRGAknscHG1mQfloAZSPVzl+1/+N0rpSv5aX
+        XV1nx8cnjHhjzBtgGpuYNI1OTBrfDxss9z98tmu7zWxZpz1y8oEnqW7nlhWtfkjHsRbvqgizZ1O02gzC
+        IS2dnVPHFMtqmTLZVXtjVrVNL6uig7JKGmSVVhEyRqpskF3DQPYV00Os8YcAoARQAhl5tRZZIUry6pmy
+        fJ29MV/H6JGgSsdgUVJ4lZxqGyiq6WFKO7j6y980RITkaE0HlTV2lVJnP6FqcJ0vaHDUqq47O3IvO+YU
+        dU7Irk8hv+aEvHrHCHXBsF+ssMOIYuoZ7JXrXBflN71AUDR6Ie+GZ5i6/beCNZE3seWKZh5yW3hQ3mJ3
+        X0Aib+XLj7SHQNkW+DcCktya0LnipugQXo4tHvIOom6CTOEGpg1F/QRnu+cDfksVcAAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
 </root>
