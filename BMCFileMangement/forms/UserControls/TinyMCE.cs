@@ -17,13 +17,37 @@ namespace WinFormTinyMCE
             InitializeComponent();
             webBrowserControl.DocumentCompleted += WebBrowser_DocumentCompleted;
         }
-        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        public void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (e.Url.AbsolutePath == webBrowserControl.Url.AbsolutePath)
             {
-                //webBrowserControl.Document.InvokeScript("SetContent", new object[] {  });
+               // webBrowserControl.Document.InvokeScript("SetContent", new object[] {  });
             }
         }
+
+
+        //private string _html;
+        //public string html
+        //{
+        //    get 
+        //    {
+        //        string content = string.Empty;
+        //        if (webBrowserControl != null && webBrowserControl.Document != null)
+        //        {
+        //            object html = webBrowserControl.Document.InvokeScript("GetContent");
+        //            content = html as string;
+        //        }
+        //        return content;
+        //    }
+        //    set
+        //    {
+        //        if (webBrowserControl.Document != null)
+        //        {
+        //            webBrowserControl.Document.InvokeScript("SetContent", new object[] {  value });
+        //        }
+        //    }
+        //}
+
         public string HtmlContent
         {
             get
