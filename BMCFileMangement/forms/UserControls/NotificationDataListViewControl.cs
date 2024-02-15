@@ -165,7 +165,7 @@ namespace BMCFileMangement.forms.UserControls
                                         .AddArgument(objSingle.touserid.GetValueOrDefault().ToString() + "/" + "INBOX" + "/" + objSingle.filename)
                                         .AddArgument(objSingle.tousername))
                             .AddAttributionText(objSingle.fromuserremark)
-                            .AddAttributionText("Priority: High")
+                            //.AddAttributionText("Priority: High")
                             .SetToastScenario(ToastScenario.Default)
                             .Show(toast =>
                             {
