@@ -14,13 +14,18 @@
     <Compile Remove="forms\frmLoginForm.Designer.cs" />
     <Compile Remove="forms\MainWindow.cs" />
     <Compile Remove="forms\MainWindow.Designer.cs" />
+    <Compile Remove="forms\UserControls\NotificationDataListViewControl.cs" />
+    <Compile Remove="forms\UserControls\NotificationDataListViewControl.Designer.cs" />
     <Compile Remove="MainWindows.cs" />
     <Compile Remove="MainWindows.Designer.cs" />
+    <Compile Remove="Services\Implementation\FileNotificationService.cs" />
+    <Compile Remove="Services\Interface\IFileNotificationService.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="forms\frmLoginForm.resx" />
     <EmbeddedResource Remove="forms\MainWindow.resx" />
+    <EmbeddedResource Remove="forms\UserControls\NotificationDataListViewControl.resx" />
     <EmbeddedResource Remove="MainWindows.resx" />
   </ItemGroup>
 

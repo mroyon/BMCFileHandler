@@ -98,5 +98,18 @@ namespace BFO.Core.BusinessFacadeObjects.General
         }
 
 
+        async Task<filetransferinfoEntity> IfiletransferinfoFacadeObjects.GetSingleNewPopTopView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await DataAccessFactory.CreatefiletransferinfoDataAccess().GetSingleNewPopTopView(filetransferinfo, cancellationToken);
+            }
+
+            catch (Exception ex)
+            {
+                throw GetFacadeException(ex, SourceOfException("filetransferinfoEntity IfiletransferinfoFacade.GetSingleNewPopTopView"));
+            }
+        }
+
     }
 }

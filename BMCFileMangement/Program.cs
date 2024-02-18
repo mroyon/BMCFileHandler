@@ -60,7 +60,6 @@ namespace BMCFileMangement
                 var _IMessageService = ServiceProvider.GetRequiredService<IMessageService>();
                 var _IApplicationLogService = ServiceProvider.GetRequiredService<IApplicationLogService>();
                 var _UserProfileService = ServiceProvider.GetRequiredService<IUserProfileService>();
-                var _FileNotificationService = ServiceProvider.GetRequiredService<IFileNotificationService>();
                 var _FTPTransferService = ServiceProvider.GetRequiredService<IFTPTransferService>();
 
                 var loginForm = new frmLogin(
@@ -111,7 +110,6 @@ namespace BMCFileMangement
                 services.AddTransient<IQueueManagerService, QueueManagerService>();
                 services.AddTransient<IApplicationLogService, ApplicationLogService>();
                 services.AddTransient<IUserProfileService, UserProfileService>();
-                services.AddTransient<IFileNotificationService, FileNotificationService>();
                 services.AddTransient<IFTPTransferService, FTPTransferService>();
                 services.AddTransient<BMCFileMangement.forms.frmMainWindow>();
                 //services.AddHostedService<WorkerNotification>();

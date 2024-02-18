@@ -35,17 +35,24 @@ namespace BMCFileMangement.forms
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
-        private readonly IFileNotificationService _fileNotificationList;
         private readonly IFTPTransferService _fTPTransferService;
         private readonly IOptions<FtpSettingsOptions> _ftpOptions;
 
-        //Func<ChartPoint, string> _labelPoint = chartpoint => string.Format("{0}({1:P})", chartpoint.Y, chartpoint.Participation);
+        /// <summary>
+        /// frmMainWindow
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="loggerFactory"></param>
+        /// <param name="msgService"></param>
+        /// <param name="applog"></param>
+        /// <param name="userprofile"></param>
+        /// <param name="fTPTransferService"></param>
+        /// <param name="ftpOptions"></param>
         public frmMainWindow(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-            IFileNotificationService fileNotificationList, 
             IFTPTransferService fTPTransferService,
             //IFileNotificationService fileNotificationList,
             IOptions<FtpSettingsOptions> ftpOptions)
@@ -55,7 +62,6 @@ namespace BMCFileMangement.forms
             _logger = _loggerFactory.CreateLogger<frmMainWindow>();
             _msgService = msgService;
             _applog = applog;
-            _fileNotificationList = fileNotificationList;
             _userprofile = userprofile;
             _fTPTransferService = fTPTransferService;
             _ftpOptions = ftpOptions;
@@ -99,41 +105,8 @@ namespace BMCFileMangement.forms
 
 
             lblUserName.Text = userprofile.CurrentUser.username;
-
-            //pieChart1.LegendLocation = LegendLocation.Top;
-            //pieChart2.LegendLocation = LegendLocation.Top;
-            _chartInitialize();
         }
 
-        private async Task _chartInitialize()
-        {
-            //CancellationToken cancellationToken = new CancellationToken();
-            //IHttpContextAccessor httpContextAccessor = null;
-            //chartEntity _chart = new chartEntity();
-            //IList<chartEntity> _chartDataList = new List<chartEntity>();
-
-            //_chart.userid = _userprofile.CurrentUser.userid;
-
-            //_chartDataList = await BFC.Core.FacadeCreatorObjects.General.chartFCC.
-            //           GetFacadeCreate(httpContextAccessor).GetAll(_chart, cancellationToken);
-
-            //SeriesCollection _sc = new SeriesCollection();
-            //foreach (var _data in _chartDataList)
-            //{
-            //    _sc.Add(new PieSeries() { Title = _data.charttitle, Values = new ChartValues<int> { Convert.ToInt32(_data.chartvalues) }, DataLabels = true, LabelPoint = _labelPoint });
-            //}
-            //pieChart1.Series = _sc;
-
-            //SeriesCollection _sc2 = new SeriesCollection();
-            //foreach (var _data in _chartDataList)
-            //{
-            //    if (!string.IsNullOrEmpty(_data.username))
-            //    {
-            //        _sc2.Add(new PieSeries() { Title = _data.username, Values = new ChartValues<int> { Convert.ToInt32(_data.chartvalues) }, DataLabels = true, LabelPoint = _labelPoint });
-            //    }
-            //}
-            //pieChart2.Series = _sc2;
-        }
 
         private void IcnBtnViewOutBox_Click(object? sender, EventArgs e)
         {
@@ -144,7 +117,6 @@ namespace BMCFileMangement.forms
                 _msgService,
                 _applog,
                 _userprofile,
-                _fileNotificationList,
                 _fTPTransferService));
         }
 
@@ -157,7 +129,6 @@ namespace BMCFileMangement.forms
                 _msgService,
                 _applog,
                 _userprofile,
-                _fileNotificationList,
                 _fTPTransferService));
         }
 
@@ -169,21 +140,20 @@ namespace BMCFileMangement.forms
           _msgService,
           _applog,
           _userprofile,
-          _fileNotificationList,
           _fTPTransferService,
           this);
 
-            this.notificationDataListViewControl1 = new BMCFileMangement.forms.UserControls.NotificationDataListViewControl(
-                _config,
-          _loggerFactory,
-          _msgService,
-          _applog,
-          _userprofile,
-          _fileNotificationList,
-          _fTPTransferService);
+          //  this.notificationDataListViewControl1 = new BMCFileMangement.forms.UserControls.NotificationDataListViewControl(
+          //      _config,
+          //_loggerFactory,
+          //_msgService,
+          //_applog,
+          //_userprofile,
+          //_fileNotificationList,
+          //_fTPTransferService);
 
             this.panleTitleBar.Controls.Add(this.notificationAndDataQuerybgWorker1);
-            this.groupBox1.Controls.Add(this.notificationDataListViewControl1);
+            //this.groupBox1.Controls.Add(this.notificationDataListViewControl1);
             // 
             // notificationAndDataQuerybgWorker1
             // 
@@ -196,21 +166,21 @@ namespace BMCFileMangement.forms
             // 
             // notificationDataListViewControl1
             // 
-            this.notificationDataListViewControl1.Location = new System.Drawing.Point(5, 21);
-            this.notificationDataListViewControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.notificationDataListViewControl1.Name = "notificationDataListViewControl1";
-            this.notificationDataListViewControl1.Size = new System.Drawing.Size(1051, 131);
-            this.notificationDataListViewControl1.TabIndex = 0;
+            //this.notificationDataListViewControl1.Location = new System.Drawing.Point(5, 21);
+            //this.notificationDataListViewControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            //this.notificationDataListViewControl1.Name = "notificationDataListViewControl1";
+            //this.notificationDataListViewControl1.Size = new System.Drawing.Size(1051, 131);
+            //this.notificationDataListViewControl1.TabIndex = 0;
 
 
             ibtnNotification.Click += ibtnNotification_Click;
         }
 
 
-        public void LostNotificaitonListFromExtTrigger()
-        {
-            this.notificationDataListViewControl1.loadDataForNotification();
-        }
+        //public void LostNotificaitonListFromExtTrigger()
+        //{
+        //    //this.notificationDataListViewControl1.loadDataForNotification();
+        //}
 
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -340,7 +310,6 @@ namespace BMCFileMangement.forms
                 _msgService, 
                 _applog, 
                 _userprofile, 
-                _fileNotificationList,
                 _fTPTransferService));
         }
 
@@ -411,7 +380,6 @@ namespace BMCFileMangement.forms
                 _msgService,
                 _applog,
                 _userprofile,
-                _fileNotificationList,
                 _fTPTransferService));
         }
 

@@ -30,7 +30,6 @@ namespace BMCFileMangement.forms
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
-        private readonly IFileNotificationService _fileNotificationList;
         private readonly IFTPTransferService _fTPTransferService;
         private readonly FtpSettings _ftpSettings;
         private readonly filetransferinfoEntity _filetransferinfo;
@@ -42,7 +41,6 @@ namespace BMCFileMangement.forms
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-            IFileNotificationService fileNotificationList,
             IFTPTransferService fTPTransferService)
         {
             InitializeComponent();
@@ -52,7 +50,6 @@ namespace BMCFileMangement.forms
             _logger = _loggerFactory.CreateLogger<frmMainWindow>();
             _msgService = msgService;
             _applog = applog;
-            _fileNotificationList = fileNotificationList;
             _fTPTransferService = fTPTransferService;
 
             _userprofile = userprofile;

@@ -45,7 +45,6 @@ namespace BMCFileMangement.forms
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
-        private readonly IFileNotificationService _fileNotificationList;
         private readonly IFTPTransferService _fTPTransferService;
         private readonly FtpSettings _ftpSettings;
 
@@ -57,14 +56,12 @@ namespace BMCFileMangement.forms
         /// <param name="msgService"></param>
         /// <param name="applog"></param>
         /// <param name="userprofile"></param>
-        /// <param name="fileNotificationList"></param>
         /// <param name="fTPTransferService"></param>
         public frmFileSend(IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-            IFileNotificationService fileNotificationList,
             IFTPTransferService fTPTransferService)
         {
             _config = config;
@@ -72,7 +69,6 @@ namespace BMCFileMangement.forms
             _logger = _loggerFactory.CreateLogger<frmMainWindow>();
             _msgService = msgService;
             _applog = applog;
-            _fileNotificationList = fileNotificationList;
             _fTPTransferService = fTPTransferService;
 
             _userprofile = userprofile;

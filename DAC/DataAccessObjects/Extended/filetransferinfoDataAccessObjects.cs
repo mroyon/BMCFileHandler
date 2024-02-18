@@ -243,5 +243,45 @@ namespace DAC.Core.DataAccessObjects.General
         }
 
 
+        async Task<filetransferinfoEntity> IfiletransferinfoDataAccessObjects.GetSingleNewPopTopView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken)
+        {
+            try
+            {
+                const string SP = "filetransferinfo_GA_TOP1_Ext";
+                IList<filetransferinfoEntity> itemList = new List<filetransferinfoEntity>();
+                using (DbCommand cmd = Database.GetStoredProcCommand(SP))
+                {
+
+                    AddSortExpressionParameter(cmd, filetransferinfo.SortExpression);
+                    FillSequrityParameters(filetransferinfo.BaseSecurityParam, cmd, Database);
+                    FillParameters(filetransferinfo, cmd, Database);
+
+                    IAsyncResult result = Database.BeginExecuteReader(cmd, null, null);
+                    while (!result.IsCompleted)
+                    {
+                    }
+                    using (IDataReader reader = Database.EndExecuteReader(result))
+                    {
+                        while (reader.Read())
+                        {
+                            itemList.Add(new filetransferinfoEntity(reader));
+                        }
+                        reader.Close();
+                    }
+                    cmd.Dispose();
+
+                    if (itemList != null && itemList.Count > 0)
+                        return itemList[0];
+                    else
+                        return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw GetDataAccessException(ex, SourceOfException("IfiletransferinfoDataAccess.GetSingleNewPopTopView"));
+            }
+        }
+
+
     }
 }

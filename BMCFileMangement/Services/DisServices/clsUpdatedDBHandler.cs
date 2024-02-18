@@ -99,6 +99,24 @@ namespace BMCFileMangement.Services.DisServices
 
 
         /// <summary>
+        /// FetchFileTransferInfoTopOne
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public async Task<filetransferinfoEntity> FetchFileTransferInfoTopOne(Guid? userid)
+        {
+            CancellationToken cancellationToken = new CancellationToken();
+            var obj = await BFC.Core.FacadeCreatorObjects.General.filetransferinfoFCC.GetFacadeCreate(null)
+                .GetSingleNewPopTopView(new BDO.Core.DataAccessObjects.Models.filetransferinfoEntity()
+                {
+                    touserid = userid
+                }, cancellationToken);
+            return obj;
+        }
+
+
+
+        /// <summary>
         /// FetchFileTransferInfo
         /// </summary>
         /// <param name="userid"></param>

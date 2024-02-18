@@ -20,5 +20,8 @@ namespace IDAC.Core.IDataAccessObjects.General
 
 
         Task<long> UpdateOpenDataNPopUpData(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
+
+
+        Task<filetransferinfoEntity> GetSingleNewPopTopView(filetransferinfoEntity filetransferinfo, CancellationToken cancellationToken);
     }
 }

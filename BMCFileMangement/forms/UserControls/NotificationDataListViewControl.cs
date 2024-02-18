@@ -31,7 +31,6 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
-        private readonly IFileNotificationService _fileNotificationList;
         private readonly IFTPTransferService _fTPTransferService;
 
         public BackgroundWorker backgroundWorkerPopUp;
@@ -52,13 +51,13 @@ namespace BMCFileMangement.forms.UserControls
         /// <param name="msgService"></param>
         /// <param name="applog"></param>
         /// <param name="userprofile"></param>
+        /// <param name="fTPTransferService"></param>
         public NotificationDataListViewControl(
             IConfigurationRoot config,
             ILoggerFactory loggerFactory,
             IMessageService msgService,
             IApplicationLogService applog,
             IUserProfileService userprofile,
-           IFileNotificationService fileNotificationList,
            IFTPTransferService fTPTransferService)
         {
             _config = config;
@@ -66,7 +65,6 @@ namespace BMCFileMangement.forms.UserControls
             _logger = _loggerFactory.CreateLogger<NotificationDataListViewControl>();
             _msgService = msgService;
             _applog = applog;
-            _fileNotificationList = fileNotificationList;
             _userprofile = userprofile;
             _fTPTransferService = fTPTransferService;
 
@@ -75,11 +73,6 @@ namespace BMCFileMangement.forms.UserControls
 
         }
 
-        // ToastArguments args = ToastArguments.Parse(e.Argument);
-
-        /// <summary>
-        /// InitializeBackgroundWorker
-        /// </summary>
         private void InitializeBackgroundWorkerPopUp()
         {
             backgroundWorkerPopUp = new BackgroundWorker
@@ -145,8 +138,7 @@ namespace BMCFileMangement.forms.UserControls
         /// <param name="e"></param>
         private async Task BackgroundWorkerPopUp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (_fileNotificationList.CurrentListofNotificaitons != null && _fileNotificationList.CurrentListofNotificaitons.Count > 0)
-            {
+           
                 List<filetransferinfoEntity> itemsToRemove = new List<filetransferinfoEntity>();
 
                 foreach (var objSingle in _fileNotificationList.CurrentListofNotificaitons)

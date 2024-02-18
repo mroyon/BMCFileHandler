@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BMCFileMangement.forms.UserControls
-{ 
+{
     public partial class NotificationAndDataQueryBGWorker : UserControl
     {
 
@@ -25,7 +25,6 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IConfigurationRoot _config;
         private readonly IApplicationLogService _applog;
         private readonly IUserProfileService _userprofile;
-        private readonly IFileNotificationService _fileNotificationList;
         private readonly frmMainWindow _MainWindow;
         private readonly IFTPTransferService _fTPTransferService;
 
@@ -36,13 +35,23 @@ namespace BMCFileMangement.forms.UserControls
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// NotificationAndDataQueryBGWorker
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="loggerFactory"></param>
+        /// <param name="msgService"></param>
+        /// <param name="applog"></param>
+        /// <param name="userprofile"></param>
+        /// <param name="fTPTransferService"></param>
+        /// <param name="MainWindow"></param>
         public NotificationAndDataQueryBGWorker(
           IConfigurationRoot config,
           ILoggerFactory loggerFactory,
           IMessageService msgService,
           IApplicationLogService applog,
           IUserProfileService userprofile,
-          IFileNotificationService fileNotificationList,
           IFTPTransferService fTPTransferService,
           frmMainWindow MainWindow)
         {
@@ -56,7 +65,6 @@ namespace BMCFileMangement.forms.UserControls
 
             InitializeComponent();
             InitializeBackgroundWorker();
-            _fileNotificationList = fileNotificationList;
             _MainWindow = MainWindow;
         }
 
@@ -70,7 +78,7 @@ namespace BMCFileMangement.forms.UserControls
                 WorkerReportsProgress = true,
                 WorkerSupportsCancellation = true
             };
-            backgroundWorker.DoWork += async (sender, e) => await BackgroundWorker_DoWork();
+            backgroundWorker.DoWork += async (sender, e) => await BackgroundWorker_DoWork(sender, e);
             backgroundWorker.ProgressChanged += async (sender, e) => await BackgroundWorker_ProgressChanged(sender, e);
             backgroundWorker.RunWorkerCompleted += async (sender, e) => await BackgroundWorker_RunWorkerCompleted(sender, e);
 
@@ -85,40 +93,54 @@ namespace BMCFileMangement.forms.UserControls
         /// BackgroundWorker_DoWork
         /// </summary>
         /// <returns></returns>
-        private async Task BackgroundWorker_DoWork()
+        private async Task BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // Infinite loop to keep the background worker running
             while (!backgroundWorker.CancellationPending)
             {
-                //MessageBox.Show("Asdf");
-                await watchFolderContents();
-                // Simulate an asynchronous task with Task.Delay
-                await Task.Delay(2000); // Adjust as needed
-                // Report progress (if needed)
-                //backgroundWorker.ReportProgress(0);
+                e.Result = await watchFolderContents();
             }
         }
+
 
         /// <summary>
         /// watchFolderContents
         /// </summary>
         /// <returns></returns>
-        private async Task watchFolderContents()
+        private async Task<filetransferinfoEntity> watchFolderContents()
         {
             CancellationToken cancellationToken = new CancellationToken();
             long maxVal = 0;
-            if (_fileNotificationList.CurrentListofNotificaitons != null && _fileNotificationList.CurrentListofNotificaitons.Count > 0)
-                maxVal = _fileNotificationList.CurrentListofNotificaitons.Max(obj => obj.filetransid).GetValueOrDefault(0);
 
             clsUpdatedDBHandler objHandler = new clsUpdatedDBHandler(_loggerFactory);
-            List<filetransferinfoEntity> obj = await objHandler.FetchFileTransferInfo(_userprofile.CurrentUser.userid, maxVal);
-            objHandler.Dispose();
-            if (obj != null && obj.Count > 0)
+            filetransferinfoEntity objSingle = await objHandler.FetchFileTransferInfoTopOne(_userprofile.CurrentUser.userid);
+            if (objSingle != null)
             {
-                _fileNotificationList.SetCurrentNotificaitonItems(obj.ToList());
+                var heroImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", @"Picture1.png");
+                new ToastContentBuilder()
+                    .AddText(objSingle.filename)
+                    .AddInlineImage(new Uri(heroImage))
+                    .AddButton(new ToastButton()
+                                .SetContent("Open File")
+                                .AddArgument(objSingle.filetransid.GetValueOrDefault().ToString())
+                                .AddArgument(objSingle.touserid.GetValueOrDefault().ToString())
+                                .AddArgument(objSingle.filename)
+                                .AddArgument(objSingle.touserid.GetValueOrDefault().ToString() + "/" + "INBOX" + "/" + objSingle.filename)
+                                .AddArgument(objSingle.tousername))
+                    .AddAttributionText(objSingle.fromuserremark)
+                    //.AddAttributionText("Priority: High")
+                    .SetToastScenario(ToastScenario.Default)
+                    .Show(toast =>
+                    {
+                        //toast.ExpirationTime = DateTime.Now.AddSeconds(15);
+                    });
             }
-             await Task.Delay(30000);
+            objHandler.Dispose();
+            await Task.Delay(4000);
+            return objSingle;
         }
+
+
 
         /// BackgroundWorker_ProgressChanged
         /// </summary>
@@ -137,13 +159,19 @@ namespace BMCFileMangement.forms.UserControls
         /// <param name="e"></param>
         private async Task BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            // Cleanup or handle completion if needed
-            _MainWindow.LostNotificaitonListFromExtTrigger();
+            filetransferinfoEntity objSingle = (filetransferinfoEntity)e.Result;
+
+            await UpdatePopData(objSingle);
+
+            backgroundWorker.RunWorkerAsync();
         }
 
-        private void NotificationAndDataQueryBGWorker_Load(object sender, EventArgs e)
+        private async Task UpdatePopData(filetransferinfoEntity obj)
         {
-
+            clsUpdatedDBHandler objHandler = new clsUpdatedDBHandler(_loggerFactory);
+            await objHandler.UpdateFileTransferInfo(obj);
+            objHandler.Dispose();
         }
+
     }
 }

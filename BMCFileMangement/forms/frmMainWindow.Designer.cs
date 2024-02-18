@@ -464,7 +464,7 @@ namespace BMCFileMangement.forms
         private Panel panel3;
         private Panel panelDesktop;
         private NotificationAndDataQueryBGWorker notificationAndDataQuerybgWorker1;
-        private NotificationDataListViewControl notificationDataListViewControl1;
+        //private NotificationDataListViewControl notificationDataListViewControl1;
         private GroupBox groupBox1;
         private FontAwesome.Sharp.IconButton icnBtnViewOutBox;
         private FontAwesome.Sharp.IconButton icnBtnViewInBox;

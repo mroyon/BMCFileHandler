@@ -48,7 +48,6 @@
             this.Controls.Add(this.label1);
             this.Name = "NotificationAndDataQueryBGWorker";
             this.Size = new System.Drawing.Size(281, 41);
-            this.Load += new System.EventHandler(this.NotificationAndDataQueryBGWorker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
