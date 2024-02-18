@@ -1,5 +1,6 @@
 ﻿using BDO.Core.DataAccessObjects.Models;
 using BMCFileMangement.Services.DisServices;
+using BMCFileMangement.Services.Implementation;
 using BMCFileMangement.Services.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.Services.Maps;
 using Timer = System.Windows.Forms.Timer;
 
 namespace BMCFileMangement.forms.UserControls
@@ -146,6 +148,23 @@ namespace BMCFileMangement.forms.UserControls
 
             if (objSingle != null)
                 await UpdatePopData(objSingle);
+
+
+            //// Check which forms are currently open
+            //foreach (Form openForm in Application.OpenForms)
+            //{
+            //    if (openForm.Name == "frmInBox")
+            //    {
+            //        frmInBox obj = new frmInBox(_config,
+            //            _loggerFactory,
+            //            _msgService,
+            //            _applog,
+            //            _userprofile,
+            //            _fTPTransferService);
+
+            //        obj.LoadGridFromOutSide();
+            //    }
+            //}
 
             await Task.Delay(4000);
 

@@ -72,6 +72,8 @@ namespace BMCFileMangement.forms
             InitializeComponent2();
             //tinyMceEditor.CreateEditor();
         }
+        
+
 
 
         public void InitializeComponent2()
@@ -94,6 +96,10 @@ namespace BMCFileMangement.forms
             BindDataToGrid(1);
         }
 
+        public void LoadGridFromOutSide()
+        {
+            BindDataToGrid(1);
+        }
 
         #region Paging Method & Style 02
         private void BindDataToGrid(int currentpage)
