@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace BMCFileMangement.forms.UserControls
 {
@@ -27,6 +28,7 @@ namespace BMCFileMangement.forms.UserControls
         private readonly IUserProfileService _userprofile;
         private readonly frmMainWindow _MainWindow;
         private readonly IFTPTransferService _fTPTransferService;
+
 
         public BackgroundWorker backgroundWorker;
 
@@ -96,9 +98,13 @@ namespace BMCFileMangement.forms.UserControls
         private async Task BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             // Infinite loop to keep the background worker running
-            while (!backgroundWorker.CancellationPending)
+            while (true)
             {
-                e.Result = await watchFolderContents();
+                // Simulate work being done
+                Thread.Sleep(1000); // Sleep for 1 second
+                await watchFolderContents();
+                // Report progress if needed
+                // This can be omitted if progress reporting is not necessary
             }
         }
 
@@ -107,7 +113,7 @@ namespace BMCFileMangement.forms.UserControls
         /// watchFolderContents
         /// </summary>
         /// <returns></returns>
-        private async Task<filetransferinfoEntity> watchFolderContents()
+        private async Task watchFolderContents()
         {
             CancellationToken cancellationToken = new CancellationToken();
             long maxVal = 0;
@@ -137,7 +143,12 @@ namespace BMCFileMangement.forms.UserControls
             }
             objHandler.Dispose();
             await Task.Delay(4000);
-            return objSingle;
+
+            if (objSingle != null)
+                await UpdatePopData(objSingle);
+
+            await Task.Delay(4000);
+
         }
 
 
@@ -159,11 +170,13 @@ namespace BMCFileMangement.forms.UserControls
         /// <param name="e"></param>
         private async Task BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            filetransferinfoEntity objSingle = (filetransferinfoEntity)e.Result;
-
-            await UpdatePopData(objSingle);
-
-            backgroundWorker.RunWorkerAsync();
+            //if (e.Result != null)
+            //{
+            //    filetransferinfoEntity objSingle = (filetransferinfoEntity)e.Result;
+            //    if (objSingle != null)
+            //        await UpdatePopData(objSingle);
+            //}
+            //backgroundWorker.RunWorkerAsync();
         }
 
         private async Task UpdatePopData(filetransferinfoEntity obj)
