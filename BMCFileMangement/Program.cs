@@ -28,7 +28,7 @@ namespace BMCFileMangement
                 // Simulate the activation event manually
                 ToastNotificationManagerCompat_OnActivated(null);
             }
-
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NAaF1cXmhKYVtpR2Nbe05xdl9CY1ZQTGYuP1ZhSXxXdkdjXn9edHdUT2VUU0Y=");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Syncfusion.Windows.Forms.Chart;
+using Syncfusion.Windows.Forms.Chart.Samples;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -105,9 +107,49 @@ namespace BMCFileMangement.forms
 
 
             lblUserName.Text = userprofile.CurrentUser.username;
+
+            #region Syncfusion Chart
+            InitializePieChartData();
+            ChartAppearance.ApplyChartStyles(this.pieChartInOut);
+            #endregion
+
         }
 
+        protected async Task InitializePieChartData()
+        {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NAaF1cXmhKYVtpR2Nbe05xdl9CY1ZQTGYuP1ZhSXxXdkdjXn9edHdUT2VUU0Y=");
 
+            Random random = new Random();
+
+            CancellationToken cancellationToken = new CancellationToken();
+            IHttpContextAccessor httpContextAccessor = null;
+            chartEntity _chart = new chartEntity();
+            IList<chartEntity> _chartDataList = new List<chartEntity>();
+
+            _chart.userid = _userprofile.CurrentUser.userid;
+
+            _chartDataList = await BFC.Core.FacadeCreatorObjects.General.chartFCC.
+                       GetFacadeCreate(httpContextAccessor).GetAll(_chart, cancellationToken);
+
+            if (_chartDataList != null && _chartDataList.Count > 0)
+            {
+                ChartSeries series1 = new ChartSeries("InboxOutbox");
+                int xindex = 0;
+                foreach (var item in _chartDataList)
+                {
+                    series1.Points.Add(xindex, (double)item.chartvalues);
+                    series1.Styles[xindex].Text = string.Format("{0} {1}", item.charttitle, (double)item.chartvalues);
+                    series1.Styles[xindex].Border.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                    xindex++;
+                }
+                series1.Type = ChartSeriesType.Pie;
+                this.pieChartInOut.Series.Add(series1);
+                series1.ConfigItems.PieItem.LabelStyle = ChartAccumulationLabelStyle.OutsideInColumn;
+                series1.Style.DisplayText = true;
+                series1.Style.Font.Size = 8.0f;
+                series1.ConfigItems.PieItem.AngleOffset = 60;
+            }
+        }
         private void IcnBtnViewOutBox_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);

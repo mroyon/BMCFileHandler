@@ -54,6 +54,7 @@ namespace BMCFileMangement.forms
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.pieChartInOut = new Syncfusion.Windows.Forms.Chart.ChartControl();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelMenu.SuspendLayout();
@@ -384,15 +385,38 @@ namespace BMCFileMangement.forms
             // 
             // panelDesktop
             // 
+            this.panelDesktop.Controls.Add(this.pieChartInOut);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(1056, 617);
             this.panelDesktop.TabIndex = 1;
             // 
+            // pieChartInOut
             // 
-            // pieChart1
+            this.pieChartInOut.ChartArea.CursorLocation = new System.Drawing.Point(0, 0);
+            this.pieChartInOut.ChartArea.CursorReDraw = false;
+            this.pieChartInOut.IsWindowLess = false;
             // 
+            // 
+            // 
+            this.pieChartInOut.Legend.Location = new System.Drawing.Point(336, 75);
+            this.pieChartInOut.Localize = null;
+            this.pieChartInOut.Location = new System.Drawing.Point(66, 50);
+            this.pieChartInOut.Name = "pieChartInOut";
+            this.pieChartInOut.PrimaryXAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
+            this.pieChartInOut.PrimaryXAxis.Margin = true;
+            this.pieChartInOut.PrimaryYAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
+            this.pieChartInOut.PrimaryYAxis.Margin = true;
+            this.pieChartInOut.Size = new System.Drawing.Size(445, 366);
+            this.pieChartInOut.TabIndex = 0;
+            this.pieChartInOut.Text = "Inbox Outbox Statistics";
+            // 
+            // 
+            // 
+            this.pieChartInOut.Title.Name = "Default";
+            this.pieChartInOut.Titles.Add(this.pieChartInOut.Title);
+            this.pieChartInOut.VisualTheme = "";
             // 
             // panel3
             // 
@@ -472,6 +496,6 @@ namespace BMCFileMangement.forms
         private FontAwesome.Sharp.IconButton icnBtnChangePassword;
         private PictureBox pictureBox2;
         private FontAwesome.Sharp.IconButton icnBtnLogout;
-        
+        private Syncfusion.Windows.Forms.Chart.ChartControl pieChartInOut;
     }
 }
