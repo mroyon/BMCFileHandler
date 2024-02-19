@@ -80,6 +80,7 @@ namespace BMCFileMangement.forms
         {
             btnSearchInboxData.Click += BtnReloadInboxData_Click;
             btnClearSearchInboxData.Click += BtnClearSearchInboxData_Click;
+            dtGrdInBox.CellFormatting += dtGrdInBox_CellFormatting;
             //dtGrdInBox.ColumnHeadersDefaultCellStyle.BackColor = Color.Blue;
             dtGrdInBox.EnableHeadersVisualStyles = false;
             BindDataToGrid(1);
